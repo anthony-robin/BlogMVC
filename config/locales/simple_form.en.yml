@@ -11,6 +11,7 @@ en:
       blog:
         title: Titre
         content: Contenu
+        category_id: Catégorie
 
   helpers:
     submit:
