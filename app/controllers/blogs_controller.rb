@@ -1,11 +1,21 @@
 class BlogsController < ApplicationController
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
+  before_action :set_category,
+                only: [:index],
+                if: proc { params[:category_id].present? }
+  before_action :set_categories, only: [:index, :show]
 
   # GET /blogs
   # GET /blogs.json
   def index
     @title = 'Articles de Blog'
-    @blogs = Blog.all.page params[:page]
+    if params[:category_id].present?
+      @blogs = @category.blogs
+      @title += " (#{@category.name})"
+    else
+      @blogs = Blog.includes(:category)
+    end
+    @blogs = @blogs.page params[:page]
   end
 
   # GET /blogs/1
@@ -32,7 +42,7 @@ class BlogsController < ApplicationController
 
     respond_to do |format|
       if @blog.save
-        format.html { redirect_to @blog, notice: 'L\'article de Blog a été créé avec succès' }
+        format.html { redirect_to category_blog_path(@blog.category, @blog), notice: 'L\'article de Blog a été créé avec succès' }
       else
         format.html { render :new }
       end
@@ -44,7 +54,7 @@ class BlogsController < ApplicationController
   def update
     respond_to do |format|
       if @blog.update(blog_params)
-        format.html { redirect_to @blog, notice: 'L\'article de Blog a été mis à jour avec succès' }
+        format.html { redirect_to category_blog_path(@blog.category, @blog), notice: 'L\'article de Blog a été mis à jour avec succès' }
       else
         format.html { render :edit }
       end
@@ -67,8 +77,16 @@ class BlogsController < ApplicationController
     @blog = Blog.friendly.find(params[:id])
   end
 
+  def set_category
+    @category = Category.includes(:blogs).friendly.find(params[:category_id])
+  end
+
+  def set_categories
+    @categories = Category.includes(:blogs).last(5)
+  end
+
   # Never trust parameters from the scary internet, only allow the white list through.
   def blog_params
-    params.require(:blog).permit(:title, :slug, :content)
+    params.require(:blog).permit(:title, :slug, :content, :category_id)
   end
 end

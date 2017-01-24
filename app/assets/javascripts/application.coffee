@@ -37,3 +37,7 @@ $(document).on 'ready page:load page:restore turbolinks:load', ->
   if $('.froala').length
     $('.froala').froalaEditor
       heightMin: 300
+
+  # Workaround Sticky and Turbolinks
+  if $('[data-sticky]').length > 0
+    $(window).trigger('load.zf.sticky')

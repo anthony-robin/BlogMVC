@@ -11,12 +11,20 @@ en:
       blog:
         title: Titre
         content: Contenu
+        category_id: Catégorie
+    placeholders:
+      category:
+        name: Nom
 
   helpers:
     submit:
       blog:
         create: "Créer %{model}"
         update: "Modifier %{model}"
+      category:
+        create: "Créer catégorie"
+        update: "Modifier catégorie"
+
 
   activerecord:
     errors:
@@ -27,3 +35,8 @@ en:
               blank: "Le titre ne doit pas être vide"
             content:
               blank: "Le contenu ne doit pas être vide"
+        category:
+          attributes:
+            name:
+              blank: "Le nom ne doit pas être vide"
+              taken: "Ce nom existe déjà"

@@ -3,6 +3,13 @@
     .small-12.medium-4.columns
       = f.input :title
 
+      br
+
+      = f.input :category_id,
+                as: :select,
+                collection: Category.all,
+                include_blank: false
+
     .small-12.medium-8.columns
       = f.input :content,
                 as: :text,
