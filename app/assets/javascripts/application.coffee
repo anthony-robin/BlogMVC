@@ -31,7 +31,7 @@
 #= require plugins/video.min.js
 #= require languages/fr.js
 
-$(document).on 'ready page:load page:restore', ->
+$(document).on 'ready page:load page:restore turbolinks:load', ->
   $(document).foundation()
 
   if $('.froala').length
