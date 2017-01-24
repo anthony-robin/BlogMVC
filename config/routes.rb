@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
   root 'homes#index'
-  resources :blogs
+
+  concern :paginatable do
+    get '(page/:page)', action: :index, on: :collection, as: ''
+  end
+
+  resources :blogs, concerns: :paginatable
 end
