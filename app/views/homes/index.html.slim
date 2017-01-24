@@ -3,3 +3,18 @@
   div class="callout large primary"
     div class="row column text-center"
       h1 = @title
+
+- unless @blogs.empty?
+  table
+    thead
+      tr
+        th Titre
+        th Actions
+    tbody
+      - @blogs.each do |blog|
+        tr
+          td = blog.title
+          td
+            = link_to 'Voir', blog
+            = link_to 'Modifier', [:edit, blog]
+            = link_to 'Supprimer', blog, data: { confirm: 'Etes-vous sûr ?' }, method: :delete

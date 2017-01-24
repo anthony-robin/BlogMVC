@@ -1,0 +1,13 @@
+/ Page title
+- content_for :page_title do
+  div class="callout large success"
+    div class="row column text-center"
+      h1 = @title
+
+.row
+  .small-12.columns
+    == render 'form'
+
+= link_to 'Voir', @blog
+'|
+= link_to 'Retour', blogs_path
