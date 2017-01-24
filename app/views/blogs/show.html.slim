@@ -11,8 +11,8 @@ p#notice = notice
       header
         h2 = link_to @blog.title, @blog
 
-      div.fr-view
-        == @blog.content
+      div.preview = image_tag 'https://placehold.it/650x250', class: 'thumbnail'
+      div.fr-view == @blog.content
 
       footer
         =< link_to 'Modifier', edit_blog_path(@blog), class: 'button small warning'

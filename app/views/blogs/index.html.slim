@@ -11,6 +11,7 @@
         article.blog
           header
             h2 = link_to blog.title, blog
+          div.preview = image_tag 'https://placehold.it/650x250', class: 'thumbnail'
           div.fr-view == blog.content
 
 .row
