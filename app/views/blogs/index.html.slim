@@ -4,19 +4,22 @@
     div class="row column text-center"
       h1 = @title
 
-- unless @blogs.empty?
+#sidebar_referer
   .row
-    .small-12.columns
-      - @blogs.each do |blog|
-        article.blog
-          header
-            h2
-              = link_to blog.title, blog
-              = content_tag(:span, blog.category_name, class: 'label')
+    - unless @blogs.empty?
+      .small-12.medium-9.columns
+        - @blogs.each do |blog|
+          article.blog
+            header
+              h2
+                = link_to blog.title, blog
+                = content_tag(:span, blog.category_name, class: 'label')
 
-          div.preview = image_tag 'https://placehold.it/650x250', class: 'thumbnail'
-          div.fr-view == blog.content
-      = paginate @blogs
+            div.preview = image_tag 'https://placehold.it/650x250', class: 'thumbnail'
+            div.fr-view == blog.content
+        = paginate @blogs
+
+    = render 'blogs/sidebar'
 
 .row
   .small-12.columns

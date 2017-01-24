@@ -1,0 +1,6 @@
+div class="small-12 medium-3 columns" data-sticky-container=''
+  aside.sticky data-sticky='' data-anchor='sidebar_referer' data-btm-anchor='sidebar_referer:bottom'
+    h4 Catégories
+    ul
+      - @categories.each do |category|
+        li = link_to category.name, category
