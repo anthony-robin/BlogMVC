@@ -17,3 +17,13 @@ en:
       blog:
         create: "Créer %{model}"
         update: "Modifier %{model}"
+
+  activerecord:
+    errors:
+      models:
+        blog:
+          attributes:
+            title:
+              blank: "Le titre ne doit pas être vide"
+            content:
+              blank: "Le contenu ne doit pas être vide"

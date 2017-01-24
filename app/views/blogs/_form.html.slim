@@ -1,11 +1,4 @@
 = simple_form_for @blog do |f|
-  - if @blog.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@blog.errors.count, "error")} prohibited this blog from being saved:"
-      ul
-        - @blog.errors.full_messages.each do |message|
-          li = message
-
   .row
     .small-12.medium-4.columns
       = f.input :title
