@@ -10,12 +10,15 @@
       thead
         tr
           th Nom
+          th Nombre d'articles de Blog
           th Actions
 
       tbody
         - @categories.each do |category|
           tr
             td = category.name
+            / IMPROVEME: A counter cache will give better performances
+            td = category.blogs.count
             td
               =< link_to 'Modifier', [:edit, category], class: 'button small warning'
               =< link_to 'Supprimer', category, data: { confirm: 'Etes-vous sûr ?' }, method: :delete, class: 'button small alert'
