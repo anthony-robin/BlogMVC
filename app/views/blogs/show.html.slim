@@ -11,8 +11,9 @@ p#notice = notice
       article.blog
         header
           h2
-            =< link_to @blog.title, @blog
-            = content_tag(:span, @blog.category_name, class: 'label')
+            = link_to @blog.title, @blog
+            =< content_tag(:span, @blog.category_name, class: 'label')
+            small =< I18n.l(@blog.created_at, format: :short)
 
         div.preview = image_tag 'https://placehold.it/650x250', class: 'thumbnail'
         div.fr-view == @blog.content
