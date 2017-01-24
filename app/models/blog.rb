@@ -8,6 +8,12 @@ class Blog < ApplicationRecord
             presence: true
   validates :content,
             presence: true
+  validates :category_id,
+            presence: true,
+            allow_blank: false,
+            inclusion: {
+              in: Category.all.map(&:id)
+            }
 
   delegate :name, to: :category, prefix: true, allow_nil: true
 
