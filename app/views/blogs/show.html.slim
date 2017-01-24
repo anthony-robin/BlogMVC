@@ -20,6 +20,7 @@ p#notice = notice
 
         footer
           =< link_to 'Modifier', edit_category_blog_path(@blog.category, @blog), class: 'button small warning'
+          =< link_to 'Supprimer', @blog, data: { confirm: 'Etes-vous sûr ?' }, method: :delete, class: 'button small alert'
           =< link_to 'Retour', blogs_path, class: 'button small'
 
     = render 'blogs/sidebar'
