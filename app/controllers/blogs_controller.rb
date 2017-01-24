@@ -69,7 +69,7 @@ class BlogsController < ApplicationController
   end
 
   def set_categories
-    @categories = Category.all
+    @categories = Category.last(5)
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
