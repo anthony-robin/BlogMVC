@@ -11,7 +11,7 @@ class BlogsController < ApplicationController
   # GET /blogs/1
   # GET /blogs/1.json
   def show
-    @title = @blog.title
+    @title = 'Blog'
   end
 
   # GET /blogs/new

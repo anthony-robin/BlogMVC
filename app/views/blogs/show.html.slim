@@ -1,6 +1,19 @@
 p#notice = notice
 
+- content_for :page_title do
+  div class="callout large primary"
+    div class="row column text-center"
+      h1 = @title
+
 .row
   .small-12.columns
-    =< link_to 'Modifier', edit_blog_path(@blog), class: 'button small warning'
-    =< link_to 'Retour', blogs_path, class: 'button small'
+    article.blog
+      header
+        h2 = link_to @blog.title, @blog
+
+      div.fr-view
+        == @blog.content
+
+      footer
+        =< link_to 'Modifier', edit_blog_path(@blog), class: 'button small warning'
+        =< link_to 'Retour', blogs_path, class: 'button small'
