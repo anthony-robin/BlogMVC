@@ -45,4 +45,10 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to categories_url
   end
+
+  test "should destroy blogs linked to category" do
+    assert_difference('Blog.count', -1) do
+      delete category_url(@category)
+    end
+  end
 end
