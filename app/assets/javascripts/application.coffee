@@ -34,5 +34,6 @@
 $(document).on 'ready page:load page:restore', ->
   $(document).foundation()
 
-  $('.froala').froalaEditor
-    heightMin: 300
+  if $('.froala').length
+    $('.froala').froalaEditor
+      heightMin: 300
