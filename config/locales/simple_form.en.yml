@@ -35,3 +35,8 @@ en:
               blank: "Le titre ne doit pas être vide"
             content:
               blank: "Le contenu ne doit pas être vide"
+        category:
+          attributes:
+            name:
+              blank: "Le nom ne doit pas être vide"
+              taken: "Ce nom existe déjà"
