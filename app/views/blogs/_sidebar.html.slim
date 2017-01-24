@@ -3,4 +3,7 @@ div class="small-12 medium-3 columns" data-sticky-container=''
     h4 Catégories
     ul
       - @categories.each do |category|
-        li = link_to category.name, category
+        li
+          = link_to category.name, category
+          / IMPROVEME: A counter cache will give better performances
+          =< "(#{category.blogs.count})"
