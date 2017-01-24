@@ -11,7 +11,7 @@ p#notice = notice
       article.blog
         header
           h2
-            = link_to @blog.title, @blog
+            = link_to @blog.title, category_blog_path(@blog.category, @blog)
             =< content_tag(:span, @blog.category_name, class: 'label')
             small =< I18n.l(@blog.created_at, format: :short)
 

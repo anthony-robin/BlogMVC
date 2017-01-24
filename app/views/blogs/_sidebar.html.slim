@@ -4,6 +4,6 @@ div class="small-12 medium-3 columns" data-sticky-container=''
     ul
       - @categories.each do |category|
         li
-          = link_to category.name, category
+          = link_to category.name, category_blogs_path(category)
           / IMPROVEME: A counter cache will give better performances
           =< "(#{category.blogs.count})"
