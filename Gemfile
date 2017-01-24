@@ -21,6 +21,7 @@ gem 'slim-rails' # slim file
 gem 'foundation-rails', '~> 6.3.0'
 gem 'wysiwyg-rails' # Froala editor
 gem 'kaminari', '~> 1.0' # Pagination
+gem 'friendly_id'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
