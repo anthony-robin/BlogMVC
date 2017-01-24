@@ -1,0 +1,19 @@
+en:
+  simple_form:
+    "yes": 'Oui'
+    "no": 'Non'
+    required:
+      text: 'requis'
+      mark: '*'
+    error_notification:
+      default_message: "Veuillez vérifier et corriger les erreurs suivantes"
+    labels:
+      blog:
+        title: Titre
+        content: Contenu
+
+  helpers:
+    submit:
+      blog:
+        create: "Créer %{model}"
+        update: "Modifier %{model}"
