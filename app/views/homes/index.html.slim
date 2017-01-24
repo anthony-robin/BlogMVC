@@ -9,11 +9,13 @@
     thead
       tr
         th Titre
+        th Catégorie
         th Actions
     tbody
       - @blogs.each do |blog|
         tr
           td = blog.title
+          td = blog.category_name
           td
             =< link_to 'Voir', blog, class: 'button small success'
             =< link_to 'Modifier', [:edit, blog], class: 'button small warning'
