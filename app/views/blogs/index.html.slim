@@ -6,13 +6,15 @@
 
 #sidebar_referer
   .row
-    - unless @blogs.empty?
-      .small-12.medium-9.columns
+    .small-12.medium-9.columns
+      - if @blogs.blank?
+       p Il n'y a aucun article de blog à afficher
+      - else
         - @blogs.each do |blog|
           article.blog
             header
               h2
-                = link_to blog.title, blog
+                = link_to blog.title, category_blog_path(blog.category, blog)
                 =< content_tag(:span, blog.category_name, class: 'label')
                 small =< I18n.l(blog.created_at, format: :short)
 

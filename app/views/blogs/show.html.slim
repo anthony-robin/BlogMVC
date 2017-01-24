@@ -19,7 +19,7 @@ p#notice = notice
         div.fr-view == @blog.content
 
         footer
-          =< link_to 'Modifier', edit_blog_path(@blog), class: 'button small warning'
+          =< link_to 'Modifier', edit_category_blog_path(@blog.category, @blog), class: 'button small warning'
           =< link_to 'Retour', blogs_path, class: 'button small'
 
     = render 'blogs/sidebar'
