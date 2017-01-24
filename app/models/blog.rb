@@ -9,6 +9,8 @@ class Blog < ApplicationRecord
   validates :content,
             presence: true
 
+  delegate :name, to: :category, prefix: true, allow_nil: true
+
   paginates_per 5
 
   def should_generate_new_friendly_id?
