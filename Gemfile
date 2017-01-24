@@ -20,6 +20,7 @@ gem 'simple_form'
 gem 'slim-rails' # slim file
 gem 'foundation-rails', '~> 6.3.0'
 gem 'wysiwyg-rails' # Froala editor
+gem 'kaminari', '~> 1.0' # Pagination
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
