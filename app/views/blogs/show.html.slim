@@ -1,5 +1,6 @@
 p#notice = notice
 
-= link_to 'Modifier', edit_blog_path(@blog)
-'|
-= link_to 'Retour', blogs_path
+.row
+  .small-12.columns
+    =< link_to 'Modifier', edit_blog_path(@blog), class: 'button small warning'
+    =< link_to 'Retour', blogs_path, class: 'button small'
