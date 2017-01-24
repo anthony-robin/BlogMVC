@@ -1,23 +1,25 @@
-h1 Listing categories
+/ Page title
+- content_for :page_title do
+  div class="callout large primary"
+    div class="row column text-center"
+      h1 = @title
 
-table
-  thead
-    tr
-      th Name
-      th Slug
-      th
-      th
-      th
+.row.align-center
+  .small-12.medium-8.columns
+    table.hover
+      thead
+        tr
+          th Nom
+          th Actions
 
-  tbody
-    - @categories.each do |category|
-      tr
-        td = category.name
-        td = category.slug
-        td = link_to 'Show', category
-        td = link_to 'Edit', edit_category_path(category)
-        td = link_to 'Destroy', category, data: { confirm: 'Are you sure?' }, method: :delete
+      tbody
+        - @categories.each do |category|
+          tr
+            td = category.name
+            td
+              =< link_to 'Modifier', [:edit, category], class: 'button small warning'
+              =< link_to 'Supprimer', category, data: { confirm: 'Etes-vous sûr ?' }, method: :delete, class: 'button small alert'
 
-br
+    br
 
-= link_to 'New Category', new_category_path
+    = link_to 'Ajouter une catégorie', new_category_path, class: 'button small success'

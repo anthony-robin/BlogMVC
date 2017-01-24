@@ -12,12 +12,19 @@ en:
         title: Titre
         content: Contenu
         category_id: Catégorie
+    placeholders:
+      category:
+        name: Nom
 
   helpers:
     submit:
       blog:
         create: "Créer %{model}"
         update: "Modifier %{model}"
+      category:
+        create: "Créer catégorie"
+        update: "Modifier catégorie"
+
 
   activerecord:
     errors:

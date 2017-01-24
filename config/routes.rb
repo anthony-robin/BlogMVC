@@ -6,5 +6,5 @@ Rails.application.routes.draw do
   end
 
   resources :blogs, concerns: :paginatable
-  resources :categories, concerns: :paginatable
+  resources :categories, except: [:show], concerns: :paginatable
 end

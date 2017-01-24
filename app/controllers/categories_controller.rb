@@ -4,21 +4,19 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
   def index
+    @title = 'Liste des catégories'
     @categories = Category.all
-  end
-
-  # GET /categories/1
-  # GET /categories/1.json
-  def show
   end
 
   # GET /categories/new
   def new
+    @title = 'Ajouter une catégorie'
     @category = Category.new
   end
 
   # GET /categories/1/edit
   def edit
+    @title = 'Modifier une catégorie'
   end
 
   # POST /categories
@@ -28,7 +26,7 @@ class CategoriesController < ApplicationController
 
     respond_to do |format|
       if @category.save
-        format.html { redirect_to @category, notice: 'La Catégorie a été créée avec succès.' }
+        format.html { redirect_to categories_path, notice: 'La Catégorie a été créée avec succès.' }
       else
         format.html { render :new }
       end
@@ -40,7 +38,7 @@ class CategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @category.update(category_params)
-        format.html { redirect_to @category, notice: 'La Catégorie a été modifiée avec succès' }
+        format.html { redirect_to categories_path, notice: 'La Catégorie a été modifiée avec succès' }
       else
         format.html { render :edit }
       end
