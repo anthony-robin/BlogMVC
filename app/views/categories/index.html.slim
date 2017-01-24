@@ -20,6 +20,10 @@
               =< link_to 'Modifier', [:edit, category], class: 'button small warning'
               =< link_to 'Supprimer', category, data: { confirm: 'Etes-vous sûr ?' }, method: :delete, class: 'button small alert'
 
+.row
+  .small-12.columns
+    = paginate @categories
+
     br
 
-    = link_to 'Ajouter une catégorie', new_category_path, class: 'button small success'
+    p.text-right = link_to 'Ajouter une catégorie', new_category_path, class: 'button small success'

@@ -5,7 +5,7 @@ class CategoriesController < ApplicationController
   # GET /categories.json
   def index
     @title = 'Liste des catégories'
-    @categories = Category.all
+    @categories = Category.all.page params[:page]
   end
 
   # GET /categories/new
