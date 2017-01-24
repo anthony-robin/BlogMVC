@@ -1,2 +1,5 @@
-h1 Homes#index
-p Find me in app/views/homes/index.html.slim
+/ Page title
+- content_for :page_title do
+  div class="callout large primary"
+    div class="row column text-center"
+      h1 = @title

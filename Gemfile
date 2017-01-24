@@ -17,6 +17,7 @@ gem 'coffee-rails', '~> 4.2'
 # gem 'therubyracer', platforms: :ruby
 
 gem 'slim-rails' # slim file
+gem 'foundation-rails', '~> 6.3.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
