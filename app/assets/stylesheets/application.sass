@@ -40,3 +40,10 @@ body
 
 .form-actions
   margin-top: 1rem
+
+// Alert box
+.callout
+  &.notice
+    @include callout($success-color)
+  &.error
+    @include callout($alert-color)

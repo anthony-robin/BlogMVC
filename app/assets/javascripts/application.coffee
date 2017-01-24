@@ -41,3 +41,9 @@ $(document).on 'ready page:load page:restore turbolinks:load', ->
   # Workaround Sticky and Turbolinks
   if $('[data-sticky]').length > 0
     $(window).trigger('load.zf.sticky')
+
+  # Close alert-box
+  setTimeout (->
+    $('.alert-box').fadeOut()
+    return
+  ), 5000
