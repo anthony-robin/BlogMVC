@@ -3,8 +3,11 @@
     .small-12.medium-4.columns
       = f.input :title
 
-      br
+      - unless f.object.new_record?
+        br
+        = f.input :slug, disabled: true
 
+      br
       = f.input :category_id,
                 as: :select,
                 collection: Category.all,
