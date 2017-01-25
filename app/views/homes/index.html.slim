@@ -18,8 +18,8 @@
     tbody
       - @blogs.each do |blog|
         tr
-          td = blog.title
-          td = blog.category_name
+          td = link_to blog.title, category_blog_path(blog.category, blog)
+          td = link_to blog.category_name, category_blogs_path(blog.category)
           td
             =< link_to 'Voir', category_blog_path(blog.category, blog), class: 'button small success'
             =< link_to 'Modifier', edit_category_blog_path(blog.category, blog), class: 'button small warning'
