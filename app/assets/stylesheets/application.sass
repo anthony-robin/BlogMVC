@@ -47,3 +47,15 @@ body
     @include callout($success-color)
   &.error
     @include callout($alert-color)
+
+
+// Orbit (carousel)
+.orbit
+  margin: 2rem 0
+  &-container
+    .orbit-slide
+      padding: 1rem
+      background-color: $primary-color
+      color: $white
+      &:nth-child(odd)
+        background-color: $warning-color
