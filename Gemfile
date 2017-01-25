@@ -43,6 +43,8 @@ group :development, :test do
 end
 
 group :development do
+  gem 'faker'
+  gem 'database_cleaner'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console'
   gem 'better_errors'
