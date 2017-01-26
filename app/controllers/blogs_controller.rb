@@ -55,6 +55,7 @@ class BlogsController < ApplicationController
     respond_to do |format|
       if @blog.update(blog_params)
         format.html { redirect_to category_blog_path(@blog.category, @blog), notice: 'L\'article de Blog a été mis à jour avec succès' }
+        format.js { render nothing: true }
       else
         format.html { render :edit }
       end

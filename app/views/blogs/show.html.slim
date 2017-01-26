@@ -7,19 +7,6 @@
 #sidebar_referer
   .row
     .small-12.medium-9.columns
-      article.blog
-        header
-          h2
-            = link_to @blog.title, category_blog_path(@blog.category, @blog)
-            =< content_tag(:span, @blog.category_name, class: 'label')
-            small =< I18n.l(@blog.created_at, format: :short)
-
-        div.preview = image_tag 'https://placehold.it/650x250', class: 'thumbnail'
-        div.fr-view == @blog.content
-
-        footer
-          =< link_to 'Modifier', edit_category_blog_path(@blog.category, @blog), class: 'button small warning'
-          =< link_to 'Supprimer', @blog, data: { confirm: 'Etes-vous sûr ?' }, method: :delete, class: 'button small alert'
-          =< link_to 'Retour', blogs_path, class: 'button small'
+      = render 'blog', blog: @blog
 
     = render 'blogs/sidebar'

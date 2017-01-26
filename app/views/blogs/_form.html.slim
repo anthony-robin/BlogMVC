@@ -13,6 +13,10 @@
                 collection: Category.all,
                 include_blank: false
 
+      - unless f.object.new_record?
+        br
+        p: a class="button small warning" data-open="blog_preview" Prévisualiser le rendu
+
     .small-12.medium-8.columns
       = f.input :content,
                 as: :text,
@@ -20,3 +24,10 @@
 
   .actions
     = f.button :submit
+
+  - unless f.object.new_record?
+    div class="reveal" id="blog_preview" data-reveal=''
+      = render 'blog', blog: @blog
+
+      button class="close-button" data-close='' aria-label="Fermer modal" type="button"
+        span aria-hidden="true" &times;

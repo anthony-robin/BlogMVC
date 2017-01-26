@@ -1,0 +1,13 @@
+article.blog id="blog_#{blog.id}"
+  header
+    h2
+      span.blog-title = link_to blog.title, category_blog_path(blog.category, blog)
+      =< content_tag(:span, blog.category_name, class: 'label')
+      small =< I18n.l(blog.created_at, format: :short)
+
+  div.preview = image_tag 'https://placehold.it/650x250', class: 'thumbnail'
+  div.fr-view == blog.content
+
+  footer
+    =< link_to 'Modifier', edit_category_blog_path(blog.category, blog), class: 'button small warning'
+    =< link_to 'Supprimer', blog, data: { confirm: 'Etes-vous sûr ?' }, method: :delete, class: 'button small alert'
