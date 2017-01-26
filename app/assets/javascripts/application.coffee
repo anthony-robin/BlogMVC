@@ -51,11 +51,12 @@ $(document).on 'ready page:load page:restore turbolinks:load', ->
   # Blog preview in modal
   $edit_form = $('form.edit_blog')
   if $edit_form.length > 0
-    init_blog_preview_modal($edit_form)
+    blog_preview_modal($edit_form)
 
-init_blog_preview_modal = ($edit_form) ->
+blog_preview_modal = ($edit_form) ->
   $('#blog_preview').on 'closeme.zf.reveal', ->
     $modal = $('#blog_preview')
+
     title = $edit_form.find('#blog_title').val()
     title_link = "<a href='#'>#{title}</a>"
     content = $edit_form.find('.fr-element.fr-view').html()

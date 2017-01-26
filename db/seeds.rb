@@ -13,7 +13,7 @@ end
 puts 'Create blogs articles'
 20.times do
   Blog.create(
-    title: Faker::Hipster.sentence,
+    title: Faker::Hipster.words(4).join(' '),
     content: "<p>#{Faker::Hipster.paragraph}</p>",
     category_id: Category.all.map(&:id).sample
   )

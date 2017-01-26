@@ -1,4 +1,4 @@
-div class="orbit" role="region" aria-label="Messages de blog" data-orbit=''
+div class="orbit" role="region" aria-label="Messages de blog" data-orbit='' data-options="animInFromLeft:fade-in; animInFromRight:fade-in; animOutToLeft:fade-out; animOutToRight:fade-out"
   ul class="orbit-container"
     button class="orbit-previous"
       span class="show-for-sr" Slide précédente
@@ -11,7 +11,7 @@ div class="orbit" role="region" aria-label="Messages de blog" data-orbit=''
       li class="orbit-slide"
         div
           h3.text-center = blog.title
-          p.text-center == blog.content
+          div.text-center == blog.content
 
   nav class="orbit-bullets"
     - blogs.each_with_index do |blog, index|

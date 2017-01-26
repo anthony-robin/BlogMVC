@@ -25,6 +25,17 @@ body
 .content
   flex: 1 0
 
+.blog
+  margin-bottom: 3rem
+  .label
+    vertical-align: middle
+  .timestamps
+    color: $dark-gray
+    text-transform: uppercase
+  .callout
+    .button
+      margin-bottom: 0
+
 .footer
   padding: .5rem 0
   background-color: $dark-gray
@@ -39,7 +50,10 @@ body
     margin-bottom: 0
 
 .form-actions
-  margin-top: 1rem
+  margin-top: 2rem
+.full-width
+  display: block
+  width: 100%
 
 // Alert box
 .callout
@@ -54,7 +68,7 @@ body
   margin: 2rem 0
   &-container
     .orbit-slide
-      padding: 1rem
+      padding: 1rem 3rem
       background-color: $primary-color
       color: $white
       &:nth-child(odd)

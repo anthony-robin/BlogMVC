@@ -13,17 +13,19 @@
                 collection: Category.all,
                 include_blank: false
 
-      - unless f.object.new_record?
-        br
-        p: a class="button small warning" data-open="blog_preview" Prévisualiser le rendu
-
     .small-12.medium-8.columns
       = f.input :content,
                 as: :text,
                 input_html: { class: 'froala' }
 
-  .actions
-    = f.button :submit
+  .row.form-actions
+    .small-12.columns class="medium-#{f.object.new_record? ? 9 : 6 }"
+      = f.button :submit, class: 'full-width'
+    - unless f.object.new_record?
+      .small-12.medium-3.columns
+        a class="button warning full-width" data-open="blog_preview" Prévisualiser les modifications
+    .small-12.medium-3.columns
+      = link_to 'Annuler', blogs_path, class: 'button secondary full-width'
 
   - unless f.object.new_record?
     div class="reveal" id="blog_preview" data-reveal=''

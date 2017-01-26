@@ -19,11 +19,11 @@ en:
   helpers:
     submit:
       blog:
-        create: "Créer %{model}"
-        update: "Modifier %{model}"
+        create: "Créer l'article"
+        update: "Mettre à jour l'article"
       category:
-        create: "Créer catégorie"
-        update: "Modifier catégorie"
+        create: "Créer la catégorie"
+        update: "Mettre à jour la catégorie"
 
 
   activerecord:
