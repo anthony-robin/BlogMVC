@@ -1,0 +1,42 @@
+en:
+  simple_form:
+    "yes": 'Oui'
+    "no": 'Non'
+    required:
+      text: 'requis'
+      mark: '*'
+    error_notification:
+      default_message: "Veuillez vérifier et corriger les erreurs suivantes"
+    labels:
+      blog:
+        title: Titre
+        content: Contenu
+        category_id: Catégorie
+    placeholders:
+      category:
+        name: Nom
+
+  helpers:
+    submit:
+      blog:
+        create: "Créer l'article"
+        update: "Mettre à jour l'article"
+      category:
+        create: "Créer la catégorie"
+        update: "Mettre à jour la catégorie"
+
+
+  activerecord:
+    errors:
+      models:
+        blog:
+          attributes:
+            title:
+              blank: "Le titre ne doit pas être vide"
+            content:
+              blank: "Le contenu ne doit pas être vide"
+        category:
+          attributes:
+            name:
+              blank: "Le nom ne doit pas être vide"
+              taken: "Ce nom existe déjà"

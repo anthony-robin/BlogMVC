@@ -1,0 +1,16 @@
+/ Page title
+- content_for :page_title do
+  div class="callout large primary"
+    div class="row column text-center"
+      h1 = @title
+
+#sidebar_referer
+  .row
+    .small-12.medium-9.columns
+      - if @blogs.blank?
+       p Il n'y a aucun article de blog à afficher
+      - else
+        = render @blogs
+        = paginate @blogs
+
+    = render 'blogs/sidebar'

@@ -1,0 +1,41 @@
+doctype html
+html lang="fr"
+  head
+    meta charset='utf-8'
+    meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'
+    title = @title
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = csrf_meta_tag
+
+  body
+    .content
+      / Menu
+      div class="top-bar"
+        div class="top-bar-left"
+          ul class="menu"
+            li class="menu-text" Exercice FT
+        div class="top-bar-right"
+          ul class="menu"
+            li = link_to 'Accueil', root_path
+            li = link_to 'Articles de Blog', blogs_path
+            li = link_to 'Catégories de Blog', categories_path
+
+      / Page title
+      = yield :page_title
+
+      .row
+        .small-12.columns
+          - flash.each do |type, message|
+            .alert-box.callout.small class=type data-closable=''
+              span == message
+
+              button.close-button aria-label='Dismiss alert' type='button' data-close=''
+                span aria-hidden='true' &times;
+
+          == yield
+
+    footer.footer
+      .row
+        .small-12.columns
+          p.text-center Lorem ipsum dolor sit amet, consectetur adipisicing elit.

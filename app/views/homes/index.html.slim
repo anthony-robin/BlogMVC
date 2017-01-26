@@ -1,0 +1,28 @@
+/ Page title
+- content_for :page_title do
+  div class="callout large primary"
+    div class="row column text-center"
+      h1 = @title
+
+- unless @blogs.empty?
+  .row.align-center
+    .small-12.medium-8.columns
+      = render 'carousel', blogs: @blogs.last(5)
+
+  table.hover
+    thead
+      tr
+        th Titre
+        th Catégorie
+        th Actions
+    tbody
+      - @blogs.each do |blog|
+        tr
+          td = link_to blog.title, category_blog_path(blog.category, blog)
+          td = link_to blog.category_name, category_blogs_path(blog.category)
+          td
+            =< link_to 'Voir', category_blog_path(blog.category, blog), class: 'button small success'
+            =< link_to 'Modifier', edit_category_blog_path(blog.category, blog), class: 'button small warning'
+            =< link_to 'Supprimer', blog, data: { confirm: 'Etes-vous sûr ?' }, method: :delete, class: 'button small alert'
+
+  = paginate @blogs

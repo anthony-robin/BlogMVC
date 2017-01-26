@@ -1,0 +1,9 @@
+/ Page title
+- content_for :page_title do
+  div class="callout large primary"
+    div class="row column text-center"
+      h1 = @title
+
+.row.align-center
+  .small-12.medium-6.columns
+    == render 'form'

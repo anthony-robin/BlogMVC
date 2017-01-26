@@ -1,0 +1,14 @@
+article.blog id="blog_#{blog.id}"
+  header
+    h2
+      span.label = blog.category_name
+      span.blog-title =< link_to blog.title, category_blog_path(blog.category, blog)
+
+  div.preview
+    = image_tag Faker::Placeholdit.image('870x360'), class: 'thumbnail'
+  p.timestamps = I18n.l(blog.created_at, format: :long)
+  div.fr-view == blog.content
+
+  footer.callout
+    =< link_to 'Modifier', edit_category_blog_path(blog.category, blog), class: 'button small warning'
+    =< link_to 'Supprimer', blog, data: { confirm: 'Etes-vous sûr ?' }, method: :delete, class: 'button small alert'
