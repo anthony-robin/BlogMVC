@@ -1,24 +1,31 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Etapes
+- Executer `rails db:seed` pour créer des catégories et des articles
+- Executer `rails server`
+- Executer `rails test`
 
-Things you may want to cover:
+## Technologies
+#### Frontend
+- jQuery
+- Foundation (style, modale et carrousel)
+- Slim
+- Froala WYSIWYG editor (contenu formattable)
+- Kaminari
 
-* Ruby version
+#### Backend
+- Rails 5.0.1
+- Ruby 2.3.3
 
-* System dependencies
+### Base de données
+- SQlite 3
 
-* Configuration
+#### Tests
+- Shoulda
 
-* Database creation
+## Screenshots
+#### Page blogs
+![Page Blog](vendor/assets/images/blogs.png)
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+#### Edition d'un article
+![Edit Blog](vendor/assets/images/blog_edit.png)
