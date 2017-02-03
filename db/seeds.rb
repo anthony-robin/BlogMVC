@@ -3,6 +3,14 @@ require 'database_cleaner'
 DatabaseCleaner.strategy = :truncation
 DatabaseCleaner.clean
 
+puts 'Create users'
+User.create(
+  username: 'Admin',
+  email: 'admin@example.com',
+  password: 'password',
+  password_confirmation: 'password'
+)
+
 puts 'Create blogs categories'
 10.times do
   Category.create(
