@@ -2,6 +2,7 @@ class Blog < ApplicationRecord
   extend FriendlyId
   friendly_id :title, use: :slugged
 
+  belongs_to :user
   belongs_to :category, counter_cache: true
 
   validates :title,
@@ -16,6 +17,7 @@ class Blog < ApplicationRecord
             }
 
   delegate :name, to: :category, prefix: true, allow_nil: true
+  delegate :username, to: :user, prefix: true, allow_nil: true
 
   paginates_per 5
 
