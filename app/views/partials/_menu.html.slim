@@ -17,6 +17,7 @@ div class="top-bar"
           li
            a href="#" = current_user.username
            ul class="menu vertical"
+            li = link_to 'Mon profil', users_path
             li = link_to 'Déconnexion', destroy_user_session_path, method: :delete
       - else
         ul class="menu"

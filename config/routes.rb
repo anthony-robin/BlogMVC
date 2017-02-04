@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   resources :categories, only: [] do
     resources :blogs, only: [:index, :show, :edit], path: ''
   end
+
+  resources :users, only: [:index]
 end
