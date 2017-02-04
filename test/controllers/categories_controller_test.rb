@@ -3,7 +3,8 @@ require 'test_helper'
 class CategoriesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @category = categories(:one)
-    sign_in users(:one)
+    @user = users(:one)
+    sign_in @user
   end
 
   test 'should get index if connected' do
@@ -94,5 +95,24 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
         delete category_url(@category)
       end
     end
+  end
+
+  # --------------
+  # Abilities
+  # --------------
+  test 'should test abilities for not connected user' do
+    ability = Ability.new(User.new)
+    assert ability.cannot?(:create, Category.new), 'should not be able to create'
+    assert ability.cannot?(:read, @category), 'should not be able to read'
+    assert ability.cannot?(:update, @category), 'should not be able to update'
+    assert ability.cannot?(:destroy, @category), 'should not be able to destroy'
+  end
+
+  test 'should test abilities for connected user' do
+    ability = Ability.new(@user)
+    assert ability.can?(:create, Category.new), 'should be able to create'
+    assert ability.can?(:read, @category), 'should be able to read'
+    assert ability.can?(:update, @category), 'should be able to update'
+    assert ability.can?(:destroy, @category), 'should be able to destroy'
   end
 end
