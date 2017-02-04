@@ -8,6 +8,11 @@ Bundler.require(*Rails.groups)
 
 module ExerciceFT
   class Application < Rails::Application
+    # I18n
+    config.i18n.locale = :fr
+    config.default_locale = :fr
+    config.i18n.default_locale = :fr
+
     # Remove Helper, CSS, Coffee generating when scaffolding ressources
     config.generators.helper = false
     config.generators.stylesheets = false
