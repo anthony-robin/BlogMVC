@@ -103,4 +103,14 @@ class BlogsControllerTest < ActionDispatch::IntegrationTest
       end
     end
   end
+
+  test 'should have correct owner for blog article' do
+    blog = {
+      title: 'Article example',
+      content: 'Lorem ipsum dolor sit amet',
+      category_id: Category.first.id
+    }
+    post blogs_url, params: { blog: blog }
+    assert_equal users(:one), Blog.last.user
+  end
 end
