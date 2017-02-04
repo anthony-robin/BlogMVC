@@ -25,3 +25,23 @@ class Blog < ApplicationRecord
     slug.blank? || new_record? || title_changed?
   end
 end
+
+# == Schema Information
+#
+# Table name: blogs
+#
+#  id          :integer          not null, primary key
+#  title       :string
+#  slug        :string
+#  content     :text
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  category_id :integer
+#  user_id     :integer
+#
+# Indexes
+#
+#  index_blogs_on_category_id  (category_id)
+#  index_blogs_on_slug         (slug)
+#  index_blogs_on_user_id      (user_id)
+#

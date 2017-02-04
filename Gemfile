@@ -25,6 +25,7 @@ gem 'friendly_id'
 
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
@@ -40,6 +41,9 @@ end
 
 group :development do
   gem 'database_cleaner'
+  gem 'annotate', github: 'ctran/annotate_models',
+                  branch: 'develop'
+
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console'
   gem 'better_errors'

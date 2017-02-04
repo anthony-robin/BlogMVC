@@ -40,7 +40,7 @@ class BlogTest < ActiveSupport::TestCase
     category = categories(:one)
     assert_equal 1, category.blogs_count
 
-    blog = Blog.create(
+    Blog.create(
       title: 'Lorem ipsum counter cache',
       content: '<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>',
       category_id: category.id

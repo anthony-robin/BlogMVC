@@ -14,3 +14,19 @@ class Category < ApplicationRecord
     slug.blank? || new_record? || name_changed?
   end
 end
+
+# == Schema Information
+#
+# Table name: categories
+#
+#  id          :integer          not null, primary key
+#  name        :string
+#  slug        :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  blogs_count :integer          default(0), not null
+#
+# Indexes
+#
+#  index_categories_on_slug  (slug) UNIQUE
+#
