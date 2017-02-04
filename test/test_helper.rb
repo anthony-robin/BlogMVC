@@ -8,5 +8,11 @@ class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
 
-  # Add more helper methods to be used by all tests here...
+  def sign_out_and_ensure_redirect_to_sign_in(user = users(:one))
+    sign_out user
+    yield
+  ensure
+    assert_response 302
+    assert_redirected_to new_user_session_path
+  end
 end
