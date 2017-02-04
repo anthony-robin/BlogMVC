@@ -6,7 +6,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module ExerciceFT
+module BlogMVC
   class Application < Rails::Application
     # I18n
     config.i18n.locale = :fr
