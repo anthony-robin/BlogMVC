@@ -9,6 +9,20 @@ class User < ApplicationRecord
 
   has_many :blogs, dependent: :destroy
 
+  validates :username,
+            presence: true,
+            username_format: true,
+            uniqueness: {
+              case_sensitive: false
+            }
+
+  validates :email,
+            presence: true,
+            email_format: true,
+            uniqueness: {
+              case_sensitive: false
+            }
+
   def should_generate_new_friendly_id?
     new_record?
   end
