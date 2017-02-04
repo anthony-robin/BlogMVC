@@ -121,7 +121,7 @@ class BlogsControllerTest < ActionDispatch::IntegrationTest
   test 'should test abilities for not connected user' do
     ability = Ability.new(User.new)
     assert ability.cannot?(:create, Blog.new), 'should not be able to create'
-    assert ability.cannot?(:read, @blog), 'should not be able to read'
+    assert ability.can?(:read, @blog), 'should be able to read'
     assert ability.cannot?(:update, @blog), 'should not be able to update'
     assert ability.cannot?(:destroy, @blog), 'should not be able to destroy'
   end
