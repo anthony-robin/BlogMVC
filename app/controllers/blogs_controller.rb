@@ -1,4 +1,5 @@
 class BlogsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
   before_action :set_category,
                 only: [:index],
@@ -38,7 +39,7 @@ class BlogsController < ApplicationController
   # POST /blogs
   # POST /blogs.json
   def create
-    @blog = Blog.new(blog_params)
+    @blog = current_user.blogs.new(blog_params)
 
     respond_to do |format|
       if @blog.save

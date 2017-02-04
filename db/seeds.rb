@@ -3,6 +3,14 @@ require 'database_cleaner'
 DatabaseCleaner.strategy = :truncation
 DatabaseCleaner.clean
 
+puts 'Create users'
+user = User.create!(
+  username: 'Admin Admin',
+  email: 'admin@example.com',
+  password: 'password',
+  password_confirmation: 'password'
+)
+
 puts 'Create blogs categories'
 10.times do
   Category.create(
@@ -15,6 +23,7 @@ puts 'Create blogs articles'
   Blog.create(
     title: Faker::Hipster.words(4).join(' '),
     content: "<p>#{Faker::Hipster.paragraph}</p>",
-    category_id: Category.all.map(&:id).sample
+    category_id: Category.all.map(&:id).sample,
+    user_id: user.id
   )
 end
