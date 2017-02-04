@@ -61,6 +61,7 @@ GEM
       debug_inspector (>= 0.0.1)
     builder (3.2.3)
     byebug (9.0.6)
+    cancancan (1.15.0)
     coderay (1.1.1)
     coffee-rails (4.2.1)
       coffee-script (>= 2.2.0)
@@ -237,6 +238,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   byebug
+  cancancan
   coffee-rails (~> 4.2)
   database_cleaner
   devise

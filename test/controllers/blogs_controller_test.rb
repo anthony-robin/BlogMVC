@@ -3,7 +3,8 @@ require 'test_helper'
 class BlogsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @blog = blogs(:one)
-    sign_in users(:one)
+    @user = users(:one)
+    sign_in @user
   end
 
   test 'should get index' do
@@ -112,5 +113,24 @@ class BlogsControllerTest < ActionDispatch::IntegrationTest
     }
     post blogs_url, params: { blog: blog }
     assert_equal users(:one), Blog.last.user
+  end
+
+  # --------------
+  # Abilities
+  # --------------
+  test 'should test abilities for not connected user' do
+    ability = Ability.new(User.new)
+    assert ability.cannot?(:create, Blog.new), 'should not be able to create'
+    assert ability.can?(:read, @blog), 'should be able to read'
+    assert ability.cannot?(:update, @blog), 'should not be able to update'
+    assert ability.cannot?(:destroy, @blog), 'should not be able to destroy'
+  end
+
+  test 'should test abilities for connected user' do
+    ability = Ability.new(@user)
+    assert ability.can?(:create, Blog.new), 'should be able to create'
+    assert ability.can?(:read, @blog), 'should be able to read'
+    assert ability.can?(:update, @blog), 'should be able to update'
+    assert ability.can?(:destroy, @blog), 'should be able to destroy'
   end
 end

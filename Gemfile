@@ -4,11 +4,9 @@ source 'https://rubygems.org'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 gem 'puma', '~> 3.0'
 
-# Database
-gem 'sqlite3'
-
-# Authentication
-gem 'devise'
+gem 'sqlite3' # Database
+gem 'devise' # Authentication
+gem 'cancancan' # Abilities
 
 # Assets
 gem 'jquery-rails'

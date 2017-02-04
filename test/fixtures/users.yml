@@ -7,6 +7,12 @@ one:
   slug: admin
   email: admin@test.fr
 
+two:
+  <<: *DEFAULTS
+  username: admin2
+  slug: admin2
+  email: admin2@test.fr
+
 # == Schema Information
 #
 # Table name: users
