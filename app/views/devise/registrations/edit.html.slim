@@ -1,8 +1,6 @@
-/ Page title
-- content_for :page_title do
-  div class="callout large primary"
-    div class="row column text-center"
-      h1 Modifier mon profil
+- set_meta_tags title: t('.title'),
+                description: t('.description'),
+                keywords: t('.keywords')
 
 = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
   .row

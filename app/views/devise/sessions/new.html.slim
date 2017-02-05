@@ -1,8 +1,6 @@
-/ Page title
-- content_for :page_title do
-  div class="callout large success"
-    div class="row column text-center"
-      h1 Me connecter
+- set_meta_tags title: t('.title'),
+                description: t('.description'),
+                keywords: t('.keywords')
 
 .row
   .small-12.medium-9.columns

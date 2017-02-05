@@ -45,3 +45,17 @@ fr:
     index:
       <<: *DEFAULT_SEO
       title: 'Mon Profil: %{profile}'
+
+  devise:
+    sessions:
+      new:
+        <<: *DEFAULT_SEO
+        title: Me connecter
+
+    registrations:
+      new:
+        <<: *DEFAULT_SEO
+        title: Créer mon compte
+      edit:
+        <<: *DEFAULT_SEO
+        title: Modifier mon compte
