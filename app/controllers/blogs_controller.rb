@@ -6,6 +6,8 @@ class BlogsController < ApplicationController
                 if: proc { params[:category_id].present? }
   before_action :set_categories, only: [:index, :show]
 
+  authorize_resource
+
   # GET /blogs
   # GET /blogs.json
   def index

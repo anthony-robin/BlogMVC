@@ -67,3 +67,13 @@ fr:
       edit:
         <<: *DEFAULT_SEO
         title: Modifier mon mot de passe
+
+  # Cancancan
+  unauthorized:
+    manage:
+      all: "Vous n'êtes pas autorisé à %{action} le %{subject}."
+      user: "Vous n'êtes pas autorisé à gérer un compte utilisateur qui n'est pas le votre"
+    update:
+      blog: "Vous n'êtes pas autorisé à modifier cet article de Blog"
+    destroy:
+      blog: "Vous n'êtes pas autorisé à supprimer cet article de Blog"

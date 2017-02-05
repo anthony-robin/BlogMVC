@@ -16,6 +16,13 @@ two:
   category: two
   user: one
 
+three:
+  <<: *DEFAULTS
+  title: Consectetur adipisicing elit
+  slug: consectetur-adipisicing-elit
+  category: two
+  user: two
+
 # == Schema Information
 #
 # Table name: blogs

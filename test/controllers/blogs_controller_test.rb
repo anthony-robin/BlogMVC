@@ -4,6 +4,7 @@ class BlogsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @blog = blogs(:one)
     @user = users(:one)
+    @user2 = users(:two)
     sign_in @user
   end
 
@@ -67,6 +68,14 @@ class BlogsControllerTest < ActionDispatch::IntegrationTest
     end
   end
 
+  test 'should not get edit from another user' do
+    sign_in @user2
+    get edit_category_blog_url(@blog.category, @blog)
+    assert_redirected_to root_url
+    assert_not flash[:alert].empty?
+    assert_equal I18n.t('unauthorized.update.blog'), flash[:alert]
+  end
+
   test 'should update blog if connected' do
     blog = {
       title: 'Article example',
@@ -79,14 +88,17 @@ class BlogsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should not update blog if not connected' do
-    blog = {
-      title: 'Article example',
-      content: 'Lorem ipsum dolor sit amet',
-      category_id: @blog.category.id
-    }
     sign_out_and_ensure_redirect_to_sign_in do
-      patch blog_url(@blog), params: { blog: blog }
+      patch blog_url(@blog), params: { blog: {} }
     end
+  end
+
+  test 'should not update blog from another user' do
+    sign_in @user2
+    patch blog_url(@blog), params: { blog: {} }
+    assert_redirected_to root_url
+    assert_not flash[:alert].empty?
+    assert_equal I18n.t('unauthorized.update.blog'), flash[:alert]
   end
 
   test 'should destroy blog if connected' do
@@ -103,6 +115,14 @@ class BlogsControllerTest < ActionDispatch::IntegrationTest
         delete blog_url(@blog)
       end
     end
+  end
+
+  test 'should not destroy blog from another user' do
+    sign_in @user2
+    delete blog_url(@blog)
+    assert_redirected_to root_url
+    assert_not flash[:alert].empty?
+    assert_equal I18n.t('unauthorized.destroy.blog'), flash[:alert]
   end
 
   test 'should have correct owner for blog article' do
@@ -132,5 +152,13 @@ class BlogsControllerTest < ActionDispatch::IntegrationTest
     assert ability.can?(:read, @blog), 'should be able to read'
     assert ability.can?(:update, @blog), 'should be able to update'
     assert ability.can?(:destroy, @blog), 'should be able to destroy'
+  end
+
+  test 'should not have abilities to manage other users blog posts' do
+    ability = Ability.new(@user2)
+    assert ability.can?(:create, Blog.new), 'should be able to create'
+    assert ability.can?(:read, @blog), 'should be able to read'
+    assert ability.cannot?(:update, @blog), 'should not be able to update'
+    assert ability.cannot?(:destroy, @blog), 'should not be able to destroy'
   end
 end
