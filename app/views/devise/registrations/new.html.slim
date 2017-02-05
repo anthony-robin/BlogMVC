@@ -4,27 +4,30 @@
     div class="row column text-center"
       h1 Créer mon compte
 
-= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  .row.align-center
-    .small-12.medium-8.columns
-      .row
-        .small-12.columns
-          = f.input :username, required: true
-          br
-          = f.input :email, required: true, autofocus: true
-          br
-
-        .small-12.medium-6.columns
-          = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
-        .small-12.medium-6.columns
-          = f.input :password_confirmation, required: true
-
-  .row.align-center.form-actions
-    .small-12.medium-8.columns
-      .row
+.row
+  .small-12.medium-9.columns
+    = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+      .row.align-center
         .small-12.medium-8.columns
-          = f.button :submit, class: 'button full-width'
-        .small-12.medium-4.columns
-          = link_to 'Annuler', :back, class: 'button secondary full-width'
+          .row
+            .small-12.columns
+              = f.input :username, required: true
+              br
+              = f.input :email, required: true, autofocus: true
+              br
 
-= render 'devise/shared/links'
+            .small-12.medium-6.columns
+              = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
+            .small-12.medium-6.columns
+              = f.input :password_confirmation, required: true
+
+      .row.align-center.form-actions
+        .small-12.medium-8.columns
+          .row
+            .small-12.medium-8.columns
+              = f.button :submit, class: 'button full-width'
+            .small-12.medium-4.columns
+              = link_to 'Annuler', :back, class: 'button secondary full-width'
+
+  .small-12.medium-3.columns
+    = render 'devise/shared/links'
