@@ -1,19 +1,26 @@
 DEFAULTS: &DEFAULTS
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
 
-one:
+master:
   <<: *DEFAULTS
   username: admin
   slug: admin
   email: admin@test.fr
   role: 0
 
-two:
+admin:
   <<: *DEFAULTS
   username: admin2
   slug: admin2
   email: admin2@test.fr
   role: 1
+
+author:
+  <<: *DEFAULTS
+  username: author
+  slug: author
+  email: author@test.fr
+  role: 2
 
 # == Schema Information
 #

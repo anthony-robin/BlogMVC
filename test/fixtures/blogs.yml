@@ -7,21 +7,28 @@ one:
   title: Lorem Ipsum
   slug: lorem-ipsum
   category: one
-  user: one
+  user: master
 
 two:
   <<: *DEFAULTS
   title: Dolor sit amet
   slug: dolor-sit-amet
   category: two
-  user: one
+  user: master
 
 three:
   <<: *DEFAULTS
   title: Consectetur adipisicing elit
   slug: consectetur-adipisicing-elit
   category: two
-  user: two
+  user: admin
+
+four:
+  <<: *DEFAULTS
+  title: Quis nostrud exercitation
+  slug: quis-nostrud-exercitation
+  category: one
+  user: author
 
 # == Schema Information
 #

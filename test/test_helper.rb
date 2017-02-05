@@ -8,7 +8,7 @@ class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
 
-  def sign_out_and_ensure_redirect_to_sign_in(user = users(:one))
+  def sign_out_and_ensure_redirect_to_sign_in(user = users(:master))
     sign_out user
     yield
   ensure

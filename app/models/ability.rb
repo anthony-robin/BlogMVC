@@ -15,7 +15,7 @@ class Ability
       can :manage, :all
     elsif user.admin_role?
       can :crud, [Category]
-      can :ud, Blog, user: { role: 2..3 }
+      can :ud, Blog, user: { role: 1..2 }
     elsif user.author_role?
       can :ud, Blog, user: { id: user.id }
     end

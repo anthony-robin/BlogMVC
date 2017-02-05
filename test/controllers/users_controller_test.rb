@@ -2,52 +2,121 @@ require 'test_helper'
 
 class UsersControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @user = users(:one)
-    @user2 = users(:two)
-    sign_in @user
+    @master = users(:master)
+    @admin = users(:admin)
+    @author = users(:author)
   end
 
-  test 'should get index if connected' do
-    get users_url
-    assert_response :success
+  # --------------
+  # Non connected
+  # --------------
+  context 'A non connected user' do
+    should 'not get index' do
+      sign_out_and_ensure_redirect_to_sign_in do
+        get users_url
+      end
+    end
+
+    should 'have correct abilities' do
+      ability = Ability.new(User.new)
+      assert ability.can?(:create, User.new), 'should be able to create'
+      assert ability.cannot?(:read, @author), 'should not be able to read'
+      assert ability.cannot?(:update, @author), 'should not be able to update'
+      assert ability.cannot?(:destroy, @author), 'should not be able to destroy'
+    end
   end
 
-  test 'should not get index if not connected' do
-    sign_out_and_ensure_redirect_to_sign_in do
+  # --------------
+  # Author
+  # --------------
+  context 'An author' do
+    setup do
+      sign_in @author
+    end
+
+    should 'get index' do
       get users_url
+      assert_response :success
+    end
+
+    should 'destroy users blogs articles when his account is destroyed' do
+      assert_difference('Blog.count', -1) do
+        delete user_registration_url
+      end
+      assert_redirected_to root_url
+    end
+
+    should 'have correct abilities' do
+      ability = Ability.new(@author)
+      assert ability.can?(:read, @author), 'should be able to read'
+      assert ability.can?(:update, @author), 'should be able to update'
+      assert ability.can?(:destroy, @author), 'should be able to destroy'
     end
   end
 
-  test 'should destroy users blogs articles when user destroy his account' do
-    assert_difference('Blog.count', -2) do
-      delete user_registration_url
+  # --------------
+  # Admin
+  # --------------
+  context 'An admin' do
+    setup do
+      sign_in @admin
     end
 
-    assert_redirected_to root_url
+    should 'get index' do
+      get users_url
+      assert_response :success
+    end
+
+    should 'destroy users blogs articles when his account is destroyed' do
+      assert_difference('Blog.count', -1) do
+        delete user_registration_url
+      end
+      assert_redirected_to root_url
+    end
+
+    should 'have correct abilities' do
+      ability = Ability.new(@admin)
+      assert ability.can?(:read, @admin), 'should be able to read'
+      assert ability.can?(:update, @admin), 'should be able to update'
+      assert ability.can?(:destroy, @admin), 'should be able to destroy'
+    end
+  end
+
+  # --------------
+  # Master
+  # --------------
+  context 'A master' do
+    setup do
+      sign_in @master
+    end
+
+    should 'get index' do
+      get users_url
+      assert_response :success
+    end
+
+    should 'destroy users blogs articles when user destroy his account' do
+      assert_difference('Blog.count', -2) do
+        delete user_registration_url
+      end
+      assert_redirected_to root_url
+    end
+
+    should 'have correct abilities' do
+      ability = Ability.new(@master)
+      assert ability.can?(:read, @master), 'should be able to read'
+      assert ability.can?(:update, @master), 'should be able to update'
+      assert ability.can?(:destroy, @master), 'should be able to destroy'
+    end
   end
 
   # --------------
   # Abilities
   # --------------
-  test 'should test abilities for not connected user' do
-    ability = Ability.new(User.new)
-    assert ability.cannot?(:create, User.new), 'should not be able to create'
-    assert ability.cannot?(:read, @user), 'should not be able to read'
-    assert ability.cannot?(:update, @user), 'should not be able to update'
-    assert ability.cannot?(:destroy, @user), 'should not be able to destroy'
-  end
-
-  test 'should test abilities for connected user' do
-    ability = Ability.new(@user)
-    assert ability.can?(:read, @user), 'should be able to read'
-    assert ability.can?(:update, @user), 'should be able to update'
-    assert ability.can?(:destroy, @user), 'should be able to destroy'
-  end
-
-  test 'should have abilities to only manage own profile' do
-    ability = Ability.new(@user)
-    assert ability.cannot?(:read, @user2), 'should be able to read'
-    assert ability.cannot?(:update, @user2), 'should be able to update'
-    assert ability.cannot?(:destroy, @user2), 'should be able to destroy'
+  should 'have abilities to only manage own profile' do
+    ability = Ability.new(@admin)
+    assert ability.cannot?(:read, @author), 'should not be able to read'
+    assert ability.cannot?(:update, @author), 'should not be able to update'
+    assert ability.cannot?(:destroy, @author), 'should not be able to destroy'
   end
 end

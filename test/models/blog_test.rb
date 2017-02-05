@@ -38,7 +38,7 @@ class BlogTest < ActiveSupport::TestCase
     reset_counter_cache
 
     category = categories(:one)
-    assert_equal 1, category.blogs_count
+    assert_equal 2, category.blogs_count
 
     Blog.create(
       title: 'Lorem ipsum counter cache',
@@ -46,14 +46,14 @@ class BlogTest < ActiveSupport::TestCase
       category_id: category.id
     )
 
-    assert_equal 2, category.reload.blogs_count
+    assert_equal 3, category.reload.blogs_count
   end
 
   test 'should decrease counter cache when destroying object' do
     reset_counter_cache
 
     category = categories(:one)
-    assert_equal 1, category.blogs_count
+    assert_equal 2, category.blogs_count
 
     category.blogs.map(&:destroy)
     assert_equal 0, category.blogs_count
