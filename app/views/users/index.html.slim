@@ -6,6 +6,7 @@
   .small-12.medium-9.columns
     h2 = current_user.username
     h3 = current_user.email
+    h4 = current_user.role
 
     p class="button warning small"
       = link_to 'Modifier mon profil', edit_user_registration_path

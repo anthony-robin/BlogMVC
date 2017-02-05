@@ -13,6 +13,13 @@
           | Currently waiting confirmation for:
           = resource.unconfirmed_email
 
+      - if current_user.master_role?
+        br
+        = f.input :role,
+                  as: :select,
+                  include_blank: false,
+                  collection: User.roles.keys
+
     .small-12.medium-6.columns
       = f.input :password, autocomplete: 'off', required: false
       = f.input :password_confirmation, required: false

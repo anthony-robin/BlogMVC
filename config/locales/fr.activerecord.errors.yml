@@ -14,6 +14,8 @@ fr:
       username:
         blank: N'oubliez pas de renseigner votre pseudo ;)
         invalid: Ce nom d'utilisateur n'est pas valide :(
+      role:
+        blank: Vous devez spécifier un rôle pour cet utilisateur
       name:
         blank: N'oubliez pas de renseigner votre nom ;)
       title:

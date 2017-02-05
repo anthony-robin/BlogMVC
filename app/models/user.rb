@@ -29,6 +29,11 @@ class User < ApplicationRecord
               case_sensitive: false
             }
 
+  validates :role,
+            presence: true,
+            inclusion: { in: roles.keys },
+            on: :update
+
   private
 
   def should_generate_new_friendly_id?
