@@ -6,12 +6,14 @@ one:
   username: admin
   slug: admin
   email: admin@test.fr
+  role: 0
 
 two:
   <<: *DEFAULTS
   username: admin2
   slug: admin2
   email: admin2@test.fr
+  role: 1
 
 # == Schema Information
 #
@@ -32,6 +34,7 @@ two:
 #  last_sign_in_ip        :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  role                   :integer          default("author")
 #
 # Indexes
 #

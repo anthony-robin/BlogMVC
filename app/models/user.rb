@@ -2,6 +2,12 @@ class User < ApplicationRecord
   extend FriendlyId
   friendly_id :username, use: :slugged
 
+  enum role: {
+    master: 0,
+    admin: 1,
+    author: 2
+  }, _suffix: true
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -22,6 +28,8 @@ class User < ApplicationRecord
             uniqueness: {
               case_sensitive: false
             }
+
+  private
 
   def should_generate_new_friendly_id?
     new_record?
@@ -47,6 +55,7 @@ end
 #  last_sign_in_ip        :string
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  role                   :integer          default("author")
 #
 # Indexes
 #

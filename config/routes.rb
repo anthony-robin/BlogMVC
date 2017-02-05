@@ -57,4 +57,4 @@ end
 #       edit_category_blog GET    /categories/:category_id/:id/edit(.:format) blogs#edit
 #            category_blog GET    /categories/:category_id/:id(.:format)      blogs#show
 #                    users GET    /users(.:format)                            users#index
-#
+# 

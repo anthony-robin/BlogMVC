@@ -8,14 +8,16 @@ user = User.create!(
   username: 'Admin Admin',
   email: 'admin@example.com',
   password: 'password',
-  password_confirmation: 'password'
+  password_confirmation: 'password',
+  role: 0
 )
 
 user2 = User.create!(
   username: 'Nimda Nimda',
   email: 'nimda@example.com',
   password: 'password',
-  password_confirmation: 'password'
+  password_confirmation: 'password',
+  role: 1
 )
 
 puts 'Create blogs categories'
