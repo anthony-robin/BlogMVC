@@ -1,19 +1,28 @@
 require 'test_helper'
 
 class RegistrationsControllerTest < ActionDispatch::IntegrationTest
-  setup do
-    @user = users(:one)
-    sign_in @user
+  # --------------
+  # Non connected
+  # --------------
+  context 'A non connected user' do
+    should 'access sign up page' do
+      get new_user_registration_url
+      assert_response :success
+    end
   end
 
-  test 'should access sign up page if not connected yet' do
-    sign_out @user
-    get new_user_registration_url
-    assert_response :success
-  end
+  # --------------
+  # Connected
+  # --------------
+  context 'A connected user' do
+    setup do
+      @author = users(:author)
+      sign_in @author
+    end
 
-  test 'should not access sign up path if already signed in' do
-    get new_user_registration_url
-    assert_redirected_to root_url
+    should 'not access sign up path' do
+      get new_user_registration_url
+      assert_redirected_to root_url
+    end
   end
 end

@@ -8,6 +8,11 @@ class UserTest < ActiveSupport::TestCase
     .with_message(I18n.t('errors.attributes.username.blank'))
   should validate_presence_of(:email)
     .with_message(I18n.t('errors.attributes.email.blank'))
+  should validate_presence_of(:role)
+    .with_message(I18n.t('errors.attributes.role.blank'))
+    .on(:update)
+  should_not validate_presence_of(:role)
+    .on(:create)
 
   # Uniqueness
   should validate_uniqueness_of(:username)
@@ -32,4 +37,39 @@ class UserTest < ActiveSupport::TestCase
   should allow_value('lorem@ipsum.com').for(:email)
   should_not allow_value('loremipsum.com').for(:email)
     .with_message(I18n.t('errors.attributes.email.invalid'))
+
+  # Enum
+  should define_enum_for(:role)
+    .with(User.roles.keys)
+
+  context 'A user' do
+    should 'not be valid if password mismatch password_confirmation' do
+      attrs = default_attrs
+      attrs[:password] = 'mypassword'
+      attrs[:password_confirmation] = 'mypassword2'
+      user = User.new attrs
+      assert_not user.valid?, 'user should not be valid'
+      assert_equal [:password_confirmation], user.errors.keys
+    end
+
+    context 'on create' do
+      should 'have default user role' do
+        user = User.new default_attrs
+        assert user.valid?, 'user should be valid'
+        assert_equal 'author', user.role
+        assert_empty user.errors.keys
+      end
+    end
+  end
+
+  private
+
+  def default_attrs
+    {
+      username: 'John Cena',
+      email: 'john@cena.fr',
+      password: 'mypassword',
+      password_confirmation: 'mypassword'
+    }
+  end
 end
