@@ -59,3 +59,11 @@ fr:
       edit:
         <<: *DEFAULT_SEO
         title: Modifier mon compte
+
+    passwords:
+      new:
+        <<: *DEFAULT_SEO
+        title: 'Mot de passe oublié ?'
+      edit:
+        <<: *DEFAULT_SEO
+        title: Modifier mon mot de passe
