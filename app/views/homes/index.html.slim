@@ -10,6 +10,7 @@
   table.hover
     thead
       tr
+        th Couverture
         th Titre
         th Catégorie
         th Auteur
@@ -17,6 +18,7 @@
     tbody
       - @blogs.each do |blog|
         tr
+          td = image_tag Faker::Placeholdit.image('160x90'), class: 'thumbnail center'
           td = link_to blog.title, category_blog_path(blog.category, blog)
           td = link_to blog.category_name, category_blogs_path(blog.category)
           td

@@ -5,7 +5,7 @@ article.blog id="blog_#{blog.id}"
       span.blog-title =< link_to blog.title, category_blog_path(blog.category, blog)
 
   div.preview
-    = image_tag Faker::Placeholdit.image('870x360'), class: 'thumbnail'
+    p = image_tag Faker::Placeholdit.image('870x360'), class: 'thumbnail'
   p.timestamps = I18n.l(blog.created_at, format: :long)
   div.fr-view == blog.content
 
