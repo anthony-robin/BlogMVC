@@ -1,4 +1,6 @@
 article.blog id="blog_#{blog.id}"
+  = render 'microdatas', resource: blog
+
   header
     h2
       span.label = blog.category_name
