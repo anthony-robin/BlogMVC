@@ -45,6 +45,9 @@ fr:
     index:
       <<: *DEFAULT_SEO
       title: 'Mon Profil: %{profile}'
+    show:
+      <<: *DEFAULT_SEO
+      title: 'Profil de %{profile}'
 
   devise:
     sessions:

@@ -22,7 +22,7 @@
           td = link_to blog.title, category_blog_path(blog.category, blog)
           td = link_to blog.category_name, category_blogs_path(blog.category)
           td
-            = blog.user_username
+            = link_to blog.user_username, user_path(blog.user)
             small =< "(#{blog.user_role})"
           td
             =< link_to 'Voir', category_blog_path(blog.category, blog), class: 'button small success' if can?(:read, blog)

@@ -17,10 +17,15 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
       end
     end
 
+    should 'get show' do
+      get user_url(@author)
+      assert_response :success
+    end
+
     should 'have correct abilities' do
       ability = Ability.new(User.new)
       assert ability.can?(:create, User.new), 'should be able to create'
-      assert ability.cannot?(:read, @author), 'should not be able to read'
+      assert ability.can?(:read, @author), 'should be able to read'
       assert ability.cannot?(:update, @author), 'should not be able to update'
       assert ability.cannot?(:destroy, @author), 'should not be able to destroy'
     end
@@ -36,6 +41,11 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
 
     should 'get index' do
       get users_url
+      assert_response :success
+    end
+
+    should 'get show' do
+      get user_url(@admin)
       assert_response :success
     end
 
@@ -67,6 +77,11 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
       assert_response :success
     end
 
+    should 'get show' do
+      get user_url(@master)
+      assert_response :success
+    end
+
     should 'destroy users blogs articles when his account is destroyed' do
       assert_difference('Blog.count', -1) do
         delete user_registration_url
@@ -95,6 +110,11 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
       assert_response :success
     end
 
+    should 'get show' do
+      get user_url(@author)
+      assert_response :success
+    end
+
     should 'destroy users blogs articles when user destroy his account' do
       assert_difference('Blog.count', -2) do
         delete user_registration_url
@@ -115,7 +135,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   # --------------
   should 'have abilities to only manage own profile' do
     ability = Ability.new(@admin)
-    assert ability.cannot?(:read, @author), 'should not be able to read'
+    assert ability.can?(:read, @author), 'should be able to read'
     assert ability.cannot?(:update, @author), 'should not be able to update'
     assert ability.cannot?(:destroy, @author), 'should not be able to destroy'
   end

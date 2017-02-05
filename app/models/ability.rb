@@ -7,7 +7,7 @@ class Ability
     alias_action :create, :read, to: :cr
     alias_action :update, :destroy, to: :ud
 
-    can :read, Blog
+    can :read, [Blog, User]
     can :create, Blog if user.persisted?
     can :manage, [User], id: user.id
 

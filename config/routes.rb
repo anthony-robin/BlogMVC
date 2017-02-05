@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     resources :blogs, only: [:index, :show, :edit], path: ''
   end
 
-  resources :users, only: [:index]
+  resources :users, only: [:index, :show]
 end
 
 # == Route Map
@@ -57,4 +57,5 @@ end
 #       edit_category_blog GET    /categories/:category_id/:id/edit(.:format) blogs#edit
 #            category_blog GET    /categories/:category_id/:id(.:format)      blogs#show
 #                    users GET    /users(.:format)                            users#index
-# 
+#                     user GET    /users/:id(.:format)                        users#show
+#
