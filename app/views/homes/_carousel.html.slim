@@ -12,6 +12,7 @@ div class="orbit" role="region" aria-label="Messages de blog" data-orbit='' data
         div
           h3.text-center = blog.title
           div.text-center == blog.content
+          p.text-right = blog.user_username
 
   nav class="orbit-bullets"
     - blogs.each_with_index do |blog, index|
