@@ -17,7 +17,7 @@ class Blog < ApplicationRecord
             }
 
   delegate :name, to: :category, prefix: true, allow_nil: true
-  delegate :username, to: :user, prefix: true, allow_nil: true
+  delegate :username, :role, to: :user, prefix: true, allow_nil: true
 
   paginates_per 5
 

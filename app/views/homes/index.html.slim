@@ -19,7 +19,9 @@
         tr
           td = link_to blog.title, category_blog_path(blog.category, blog)
           td = link_to blog.category_name, category_blogs_path(blog.category)
-          td = blog.user_username
+          td
+            = blog.user_username
+            small =< "(#{blog.user_role})"
           td
             =< link_to 'Voir', category_blog_path(blog.category, blog), class: 'button small success' if can?(:read, blog)
             =< link_to 'Modifier', edit_category_blog_path(blog.category, blog), class: 'button small warning' if can?(:update, blog)

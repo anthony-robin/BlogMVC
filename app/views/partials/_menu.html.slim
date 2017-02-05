@@ -16,7 +16,9 @@ div class="top-bar"
       - if user_signed_in?
         ul class="menu dropdown" data-dropdown-menu='' data-hover-delay='0' data-closing-time='0'
           li
-           a href="#" = current_user.username
+           a href="#"
+            = current_user.username
+            small =< "(#{current_user.role})"
            ul class="menu vertical"
             li = link_to 'Mon profil', users_path
             li = link_to 'Déconnexion', destroy_user_session_path, method: :delete
