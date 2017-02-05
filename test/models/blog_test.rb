@@ -32,13 +32,19 @@ class BlogTest < ActiveSupport::TestCase
       should 'increase counter cache' do
         reset_counter_cache
         category = categories(:one)
+        author = users(:author)
+
         assert_equal 2, category.blogs_count
+        assert_equal 1, author.blogs_count
+
         Blog.create(
           title: 'Lorem ipsum counter cache',
           content: '<p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>',
-          category_id: category.id
+          category_id: category.id,
+          user_id: author.id
         )
         assert_equal 3, category.reload.blogs_count
+        assert_equal 2, author.reload.blogs_count
       end
     end
 
@@ -60,9 +66,14 @@ class BlogTest < ActiveSupport::TestCase
       should 'decrease counter cache' do
         reset_counter_cache
         category = categories(:one)
+        author = users(:author)
+
         assert_equal 2, category.blogs_count
+        assert_equal 1, author.blogs_count
+
         category.blogs.map(&:destroy)
-        assert_equal 0, category.blogs_count
+        assert_equal 0, category.reload.blogs_count
+        assert_equal 0, author.reload.blogs_count
       end
     end
   end
@@ -72,7 +83,7 @@ class BlogTest < ActiveSupport::TestCase
   def reset_counter_cache
     Category.reset_column_information
     Category.all.each do |p|
-      Category.update_counters p.id, blogs_count: p.blogs.count
+      Category.update_counters p.id, blogs_count: 0
     end
   end
 end

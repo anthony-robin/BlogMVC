@@ -12,11 +12,12 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @blogs = @user.blogs.includes(:category).page params[:page]
   end
 
   private
 
   def set_user
-    @user = User.friendly.find(params[:id])
+    @user = User.includes(:blogs).friendly.find(params[:id])
   end
 end

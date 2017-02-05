@@ -7,26 +7,5 @@
     .small-12.medium-8.columns
       = render 'carousel', blogs: @blogs.last(5)
 
-  table.hover
-    thead
-      tr
-        th Couverture
-        th Titre
-        th Catégorie
-        th Auteur
-        th Actions
-    tbody
-      - @blogs.each do |blog|
-        tr
-          td = image_tag Faker::Placeholdit.image('160x90'), class: 'thumbnail center'
-          td = link_to blog.title, category_blog_path(blog.category, blog)
-          td = link_to blog.category_name, category_blogs_path(blog.category)
-          td
-            = link_to blog.user_username, user_path(blog.user)
-            small =< "(#{blog.user_role})"
-          td
-            =< link_to 'Voir', category_blog_path(blog.category, blog), class: 'button small success' if can?(:read, blog)
-            =< link_to 'Modifier', edit_category_blog_path(blog.category, blog), class: 'button small warning' if can?(:update, blog)
-            =< link_to 'Supprimer', blog, data: { confirm: 'Etes-vous sûr ?' }, method: :delete, class: 'button small alert' if can?(:destroy, blog)
-
+  = render 'blogs/table', blogs: @blogs
   = paginate @blogs

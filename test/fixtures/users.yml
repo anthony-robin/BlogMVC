@@ -7,6 +7,7 @@ master:
   slug: admin
   email: admin@test.fr
   role: 0
+  blogs_count: 2
 
 admin:
   <<: *DEFAULTS
@@ -14,6 +15,7 @@ admin:
   slug: admin2
   email: admin2@test.fr
   role: 1
+  blogs_count: 1
 
 author:
   <<: *DEFAULTS
@@ -21,6 +23,7 @@ author:
   slug: author
   email: author@test.fr
   role: 2
+  blogs_count: 1
 
 # == Schema Information
 #
@@ -42,6 +45,7 @@ author:
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
 #  role                   :integer          default("author")
+#  blogs_count            :integer          default(0), not null
 #
 # Indexes
 #
