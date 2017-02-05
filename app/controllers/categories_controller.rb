@@ -5,19 +5,16 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
   def index
-    @title = 'Liste des catégories'
     @categories = Category.all.page params[:page]
   end
 
   # GET /categories/new
   def new
-    @title = 'Ajouter une catégorie'
     @category = Category.new
   end
 
   # GET /categories/1/edit
   def edit
-    @title = 'Modifier une catégorie'
   end
 
   # POST /categories
