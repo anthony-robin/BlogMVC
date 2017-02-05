@@ -12,16 +12,26 @@ class CategoryTest < ActiveSupport::TestCase
   should allow_value('Foo2').for(:name)
   should_not allow_value('Foo').for(:name)
 
-  test 'should create slug on category create' do
-    category = Category.create(
-      name: 'Première catégorie'
-    )
-    assert_equal 'premiere-categorie', category.slug
-  end
+  context 'A category' do
+    # --------------
+    # Create
+    # --------------
+    context 'on create' do
+      should 'have an auto slug' do
+        category = Category.create(name: 'Première catégorie')
+        assert_equal 'premiere-categorie', category.slug
+      end
+    end
 
-  test 'should update slug on category update' do
-    category = categories(:one)
-    category.update_attributes(name: 'Ma catégorie modifiée')
-    assert_equal 'ma-categorie-modifiee', category.slug
+    # --------------
+    # Update
+    # --------------
+    context 'on update' do
+      should 'have a new generated slug' do
+        category = categories(:one)
+        category.update_attributes(name: 'Ma catégorie modifiée')
+        assert_equal 'ma-categorie-modifiee', category.slug
+      end
+    end
   end
 end
