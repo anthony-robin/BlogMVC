@@ -19,6 +19,11 @@ class BlogTest < ActiveSupport::TestCase
   should allow_value('Lorem ipsum dolor sit amet').for(:title)
   should allow_value('<p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>').for(:content)
 
+  # Delegates
+  should delegate_method(:name).to(:category).with_prefix
+  should delegate_method(:username).to(:user).with_prefix
+  should delegate_method(:role).to(:user).with_prefix
+
   context 'A blog' do
     # --------------
     # Create
