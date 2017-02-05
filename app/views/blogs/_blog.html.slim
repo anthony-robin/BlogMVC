@@ -9,6 +9,7 @@ article.blog id="blog_#{blog.id}"
   p.timestamps = I18n.l(blog.created_at, format: :long)
   div.fr-view == blog.content
 
-  footer.callout
-    =< link_to 'Modifier', edit_category_blog_path(blog.category, blog), class: 'button small warning'
-    =< link_to 'Supprimer', blog, data: { confirm: 'Etes-vous sûr ?' }, method: :delete, class: 'button small alert'
+  - if can?(:update, blog) || can?(:destroy, blog)
+    footer.callout
+      =< link_to 'Modifier', edit_category_blog_path(blog.category, blog), class: 'button small warning' if can? :update, blog
+      =< link_to 'Supprimer', blog, data: { confirm: 'Etes-vous sûr ?' }, method: :delete, class: 'button small alert' if can? :destroy, blog
