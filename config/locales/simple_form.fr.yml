@@ -17,6 +17,8 @@ fr:
         password: Mot de passe
         password_confirmation: Confirmation du mot de passe
         current_password: Mot de passe actuel
+        new_password: Nouveau mot de passe
+        new_password_confirmation: Confirmation du nouveau mot de passe
     placeholders:
       category:
         name: Nom
@@ -36,6 +38,9 @@ fr:
       user:
         create: 'Créer mon compte'
         update: 'Mettre à jour mon profil'
+      password:
+        create: M'envoyer les instructions par email
+        update: Valider mon nouveau mot de passe
 
   activerecord:
     errors:

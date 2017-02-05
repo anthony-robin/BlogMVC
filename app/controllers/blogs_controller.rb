@@ -9,31 +9,23 @@ class BlogsController < ApplicationController
   # GET /blogs
   # GET /blogs.json
   def index
-    @title = 'Articles de Blog'
-    if params[:category_id].present?
-      @blogs = @category.blogs
-      @title += " (#{@category.name})"
-    else
-      @blogs = Blog.includes(:category)
-    end
+    @blogs = Blog.includes(:category)
+    @blogs = @category.blogs if params[:category_id].present?
     @blogs = @blogs.page params[:page]
   end
 
   # GET /blogs/1
   # GET /blogs/1.json
   def show
-    @title = 'Blog'
   end
 
   # GET /blogs/new
   def new
-    @title = 'Nouvel article de Blog'
     @blog = Blog.new
   end
 
   # GET /blogs/1/edit
   def edit
-    @title = 'Modifier article de Blog'
   end
 
   # POST /blogs

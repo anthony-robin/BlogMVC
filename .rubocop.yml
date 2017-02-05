@@ -30,3 +30,5 @@ Style/FrozenStringLiteralComment:
   Enabled: false
 Style/ClassAndModuleChildren:
   Enabled: false
+Style/EmptyMethod:
+  EnforcedStyle: expanded

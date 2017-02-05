@@ -1,3 +1,7 @@
+DEFAULT_SEO: &DEFAULT_SEO
+  description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.
+  keywords: Lorem, ipsum, dolor, sit, amet, consectetur, adipisicing, elit
+
 fr:
   views:
     pagination:
@@ -5,3 +9,61 @@ fr:
       last: "Fin"
       previous: "Précédent"
       next: "Suivant"
+
+  # SEO
+  homes:
+    index:
+      <<: *DEFAULT_SEO
+      title: Accueil
+
+  blogs:
+    index:
+      <<: *DEFAULT_SEO
+      title: Articles de Blog
+    show:
+      <<: *DEFAULT_SEO
+      title: 'Blog: %{title}'
+    new:
+      <<: *DEFAULT_SEO
+      title: Nouvel article de Blog
+    edit:
+      <<: *DEFAULT_SEO
+      title: Modifier article de Blog
+
+  categories:
+    index:
+      <<: *DEFAULT_SEO
+      title: Liste des Catégories
+    new:
+      <<: *DEFAULT_SEO
+      title: Ajouter une Catégorie
+    edit:
+      <<: *DEFAULT_SEO
+      title: Modifier une Catégorie
+
+  users:
+    index:
+      <<: *DEFAULT_SEO
+      title: 'Mon Profil: %{profile}'
+
+  devise:
+    sessions:
+      new:
+        <<: *DEFAULT_SEO
+        title: Me connecter
+
+    registrations:
+      new:
+        <<: *DEFAULT_SEO
+        title: Créer mon compte
+      edit:
+        <<: *DEFAULT_SEO
+        title: Modifier mon compte
+
+    passwords:
+      new:
+        <<: *DEFAULT_SEO
+        title: 'Mot de passe oublié ?'
+      edit:
+        <<: *DEFAULT_SEO
+        title: Modifier mon mot de passe
