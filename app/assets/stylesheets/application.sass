@@ -22,24 +22,29 @@ body
   min-height: 100vh
   height: auto !important
 
+.top-bar
+  & + .callout
+    margin-bottom: 0
+
 .content
   flex: 1 0
+  .thumbnail
+    &.center
+      display: block
+      margin: 0 auto
 
 .blog
   margin-bottom: 3rem
   .label
     vertical-align: middle
   .timestamps
-    color: $dark-gray
     text-transform: uppercase
-  .callout
-    .button
-      margin-bottom: 0
+    color: $dark-gray
 
 .footer
   padding: .5rem 0
-  background-color: $dark-gray
   color: $white
+  background-color: $dark-gray
 
 // Forms
 .input
@@ -69,7 +74,26 @@ body
   &-container
     .orbit-slide
       padding: 1rem 3rem
-      background-color: $primary-color
       color: $white
+      background-color: $primary-color
       &:nth-child(odd)
         background-color: $warning-color
+
+//
+// Breadcrumbs
+// -------------
+.breadcrumbs
+  margin-bottom: 1rem
+  padding: .4rem 1rem
+  border-bottom: 1px solid rgba($primary-color, .2)
+  .pretext
+    float: left
+    margin-right: .8rem
+    color: $breadcrumbs-item-color-current
+  li
+    margin-top: 5px
+    a
+      transition: color .3s ease-in !important
+      text-decoration: none !important
+      &:hover
+        color: $breadcrumbs-item-color-current

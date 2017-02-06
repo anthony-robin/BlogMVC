@@ -1,44 +1,39 @@
 class BlogsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :set_blog, only: [:show, :edit, :update, :destroy]
   before_action :set_category,
                 only: [:index],
                 if: proc { params[:category_id].present? }
   before_action :set_categories, only: [:index, :show]
 
+  authorize_resource
+
   # GET /blogs
   # GET /blogs.json
   def index
-    @title = 'Articles de Blog'
-    if params[:category_id].present?
-      @blogs = @category.blogs
-      @title += " (#{@category.name})"
-    else
-      @blogs = Blog.includes(:category)
-    end
+    @blogs = Blog.includes(:category)
+    @blogs = @category.blogs if params[:category_id].present?
     @blogs = @blogs.page params[:page]
   end
 
   # GET /blogs/1
   # GET /blogs/1.json
   def show
-    @title = 'Blog'
   end
 
   # GET /blogs/new
   def new
-    @title = 'Nouvel article de Blog'
     @blog = Blog.new
   end
 
   # GET /blogs/1/edit
   def edit
-    @title = 'Modifier article de Blog'
   end
 
   # POST /blogs
   # POST /blogs.json
   def create
-    @blog = Blog.new(blog_params)
+    @blog = current_user.blogs.new(blog_params)
 
     respond_to do |format|
       if @blog.save

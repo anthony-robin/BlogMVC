@@ -1,4 +1,4 @@
-en:
+fr:
   simple_form:
     "yes": 'Oui'
     "no": 'Non'
@@ -12,9 +12,20 @@ en:
         title: Titre
         content: Contenu
         category_id: Catégorie
+      user:
+        username: Nom d'utilisateur
+        password: Mot de passe
+        password_confirmation: Confirmation du mot de passe
+        current_password: Mot de passe actuel
+        new_password: Nouveau mot de passe
+        new_password_confirmation: Confirmation du nouveau mot de passe
     placeholders:
       category:
         name: Nom
+    hints:
+      user:
+        password: Laissez vide si vous ne souhaitez pas le changer
+        current_password: Nous avons besoin de votre mot de passe actuel pour confirmer ces modifications
 
   helpers:
     submit:
@@ -24,7 +35,12 @@ en:
       category:
         create: "Créer la catégorie"
         update: "Mettre à jour la catégorie"
-
+      user:
+        create: 'Créer mon compte'
+        update: 'Mettre à jour mon profil'
+      password:
+        create: M'envoyer les instructions par email
+        update: Valider mon nouveau mot de passe
 
   activerecord:
     errors:

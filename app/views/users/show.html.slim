@@ -1,0 +1,15 @@
+- breadcrumb @user
+- set_meta_tags title: t('.title', profile: @user.username),
+                description: t('.description'),
+                keywords: t('.keywords')
+
+- if @blogs.empty?
+  p
+    strong = @user.username
+    =< "n'a pas encore publié d'articles"
+- else
+  p
+    strong = @user.username
+    =< "a publié #{@user.blogs_count} articles"
+  = render 'blogs/table', blogs: @blogs
+  = paginate @blogs

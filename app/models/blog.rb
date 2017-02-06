@@ -2,6 +2,7 @@ class Blog < ApplicationRecord
   extend FriendlyId
   friendly_id :title, use: :slugged
 
+  belongs_to :user, counter_cache: true
   belongs_to :category, counter_cache: true
 
   validates :title,
@@ -16,6 +17,7 @@ class Blog < ApplicationRecord
             }
 
   delegate :name, to: :category, prefix: true, allow_nil: true
+  delegate :username, :role, to: :user, prefix: true, allow_nil: true
 
   paginates_per 5
 
@@ -23,3 +25,23 @@ class Blog < ApplicationRecord
     slug.blank? || new_record? || title_changed?
   end
 end
+
+# == Schema Information
+#
+# Table name: blogs
+#
+#  id          :integer          not null, primary key
+#  title       :string
+#  slug        :string
+#  content     :text
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  category_id :integer
+#  user_id     :integer
+#
+# Indexes
+#
+#  index_blogs_on_category_id  (category_id)
+#  index_blogs_on_slug         (slug)
+#  index_blogs_on_user_id      (user_id)
+#

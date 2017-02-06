@@ -1,8 +1,7 @@
-/ Page title
-- content_for :page_title do
-  div class="callout large primary"
-    div class="row column text-center"
-      h1 = @title
+- breadcrumb @blog
+- set_meta_tags title: t('.title', title: @blog.title),
+                description: @blog.content,
+                keywords: @blog.content.split
 
 #sidebar_referer
   .row

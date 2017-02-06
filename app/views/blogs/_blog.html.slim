@@ -1,14 +1,23 @@
 article.blog id="blog_#{blog.id}"
+  = render 'microdatas', resource: blog
+
   header
     h2
       span.label = blog.category_name
       span.blog-title =< link_to blog.title, category_blog_path(blog.category, blog)
 
   div.preview
-    = image_tag Faker::Placeholdit.image('870x360'), class: 'thumbnail'
-  p.timestamps = I18n.l(blog.created_at, format: :long)
+    p = image_tag Faker::Placeholdit.image('870x360'), class: 'thumbnail'
+
+  div.meta
+    p
+      span.timestamps = I18n.l(blog.created_at, format: :long)
+      |,
+      small.user =< link_to blog.user_username, user_path(blog.user)
+
   div.fr-view == blog.content
 
-  footer.callout
-    =< link_to 'Modifier', edit_category_blog_path(blog.category, blog), class: 'button small warning'
-    =< link_to 'Supprimer', blog, data: { confirm: 'Etes-vous sûr ?' }, method: :delete, class: 'button small alert'
+  - if can?(:update, blog) || can?(:destroy, blog)
+    footer.callout
+      =< link_to 'Modifier', edit_category_blog_path(blog.category, blog), class: 'button small warning' if can? :update, blog
+      =< link_to 'Supprimer', blog, data: { confirm: 'Etes-vous sûr ?' }, method: :delete, class: 'button small alert' if can? :destroy, blog

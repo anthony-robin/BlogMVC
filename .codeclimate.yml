@@ -1,0 +1,59 @@
+---
+engines:
+  # Assets
+  scss-lint:
+    enabled: true
+  csslint:
+    enabled: false
+  coffeelint:
+    enabled: true
+  eslint:
+    enabled: false
+
+  # Security
+  brakeman:
+    enabled: true
+  bundler-audit:
+    enabled: false
+
+  # Clean code
+  rubocop:
+    enabled: true
+  duplication:
+    enabled: true
+    config:
+      languages:
+      - ruby
+      - javascript
+
+  # Misc
+  fixme:
+    enabled: true
+    config:
+      strings:
+      - FIXME
+      - TODO
+      - CHANGED
+      - XXX
+      - IDEA
+      - HACK
+      - NOTE
+      - REVIEW
+      - UPGRADEME
+      - TESTME
+      - CLEANME
+
+ratings:
+  paths:
+  - "**.erb"
+  - "**.rb"
+  - "**.slim"
+  - "**.css"
+  - "**.sass"
+  - "**.coffee"
+  - "**.js"
+
+exclude_paths:
+- test/
+- db/
+- vendor/

@@ -1,11 +1,51 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+DEFAULTS: &DEFAULTS
+  content: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
+  user: one
 
 one:
+  <<: *DEFAULTS
   title: Lorem Ipsum
   slug: lorem-ipsum
   category: one
+  user: master
 
 two:
+  <<: *DEFAULTS
   title: Dolor sit amet
   slug: dolor-sit-amet
   category: two
+  user: master
+
+three:
+  <<: *DEFAULTS
+  title: Consectetur adipisicing elit
+  slug: consectetur-adipisicing-elit
+  category: two
+  user: admin
+
+four:
+  <<: *DEFAULTS
+  title: Quis nostrud exercitation
+  slug: quis-nostrud-exercitation
+  category: one
+  user: author
+
+# == Schema Information
+#
+# Table name: blogs
+#
+#  id          :integer          not null, primary key
+#  title       :string
+#  slug        :string
+#  content     :text
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  category_id :integer
+#  user_id     :integer
+#
+# Indexes
+#
+#  index_blogs_on_category_id  (category_id)
+#  index_blogs_on_slug         (slug)
+#  index_blogs_on_user_id      (user_id)
+#

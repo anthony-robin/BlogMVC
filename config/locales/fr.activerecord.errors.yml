@@ -1,0 +1,39 @@
+# French
+fr:
+  errors:
+    messages:
+      in_between: doit être entre %{min} et %{max}
+      max_row: Vous ne pouvez pas créer plus de resource de ce type
+      taken: n'est pas disponible
+
+    attributes:
+      email:
+        blank: N'oubliez pas de renseigner votre email ;)
+        taken: Cet email n'est pas disponible :(
+        invalid: Veuillez renseigner un email valide ;)
+      username:
+        blank: N'oubliez pas de renseigner votre pseudo ;)
+        invalid: Ce nom d'utilisateur n'est pas valide :(
+      role:
+        blank: Vous devez spécifier un rôle pour cet utilisateur
+      name:
+        blank: N'oubliez pas de renseigner votre nom ;)
+      title:
+        blank: N'oubliez pas de renseigner un titre ;)
+      content:
+        blank: N'oubliez pas de saisir votre commentaire ;)
+
+  activemodel: &errors
+    errors:
+      messages:
+        invalid_email_address: n'est pas une adresse email valide
+        email_address_not_routable: n'est pas routable
+
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: N'oubliez pas de renseigner votre email ;)
+              email: ''
