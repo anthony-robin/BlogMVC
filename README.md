@@ -5,6 +5,7 @@ Rails 5 Blog MVC project
 [![Code Climate](https://codeclimate.com/github/anthony-robin/BlogMVC/badges/gpa.svg)](https://codeclimate.com/github/anthony-robin/BlogMVC)
 [![Issue Count](https://codeclimate.com/github/anthony-robin/BlogMVC/badges/issue_count.svg)](https://codeclimate.com/github/anthony-robin/BlogMVC)
 [![Test Coverage](https://codeclimate.com/github/anthony-robin/BlogMVC/badges/coverage.svg)](https://codeclimate.com/github/anthony-robin/BlogMVC/coverage)
+[![Dependency Status](https://gemnasium.com/badges/github.com/anthony-robin/BlogMVC.svg)](https://gemnasium.com/github.com/anthony-robin/BlogMVC)
 
 ## Etapes
 - Executer `rails db:seed` pour créer des catégories et des articles

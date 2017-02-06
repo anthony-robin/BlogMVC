@@ -259,14 +259,4 @@ class BlogsControllerTest < ActionDispatch::IntegrationTest
     assert ability.cannot?(:update, @blog), 'should not be able to update'
     assert ability.cannot?(:destroy, @blog), 'should not be able to destroy'
   end
-
-  private
-
-  def valid_blog_params
-    {
-      title: 'Article example',
-      content: 'Lorem ipsum dolor sit amet',
-      category_id: Category.first.id
-    }
-  end
 end

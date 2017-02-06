@@ -30,8 +30,8 @@ class BlogTest < ActiveSupport::TestCase
     # --------------
     context 'on create' do
       should 'have an auto slug' do
-        blog = Blog.create(title: 'Premier titre')
-        assert_equal 'premier-titre', blog.slug
+        blog = Blog.create(valid_blog_params)
+        assert_equal 'article-example', blog.slug
       end
 
       should 'increase counter cache' do
