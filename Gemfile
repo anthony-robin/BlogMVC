@@ -39,10 +39,10 @@ gem 'meta-tags' # SEO
 group :development, :test do
   gem 'faker'
   gem 'byebug', platform: :mri
+  gem 'database_cleaner'
 end
 
 group :development do
-  gem 'database_cleaner'
   gem 'annotate', github: 'ctran/annotate_models',
                   branch: 'develop'
 
