@@ -17,7 +17,7 @@ gem 'coffee-rails', '~> 4.2'
 gem 'simple_form'
 gem 'slim-rails' # slim file
 gem 'foundation-rails', '~> 6.3.0'
-gem 'wysiwyg-rails' # Froala editor
+gem 'wysiwyg-rails', github: 'froala/wysiwyg-rails' # Froala editor
 gem 'kaminari', '~> 1.0' # Pagination
 gem 'gretel' # Breadcrumb
 gem 'friendly_id'
@@ -43,6 +43,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'bullet'
   gem 'annotate', github: 'ctran/annotate_models',
                   branch: 'develop'
 
@@ -59,6 +60,7 @@ end
 group :test do
   gem 'shoulda', '~> 3.5'
   gem 'shoulda-matchers', '~> 2.0'
+  gem 'rails-controller-testing'
 
   gem 'simplecov', require: false
   gem 'codeclimate-test-reporter', '~> 1.0.0', require: false

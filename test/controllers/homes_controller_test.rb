@@ -5,6 +5,7 @@ class HomesControllerTest < ActionDispatch::IntegrationTest
     should 'get index' do
       get root_url
       assert_response :success
+      assert_template :index
     end
   end
 end

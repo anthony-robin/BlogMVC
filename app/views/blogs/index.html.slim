@@ -1,5 +1,5 @@
 - breadcrumb :blogs
-- breadcrumb @category if params[:category_id].present?
+- breadcrumb :blog_category, @category if params[:category_id].present?
 - set_meta_tags title: "#{t('.title')} #{@category.name unless params[:category_id].nil?}",
                 description: t('.description'),
                 keywords: t('.keywords')

@@ -15,11 +15,13 @@ class BlogsControllerTest < ActionDispatch::IntegrationTest
     should 'get index' do
       get blogs_url
       assert_response :success
+      assert_template :index
     end
 
     should 'show blog' do
       get category_blog_url(@blog.category, @blog)
       assert_response :success
+      assert_template :show
     end
   end
 
@@ -86,6 +88,7 @@ class BlogsControllerTest < ActionDispatch::IntegrationTest
     should 'get new' do
       get new_blog_url
       assert_response :success
+      assert_template :new
     end
 
     should 'create blog' do
@@ -96,15 +99,30 @@ class BlogsControllerTest < ActionDispatch::IntegrationTest
       assert_redirected_to category_blog_url(last_blog.category, last_blog)
     end
 
+    should 'not create blog if any errors' do
+      assert_no_difference('Blog.count') do
+        post blogs_url, params: { blog: { title: '' } }
+      end
+      assert_response :success
+      assert_template :new
+    end
+
     should 'get edit' do
       get edit_category_blog_url(@blog.category, @blog)
       assert_response :success
+      assert_template :edit
     end
 
     should 'update blog' do
       patch blog_url(@blog), params: { blog: valid_blog_params }
       @blog.reload
       assert_redirected_to category_blog_url(@blog.category, @blog)
+    end
+
+    should 'not update blog if any errors' do
+      patch blog_url(@blog), params: { blog: { title: '' } }
+      assert_response :success
+      assert_template :edit
     end
 
     should 'destroy blog' do
@@ -135,6 +153,7 @@ class BlogsControllerTest < ActionDispatch::IntegrationTest
     should 'get new' do
       get new_blog_url
       assert_response :success
+      assert_template :new
     end
 
     should 'create blog' do
@@ -145,15 +164,30 @@ class BlogsControllerTest < ActionDispatch::IntegrationTest
       assert_redirected_to category_blog_url(last_blog.category, last_blog)
     end
 
+    should 'not create blog if any errors' do
+      assert_no_difference('Blog.count') do
+        post blogs_url, params: { blog: { title: '' } }
+      end
+      assert_response :success
+      assert_template :new
+    end
+
     should 'get edit' do
       get edit_category_blog_url(@blog.category, @blog)
       assert_response :success
+      assert_template :edit
     end
 
     should 'update blog' do
       patch blog_url(@blog), params: { blog: valid_blog_params }
       @blog.reload
       assert_redirected_to category_blog_url(@blog.category, @blog)
+    end
+
+    should 'not update blog if any errors' do
+      patch blog_url(@blog), params: { blog: { title: '' } }
+      assert_response :success
+      assert_template :edit
     end
 
     should 'destroy blog' do
@@ -183,6 +217,7 @@ class BlogsControllerTest < ActionDispatch::IntegrationTest
     should 'get new' do
       get new_blog_url
       assert_response :success
+      assert_template :new
     end
 
     should 'create blog' do
@@ -193,15 +228,30 @@ class BlogsControllerTest < ActionDispatch::IntegrationTest
       assert_redirected_to category_blog_url(last_blog.category, last_blog)
     end
 
+    should 'not create blog if any errors' do
+      assert_no_difference('Blog.count') do
+        post blogs_url, params: { blog: { title: '' } }
+      end
+      assert_response :success
+      assert_template :new
+    end
+
     should 'get edit' do
       get edit_category_blog_url(@blog.category, @blog)
       assert_response :success
+      assert_template :edit
     end
 
     should 'update blog' do
       patch blog_url(@blog), params: { blog: valid_blog_params }
       @blog.reload
       assert_redirected_to category_blog_url(@blog.category, @blog)
+    end
+
+    should 'not update blog if any errors' do
+      patch blog_url(@blog), params: { blog: { title: '' } }
+      assert_response :success
+      assert_template :edit
     end
 
     should 'destroy blog' do
@@ -258,15 +308,5 @@ class BlogsControllerTest < ActionDispatch::IntegrationTest
     assert ability.can?(:read, @blog), 'should be able to read'
     assert ability.cannot?(:update, @blog), 'should not be able to update'
     assert ability.cannot?(:destroy, @blog), 'should not be able to destroy'
-  end
-
-  private
-
-  def valid_blog_params
-    {
-      title: 'Article example',
-      content: 'Lorem ipsum dolor sit amet',
-      category_id: Category.first.id
-    }
   end
 end

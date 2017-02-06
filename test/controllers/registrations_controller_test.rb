@@ -8,6 +8,7 @@ class RegistrationsControllerTest < ActionDispatch::IntegrationTest
     should 'access sign up page' do
       get new_user_registration_url
       assert_response :success
+      assert_template :new
     end
   end
 
