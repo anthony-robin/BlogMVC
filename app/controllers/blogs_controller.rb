@@ -11,7 +11,7 @@ class BlogsController < ApplicationController
   # GET /blogs
   # GET /blogs.json
   def index
-    @blogs = Blog.includes(:category)
+    @blogs = Blog.includes(:category, :user)
     @blogs = @category.blogs if params[:category_id].present?
     @blogs = @blogs.page params[:page]
   end
@@ -70,7 +70,7 @@ class BlogsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_blog
-    @blog = Blog.friendly.find(params[:id])
+    @blog = Blog.includes(:user).friendly.find(params[:id])
   end
 
   def set_category
