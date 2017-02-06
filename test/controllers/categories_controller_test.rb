@@ -120,11 +120,13 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
     should 'get index' do
       get categories_url
       assert_response :success
+      assert_template :index
     end
 
     should 'get new' do
       get new_category_url
       assert_response :success
+      assert_template :new
     end
 
     should 'create category' do
@@ -134,14 +136,29 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
       assert_redirected_to categories_url
     end
 
+    should 'not create category if any errors' do
+      assert_no_difference('Category.count') do
+        post categories_url, params: { category: { name: '' } }
+      end
+      assert_response :success
+      assert_template :new
+    end
+
     should 'get edit' do
       get edit_category_url(@category)
       assert_response :success
+      assert_template :edit
     end
 
     should 'update category' do
       patch category_url(@category), params: { category: { name: @category.name, slug: @category.slug } }
       assert_redirected_to categories_url
+    end
+
+    should 'not update category if any errors' do
+      patch category_url(@category), params: { category: { name: '' } }
+      assert_response :success
+      assert_template :edit
     end
 
     should 'destroy category' do
@@ -171,11 +188,13 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
     should 'get index' do
       get categories_url
       assert_response :success
+      assert_template :index
     end
 
     should 'get new' do
       get new_category_url
       assert_response :success
+      assert_template :new
     end
 
     should 'create category' do
@@ -185,14 +204,29 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
       assert_redirected_to categories_url
     end
 
+    should 'not create category if any errors' do
+      assert_no_difference('Category.count') do
+        post categories_url, params: { category: { name: '' } }
+      end
+      assert_response :success
+      assert_template :new
+    end
+
     should 'get edit' do
       get edit_category_url(@category)
       assert_response :success
+      assert_template :edit
     end
 
     should 'update category' do
       patch category_url(@category), params: { category: { name: @category.name, slug: @category.slug } }
       assert_redirected_to categories_url
+    end
+
+    should 'not update category if any errors' do
+      patch category_url(@category), params: { category: { name: '' } }
+      assert_response :success
+      assert_template :edit
     end
 
     should 'destroy category' do

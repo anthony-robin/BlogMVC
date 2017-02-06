@@ -20,6 +20,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     should 'get show' do
       get user_url(@author)
       assert_response :success
+      assert_template :show
     end
 
     should 'have correct abilities' do
@@ -42,11 +43,13 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     should 'get index' do
       get users_url
       assert_response :success
+      assert_template :index
     end
 
     should 'get show' do
       get user_url(@admin)
       assert_response :success
+      assert_template :show
     end
 
     should 'destroy users blogs articles when his account is destroyed' do
@@ -75,11 +78,13 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     should 'get index' do
       get users_url
       assert_response :success
+      assert_template :index
     end
 
     should 'get show' do
       get user_url(@master)
       assert_response :success
+      assert_template :show
     end
 
     should 'destroy users blogs articles when his account is destroyed' do
@@ -108,11 +113,13 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
     should 'get index' do
       get users_url
       assert_response :success
+      assert_template :index
     end
 
     should 'get show' do
       get user_url(@author)
       assert_response :success
+      assert_template :show
     end
 
     should 'destroy users blogs articles when user destroy his account' do
