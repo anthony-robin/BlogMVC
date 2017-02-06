@@ -1,0 +1,44 @@
+sudo: required
+language: ruby
+cache: bundler
+bundler_args: --without development
+
+rvm:
+  - 2.3.3
+
+env:
+  - DB=sqlite
+
+before_install:
+  - export TZ=Europe/Paris
+
+before_script:
+  - sleep 5
+
+script:
+  - RAILS_ENV=test bundle exec rails --trace db:migrate
+  - RAILS_ENV=test bundle exec rails test
+  - RAILS_ENV=test bundle exec rails assets:precompile
+  - RAILS_ENV=test bundle exec rails db:seed
+
+after_success:
+  - bundle exec codeclimate-test-reporter
+
+after_failure:
+  - date
+  - "cat ./config/database.yml"
+  - "echo $RAILS_ENV"
+  - "bundle exec rake --version"
+
+matrix:
+  fast_finish: true
+
+branches:
+  only:
+    - master
+    - develop
+
+addons:
+  code_climate:
+    repo_token:
+      secure: "dYsryV/LSmZXU7k1RXiPnRG2tNpiaEUvXpBYm1szq9oCZNZQkrucbELEomSxZ0/Z1AezK5JC5TGBzEKefycYwiUXS0mgrWQwlXvVgawMeBbUgG6TQpK3MQboYe+JLramy0tNc999ViaCCnlMk2Vht0+tLMLuWstqKEx2WM4ZK4rWkumv98APC+4j9gJK4PRiYcfV42jQLYulZ0mhOPrsWxWPh1qHQrlVicenFLrE5U5V9eXrz124HBVt8fhhUYp5KylTNZRDx9xe4Ak69Xqd6E8iWfXVWbKa3lsbKEdhycO2vs1SUr/q4VS9cnPqNHcooefAGOviGJjbntkyTxgJqybRQByg2W1Dur9dpyJpgErLztjoyvAG2zZ6w2AEuLyEwhw1B4pimd13D/yZgEZyBriqih1ViLe6KQ8Z5R0O3mdm4S6HheN/Eby4rhj0YrR5uHZ+2abOEXGbV6C+guz6z9yjo8gbm2U8O+llihTMm3/RNOwzmuln+uYcqZlgX4vMkSU+zhSBc9mmE4zzaFfhta4XydiGOG8BK9SrQujyScDByZW11mTb/wDlLAZv0UaBcNYClC2TRkAMRS0ECs9PF9wx+9ACZei/RoDfEQFBncDITmAhj1YvZG7FP6req6Tu78IkJjsL+mrdK3HlwpJ3r0Qv3tBIgKUQga97ee9MmKw="
