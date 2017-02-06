@@ -43,6 +43,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'bullet'
   gem 'annotate', github: 'ctran/annotate_models',
                   branch: 'develop'
 
