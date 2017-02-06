@@ -58,4 +58,4 @@ end
 #            category_blog GET    /categories/:category_id/:id(.:format)      blogs#show
 #                    users GET    /users(.:format)                            users#index
 #                     user GET    /users/:id(.:format)                        users#show
-# 
+#
