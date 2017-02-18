@@ -37,7 +37,7 @@ class BlogsController < ApplicationController
 
     respond_to do |format|
       if @blog.save
-        format.html { redirect_to category_blog_path(@blog.category, @blog), notice: 'L\'article de Blog a été créé avec succès' }
+        format.html { redirect_to category_blog_path(@blog.category, @blog), notice: t('.notice') }
       else
         format.html { render :new }
       end
@@ -49,7 +49,7 @@ class BlogsController < ApplicationController
   def update
     respond_to do |format|
       if @blog.update(blog_params)
-        format.html { redirect_to category_blog_path(@blog.category, @blog), notice: 'L\'article de Blog a été mis à jour avec succès' }
+        format.html { redirect_to category_blog_path(@blog.category, @blog), notice: t('.notice') }
         format.js { render nothing: true }
       else
         format.html { render :edit }
@@ -62,7 +62,7 @@ class BlogsController < ApplicationController
   def destroy
     @blog.destroy
     respond_to do |format|
-      format.html { redirect_to blogs_url, notice: 'L\'article de Blog a été supprimé avec succès' }
+      format.html { redirect_to blogs_url, notice: t('.notice') }
     end
   end
 

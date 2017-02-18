@@ -8,15 +8,18 @@ class Ability
     alias_action :update, :destroy, to: :ud
 
     can :read, [Blog, User]
-    can :create, Blog if user.persisted?
     can :manage, [User], id: user.id
 
     if user.master_role?
       can :manage, :all
+      cannot :ud, Blog, user: { role: 0 }
     elsif user.admin_role?
       can :crud, [Category]
-      can :ud, Blog, user: { role: 1..2 }
-    elsif user.author_role?
+      can :ud, Blog, user: { role: 2 }
+    end
+
+    if user.persisted?
+      can :create, Blog
       can :ud, Blog, user: { id: user.id }
     end
   end
