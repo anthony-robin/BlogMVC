@@ -55,5 +55,6 @@ ratings:
 
 exclude_paths:
 - test/
+- spec/
 - db/
 - vendor/

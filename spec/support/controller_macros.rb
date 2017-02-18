@@ -31,7 +31,3 @@ module ControllerMacros
     it { is_expected.to set_flash[:alert].to(t(path)) }
   end
 end
-
-RSpec.configure do |config|
-  config.extend ControllerMacros, type: :controller
-end
