@@ -1,12 +1,3 @@
-require 'simplecov'
-require 'codacy-coverage'
-
-SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
-  SimpleCov::Formatter::HTMLFormatter,
-  Codacy::Formatter
-])
-SimpleCov.start 'rails'
-
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
 # Prevent database truncation if the environment is production
