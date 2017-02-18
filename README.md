@@ -1,12 +1,44 @@
 # BlogMVC
 Rails 5 Blog MVC project
 
-[![Build Status](https://travis-ci.org/anthony-robin/BlogMVC.svg?branch=master)](https://travis-ci.org/anthony-robin/BlogMVC)
-[![Code Climate](https://codeclimate.com/github/anthony-robin/BlogMVC/badges/gpa.svg)](https://codeclimate.com/github/anthony-robin/BlogMVC)
-[![Issue Count](https://codeclimate.com/github/anthony-robin/BlogMVC/badges/issue_count.svg)](https://codeclimate.com/github/anthony-robin/BlogMVC)
-[![Test Coverage](https://codeclimate.com/github/anthony-robin/BlogMVC/badges/coverage.svg)](https://codeclimate.com/github/anthony-robin/BlogMVC/coverage)
-[![Dependency Status](https://gemnasium.com/badges/github.com/anthony-robin/BlogMVC.svg)](https://gemnasium.com/github.com/anthony-robin/BlogMVC)
-[![security](https://hakiri.io/github/anthony-robin/BlogMVC/master.svg)](https://hakiri.io/github/anthony-robin/BlogMVC/master)
+<table>
+  <tr>
+    <td>Build Status</td>
+    <td>
+      <a href="https://travis-ci.org/anthony-robin/BlogMVC">
+        <img src="https://travis-ci.org/anthony-robin/BlogMVC.svg?branch=master" alt="Build Status" />
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td>Code Quality</td>
+    <td>
+      <a href="https://www.codacy.com/app/anthony-robin/BlogMVC">
+        <img src="https://api.codacy.com/project/badge/Grade/cb283cd5c4eb463f9f56a1a2bb0aa59e" alt="Codacy badge" />
+      </a>
+      <a href="https://codeclimate.com/github/anthony-robin/BlogMVC">
+        <img src="https://codeclimate.com/github/anthony-robin/BlogMVC/badges/gpa.svg" alt="Codeclimate badge" />
+      </a>
+      <a href="https://codeclimate.com/github/anthony-robin/BlogMVC/coverage">
+        <img src="https://codeclimate.com/github/anthony-robin/BlogMVC/badges/coverage.svg" alt="Codeclimate coverage badge" />
+      </a>
+    </td>
+  </tr>
+  <tr>
+    <td>Issue Stats</td>
+    <td>
+      <a href="https://codeclimate.com/github/anthony-robin/BlogMVC">
+        <img src="https://codeclimate.com/github/anthony-robin/BlogMVC/badges/issue_count.svg" alt="Codeclimate badge" />
+      </a>
+      <a href="https://hakiri.io/github/anthony-robin/BlogMVC/master">
+        <img src="https://hakiri.io/github/anthony-robin/BlogMVC/master.svg" alt="Hakiri badge" />
+      </a>
+      <a href="https://gemnasium.com/github.com/anthony-robin/BlogMVC">
+        <img src="https://gemnasium.com/badges/github.com/anthony-robin/BlogMVC.svg" alt="Gemnasium badge" />
+      </a>
+    </td>
+  </tr>
+</table>
 
 ## Etapes
 - Executer `rails db:seed` pour créer des catégories et des articles

@@ -73,6 +73,8 @@ GEM
       uniform_notifier (~> 1.10.0)
     byebug (9.0.6)
     cancancan (1.15.0)
+    codacy-coverage (1.1.6)
+      simplecov
     codeclimate-test-reporter (1.0.5)
       simplecov
     coderay (1.1.1)
@@ -288,6 +290,7 @@ DEPENDENCIES
   bullet
   byebug
   cancancan
+  codacy-coverage
   codeclimate-test-reporter (~> 1.0.0)
   coffee-rails (~> 4.2)
   database_cleaner
