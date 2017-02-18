@@ -24,11 +24,11 @@ Rails 5 Blog MVC project
   <tr>
     <td>Code Coverage</td>
     <td>
-      <a href="https://codeclimate.com/github/anthony-robin/BlogMVC/coverage">
-        <img src="https://codeclimate.com/github/anthony-robin/BlogMVC/badges/coverage.svg" alt="Codeclimate coverage badge" />
-      </a>
       <a href="https://www.codacy.com/app/anthony-robin/BlogMVC">
         <img src="https://api.codacy.com/project/badge/Coverage/cb283cd5c4eb463f9f56a1a2bb0aa59e" alt="Codacy code coverage" />
+      </a>
+      <a href="https://codeclimate.com/github/anthony-robin/BlogMVC/coverage">
+        <img src="https://codeclimate.com/github/anthony-robin/BlogMVC/badges/coverage.svg" alt="Codeclimate coverage badge" />
       </a>
     </td>
   </tr>
