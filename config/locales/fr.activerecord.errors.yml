@@ -13,6 +13,7 @@ fr:
         invalid: Veuillez renseigner un email valide ;)
       username:
         blank: N'oubliez pas de renseigner votre pseudo ;)
+        taken: Ce nom d'utilisateur n'est pas disponible :(
         invalid: Ce nom d'utilisateur n'est pas valide :(
       role:
         blank: Vous devez spécifier un rôle pour cet utilisateur

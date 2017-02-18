@@ -1,0 +1,8 @@
+fr:
+  blogs:
+    create:
+      notice: L'article de Blog a été créé avec succès
+    update:
+      notice: L'article de Blog a été mis à jour avec succès
+    destroy:
+      notice: L'article de Blog a été supprimé avec succès

@@ -40,6 +40,9 @@ group :development, :test do
   gem 'faker'
   gem 'byebug', platform: :mri
   gem 'database_cleaner'
+
+  gem 'factory_girl_rails'
+  gem 'rspec-rails', '~> 3.5'
 end
 
 group :development do
@@ -58,12 +61,12 @@ group :development do
 end
 
 group :test do
-  gem 'shoulda', '~> 3.5'
-  gem 'shoulda-matchers', '~> 2.0'
+  gem 'shoulda-matchers', '~> 3.1'
   gem 'rails-controller-testing'
 
   gem 'simplecov', require: false
   gem 'codeclimate-test-reporter', '~> 1.0.0', require: false
+  gem 'codacy-coverage', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

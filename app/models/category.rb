@@ -22,9 +22,9 @@ end
 #  id          :integer          not null, primary key
 #  name        :string
 #  slug        :string
+#  blogs_count :integer          default(0), not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  blogs_count :integer          default(0), not null
 #
 # Indexes
 #

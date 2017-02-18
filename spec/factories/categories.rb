@@ -1,12 +1,8 @@
-one:
-  name: Foo
-  slug: foo
-  blogs_count: 2
-
-two:
-  name: Bar
-  slug: bar
-  blogs_count: 2
+FactoryGirl.define do
+  factory :category do
+    sequence(:name) { |n| "Category#{n + 1}" }
+  end
+end
 
 # == Schema Information
 #
@@ -15,9 +11,9 @@ two:
 #  id          :integer          not null, primary key
 #  name        :string
 #  slug        :string
+#  blogs_count :integer          default(0), not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  blogs_count :integer          default(0), not null
 #
 # Indexes
 #

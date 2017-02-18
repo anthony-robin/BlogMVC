@@ -1,29 +1,23 @@
-DEFAULTS: &DEFAULTS
-  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+FactoryGirl.define do
+  factory :user do
+    sequence(:username) { |n| "user#{n}" }
+    sequence(:email) { "#{username}@example.com" }
+    password 'password'
+    password_confirmation 'password'
 
-master:
-  <<: *DEFAULTS
-  username: admin
-  slug: admin
-  email: admin@test.fr
-  role: 0
-  blogs_count: 2
+    trait :master do
+      role 0
+    end
 
-admin:
-  <<: *DEFAULTS
-  username: admin2
-  slug: admin2
-  email: admin2@test.fr
-  role: 1
-  blogs_count: 1
+    trait :admin do
+      role 1
+    end
 
-author:
-  <<: *DEFAULTS
-  username: author
-  slug: author
-  email: author@test.fr
-  role: 2
-  blogs_count: 1
+    trait :author do
+      role 2
+    end
+  end
+end
 
 # == Schema Information
 #
