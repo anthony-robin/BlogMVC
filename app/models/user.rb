@@ -3,10 +3,6 @@ class User < ApplicationRecord
   friendly_id :username, use: :slugged
 
   mount_uploader :avatar, AvatarUploader
-  validates :avatar,
-            file_size: {
-              less_than: 3.megabytes
-            }
 
   enum role: {
     master: 0,
@@ -39,6 +35,11 @@ class User < ApplicationRecord
             presence: true,
             inclusion: { in: roles.keys },
             on: :update
+
+  validates :avatar,
+            file_size: {
+              less_than: 3.megabytes
+            }
 
   private
 

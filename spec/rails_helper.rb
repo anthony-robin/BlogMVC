@@ -7,7 +7,10 @@ require 'rspec/rails'
 require 'cancan/matchers'
 
 ActiveRecord::Migration.maintain_test_schema!
-Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
+Dir[Rails.root.join('spec', 'features', 'shared_examples', '**', '*.rb')].each do |f|
+  require f
+end
 
 RSpec.configure do |config|
   config.extend ControllerMacros, type: :controller
@@ -15,7 +18,7 @@ RSpec.configure do |config|
   config.include AbstractController::Translation
   config.include Devise::Test::ControllerHelpers, type: :controller
 
-  config.use_transactional_fixtures = true
+  config.use_transactional_fixtures = false
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
 end
