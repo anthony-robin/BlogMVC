@@ -8,7 +8,9 @@ class AvatarUploader < CarrierWave::Uploader::Base
   end
 
   def default_url
-    ActionController::Base.helpers.asset_path('fallback/' + [version_name, 'default.png'].compact.join('_'))
+    # ActionController::Base.helpers.asset_path('fallback/' + [version_name, 'default.png'].compact.join('_'))
+    gravatar_id = Digest::MD5.hexdigest(model.email.downcase)
+    "//gravatar.com/avatar/#{gravatar_id}.png?s=400&r=g&d=identicon"
   end
 
   # process scale: [200, 300]
