@@ -2,10 +2,11 @@ module ControllerMacros
   def login_user(login_as = :admin)
     before(:each) do
       login_as ||= nil
+      user = login_as.class.is_a?(Symbol) ? create(:user, login_as) : login_as
       unless login_as.nil?
         @request.env['devise.mapping'] = Devise.mappings[:user]
-        instance_variable_set(:"@#{login_as}", create(:user, login_as))
-        sign_in instance_variable_get(:"@#{login_as}")
+        instance_variable_set(:"@#{login_as}", user)
+        sign_in instance_variable_get(:"@#{user}")
       end
     end
   end

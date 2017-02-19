@@ -2,6 +2,12 @@ class User < ApplicationRecord
   extend FriendlyId
   friendly_id :username, use: :slugged
 
+  mount_uploader :avatar, AvatarUploader
+  validates :avatar,
+            file_size: {
+              less_than: 3.megabytes
+            }
+
   enum role: {
     master: 0,
     admin: 1,
@@ -58,10 +64,12 @@ end
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :string
 #  last_sign_in_ip        :string
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
 #  role                   :integer          default("author")
 #  blogs_count            :integer          default(0), not null
+#  avatar                 :string
+#  retina_dimensions      :text
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
 #
 # Indexes
 #

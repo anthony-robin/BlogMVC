@@ -25,6 +25,14 @@ gem 'kaminari', '~> 1.0' # Pagination
 gem 'gretel' # Breadcrumb
 gem 'friendly_id'
 
+# Uploaders
+gem 'mini_magick'
+gem 'carrierwave', '~> 1.0'
+gem 'file_validators'
+gem 'retina_rails',
+    github: 'gemsfix/retina_rails',
+    branch: 'feature/rails5'
+
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 

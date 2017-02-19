@@ -6,6 +6,12 @@ fr:
       max_row: Vous ne pouvez pas créer plus de resource de ce type
       taken: n'est pas disponible
 
+      carrierwave_processing_error: Image impossible à redimensionner
+      carrierwave_integrity_error: Votre fichier n'est pas une image
+      carrierwave_download_error: Image impossible à télécharger
+      extension_whitelist_error: "Vous n'êtes pas autorisé à uploader des fichiers %{extension}, voici ceux autorisés: %{allowed_types}"
+      extension_blacklist_error: "Vous n'êtes pas autorisé à uploader des fichiers %{extension}, voici ceux interdits: %{prohibited_types}"
+
     attributes:
       email:
         blank: N'oubliez pas de renseigner votre email ;)
@@ -38,3 +44,13 @@ fr:
             email:
               blank: N'oubliez pas de renseigner votre email ;)
               email: ''
+
+# English
+en:
+  errors:
+    messages:
+      carrierwave_processing_error: "Cannot resize image."
+      carrierwave_integrity_error: "Not an image."
+      carrierwave_download_error: "Couldn't download image."
+      extension_whitelist_error: "You are not allowed to upload %{extension} files, allowed types: %{allowed_types}"
+      extension_blacklist_error: "You are not allowed to upload %{extension} files, prohibited types: %{prohibited_types}"
