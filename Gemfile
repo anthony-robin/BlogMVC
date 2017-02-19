@@ -15,6 +15,9 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 
 gem 'simple_form'
+gem 'client_side_validations'
+gem 'client_side_validations-simple_form'
+
 gem 'slim-rails' # slim file
 gem 'foundation-rails', '~> 6.3.0'
 gem 'wysiwyg-rails', github: 'froala/wysiwyg-rails' # Froala editor

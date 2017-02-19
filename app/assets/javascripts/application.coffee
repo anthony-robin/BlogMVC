@@ -3,6 +3,9 @@
 #= require foundation
 #= require turbolinks
 
+#= require rails.validations
+#= require rails.validations.simple_form
+
 #= require froala_editor.min.js
 #= require plugins/align.min.js
 #= require plugins/char_counter.min.js
