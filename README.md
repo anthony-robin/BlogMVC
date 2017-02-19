@@ -9,6 +9,12 @@ Rails 5 Blog MVC project
         <img src="https://travis-ci.org/anthony-robin/BlogMVC.svg?branch=master" alt="Build Status" />
       </a>
     </td>
+    <td>Dependencies</td>
+    <td>
+      <a href="https://gemnasium.com/github.com/anthony-robin/BlogMVC">
+        <img src="https://gemnasium.com/badges/github.com/anthony-robin/BlogMVC.svg" alt="Gemnasium badge" />
+      </a>
+    </td>
   </tr>
   <tr>
     <td>Code Quality</td>
@@ -20,8 +26,6 @@ Rails 5 Blog MVC project
         <img src="https://codeclimate.com/github/anthony-robin/BlogMVC/badges/gpa.svg" alt="Codeclimate badge" />
       </a>
     </td>
-  </tr>
-  <tr>
     <td>Code Coverage</td>
     <td>
       <a href="https://www.codacy.com/app/anthony-robin/BlogMVC">
@@ -34,15 +38,12 @@ Rails 5 Blog MVC project
   </tr>
   <tr>
     <td>Issue Stats</td>
-    <td>
+    <td colspan="3">
       <a href="https://codeclimate.com/github/anthony-robin/BlogMVC">
         <img src="https://codeclimate.com/github/anthony-robin/BlogMVC/badges/issue_count.svg" alt="Codeclimate badge" />
       </a>
       <a href="https://hakiri.io/github/anthony-robin/BlogMVC/master">
         <img src="https://hakiri.io/github/anthony-robin/BlogMVC/master.svg" alt="Hakiri badge" />
-      </a>
-      <a href="https://gemnasium.com/github.com/anthony-robin/BlogMVC">
-        <img src="https://gemnasium.com/badges/github.com/anthony-robin/BlogMVC.svg" alt="Gemnasium badge" />
       </a>
     </td>
   </tr>
