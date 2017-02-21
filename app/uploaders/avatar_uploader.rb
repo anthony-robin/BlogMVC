@@ -1,6 +1,8 @@
 class AvatarUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
+  AVATAR_FILE_SIZE = 1
+
   retina!
 
   def store_dir
@@ -37,6 +39,10 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   def extension_whitelist
     %w(jpg jpeg png)
+  end
+
+  def size_range
+    0..AVATAR_FILE_SIZE.megabytes
   end
 
   def filename

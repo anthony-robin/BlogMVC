@@ -2,8 +2,10 @@ class User < ApplicationRecord
   extend FriendlyId
   friendly_id :username, use: :slugged
 
+  # Carrierwave
   mount_uploader :avatar, AvatarUploader
 
+  # Enum
   enum role: {
     master: 0,
     admin: 1,
@@ -15,8 +17,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  # Model relations
   has_many :blogs, dependent: :destroy
 
+  # Validation rules
   validates :username,
             presence: true,
             username_format: true,
@@ -36,10 +40,7 @@ class User < ApplicationRecord
             inclusion: { in: roles.keys },
             on: :update
 
-  validates :avatar,
-            file_size: {
-              less_than: 3.megabytes
-            }
+  validates_integrity_of :avatar
 
   private
 

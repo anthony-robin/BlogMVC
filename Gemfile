@@ -28,7 +28,6 @@ gem 'friendly_id'
 # Uploaders
 gem 'mini_magick'
 gem 'carrierwave', '~> 1.0'
-gem 'file_validators'
 gem 'retina_rails',
     github: 'gemsfix/retina_rails',
     branch: 'feature/rails5'
