@@ -15,6 +15,14 @@ GIT
       font-awesome-sass (~> 4.4, >= 4.4.0)
       railties (>= 3.2, < 6.0)
 
+GIT
+  remote: git://github.com/gemsfix/retina_rails.git
+  revision: 34a37fc9faf947343bb1cb41f1a7157ee8ebe3ad
+  branch: feature/rails5
+  specs:
+    retina_rails (2.0.4)
+      rails (>= 3.2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -73,6 +81,10 @@ GEM
       uniform_notifier (~> 1.10.0)
     byebug (9.0.6)
     cancancan (1.16.0)
+    carrierwave (1.0.0)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
+      mime-types (>= 1.16)
     client_side_validations (9.0.1)
       jquery-rails (~> 4.2)
       js_regex (~> 1.2)
@@ -162,6 +174,7 @@ GEM
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
+    mini_magick (4.6.1)
     mini_portile2 (2.1.0)
     minitest (5.10.1)
     multi_json (1.12.1)
@@ -302,6 +315,7 @@ DEPENDENCIES
   bullet
   byebug
   cancancan
+  carrierwave (~> 1.0)
   client_side_validations
   client_side_validations-simple_form
   codacy-coverage
@@ -319,10 +333,12 @@ DEPENDENCIES
   kaminari (~> 1.0)
   listen
   meta-tags
+  mini_magick
   puma (~> 3.0)
   rails (~> 5.0.0, >= 5.0.0.1)
   rails-controller-testing
   rails-i18n (~> 5.0.0)
+  retina_rails!
   rspec-rails (~> 3.5)
   sass-rails (~> 5.0)
   shoulda-matchers (~> 3.1)
