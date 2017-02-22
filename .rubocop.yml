@@ -112,11 +112,11 @@ Style/StringLiterals:
 
 # Check for array literals made up of symbols that are not using the %i() syntax
 Style/SymbolArray:
-  Enable: true
+  Enabled: true
 
 # Check for array literals made up of word-like strings, that are not using the %w() syntax
 Style/WordArray:
-  Enable: true
+  Enabled: true
 
 # Detect hard tabs, no hard tabs.
 Style/Tab:

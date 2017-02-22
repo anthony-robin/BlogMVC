@@ -1,10 +1,10 @@
 class BlogsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_blog, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: %i(index show)
+  before_action :set_blog, only: %i(show edit update destroy)
   before_action :set_category,
-                only: [:index],
+                only: %i(index),
                 if: proc { params[:category_id].present? }
-  before_action :set_categories, only: [:index, :show]
+  before_action :set_categories, only: %i(index show)
 
   authorize_resource
 
