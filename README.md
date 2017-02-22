@@ -38,7 +38,7 @@ Rails 5 Blog MVC project
   </tr>
   <tr>
     <td>Issue Stats</td>
-    <td colspan="3">
+    <td colspan="2">
       <a href="https://codeclimate.com/github/anthony-robin/BlogMVC">
         <img src="https://codeclimate.com/github/anthony-robin/BlogMVC/badges/issue_count.svg" alt="Codeclimate badge" />
       </a>
@@ -46,30 +46,31 @@ Rails 5 Blog MVC project
         <img src="https://hakiri.io/github/anthony-robin/BlogMVC/master.svg" alt="Hakiri badge" />
       </a>
     </td>
+    <td>
+      <img src="https://img.shields.io/badge/Ruby-2.3.3-5aaed7.svg?style=flat-square" alt="Ruby version" />
+      <img src="https://img.shields.io/badge/Rails-5.0.1-5aaed7.svg?style=flat-square" alt="Rails version" />
+    </td>
   </tr>
 </table>
 
 ## Etapes
 - Executer `rails db:seed` pour créer des catégories et des articles
 - Executer `rails server`
-- Executer `rails test`
+- Executer `rspec`
 
 ## Technologies
-#### Frontend
 - jQuery
 - Foundation (style, modale et carrousel)
 - Slim
 - Froala WYSIWYG editor (contenu formattable)
 - Kaminari
 
-#### Backend
-- Rails 5.0.1
-- Ruby 2.3.3
-
 ### Base de données
 - SQlite 3
 
 #### Tests
+- RSpec
+- FactoryGirl
 - Shoulda
 
 ## Screenshots
