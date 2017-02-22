@@ -3,6 +3,10 @@
                 description: t('.description'),
                 keywords: t('.keywords')
 
+.row.align-center
+  .small-12.medium-4.columns
+    = render 'card', user: @user
+
 - if @blogs.empty?
   p
     strong = @user.username

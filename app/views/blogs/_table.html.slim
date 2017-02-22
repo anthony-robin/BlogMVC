@@ -10,7 +10,7 @@ table.hover
   tbody
     - blogs.each do |blog|
       tr
-        td = image_tag Faker::Placeholdit.image('160x90'), class: 'thumbnail center'
+        td = retina_image_tag blog.picture, :image, :medium, class: 'thumbnail center' if blog.picture?
         td = link_to blog.title, category_blog_path(blog.category, blog)
         td = link_to blog.category_name, category_blogs_path(blog.category)
 

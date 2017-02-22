@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    update_attrs = [:username, :email, :password, :password_confirmation, :current_password]
+    update_attrs = %i(avatar avatar_cache remove_avatar username email password password_confirmation current_password)
     update_attrs.push(:role) if current_user.try(:master_role?)
     devise_parameter_sanitizer.permit :account_update, keys: update_attrs
   end

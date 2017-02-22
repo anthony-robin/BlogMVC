@@ -7,7 +7,7 @@ article.blog id="blog_#{blog.id}"
       span.blog-title =< link_to blog.title, category_blog_path(blog.category, blog)
 
   div.preview
-    p = image_tag Faker::Placeholdit.image('870x360'), class: 'thumbnail'
+    p = retina_image_tag blog.picture, :image, :large, class: 'thumbnail' if blog.picture.present?
 
   div.meta
     p

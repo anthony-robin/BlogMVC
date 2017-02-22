@@ -2,9 +2,13 @@ class Blog < ApplicationRecord
   extend FriendlyId
   friendly_id :title, use: :slugged
 
+  include Assets::Picturable
+
+  # Model relations
   belongs_to :user, counter_cache: true
   belongs_to :category, counter_cache: true
 
+  # Validation rules
   validates :title,
             presence: true
   validates :content,
@@ -16,10 +20,14 @@ class Blog < ApplicationRecord
               in: proc { Category.all.map(&:id) }
             }
 
+  # Delegates
   delegate :name, to: :category, prefix: true, allow_nil: true
   delegate :username, :role, to: :user, prefix: true, allow_nil: true
 
+  # Pagination
   paginates_per 5
+
+  private
 
   def should_generate_new_friendly_id?
     slug.blank? || new_record? || title_changed?

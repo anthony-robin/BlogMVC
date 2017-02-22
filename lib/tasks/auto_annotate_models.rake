@@ -15,7 +15,7 @@ if Rails.env.development?
       'exclude_factories'    => 'false',
       'exclude_scaffolds'    => 'true',
 
-      'routes'               => 'true',
+      'routes'               => 'false',
       'position_in_routes'   => 'after',
 
       'position_in_class'    => 'after',

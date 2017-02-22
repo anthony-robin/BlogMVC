@@ -2,6 +2,10 @@ class User < ApplicationRecord
   extend FriendlyId
   friendly_id :username, use: :slugged
 
+  # Carrierwave
+  mount_uploader :avatar, AvatarUploader
+
+  # Enum
   enum role: {
     master: 0,
     admin: 1,
@@ -13,8 +17,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  # Model relations
   has_many :blogs, dependent: :destroy
 
+  # Validation rules
   validates :username,
             presence: true,
             username_format: true,
@@ -33,6 +39,8 @@ class User < ApplicationRecord
             presence: true,
             inclusion: { in: roles.keys },
             on: :update
+
+  validates_integrity_of :avatar
 
   private
 
@@ -58,10 +66,12 @@ end
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :string
 #  last_sign_in_ip        :string
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
 #  role                   :integer          default("author")
 #  blogs_count            :integer          default(0), not null
+#  avatar                 :string
+#  retina_dimensions      :text
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
 #
 # Indexes
 #

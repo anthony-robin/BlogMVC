@@ -28,6 +28,17 @@ body
   & + .callout
     margin-bottom: 0
 
+  .header__profile__picture
+    float: left
+    width: 60px
+    padding-right: 1rem
+  .header__profile__name
+    float: right
+    .role
+      display: block
+      margin-top: .5rem
+
+
 .content
   flex: 1 0
   .thumbnail
@@ -53,8 +64,12 @@ body
   &.error
     input.string
       border: 1px solid $alert-color
+    .error
+      color: $alert-color
   input.string
     margin-bottom: 0
+.input-group-button
+  vertical-align: top
 
 .form-actions
   margin-top: 2rem

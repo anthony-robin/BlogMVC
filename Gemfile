@@ -15,12 +15,22 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 
 gem 'simple_form'
+gem 'client_side_validations'
+gem 'client_side_validations-simple_form'
+
 gem 'slim-rails' # slim file
 gem 'foundation-rails', '~> 6.3.0'
 gem 'wysiwyg-rails', github: 'froala/wysiwyg-rails' # Froala editor
 gem 'kaminari', '~> 1.0' # Pagination
 gem 'gretel' # Breadcrumb
 gem 'friendly_id'
+
+# Uploaders
+gem 'mini_magick'
+gem 'carrierwave', '~> 1.0'
+gem 'retina_rails',
+    github: 'gemsfix/retina_rails',
+    branch: 'feature/rails5'
 
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
@@ -50,12 +60,10 @@ group :development do
   gem 'annotate', github: 'ctran/annotate_models',
                   branch: 'develop'
 
-  # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console'
   gem 'better_errors'
   gem 'binding_of_caller'
-  gem 'listen', '~> 3.0.5'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'listen'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
