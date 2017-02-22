@@ -1,13 +1,5 @@
-class AvatarUploader < CarrierWave::Uploader::Base
-  include CarrierWave::MiniMagick
-
+class AvatarUploader < ApplicationUploader
   AVATAR_FILE_SIZE = 1
-
-  retina!
-
-  def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{model.id}"
-  end
 
   def default_url
     gravatar_id = Digest::MD5.hexdigest(model.email.downcase)
@@ -30,15 +22,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
     process resize_to_fill: [50, 50]
   end
 
-  def extension_whitelist
-    %w(jpg jpeg png)
-  end
-
   def size_range
     0..AVATAR_FILE_SIZE.megabytes
-  end
-
-  def filename
-    "#{mounted_as}.jpg" if original_filename
   end
 end
