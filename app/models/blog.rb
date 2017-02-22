@@ -2,12 +2,11 @@ class Blog < ApplicationRecord
   extend FriendlyId
   friendly_id :title, use: :slugged
 
+  include Assets::Picturable
+
   # Model relations
   belongs_to :user, counter_cache: true
   belongs_to :category, counter_cache: true
-
-  has_one :picture, as: :attachable, dependent: :destroy
-  accepts_nested_attributes_for :picture, reject_if: :all_blank, allow_destroy: true
 
   # Validation rules
   validates :title,
@@ -25,11 +24,8 @@ class Blog < ApplicationRecord
   delegate :name, to: :category, prefix: true, allow_nil: true
   delegate :username, :role, to: :user, prefix: true, allow_nil: true
 
+  # Pagination
   paginates_per 5
-
-  def picture?
-    picture.present?
-  end
 
   private
 
