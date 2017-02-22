@@ -1,5 +1,5 @@
 class HomesController < ApplicationController
   def index
-    @blogs = Blog.includes(:category, :user).all.page params[:page]
+    @blogs = Blog.includes(:category, :user, :picture).all.page params[:page]
   end
 end

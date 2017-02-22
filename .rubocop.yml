@@ -110,6 +110,14 @@ Style/StringLiterals:
   Enabled: true
   EnforcedStyle: single_quotes
 
+# Check for array literals made up of symbols that are not using the %i() syntax
+Style/SymbolArray:
+  Enable: true
+
+# Check for array literals made up of word-like strings, that are not using the %w() syntax
+Style/WordArray:
+  Enable: true
+
 # Detect hard tabs, no hard tabs.
 Style/Tab:
   Enabled: true

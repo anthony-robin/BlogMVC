@@ -3,15 +3,18 @@
     .small-12.medium-4.columns
       = f.input :title
 
-      - unless f.object.new_record?
-        br
-        = f.input :slug, disabled: true
-
       br
       = f.input :category_id,
                 as: :select,
                 collection: Category.all,
                 include_blank: false
+
+      br
+      = f.simple_fields_for :picture do |p|
+        = retina_image_tag p.object, :image, :medium if p.object.image?
+        = p.input :image, as: :file
+        = p.input :image_cache, as: :hidden
+        = p.input :_destroy, as: :boolean, boolean_style: :inline if p.object.image?
 
     .small-12.medium-8.columns
       = f.input :content,
