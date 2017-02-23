@@ -10,6 +10,10 @@ AllCops:
     - 'node_modules/**/*'
     - 'spec/**/*'
 
+# Check for the correct use of Date methods, such as Date.today, Date.current etc
+Rails/Date:
+  Enabled: true
+
 # Use 3.days instead of 3.day
 Rails/PluralizationGrammar:
   Enabled: true
@@ -35,14 +39,6 @@ Style/CommentIndentation:
 Style/EmptyLines:
   Enabled: true
 
-# Do not write def my_method; end
-Style/EmptyMethod:
-  EnforcedStyle: expanded
-
-# Detect double spaces
-Style/ExtraSpacing:
-  Enabled: true
-
 # In a regular class definition, no empty lines around the body.
 Style/EmptyLinesAroundClassBody:
   Enabled: true
@@ -55,12 +51,20 @@ Style/EmptyLinesAroundModuleBody:
 Style/EmptyLinesAroundAccessModifier:
   Enabled: true
 
-# ???
-Style/NumericLiteralPrefix:
-  EnforcedOctalStyle: zero_only
+# Do not write def my_method; end
+Style/EmptyMethod:
+  EnforcedStyle: expanded
+
+# Detect double spaces
+Style/ExtraSpacing:
+  Enabled: true
 
 # Use Ruby >= 1.9 syntax for hashes. Prefer { a: :b } over { :a => :b }.
 Style/HashSyntax:
+  Enabled: true
+
+# Check whether comments have a leading space after the # denoting the start of the comment
+Style/LeadingCommentSpace:
   Enabled: true
 
 # Two spaces, no tabs (for indentation).
@@ -138,7 +142,7 @@ Style/UnneededPercentQ:
 # assignments, where it should be aligned with the LHS.
 Lint/EndAlignment:
   Enabled: true
-  AlignWith: variable
+  EnforcedStyleAlignWith: variable
 
 # Use my_method(my_arg) not my_method( my_arg ) or my_method my_arg.
 Lint/RequireParentheses:
