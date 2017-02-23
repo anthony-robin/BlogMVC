@@ -11,8 +11,9 @@ class BlogsController < ApplicationController
   # GET /blogs
   # GET /blogs.json
   def index
-    @blogs = Blog.includes(:user, :category, :picture)
+    @blogs = Blog.includes(:user, :category, :picture, :taggings)
     @blogs = @category.blogs.includes(:user, :category) if params[:category_id].present?
+    @blogs = @blogs.tagged_with(params[:tag]) if params[:tag]
     @blogs = @blogs.page params[:page]
   end
 
@@ -85,6 +86,6 @@ class BlogsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def blog_params
-    params.require(:blog).permit(:title, :slug, :content, :category_id, picture_attributes: %i(id image image_cache _destroy))
+    params.require(:blog).permit(:title, :slug, :content, :category_id, :tag_list, picture_attributes: %i(id image image_cache _destroy))
   end
 end

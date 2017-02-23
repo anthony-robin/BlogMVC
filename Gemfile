@@ -24,6 +24,7 @@ gem 'wysiwyg-rails', github: 'froala/wysiwyg-rails' # Froala editor
 gem 'kaminari', '~> 1.0' # Pagination
 gem 'gretel' # Breadcrumb
 gem 'friendly_id'
+gem 'acts-as-taggable-on', '~> 4.0'
 
 # Uploaders
 gem 'mini_magick'

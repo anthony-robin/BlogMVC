@@ -27,6 +27,9 @@ class Blog < ApplicationRecord
   # Pagination
   paginates_per 5
 
+  # Tags
+  acts_as_taggable
+
   private
 
   def should_generate_new_friendly_id?

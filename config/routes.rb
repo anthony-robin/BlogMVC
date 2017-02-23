@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resources :categories, only: [] do
     resources :blogs, only: %i(index show edit), path: ''
   end
+  get 'tags/:tag', to: 'blogs#index', as: :tag
 
   resources :users, only: %i(index show)
 end

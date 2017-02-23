@@ -14,6 +14,8 @@ article.blog id="blog_#{blog.id}"
       span.timestamps = I18n.l(blog.created_at, format: :long)
       |,
       small.user =< link_to blog.user_username, user_path(blog.user)
+      br
+      = raw blog.tag_list.map { |t| link_to t, tag_path(t), class: 'label warning' }.join(' ')
 
   div.fr-view == blog.content
 
