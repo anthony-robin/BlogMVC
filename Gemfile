@@ -50,6 +50,7 @@ group :development, :test do
   gem 'faker'
   gem 'byebug', platform: :mri
   gem 'database_cleaner'
+  gem 'rubocop'
 
   gem 'factory_girl_rails'
   gem 'rspec-rails', '~> 3.5'
