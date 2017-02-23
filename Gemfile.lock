@@ -186,6 +186,17 @@ GEM
     parser (2.4.0.0)
       ast (~> 2.2)
     powerpack (0.1.1)
+    pry (0.10.4)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    pry-byebug (3.4.2)
+      byebug (~> 9.0)
+      pry (~> 0.10)
+    pry-rails (0.3.5)
+      pry (>= 0.9.10)
+    pry-theme (1.2.0)
+      coderay (~> 1.1)
     puma (3.7.0)
     rack (2.0.1)
     rack-test (0.6.3)
@@ -277,6 +288,7 @@ GEM
       actionpack (>= 3.1)
       railties (>= 3.1)
       slim (~> 3.0)
+    slop (3.6.0)
     spring (2.0.1)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -326,7 +338,6 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bullet
-  byebug
   cancancan
   carrierwave (~> 1.0)
   client_side_validations
@@ -347,6 +358,9 @@ DEPENDENCIES
   listen
   meta-tags
   mini_magick
+  pry-byebug
+  pry-rails
+  pry-theme
   puma (~> 3.0)
   rails (~> 5.0.0, >= 5.0.0.1)
   rails-controller-testing

@@ -48,9 +48,12 @@ gem 'meta-tags' # SEO
 
 group :development, :test do
   gem 'faker'
-  gem 'byebug', platform: :mri
   gem 'database_cleaner'
   gem 'rubocop'
+
+  gem 'pry-byebug'
+  gem 'pry-rails'
+  gem 'pry-theme'
 
   gem 'factory_girl_rails'
   gem 'rspec-rails', '~> 3.5'
