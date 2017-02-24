@@ -10,6 +10,10 @@ AllCops:
     - 'node_modules/**/*'
     - 'spec/**/*'
 
+ # This cop identifies places where `gsub` can be replaced by `tr` or `delete`.
+Performance/StringReplacement:
+  Enabled: true
+
 # Check for the correct use of Date methods, such as Date.today, Date.current etc
 Rails/Date:
   Enabled: true
