@@ -50,6 +50,20 @@ describe CommentsController do
             expect(flash[:alert]).to eq(t('comments.create.alert'))
           end
         end
+
+        context 'with captcha filed' do
+          before do
+            post :create, params: { blog_id: blog, comment: valid_params.merge(nickname: 'I AM A ROBOT') }
+          end
+
+          it { is_expected.to respond_with 302 }
+          it { is_expected.to redirect_to(category_blog_url(blog.category, blog)) }
+          it_behaves_like :comment_not_creatable
+
+          it 'should have correct flash alert' do
+            expect(flash[:alert]).to eq(t('comments.create.alert'))
+          end
+        end
       end
 
       context 'with JS format' do

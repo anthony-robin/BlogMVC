@@ -10,6 +10,7 @@ describe Comment do
     context 'presence' do
       it { should validate_presence_of(:body) }
       it { should validate_presence_of(:user) }
+      it { should validate_absence_of(:nickname) }
     end
 
     context 'format' do

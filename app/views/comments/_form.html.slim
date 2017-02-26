@@ -1,3 +1,4 @@
 = simple_form_for [@commentable, @comment], remote: true do |f|
   = f.input :body
+  = f.input :nickname, as: :hidden
   = button_tag :submit, class: 'button'

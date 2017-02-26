@@ -1,6 +1,9 @@
 class Comment < ApplicationRecord
   acts_as_nested_set scope: %i(commentable_id commentable_type)
 
+  # Accessor
+  attr_accessor :nickname
+
   # Model relations
   belongs_to :user
   belongs_to :commentable, polymorphic: true
@@ -8,6 +11,7 @@ class Comment < ApplicationRecord
   # Validation rules
   validates :body, presence: true
   validates :user, presence: true
+  validates :nickname, absence: true
 
   # Scopes
   scope :find_comments_by_user, lambda { |user|
