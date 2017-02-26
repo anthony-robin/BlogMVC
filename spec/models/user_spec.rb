@@ -76,7 +76,7 @@ describe User do
     let(:user) { nil }
 
     context 'when is not connected' do
-      it { should be_able_to(:create, User.new) }
+      it { should_not be_able_to(:create, User.new) }
       it { should be_able_to(:read, create(:user, :author)) }
       it { should_not be_able_to(:update, create(:user, :author)) }
       it { should_not be_able_to(:destroy, create(:user, :author)) }

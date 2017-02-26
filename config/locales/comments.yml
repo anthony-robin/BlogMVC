@@ -2,4 +2,4 @@ fr:
   comments:
     create:
       success: Votre commentaire a été ajouté avec succès
-      error: Votre commentaire n'a pas pu être ajouté
+      alert: Votre commentaire n'a pas pu être ajouté

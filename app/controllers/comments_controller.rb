@@ -2,6 +2,8 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!
   before_action :load_commentable
 
+  authorize_resource
+
   # POST /comments
   # POST /comments.json
   def create
@@ -9,17 +11,11 @@ class CommentsController < ApplicationController
     @comment.user = current_user
     if @comment.save
       flash[:success] = t('.success')
-      respond_to do |format|
-        format.js { render :create }
-      end
+      respond_action :create
     else
-      flash[:error] = t('.error')
-      respond_to do |format|
-        format.js { render :errors }
-      end
+      flash[:alert] = t('.alert')
+      respond_action :error
     end
-
-    redirect_to category_blog_path(@commentable.category, @commentable)
   end
 
   private
@@ -32,5 +28,14 @@ class CommentsController < ApplicationController
   def load_commentable
     klass = [Blog].detect { |c| params["#{c.name.underscore}_id"] }
     @commentable = klass.friendly.find(params["#{klass.name.underscore}_id"])
+  end
+
+  def respond_action(action)
+    respond_to do |format|
+      format.html do
+        redirect_to category_blog_path(@commentable.category, @commentable)
+      end
+      format.js { render action }
+    end
   end
 end

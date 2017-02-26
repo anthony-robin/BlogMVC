@@ -109,7 +109,7 @@ describe Blog do
       end
 
       context 'when owner is a master' do
-        let(:user2) { create(:user, :admin) }
+        let(:user2) { create(:user, :master) }
         let(:blog2) { create(:blog, user: user2) }
         it { should be_able_to(:read, blog2) }
         it { should_not be_able_to(:update, blog2) }

@@ -9,7 +9,7 @@
       = render 'blogs/blog', blog: @blog
 
       .comments--section
-        = render 'comments/form'
+        = render 'comments/form' if user_signed_in?
         #comments.comments
           = render @comments
 

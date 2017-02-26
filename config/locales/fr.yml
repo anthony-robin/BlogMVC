@@ -76,6 +76,8 @@ fr:
     manage:
       all: "Vous n'êtes pas autorisé à %{action} le %{subject}."
       user: "Vous n'êtes pas autorisé à gérer un compte utilisateur qui n'est pas le votre"
+    create:
+      comment: "Vous n'êtes pas autorisé à créer un commentaire"
     read:
       category: "Vous n'êtes pas autorisé à accéder à cette page"
     update:
