@@ -5,8 +5,8 @@ class Comment < ApplicationRecord
   attr_accessor :nickname
 
   # Model relations
-  belongs_to :user
-  belongs_to :commentable, polymorphic: true
+  belongs_to :user, counter_cache: true
+  belongs_to :commentable, polymorphic: true, counter_cache: true
 
   # Validation rules
   validates :body, presence: true

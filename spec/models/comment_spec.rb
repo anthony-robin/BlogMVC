@@ -18,6 +18,35 @@ describe Comment do
     end
   end
 
+  context 'a comment' do
+    let(:user) { create(:user) }
+    let(:blog) { create(:blog) }
+    let(:comment) { build(:comment, commentable: blog, user: user, body: 'Lorem ispum !') }
+
+    context 'on CREATE' do
+      it('should be valid') { expect(comment).to be_valid }
+      it('should not have errors') { expect(comment.errors).to be_empty }
+      it 'should increase counter cache' do
+        expect(blog.comments_count).to eq(0)
+        expect(user.comments_count).to eq(0)
+        comment.save!
+        expect(blog.comments_count).to eq(1)
+        expect(user.comments_count).to eq(1)
+      end
+    end
+
+    context 'on DESTROY' do
+      it 'should decrease counter cache' do
+        comment.save!
+        expect(blog.comments_count).to eq(1)
+        expect(user.comments_count).to eq(1)
+        comment.destroy
+        expect(blog.reload.comments_count).to eq(0)
+        expect(user.reload.comments_count).to eq(0)
+      end
+    end
+  end
+
   describe 'abilities' do
     subject(:ability) { Ability.new(user) }
     let(:user) { nil }
