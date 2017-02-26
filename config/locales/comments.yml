@@ -1,5 +1,10 @@
 fr:
   comments:
+    zero: commentaire
+    one: commentaire
+    other: commentaires
+
+    # Actions
     create:
       success: Votre commentaire a été ajouté avec succès
       alert: Votre commentaire n'a pas pu être ajouté
