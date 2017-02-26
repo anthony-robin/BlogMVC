@@ -1,4 +1,12 @@
 = simple_form_for [@commentable, @comment], remote: true do |f|
-  = f.input :body
-  = f.input :nickname, as: :hidden
-  = button_tag :submit, class: 'button'
+  .row
+    .small-12.medium-4.large-2.column
+      p.text-center
+        = retina_image_tag current_user, :avatar, :small
+        br
+        = current_user.username
+
+    .small-12.medium-8.large-10.column
+      = f.input :body
+      = f.input :nickname, as: :hidden
+      = button_tag :submit, class: 'button'
