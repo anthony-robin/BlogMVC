@@ -22,7 +22,7 @@ class BlogsController < ApplicationController
   def show
     @commentable = @blog
     @comment = Comment.new
-    @comments = @commentable.comment_threads.includes(:user).order(created_at: :desc)
+    @comments = @commentable.comment_threads.includes(:user, :commentable).order(created_at: :desc)
   end
 
   # GET /blogs/new
