@@ -55,6 +55,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'pry-theme'
+  gem 'pry-alias'
 
   gem 'factory_girl_rails'
   gem 'rspec-rails', '~> 3.5'
