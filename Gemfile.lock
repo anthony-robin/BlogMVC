@@ -65,8 +65,14 @@ GEM
       tzinfo (~> 1.1)
     acts-as-taggable-on (4.0.0)
       activerecord (>= 4.0)
+    acts_as_commentable_with_threading (2.0.1)
+      activerecord (>= 4.0)
+      activesupport (>= 4.0)
+      awesome_nested_set (>= 3.0)
     arel (7.1.4)
     ast (2.3.0)
+    awesome_nested_set (3.1.1)
+      activerecord (>= 4.0.0, < 5.1)
     babel-source (5.8.35)
     babel-transpiler (0.7.0)
       babel-source (>= 4.0, < 6)
@@ -337,6 +343,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on (~> 4.0)
+  acts_as_commentable_with_threading
   annotate!
   better_errors
   binding_of_caller

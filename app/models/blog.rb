@@ -27,8 +27,8 @@ class Blog < ApplicationRecord
   # Pagination
   paginates_per 5
 
-  # Tags
-  acts_as_taggable
+  acts_as_taggable # Tags
+  acts_as_commentable # Comments
 
   private
 
