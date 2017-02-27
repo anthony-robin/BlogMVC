@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   end
 
   resources :blogs, except: %i(show edit), concerns: :paginatable do
-    resources :comments, only: %i(create)
+    resources :comments, only: %i(create destroy)
   end
   resources :categories, except: %i(show), concerns: :paginatable
 

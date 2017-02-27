@@ -84,3 +84,4 @@ fr:
       blog: "Vous n'êtes pas autorisé à modifier cet article de Blog"
     destroy:
       blog: "Vous n'êtes pas autorisé à supprimer cet article de Blog"
+      comment: "Vous n'êtes pas autorisé à supprimer ce commentaire"

@@ -107,4 +107,49 @@ describe CommentsController do
       end
     end
   end
+
+  describe 'DELETE #destroy' do
+    let(:user) { create(:user) }
+    let(:blog) { create(:blog, user: user) }
+    let(:comment) { create(:comment, commentable: blog, user: user) }
+
+    context 'when authenticated' do
+      before { sign_in user }
+
+      context 'with HTML format' do
+        before { delete :destroy, params: { blog_id: blog, id: comment } }
+
+        it { is_expected.to respond_with 302 }
+        it { is_expected.to redirect_to(category_blog_url(blog.category, blog)) }
+        it_behaves_like :comment_destroyable
+      end
+
+      context 'with JS format' do
+        before { delete :destroy, params: { blog_id: blog, id: comment }, format: :js }
+
+        it_behaves_like :ok_request, :destroy
+        it_behaves_like :comment_destroyable
+      end
+    end
+
+    context 'when not authenticated' do
+      context 'with HTML format' do
+        before do
+          delete :destroy, params: { blog_id: blog, id: comment }
+        end
+
+        it_behaves_like :redirected_request, 'new_user_session_url'
+        it_behaves_like :comment_not_destroyable
+      end
+
+      context 'with JS format' do
+        before do
+          delete :destroy, params: { blog_id: blog, id: comment }, format: :js
+        end
+
+        it_behaves_like :unauthorized_request
+        it_behaves_like :comment_not_destroyable
+      end
+    end
+  end
 end

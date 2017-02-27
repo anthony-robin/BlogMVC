@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied do |exception|
     respond_to do |format|
       format.html { redirect_to root_url, alert: exception.message }
-      format.js { render nothing: true, status: :unauthorized }
+      format.js { head :unauthorized }
     end
   end
 
