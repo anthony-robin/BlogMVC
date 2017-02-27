@@ -20,7 +20,7 @@ gem 'client_side_validations-simple_form'
 
 gem 'slim-rails' # slim file
 gem 'foundation-rails', '~> 6.3.0'
-gem 'wysiwyg-rails', github: 'froala/wysiwyg-rails' # Froala editor
+gem 'wysiwyg-rails' # Froala editor
 gem 'kaminari', '~> 1.0' # Pagination
 gem 'gretel' # Breadcrumb
 gem 'friendly_id'
