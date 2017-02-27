@@ -11,7 +11,7 @@ class BlogsController < ApplicationController
   # GET /blogs
   # GET /blogs.json
   def index
-    @blogs = Blog.includes(:user, :category, :picture, :taggings)
+    @blogs = Blog.includes(:user, :category, :picture, :taggings).order_desc
     @blogs = @category.blogs.includes(:user, :category) if params[:category_id].present?
     @blogs = @blogs.tagged_with(params[:tag]) if params[:tag]
     @blogs = @blogs.page params[:page]

@@ -5,7 +5,7 @@
 - unless @blogs.empty?
   .row.align-center
     .small-12.medium-8.columns
-      = render 'carousel', blogs: @blogs.last(5)
+      = render 'carousel', blogs: @blogs_carousel
 
   = render 'blogs/table', blogs: @blogs
   = paginate @blogs

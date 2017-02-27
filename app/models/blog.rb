@@ -20,6 +20,9 @@ class Blog < ApplicationRecord
               in: proc { Category.all.map(&:id) }
             }
 
+  # Scopes
+  scope :order_desc, -> { order(created_at: :desc) }
+
   # Delegates
   delegate :name, to: :category, prefix: true, allow_nil: true
   delegate :username, :role, to: :user, prefix: true, allow_nil: true
