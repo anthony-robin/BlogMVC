@@ -20,12 +20,18 @@ class Blog < ApplicationRecord
               in: proc { Category.all.map(&:id) }
             }
 
+  # Scopes
+  scope :order_desc, -> { order(created_at: :desc) }
+
   # Delegates
   delegate :name, to: :category, prefix: true, allow_nil: true
   delegate :username, :role, to: :user, prefix: true, allow_nil: true
 
   # Pagination
   paginates_per 5
+
+  acts_as_taggable # Tags
+  acts_as_commentable # Comments
 
   private
 
@@ -38,14 +44,15 @@ end
 #
 # Table name: blogs
 #
-#  id          :integer          not null, primary key
-#  title       :string
-#  slug        :string
-#  content     :text
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  category_id :integer
-#  user_id     :integer
+#  id             :integer          not null, primary key
+#  title          :string
+#  slug           :string
+#  content        :text
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  category_id    :integer
+#  user_id        :integer
+#  comments_count :integer          default(0), not null
 #
 # Indexes
 #

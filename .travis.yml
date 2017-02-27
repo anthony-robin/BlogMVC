@@ -18,7 +18,6 @@ before_script:
 script:
   - RAILS_ENV=test bundle exec rails --trace db:migrate
   - RAILS_ENV=test bundle exec rspec
-  - RAILS_ENV=test bundle exec rails assets:precompile
   - RAILS_ENV=test bundle exec rails db:seed
 
 after_success:

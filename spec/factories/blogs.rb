@@ -11,14 +11,15 @@ end
 #
 # Table name: blogs
 #
-#  id          :integer          not null, primary key
-#  title       :string
-#  slug        :string
-#  content     :text
-#  category_id :integer
-#  user_id     :integer
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id             :integer          not null, primary key
+#  title          :string
+#  slug           :string
+#  content        :text
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  category_id    :integer
+#  user_id        :integer
+#  comments_count :integer          default(0), not null
 #
 # Indexes
 #

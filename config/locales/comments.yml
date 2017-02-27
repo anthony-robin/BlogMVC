@@ -1,0 +1,19 @@
+fr:
+  comments:
+    zero: commentaire
+    one: commentaire
+    other: commentaires
+
+    # Actions
+    create:
+      success: Votre commentaire a été ajouté avec succès
+      alert: Votre commentaire n'a pas pu être ajouté
+    destroy:
+      success: Votre commentaire a bien été supprimé
+      alert: Votre commentaire n'a pas pu être supprimé
+
+    # Partial
+    comment:
+      destroy:
+        label: Supprimer
+        confirm: Etes-vous sûr de vouloir supprimer ce commentaire ?

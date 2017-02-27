@@ -40,7 +40,6 @@ describe Blog do
       end
 
       it 'sould increase counter cache' do
-        reset_counter_cache
         expect(blog.category.blogs_count).to eq(0)
         expect(blog.user.blogs_count).to eq(0)
         blog.save!
@@ -60,7 +59,6 @@ describe Blog do
     context 'on DESTROY' do
       let(:blog) { create(:blog) }
       it 'sould decrease counter cache' do
-        reset_counter_cache
         expect(blog.category.blogs_count).to eq(1)
         expect(blog.user.blogs_count).to eq(1)
         blog.destroy
@@ -109,7 +107,7 @@ describe Blog do
       end
 
       context 'when owner is a master' do
-        let(:user2) { create(:user, :admin) }
+        let(:user2) { create(:user, :master) }
         let(:blog2) { create(:blog, user: user2) }
         it { should be_able_to(:read, blog2) }
         it { should_not be_able_to(:update, blog2) }
@@ -165,15 +163,6 @@ describe Blog do
         it { should be_able_to(:update, blog2) }
         it { should be_able_to(:destroy, blog2) }
       end
-    end
-  end
-
-  private
-
-  def reset_counter_cache
-    Category.reset_column_information
-    Category.all.each do |p|
-      Category.update_counters p.id, blogs_count: 0
     end
   end
 end

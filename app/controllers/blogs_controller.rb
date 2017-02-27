@@ -1,24 +1,28 @@
 class BlogsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_blog, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: %i(index show)
+  before_action :set_blog, only: %i(show edit update destroy)
   before_action :set_category,
-                only: [:index],
+                only: %i(index),
                 if: proc { params[:category_id].present? }
-  before_action :set_categories, only: [:index, :show]
+  before_action :set_categories, only: %i(index show)
 
   authorize_resource
 
   # GET /blogs
   # GET /blogs.json
   def index
-    @blogs = Blog.includes(:user, :category, :picture)
+    @blogs = Blog.includes(:user, :category, :picture, :taggings).order_desc
     @blogs = @category.blogs.includes(:user, :category) if params[:category_id].present?
+    @blogs = @blogs.tagged_with(params[:tag]) if params[:tag]
     @blogs = @blogs.page params[:page]
   end
 
   # GET /blogs/1
   # GET /blogs/1.json
   def show
+    @commentable = @blog
+    @comment = Comment.new
+    @comments = @commentable.comment_threads.includes(:user, :commentable).order(created_at: :desc)
   end
 
   # GET /blogs/new
@@ -85,6 +89,6 @@ class BlogsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def blog_params
-    params.require(:blog).permit(:title, :slug, :content, :category_id, picture_attributes: %i(id image image_cache _destroy))
+    params.require(:blog).permit(:title, :slug, :content, :category_id, :tag_list, picture_attributes: %i(id image image_cache _destroy))
   end
 end

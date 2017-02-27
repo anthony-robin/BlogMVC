@@ -9,14 +9,17 @@ Rails.application.routes.draw do
     get '(page/:page)', action: :index, on: :collection, as: ''
   end
 
-  resources :blogs, except: [:show, :edit], concerns: :paginatable
-  resources :categories, except: [:show], concerns: :paginatable
+  resources :blogs, except: %i(show edit), concerns: :paginatable do
+    resources :comments, only: %i(create destroy)
+  end
+  resources :categories, except: %i(show), concerns: :paginatable
 
   resources :categories, only: [] do
-    resources :blogs, only: [:index, :show, :edit], path: ''
+    resources :blogs, only: %i(index show edit), path: ''
   end
+  get 'tags/:tag', to: 'blogs#index', as: :tag
 
-  resources :users, only: [:index, :show]
+  resources :users, only: %i(index show)
 end
 
 # == Route Map

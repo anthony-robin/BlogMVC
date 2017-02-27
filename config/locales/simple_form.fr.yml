@@ -12,6 +12,7 @@ fr:
         title: Titre
         content: Contenu
         category_id: Catégorie
+        tag_list: Liste de tags
       user:
         username: Nom d'utilisateur
         password: Mot de passe

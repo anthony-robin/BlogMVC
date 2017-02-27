@@ -20,10 +20,14 @@ gem 'client_side_validations-simple_form'
 
 gem 'slim-rails' # slim file
 gem 'foundation-rails', '~> 6.3.0'
-gem 'wysiwyg-rails', github: 'froala/wysiwyg-rails' # Froala editor
+gem 'wysiwyg-rails' # Froala editor
 gem 'kaminari', '~> 1.0' # Pagination
 gem 'gretel' # Breadcrumb
 gem 'friendly_id'
+gem 'acts-as-taggable-on', '~> 4.0'
+
+# Commentable
+gem 'acts_as_commentable_with_threading'
 
 # Uploaders
 gem 'mini_magick'
@@ -48,8 +52,13 @@ gem 'meta-tags' # SEO
 
 group :development, :test do
   gem 'faker'
-  gem 'byebug', platform: :mri
   gem 'database_cleaner'
+  gem 'rubocop'
+
+  gem 'pry-byebug'
+  gem 'pry-rails'
+  gem 'pry-theme'
+  gem 'pry-alias'
 
   gem 'factory_girl_rails'
   gem 'rspec-rails', '~> 3.5'
@@ -78,4 +87,4 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i(mingw mswin x64_mingw jruby)

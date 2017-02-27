@@ -10,6 +10,9 @@
                 include_blank: false
 
       br
+      = f.input :tag_list, input_html: { value: f.object.tag_list.to_s }
+
+      br
       = f.simple_fields_for :picture do |p|
         = retina_image_tag p.object, :image, :medium if p.object.image?
         = p.input :image, as: :file
