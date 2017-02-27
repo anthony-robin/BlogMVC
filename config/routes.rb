@@ -9,7 +9,9 @@ Rails.application.routes.draw do
     get '(page/:page)', action: :index, on: :collection, as: ''
   end
 
-  resources :blogs, except: %i(show edit), concerns: :paginatable
+  resources :blogs, except: %i(show edit), concerns: :paginatable do
+    resources :comments, only: %i(create destroy)
+  end
   resources :categories, except: %i(show), concerns: :paginatable
 
   resources :categories, only: [] do

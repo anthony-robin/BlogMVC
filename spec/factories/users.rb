@@ -36,12 +36,13 @@ end
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :string
 #  last_sign_in_ip        :string
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
 #  role                   :integer          default("author")
 #  blogs_count            :integer          default(0), not null
 #  avatar                 :string
 #  retina_dimensions      :text
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
+#  comments_count         :integer          default(0), not null
 #
 # Indexes
 #

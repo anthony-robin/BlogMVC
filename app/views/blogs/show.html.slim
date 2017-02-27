@@ -6,6 +6,11 @@
 #sidebar_referer
   .row
     .small-12.medium-9.columns
-      = render 'blog', blog: @blog
+      = render 'blogs/blog', blog: @blog
+
+      .comments--section
+        = render 'comments/form' if user_signed_in?
+        #comments.comments
+          = render @comments
 
     = render 'blogs/sidebar'

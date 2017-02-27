@@ -1,5 +1,5 @@
 article.blog id="blog_#{blog.id}"
-  = render 'microdatas', resource: blog
+  = render 'blogs/microdatas', resource: blog
 
   header
     h2
@@ -16,6 +16,7 @@ article.blog id="blog_#{blog.id}"
       small.user =< link_to blog.user_username, user_path(blog.user)
       br
       = raw blog.tag_list.map { |t| link_to t, tag_path(t), class: 'label warning' }.join(' ')
+      span.label.success =< "#{blog.comments_count} #{t(:comments, count: blog.comments_count)}"
 
   div.fr-view == blog.content
 

@@ -10,16 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170223203817) do
+ActiveRecord::Schema.define(version: 20170226194724) do
 
   create_table "blogs", force: :cascade do |t|
     t.string   "title"
     t.string   "slug"
     t.text     "content"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.integer  "category_id"
     t.integer  "user_id"
+    t.integer  "comments_count", default: 0, null: false
     t.index ["category_id"], name: "index_blogs_on_category_id"
     t.index ["slug"], name: "index_blogs_on_slug"
     t.index ["user_id"], name: "index_blogs_on_user_id"
@@ -32,6 +33,22 @@ ActiveRecord::Schema.define(version: 20170223203817) do
     t.datetime "updated_at",              null: false
     t.integer  "blogs_count", default: 0, null: false
     t.index ["slug"], name: "index_categories_on_slug", unique: true
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string   "commentable_type"
+    t.integer  "commentable_id"
+    t.string   "title"
+    t.text     "body"
+    t.string   "subject"
+    t.integer  "lft"
+    t.integer  "rgt"
+    t.integer  "parent_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -100,6 +117,7 @@ ActiveRecord::Schema.define(version: 20170223203817) do
     t.integer  "blogs_count",            default: 0,  null: false
     t.string   "avatar"
     t.text     "retina_dimensions"
+    t.integer  "comments_count",         default: 0,  null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["slug"], name: "index_users_on_slug"

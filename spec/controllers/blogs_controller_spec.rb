@@ -201,6 +201,20 @@ describe BlogsController do
     end
 
     context 'a connected user' do
+      context 'any user' do
+        let(:user) { create(:user) }
+        let(:blog) { create(:blog, user: user) }
+        let!(:comment) { create_list(:comment, 4, commentable: blog, user: user) }
+
+        before { sign_in user }
+
+        it 'should destroy comments linked' do
+          expect {
+            delete :destroy, params: { id: blog }
+          }.to change(Comment, :count).by(-4)
+        end
+      end
+
       context 'as author' do
         login_user(:author)
         before do

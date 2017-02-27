@@ -20,6 +20,9 @@ class BlogsController < ApplicationController
   # GET /blogs/1
   # GET /blogs/1.json
   def show
+    @commentable = @blog
+    @comment = Comment.new
+    @comments = @commentable.comment_threads.includes(:user, :commentable).order(created_at: :desc)
   end
 
   # GET /blogs/new
