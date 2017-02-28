@@ -9,7 +9,7 @@ GIT
 
 GIT
   remote: git://github.com/gemsfix/retina_rails.git
-  revision: 34a37fc9faf947343bb1cb41f1a7157ee8ebe3ad
+  revision: f512f568173376db836421ef791d68407ec238c3
   branch: feature/rails5
   specs:
     retina_rails (2.0.4)
