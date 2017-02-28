@@ -24,6 +24,7 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
 
   ActiveRecord::Migration.check_pending!
+  ActiveRecord::Migration.maintain_test_schema!
 end
 
 Shoulda::Matchers.configure do |config|
