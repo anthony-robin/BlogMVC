@@ -50,6 +50,10 @@ gem 'meta-tags' # SEO
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+group :staging, :production do
+  gem 'sentry-raven'
+end
+
 group :development, :test do
   gem 'faker'
   gem 'database_cleaner'
