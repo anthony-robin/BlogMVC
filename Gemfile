@@ -42,6 +42,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'rails-i18n', '~> 5.0.0' # I18n
 gem 'meta-tags' # SEO
 
+gem 'shog' # Colored logs
+
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
@@ -51,6 +53,7 @@ gem 'meta-tags' # SEO
 # gem 'capistrano-rails', group: :development
 
 group :staging, :production do
+  gem 'lograge' # Condensed logs
   gem 'sentry-raven'
 end
 

@@ -83,4 +83,11 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Lograge
+  config.lograge.enabled = true
+  config.lograge.custom_options = lambda do |event|
+    exceptions = %w(controller action format id)
+    { params: event.payload[:params].except(*exceptions) }
+  end
 end
