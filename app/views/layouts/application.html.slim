@@ -8,6 +8,8 @@ html lang="#{I18n.locale}"
     = csrf_meta_tag
 
   body
+    = render 'partials/microdatas'
+
     .content
       = render 'partials/menu'
 
