@@ -9,10 +9,14 @@ rvm:
 env:
   - DB=sqlite
 
+services:
+  - elasticsearch
+
 before_install:
   - export TZ=Europe/Paris
 
 before_script:
+  - sleep 10
   - cp .env.sample .env
 
 script:

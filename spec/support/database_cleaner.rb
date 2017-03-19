@@ -7,7 +7,6 @@ TRANSACTIONAL_FIXTURES_ERROR_MESSAGE = <<-MSG
   the spec. The app's database connection would not be able to access
   uncommitted transaction data setup over the spec's database connection.
 MSG
-.freeze
 
 RSpec.configure do |config|
   config.before(:suite) do

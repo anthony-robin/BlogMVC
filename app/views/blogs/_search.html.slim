@@ -1,0 +1,9 @@
+= form_tag(blogs_path, method: :get, role: 'search') do
+  = text_field_tag :term,
+                   params[:term],
+                   autocomplete: :off,
+                   placeholder: 'Search',
+                   id: 'blogs_search',
+                   data: { autocomplete_path: autocomplete_blogs_path(format: :json) }
+
+  = submit_tag 'Search', name: nil, class: 'button'

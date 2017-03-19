@@ -2,6 +2,7 @@ class Blog < ApplicationRecord
   extend FriendlyId
   friendly_id :title, use: :slugged
 
+  include Searchable
   include Assets::Picturable
 
   # Model relations
@@ -21,6 +22,7 @@ class Blog < ApplicationRecord
             }
 
   # Scopes
+  scope :with_includes, -> { includes(:user, :category, :picture, :taggings) }
   scope :order_desc, -> { order(created_at: :desc) }
 
   # Delegates

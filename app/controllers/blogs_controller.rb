@@ -1,17 +1,22 @@
 class BlogsController < ApplicationController
-  before_action :authenticate_user!, except: %i[index show]
+  # Callbacks
+  before_action :authenticate_user!, except: %i[index show autocomplete]
   before_action :set_blog, only: %i[show edit update destroy]
   before_action :set_category,
                 only: %i[index],
                 if: proc { params[:category_id].present? }
   before_action :set_categories, only: %i[index show]
 
+  # Abilities
   authorize_resource
 
   # GET /blogs
   # GET /blogs.json
   def index
-    @blogs = Blog.includes(:user, :category, :picture, :taggings).order_desc
+    search = params[:term].present? ? params[:term] : nil
+    return @blogs = Blog.search(search, Blog.search_opts) if search
+
+    @blogs = Blog.with_includes.order_desc
     @blogs = @category.blogs.includes(:user, :category) if params[:category_id].present?
     @blogs = @blogs.tagged_with(params[:tag]) if params[:tag]
     @blogs = @blogs.page params[:page]
@@ -70,6 +75,11 @@ class BlogsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to blogs_url, notice: t('.notice') }
     end
+  end
+
+  # GET /blogs/autocomplete.json
+  def autocomplete
+    @blogs = Blog.search(params[:query], Blog.search_opts)
   end
 
   private

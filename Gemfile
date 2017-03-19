@@ -32,6 +32,9 @@ gem 'acts-as-taggable-on', '~> 4.0'
 # Commentable
 gem 'acts_as_commentable_with_threading'
 
+# Searchable
+gem 'searchkick'
+
 # Uploaders
 gem 'mini_magick'
 gem 'carrierwave', '~> 1.0'

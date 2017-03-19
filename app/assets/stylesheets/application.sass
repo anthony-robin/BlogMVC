@@ -18,6 +18,8 @@
 @import plugins/table.min.css
 @import plugins/video.min.css
 
+@import typeahead.bundle
+
 body
   display: flex
   flex-direction: column
@@ -53,6 +55,9 @@ body
   .timestamps
     text-transform: uppercase
     color: $dark-gray
+  .highlight
+    color: $primary-color
+    border-bottom: 1px solid $primary-color
 
 #tag_cloud
   margin-bottom: 1rem
