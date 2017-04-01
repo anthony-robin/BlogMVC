@@ -7,12 +7,13 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
+    @blogs = current_user.blogs.includes(:category).page(params[:page]).per(3)
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
-    @blogs = @user.blogs.includes(:category).page params[:page]
+    @blogs = @user.blogs.includes(:category).page(params[:page]).per(3)
   end
 
   private

@@ -1,41 +1,38 @@
 = simple_form_for @form, validate: true do |f|
   .row
-    .small-12.medium-4.columns
+    .col.s12.m4
       = f.input :title
 
-      br
       = f.input :category_id,
                 as: :select,
                 collection: Category.all,
                 include_blank: false
 
-      br
-      = f.input :tag_list, input_html: { value: f.object.tag_list.to_s }
+      = f.input :tag_list,
+                input_html: { value: f.object.tag_list.to_s, data: { role: 'materialtags' } }
+      javascript:
+        $('#blog_tag_list').materialtags({
+          typeahead: {
+            displayKey: 'name',
+            valueKey: 'name',
+            source: "<%= f.object.tag_list.to_s %>"
+          }
+        });
 
-      br
       = f.simple_fields_for :picture do |p|
-        = retina_image_tag p.object.model, :image, :medium if p.object.model.image?
         = p.input :image, as: :file
         = p.input :image_cache, as: :hidden
+        = retina_image_tag p.object.model, :image, :medium if p.object.model.image?
         = p.input :_destroy, as: :boolean, boolean_style: :inline if p.object.model.image?
 
-    .small-12.medium-8.columns
+    .col.s12.m8
       = f.input :content,
                 as: :text,
                 input_html: { class: 'froala' }
 
-  .row.form-actions
-    .small-12.columns class="medium-#{f.object.new_record? ? 9 : 6 }"
-      = f.button :submit, class: 'full-width'
-    - unless f.object.new_record?
-      .small-12.medium-3.columns
-        a class="button warning full-width" data-open="blog_preview" Prévisualiser les modifications
-    .small-12.medium-3.columns
-      = link_to 'Annuler', blogs_path, class: 'button secondary full-width'
-
-  - unless f.object.new_record?
-    div class="reveal" id="blog_preview" data-reveal=''
-      = render 'blog', blog: @form.model
-
-      button class="close-button" data-close='' aria-label="Fermer modal" type="button"
-        span aria-hidden="true" &times;
+  .row
+    .col.s12 class="m#{f.object.new_record? ? 9 : 6 }"
+      = f.button :submit
+      - unless f.object.new_record?
+        a< class="btn blue" data-open="blog_preview" Prévisualiser les modifications
+      =< link_to 'Annuler', blogs_path, class: 'btn orange'

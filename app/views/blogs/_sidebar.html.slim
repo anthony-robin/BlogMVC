@@ -1,21 +1,30 @@
-div class="small-12 medium-3 columns" data-sticky-container=''
-  aside.sticky data-sticky='' data-anchor='sidebar_referer' data-btm-anchor='sidebar_referer:bottom'
-    h4 Catégories
-    ul
-      - @categories.each do |category|
-        li
-          = link_to category.name, category_blogs_path(category)
-          =< "(#{category.blogs_count})"
+aside#blog_sidebar.blog_sidebar
+  .card
+    .card-content
+      h5 Catégories
+      ul
+        - @categories.each do |category|
+          li
+            = link_to category.name, category_blogs_path(category)
+            span.new.badge data-badge-caption="" =< category.blogs_count
 
-    h4 Tags
-    div id="tag_cloud"
-      - tag_cloud Blog.tag_counts, %w(s m l) do |tag, css_class|
-        =< link_to tag.name, tag_path(tag.name), class: css_class
+      h5 Tags
+      #tag_cloud
+        - tag_cloud Blog.tag_counts, %w(s m l) do |tag, css_class|
+          =< link_to tag.name, tag_path(tag.name), class: css_class
 
-    br
-    - if can?(:create, Blog)
-      p = link_to 'Nouvel article de Blog', new_blog_path, class: 'button small secondary'
-    - if can?(:create, Category)
-      p = link_to 'Nouvelle catégorie de Blog', new_category_path, class: 'button small warning'
-    - if params[:category_id].present?
-      p = link_to 'Retour à la page blogs', blogs_path, class: 'button small'
+
+      - if can?(:create, Blog)
+        p
+          = link_to new_blog_path, class: 'waves-effect waves-light btn' do
+            i.material-icons.left add
+            | article
+
+      - if can?(:create, Category)
+        p
+          = link_to new_category_path, class: 'waves-effect waves-light btn orange' do
+            i.material-icons.left add
+            | catégorie
+
+      - if params[:category_id].present?
+        p = link_to 'Retour à la page blogs', blogs_path, class: 'button small'

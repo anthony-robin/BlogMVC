@@ -7,5 +7,5 @@
     remote       : data-remote
 
 li.pagination-next
-  == link_to_unless current_page.last?, t('views.pagination.next').html_safe, url, rel: 'next', remote: remote
+  == link_to_unless current_page.last?, content_tag(:i, 'chevron_right', class: 'material-icons'), url, rel: 'next', remote: remote
 '

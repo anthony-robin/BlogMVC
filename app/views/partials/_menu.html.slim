@@ -1,33 +1,32 @@
 / Menu
-div class="top-bar"
-  div class="top-bar-title"
-    span data-responsive-toggle="responsive-menu" data-hide-for="medium"
-      button class="menu-icon dark" type="button" data-toggle=''
-    strong= website_conf['title']
+ul#nav-mobile.side-nav
+  - if user_signed_in?
+    li
+      .userView
+        .background
+          = image_tag 'http://babich.biz/content/images/2016/03/user-profile-bg.jpg'
 
-  div id="responsive-menu"
-    div class="top-bar-left"
-      ul class="menu"
-        li = link_to 'Accueil', root_path
-        li = link_to 'Articles de Blog', blogs_path
-        - if can?(:read, Category)
-          li = link_to 'Catégories de Blog', categories_path
-        li = link_to 'Contact', contacts_path
-    div class="top-bar-right"
-      - if user_signed_in?
-        ul class="menu dropdown" data-dropdown-menu='' data-hover-delay='0' data-closing-time='0'
-          li
-            a href="#"
-              .row
-                .header__profile__picture
-                  = retina_image_tag current_user, :avatar, :thumb
-                .header__profile__name
-                  = current_user.username
-                  small.role =< "(#{current_user.role})"
-            ul class="menu vertical"
-              li = link_to 'Mon profil', users_path
-              li = link_to 'Déconnexion', destroy_user_session_path, method: :delete
-      - else
-        ul class="menu"
-          li = link_to 'Connexion', new_user_session_path
-          li = link_to 'Inscription', new_user_registration_path
+        .row
+          .col.s4
+            = link_to users_path do
+              = retina_image_tag current_user, :avatar, :thumb, class: 'circle', style: 'max-width: 60px; max-height: 60px'
+          .col.s8
+            = link_to users_path do
+              span.white-text.name = current_user.username
+            span.white-text.email =< current_user.role
+
+  li: h2.site-title= link_to website_conf['title'], root_path
+
+  li.search= render 'blogs/search'
+
+  li= link_to 'Accueil', root_path
+  li= link_to 'Articles de Blog', blogs_path
+  - if can?(:read, Category)
+    li= link_to 'Catégories de Blog', categories_path
+  li = link_to 'Contact', contacts_path
+  li: div.divider
+  - if user_signed_in?
+    li= link_to 'Déconnexion', destroy_user_session_path, method: :delete
+  - else
+    li= link_to 'Connexion', new_user_session_path
+    li= link_to 'Inscription', new_user_registration_path

@@ -1,0 +1,16 @@
+.card-flash-wrapper
+  - flash.each do |type, message|
+    - if type == 'success' || type == 'notice'
+      - type = 'green'
+    - elsif type == 'error' || type == 'alert'
+      - type = 'red'
+
+    .card-container
+      #card-flash.card.card-flash class=type
+        .card-content class="white-text"
+          p
+            i.material-icons= type == 'green' ? 'done' : 'error'
+            span.message== message
+
+        button.close type="button" class="white-text" data-dismiss="alert" aria-label="Close" data-vivaldi-spatnav-clickable="1"
+          span aria-hidden="true" &times;

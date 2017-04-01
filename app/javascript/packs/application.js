@@ -3,9 +3,13 @@ require('../libs/font-awesome')
 require('../libs/materialize')
 require('../libs/turbolinks')
 
+// CSS
+require('../../assets/stylesheets/application.sass')
+
 // Modules
 require('../modules/froala')
 require('../modules/search')
+require('../modules/tags')
 
 if (module.hot) {
   const hotEmitter = require('webpack/hot/emitter')

@@ -24,7 +24,6 @@ gem 'client_side_validations'
 gem 'client_side_validations-simple_form'
 
 gem 'slim-rails' # slim file
-gem 'foundation-rails', '~> 6.3.0'
 gem 'kaminari', '~> 1.0' # Pagination
 gem 'gretel' # Breadcrumb
 gem 'friendly_id'

@@ -2,16 +2,12 @@
                 description: t('.description'),
                 keywords: t('.keywords')
 
-.row.align-center
-  .small-12.medium-9.columns
-    = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
-      .form-inputs
-        = f.input :email, required: true, autofocus: true
+= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+  .row
+    .col.s12.m9
+      = f.input :email, required: true, autofocus: true
+      = f.button :submit,
+                 t('helpers.submit.password.create')
 
-      .form-actions
-        = f.button :submit,
-                   t('helpers.submit.password.create'),
-                   class: 'button full-width'
-
-  .small-12.medium-3.columns
-    = render 'devise/shared/links'
+    .col.s12.m3
+      = render 'devise/shared/links'

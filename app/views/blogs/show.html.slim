@@ -3,14 +3,14 @@
                 description: @blog.content,
                 keywords: @blog.content.split
 
-#sidebar_referer
-  .row
-    .small-12.medium-9.columns
-      = render 'blogs/blog', blog: @blog
+.row
+  .col.s12.m9
+    = render 'blogs/blog', blog: @blog
 
-      .comments--section
-        = render 'comments/form' if user_signed_in?
-        #comments.comments
-          = render @comments
+    .comments--section
+      = render 'comments/form' if user_signed_in?
+      #comments.comments
+        = render @comments
 
+  .col.m3.hide-on-small-only
     = render 'blogs/sidebar'
