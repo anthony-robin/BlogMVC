@@ -47,7 +47,7 @@ Rails 5 Blog MVC project
       </a>
     </td>
     <td>
-      <img src="https://img.shields.io/badge/Ruby-2.3.3-5aaed7.svg?style=flat-square" alt="Ruby version" />
+      <img src="https://img.shields.io/badge/Ruby-2.4.0-5aaed7.svg?style=flat-square" alt="Ruby version" />
       <img src="https://img.shields.io/badge/Rails-5.0.2-5aaed7.svg?style=flat-square" alt="Rails version" />
     </td>
   </tr>
