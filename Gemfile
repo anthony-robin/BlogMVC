@@ -10,7 +10,10 @@ gem 'cancancan' # Abilities
 
 # Assets
 gem 'jquery-rails'
-gem 'sass-rails', '~> 5.0'
+gem 'sassc-rails'
+gem 'font-awesome-sass',
+    github: 'xijo/font-awesome-sass',
+    branch: 'use_sassc_rails_if_available' # Fix to use sassc
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 
