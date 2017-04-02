@@ -16,19 +16,19 @@ before_script:
   - cp .env.sample .env
 
 script:
-  - RAILS_ENV=test bundle exec rails --trace db:migrate
-  - RAILS_ENV=test bundle exec rspec
-  - RAILS_ENV=test bundle exec rails db:seed
-  - bundle exec rubocop
+  - RAILS_ENV=test bin/rails --trace db:migrate
+  - RAILS_ENV=test bin/rspec
+  - RAILS_ENV=test bin/rails db:seed
+  - bin/rubocop
 
 after_success:
   - bundle exec codeclimate-test-reporter
 
 after_failure:
   - date
-  - "cat ./config/database.yml"
-  - "echo $RAILS_ENV"
-  - "bundle exec rake --version"
+  - cat ./config/database.yml
+  - echo $RAILS_ENV
+  - bin/rake --version
 
 matrix:
   fast_finish: true
