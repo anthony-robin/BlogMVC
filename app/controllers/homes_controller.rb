@@ -1,5 +1,5 @@
 class HomesController < ApplicationController
-  before_action :set_blogs_carousel, only: %i(index)
+  before_action :set_blogs_carousel, only: %i[index]
 
   def index
     @blogs = Blog.includes(:category, :user, :picture).order_desc.all.page params[:page]

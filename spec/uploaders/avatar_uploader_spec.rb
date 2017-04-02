@@ -19,25 +19,25 @@ describe AvatarUploader do
 
   context 'the thumb version' do
     it 'scales down a landscape image to be exactly 50 by 50 pixels (x2 for retina display)' do
-      expect(uploader.thumb).to have_dimensions(50*2, 50*2)
+      expect(uploader.thumb).to have_dimensions(50 * 2, 50 * 2)
     end
   end
 
   context 'the small version' do
     it 'scales down a landscape image to fit within 100 by 100 pixels (x2 for retina display)' do
-      expect(uploader.small).to have_dimensions(100*2, 100*2)
+      expect(uploader.small).to have_dimensions(100 * 2, 100 * 2)
     end
   end
 
   context 'the medium version' do
     it 'scales down a landscape image to fit within 200 by 200 pixels (x2 for retina display)' do
-      expect(uploader.medium).to have_dimensions(200*2, 200*2)
+      expect(uploader.medium).to have_dimensions(200 * 2, 200 * 2)
     end
   end
 
   context 'the large version' do
     it 'scales down a landscape image to fit within 400 by 400 pixels (x2 for retina display)' do
-      expect(uploader.large).to have_dimensions(400*2, 400*2)
+      expect(uploader.large).to have_dimensions(400 * 2, 400 * 2)
     end
   end
 
@@ -50,7 +50,7 @@ describe AvatarUploader do
   end
 
   it 'has correct extension_whitelist' do
-    whitelist = %w(jpg jpeg png)
+    whitelist = %w[jpg jpeg png]
     expect(uploader.extension_whitelist).to eq(whitelist)
   end
 
