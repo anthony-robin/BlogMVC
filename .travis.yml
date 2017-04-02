@@ -19,6 +19,7 @@ script:
   - RAILS_ENV=test bundle exec rails --trace db:migrate
   - RAILS_ENV=test bundle exec rspec
   - RAILS_ENV=test bundle exec rails db:seed
+  - bundle exec rubocop
 
 after_success:
   - bundle exec codeclimate-test-reporter

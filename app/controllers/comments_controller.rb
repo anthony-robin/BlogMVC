@@ -1,7 +1,7 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
   before_action :load_commentable
-  before_action :set_comment, only: %i(destroy)
+  before_action :set_comment, only: %i[destroy]
 
   authorize_resource
 
@@ -34,7 +34,7 @@ class CommentsController < ApplicationController
   private
 
   def comment_params
-    attributes = %i(title subject body user_id nickname)
+    attributes = %i[title subject body user_id nickname]
     params.require(:comment).permit(attributes)
   end
 

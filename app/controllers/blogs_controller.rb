@@ -1,10 +1,10 @@
 class BlogsController < ApplicationController
-  before_action :authenticate_user!, except: %i(index show)
-  before_action :set_blog, only: %i(show edit update destroy)
+  before_action :authenticate_user!, except: %i[index show]
+  before_action :set_blog, only: %i[show edit update destroy]
   before_action :set_category,
-                only: %i(index),
+                only: %i[index],
                 if: proc { params[:category_id].present? }
-  before_action :set_categories, only: %i(index show)
+  before_action :set_categories, only: %i[index show]
 
   authorize_resource
 
@@ -89,6 +89,6 @@ class BlogsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def blog_params
-    params.require(:blog).permit(:title, :slug, :content, :category_id, :tag_list, picture_attributes: %i(id image image_cache _destroy))
+    params.require(:blog).permit(:title, :slug, :content, :category_id, :tag_list, picture_attributes: %i[id image image_cache _destroy])
   end
 end

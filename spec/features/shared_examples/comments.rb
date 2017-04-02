@@ -21,7 +21,7 @@ shared_examples_for :comment_destroyable do
   end
 
   it 'should have correct flash message' do
-     expect(flash[:success]).to eq(t('comments.destroy.success'))
+    expect(flash[:success]).to eq(t('comments.destroy.success'))
   end
 end
 

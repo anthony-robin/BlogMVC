@@ -1,5 +1,5 @@
 class Comment < ApplicationRecord
-  acts_as_nested_set scope: %i(commentable_id commentable_type)
+  acts_as_nested_set scope: %i[commentable_id commentable_type]
 
   # Accessor
   attr_accessor :nickname
@@ -23,7 +23,7 @@ class Comment < ApplicationRecord
   end
 
   def has_children?
-    self.children.any?
+    children.any?
   end
 end
 

@@ -30,3 +30,6 @@ spec/support/uploads
 .env.development
 .env.test
 .env.production
+
+# Rubocop
+.rubocop-http*
