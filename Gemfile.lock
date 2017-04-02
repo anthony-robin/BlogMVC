@@ -1,4 +1,13 @@
 GIT
+  remote: git://github.com/charliesome/better_errors.git
+  revision: 40cb4e6f6a4cdd0bc67a21a45bfadf9d325d1305
+  specs:
+    better_errors (2.1.1)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+      rack (>= 0.9.0)
+
+GIT
   remote: git://github.com/ctran/annotate_models.git
   revision: 8341983f263e662c5e528b04d0eeec908daec1ad
   branch: develop
@@ -78,10 +87,6 @@ GEM
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
     bcrypt (3.1.11)
-    better_errors (2.1.1)
-      coderay (>= 1.0.0)
-      erubis (>= 2.6.6)
-      rack (>= 0.9.0)
     bindex (0.5.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
@@ -372,7 +377,7 @@ DEPENDENCIES
   acts-as-taggable-on (~> 4.0)
   acts_as_commentable_with_threading
   annotate!
-  better_errors
+  better_errors!
   binding_of_caller
   bullet
   cancancan
