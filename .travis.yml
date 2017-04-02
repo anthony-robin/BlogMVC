@@ -13,7 +13,7 @@ before_install:
   - export TZ=Europe/Paris
 
 before_script:
-  - sleep 5
+  - cp .env.sample .env
 
 script:
   - RAILS_ENV=test bundle exec rails --trace db:migrate
