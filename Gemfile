@@ -81,7 +81,7 @@ group :development do
                   branch: 'develop'
 
   gem 'web-console'
-  gem 'better_errors'
+  gem 'better_errors', github: 'charliesome/better_errors'
   gem 'binding_of_caller'
   gem 'listen'
   gem 'spring'
