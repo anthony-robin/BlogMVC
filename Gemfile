@@ -44,6 +44,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'rails-i18n', '~> 5.0.0' # I18n
 gem 'meta-tags' # SEO
+gem 'dotenv-rails'
 
 gem 'shog' # Colored logs
 
