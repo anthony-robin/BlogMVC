@@ -15,6 +15,14 @@ GIT
     retina_rails (2.0.4)
       rails (>= 3.2.0)
 
+GIT
+  remote: git://github.com/xijo/font-awesome-sass.git
+  revision: a51d19dcd73fc23d39c747cf88c3c623cd35086f
+  branch: use_sassc_rails_if_available
+  specs:
+    font-awesome-sass (4.6.2)
+      sass (>= 3.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -130,8 +138,6 @@ GEM
     faraday (0.11.0)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.18)
-    font-awesome-sass (4.7.0)
-      sass (>= 3.2)
     foundation-rails (6.3.0.0)
       railties (>= 3.1.0)
       sass (>= 3.3.0, < 3.5)
@@ -277,12 +283,17 @@ GEM
     ruby-progressbar (1.8.1)
     ruby_dep (1.5.0)
     sass (3.4.23)
-    sass-rails (5.0.6)
-      railties (>= 4.0.0, < 6)
-      sass (~> 3.1)
-      sprockets (>= 2.8, < 4.0)
-      sprockets-rails (>= 2.0, < 4.0)
-      tilt (>= 1.1, < 3)
+    sassc (1.11.2)
+      bundler
+      ffi (~> 1.9.6)
+      sass (>= 3.3.0)
+    sassc-rails (1.3.0)
+      railties (>= 4.0.0)
+      sass
+      sassc (~> 1.9)
+      sprockets (> 2.11)
+      sprockets-rails
+      tilt
     sentry-raven (2.4.0)
       faraday (>= 0.7.6, < 1.0)
     shog (0.1.9)
@@ -371,6 +382,7 @@ DEPENDENCIES
   devise
   factory_girl_rails
   faker
+  font-awesome-sass!
   foundation-rails (~> 6.3.0)
   friendly_id
   gretel
@@ -392,7 +404,7 @@ DEPENDENCIES
   retina_rails!
   rspec-rails (~> 3.5)
   rubocop
-  sass-rails (~> 5.0)
+  sassc-rails
   sentry-raven
   shog
   shoulda-matchers (~> 3.1)
@@ -409,4 +421,4 @@ DEPENDENCIES
   wysiwyg-rails
 
 BUNDLED WITH
-   1.13.6
+   1.14.6
