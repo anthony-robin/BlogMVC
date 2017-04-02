@@ -9,7 +9,7 @@ div itemscope='' itemtype="http://schema.org/BlogPosting"
   meta itemprop='creator' content="#{resource.user_username}"
   meta itemprop='datePublished' content="#{resource.created_at.to_datetime}"
   meta itemprop='dateModified' content="#{resource.updated_at.to_datetime}"
-  meta itemprop='commentCount' content=""
+  meta itemprop='commentCount' content="#{resource.comments_count}"
 
   div itemprop='author' itemscope='' itemtype='http://schema.org/Person'
     meta itemprop='name' content="#{resource.user_username}"

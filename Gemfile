@@ -10,7 +10,10 @@ gem 'cancancan' # Abilities
 
 # Assets
 gem 'jquery-rails'
-gem 'sass-rails', '~> 5.0'
+gem 'sassc-rails'
+gem 'font-awesome-sass',
+    github: 'xijo/font-awesome-sass',
+    branch: 'use_sassc_rails_if_available' # Fix to use sassc
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 
@@ -41,6 +44,9 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'rails-i18n', '~> 5.0.0' # I18n
 gem 'meta-tags' # SEO
+gem 'dotenv-rails'
+
+gem 'shog' # Colored logs
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
@@ -49,6 +55,11 @@ gem 'meta-tags' # SEO
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+
+group :staging, :production do
+  gem 'lograge' # Condensed logs
+  gem 'sentry-raven'
+end
 
 group :development, :test do
   gem 'faker'
@@ -87,4 +98,4 @@ group :test do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: %i(mingw mswin x64_mingw jruby)
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

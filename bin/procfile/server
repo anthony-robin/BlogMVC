@@ -1,2 +1,2 @@
 #!/bin/bash
-rails s -p ${PORT:-3000} -e ${RACK_ENV:-development}
+rails s -p 3000

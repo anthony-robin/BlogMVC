@@ -24,4 +24,12 @@
 coverage/
 public/uploads
 spec/support/uploads
+
+# Env
 .env
+.env.development
+.env.test
+.env.production
+
+# Rubocop
+.rubocop-http*
