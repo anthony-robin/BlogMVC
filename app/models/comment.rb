@@ -22,7 +22,7 @@ class Comment < ApplicationRecord
     commentable_str.constantize.find(commentable_id)
   end
 
-  def has_children?
+  def children?
     children.any?
   end
 end

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   resources :blogs, except: %i[show edit], concerns: :paginatable do
     resources :comments, only: %i[create destroy]
+    get :autocomplete, on: :collection
   end
   resources :categories, except: %i[show], concerns: :paginatable
 

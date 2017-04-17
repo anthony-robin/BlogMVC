@@ -1,0 +1,42 @@
+span.twitter-typeahead
+  .tt-input
+    margin-bottom: 0
+  .tt-menu, .tt-dropdown-menu
+    position: absolute
+    z-index: 1000
+    top: 100%
+    left: 0
+    display: none
+    float: left
+    min-width: 160px
+    margin: 2px 0 0
+    padding: 5px 0
+    list-style: none
+    text-align: left
+    border: 1px solid #ccc
+    border: 1px solid rgba(0, 0, 0, .15)
+    border-radius: 4px
+    background-color: #fff
+    background-clip: padding-box
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175)
+    font-size: 14px
+  .tt-menu
+    &.tt-open
+      width: 100%
+  .tt-suggestion
+    display: block
+    clear: both
+    padding: 3px 20px
+    white-space: nowrap
+    color: #333
+    font-weight: normal
+    line-height: 1.42857143
+    &.tt-cursor, &:hover, &:focus
+      cursor: pointer
+      text-decoration: none
+      color: #fff
+      outline: 0
+      background-color: #337ab7
+
+span.twitter-typeahead
+  width: 100%

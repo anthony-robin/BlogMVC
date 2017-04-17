@@ -7,8 +7,9 @@
 #= require rails.validations.simple_form
 
 #= require custom_plugins/froala
+#= require custom_plugins/search
 
-$(document).on 'ready page:load page:restore turbolinks:load', ->
+$(document).on 'turbolinks:load', ->
   $(document).foundation()
 
   # Workaround Sticky and Turbolinks
