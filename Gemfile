@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 # Core
-gem 'rails', '~> 5.1.0.rc1'
+gem 'rails', '~> 5.0.2'
 gem 'puma', '~> 3.8'
 
 gem 'sqlite3' # Database
