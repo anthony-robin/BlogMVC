@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include FixBetterError
+
   protect_from_forgery with: :exception, prepend: true
   before_action :configure_permitted_parameters,
                 if: :devise_controller?
