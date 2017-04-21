@@ -1,4 +1,4 @@
-= simple_form_for @blog, validate: true do |f|
+= simple_form_for @form, validate: true do |f|
   .row
     .small-12.medium-4.columns
       = f.input :title
@@ -14,10 +14,10 @@
 
       br
       = f.simple_fields_for :picture do |p|
-        = retina_image_tag p.object, :image, :medium if p.object.image?
+        = retina_image_tag p.object.model, :image, :medium if p.object.model.image?
         = p.input :image, as: :file
         = p.input :image_cache, as: :hidden
-        = p.input :_destroy, as: :boolean, boolean_style: :inline if p.object.image?
+        = p.input :_destroy, as: :boolean, boolean_style: :inline if p.object.model.image?
 
     .small-12.medium-8.columns
       = f.input :content,
@@ -35,7 +35,7 @@
 
   - unless f.object.new_record?
     div class="reveal" id="blog_preview" data-reveal=''
-      = render 'blog', blog: @blog
+      = render 'blog', blog: @form.model
 
       button class="close-button" data-close='' aria-label="Fermer modal" type="button"
         span aria-hidden="true" &times;

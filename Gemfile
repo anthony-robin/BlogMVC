@@ -17,6 +17,8 @@ gem 'cancancan' # Abilities
 # Assets
 gem 'sassc-rails'
 
+# Forms
+gem 'reform-rails'
 gem 'simple_form'
 gem 'client_side_validations'
 gem 'client_side_validations-simple_form'
@@ -26,10 +28,9 @@ gem 'foundation-rails', '~> 6.3.0'
 gem 'kaminari', '~> 1.0' # Pagination
 gem 'gretel' # Breadcrumb
 gem 'friendly_id'
-gem 'acts-as-taggable-on', '~> 4.0'
 
-# Commentable
-gem 'acts_as_commentable_with_threading'
+gem 'acts-as-taggable-on', '~> 4.0' # Taggable
+gem 'acts_as_commentable_with_threading' # Commentable
 
 # Searchable
 gem 'searchkick'

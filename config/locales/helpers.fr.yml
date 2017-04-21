@@ -1,0 +1,16 @@
+# French
+fr:
+  helpers:
+    submit:
+      blog:
+        create: Créer l'article
+        update: Mettre à jour l'article
+      category:
+        create: Créer la catégorie
+        update: Mettre à jour la catégorie
+      user:
+        create: Créer mon compte
+        update: Mettre à jour mon profil
+      password:
+        create: M'envoyer les instructions par email
+        update: Valider mon nouveau mot de passe

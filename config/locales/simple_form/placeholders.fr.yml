@@ -1,0 +1,6 @@
+# French
+fr:
+  simple_form:
+    placeholders:
+      category:
+        name: Nom

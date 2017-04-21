@@ -1,6 +1,7 @@
 class CategoriesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_category, only: %i[edit update destroy]
+  before_action :set_form, only: %i[new create edit update]
 
   authorize_resource
 
@@ -12,7 +13,6 @@ class CategoriesController < ApplicationController
 
   # GET /categories/new
   def new
-    @category = Category.new
   end
 
   # GET /categories/1/edit
@@ -22,36 +22,20 @@ class CategoriesController < ApplicationController
   # POST /categories
   # POST /categories.json
   def create
-    @category = Category.new(category_params)
-
-    respond_to do |format|
-      if @category.save
-        format.html { redirect_to categories_path, notice: t('.notice') }
-      else
-        format.html { render :new }
-      end
-    end
+    save_action :new
   end
 
   # PATCH/PUT /categories/1
   # PATCH/PUT /categories/1.json
   def update
-    respond_to do |format|
-      if @category.update(category_params)
-        format.html { redirect_to categories_path, notice: t('.notice') }
-      else
-        format.html { render :edit }
-      end
-    end
+    save_action :edit
   end
 
   # DELETE /categories/1
   # DELETE /categories/1.json
   def destroy
     @category.destroy
-    respond_to do |format|
-      format.html { redirect_to categories_url, notice: t('.notice') }
-    end
+    redirect_to categories_url, notice: t('.notice')
   end
 
   private
@@ -61,8 +45,17 @@ class CategoriesController < ApplicationController
     @category = Category.friendly.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
-  def category_params
-    params.require(:category).permit(:name, :slug)
+  def set_form
+    object = @category.nil? ? Category.new : @category
+    @form = CategoryForm.new(object)
+  end
+
+  def save_action(action)
+    if @form.validate(params[:category])
+      @form.save
+      redirect_to categories_path, notice: t('.notice')
+    else
+      render action
+    end
   end
 end
