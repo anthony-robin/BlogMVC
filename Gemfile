@@ -14,13 +14,7 @@ gem 'devise' # Authentication
 gem 'cancancan' # Abilities
 
 # Assets
-gem 'jquery-rails'
 gem 'sassc-rails'
-gem 'font-awesome-sass',
-    github: 'xijo/font-awesome-sass',
-    branch: 'use_sassc_rails_if_available' # Fix to use sassc
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.2'
 
 gem 'simple_form'
 gem 'client_side_validations'
@@ -28,7 +22,6 @@ gem 'client_side_validations-simple_form'
 
 gem 'slim-rails' # slim file
 gem 'foundation-rails', '~> 6.3.0'
-gem 'wysiwyg-rails' # Froala editor
 gem 'kaminari', '~> 1.0' # Pagination
 gem 'gretel' # Breadcrumb
 gem 'friendly_id'
@@ -47,7 +40,6 @@ gem 'retina_rails',
     github: 'gemsfix/retina_rails',
     branch: 'feature/rails5'
 
-gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.5'
 gem 'webpacker', github: 'rails/webpacker'
 

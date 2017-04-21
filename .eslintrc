@@ -9,6 +9,8 @@
     "sourceType": "module"
   },
   "rules": {
+    "no-var": 1,
+    "no-undef": 0,
     "indent": [
       "warn",
       2

@@ -10,6 +10,8 @@ module.exports = merge(devConfig, {
     host: devServer.host,
     port: devServer.port,
     compress: true,
+    hot: true,
+    inline: true,
     historyApiFallback: true,
     contentBase: resolve(paths.output, paths.entry),
     publicPath

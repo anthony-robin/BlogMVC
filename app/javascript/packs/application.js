@@ -1,10 +1,26 @@
-/* eslint no-console:0 */
-// This file is automatically compiled by Webpack, along with any other files
-// present in this directory. You're encouraged to place your actual application logic in
-// a relevant structure within app/javascript and only use these pack files to reference
-// that code so it'll be compiled.
-//
-// To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
-// layout file, like app/views/layouts/application.html.erb
+// Libs
+require('../libs/font-awesome')
+require('../libs/materialize')
+require('../libs/turbolinks')
 
-console.log('Hello World from Webpacker')
+// Modules
+require('../modules/froala')
+require('../modules/search')
+
+if (module.hot) {
+  const hotEmitter = require('webpack/hot/emitter')
+  const DEAD_CSS_TIMEOUT = 2000
+
+  hotEmitter.on('webpackHotUpdate', () => {
+    document.querySelectorAll('link[href][rel=stylesheet]').forEach((link) => {
+      const nextStyleHref = link.href.replace(/(\?\d+)?$/, `?${Date.now()}`)
+      const newLink = link.cloneNode()
+      newLink.href = nextStyleHref
+
+      link.parentNode.appendChild(newLink)
+      setTimeout(() => {
+        link.parentNode.removeChild(link)
+      }, DEAD_CSS_TIMEOUT)
+    })
+  })
+}

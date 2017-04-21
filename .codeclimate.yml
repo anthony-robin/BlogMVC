@@ -6,9 +6,9 @@ engines:
   csslint:
     enabled: false
   coffeelint:
-    enabled: true
-  eslint:
     enabled: false
+  eslint:
+    enabled: true
 
   # Security
   brakeman:

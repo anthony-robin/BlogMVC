@@ -1,2 +1,2 @@
 #!/bin/bash
-bin/webpack-dev-server
+bin/webpack-dev-server --hot --inline
