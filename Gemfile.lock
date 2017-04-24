@@ -113,7 +113,10 @@ GEM
     codeclimate-test-reporter (1.0.8)
       simplecov (<= 0.13)
     coderay (1.1.1)
+    color_route (3.0.0)
+      colorize (~> 0.7)
     colored (1.2)
+    colorize (0.8.1)
     concurrent-ruby (1.0.5)
     database_cleaner (1.5.3)
     debug_inspector (0.0.2)
@@ -385,6 +388,7 @@ DEPENDENCIES
   client_side_validations-simple_form
   codacy-coverage
   codeclimate-test-reporter (~> 1.0.0)
+  color_route
   database_cleaner
   devise
   dotenv-rails
