@@ -8,7 +8,8 @@ html lang=I18n.locale
     = csrf_meta_tag
 
   body
-    = render 'partials/microdatas'
+    script type="application/ld+json"
+      = jsonld_professional_service
 
     .content
       = render 'partials/menu'
