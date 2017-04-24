@@ -1,6 +1,6 @@
 class BlogsController < ApplicationController
   # Callbacks
-  before_action :authenticate_user!, except: %i[index show autocomplete]
+  before_action :authenticate_user!, except: %i[index show]
   before_action :set_blog, only: %i[show edit update destroy]
   before_action :set_category,
                 only: %i[index],
@@ -75,11 +75,6 @@ class BlogsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to blogs_url, notice: t('.notice') }
     end
-  end
-
-  # GET /blogs/autocomplete.json
-  def autocomplete
-    @blogs = Blog.search(params[:query], Blog.search_opts)
   end
 
   private

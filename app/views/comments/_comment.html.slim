@@ -13,4 +13,4 @@
         = link_to t('.destroy.label'), blog_comment_path(comment.commentable, comment), class: 'button alert small', data: { confirm: t('.destroy.confirm') }, method: :delete, remote: true
 
   script type="application/ld+json"
-    = jsonld_blog(blog)
+    = jsonld_comment(comment)
