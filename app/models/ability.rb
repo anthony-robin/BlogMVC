@@ -10,7 +10,7 @@ class Ability
 
     # User.new
     can :read, [User, Blog, Comment]
-    can %i[search autocomplete], [Blog]
+    can %i[search], [Blog]
     return unless user.persisted?
 
     # Persisted user
