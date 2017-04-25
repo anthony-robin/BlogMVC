@@ -9,7 +9,8 @@ end
 gem 'rails', '~> 5.0.2'
 gem 'puma', '~> 3.8'
 
-gem 'sqlite3' # Database
+gem 'sqlite3', group: %i[development test] # Database
+gem 'pg', group: %i[staging production] # Database
 gem 'devise' # Authentication
 gem 'cancancan' # Abilities
 
