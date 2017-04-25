@@ -18,5 +18,8 @@ module BlogMVC
     config.generators.helper = false
     config.generators.stylesheets = false
     config.generators.javascripts = false
+
+    # Website settings
+    config.website = config_for(:website)
   end
 end
