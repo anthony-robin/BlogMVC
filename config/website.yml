@@ -1,0 +1,12 @@
+DEFAULTS: &DEFAULTS
+  title: BlogMVC
+  subtitle: ~
+
+development:
+  <<: *DEFAULTS
+
+test:
+  <<: *DEFAULTS
+
+production:
+  <<: *DEFAULTS

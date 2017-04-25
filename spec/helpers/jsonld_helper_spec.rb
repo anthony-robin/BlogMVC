@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 describe JsonLdHelper do
+  include ApplicationHelper
   include Kaminari::Helpers::HelperMethods
 
   describe '#jsonld_professional_service' do

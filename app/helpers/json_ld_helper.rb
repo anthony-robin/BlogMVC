@@ -4,8 +4,8 @@ module JsonLdHelper
       '@context': 'http://schema.org',
       '@type': 'ProfessionalService',
       url: root_url,
-      name: 'BlogMVC',
-      legalName: 'BlogMVC'
+      name: website_conf['title'],
+      legalName: website_conf['title']
     }.to_json.html_safe
   end
 
@@ -69,7 +69,7 @@ module JsonLdHelper
 
   def jsonld_publisher
     {
-      name: 'BlogMVC'
+      name: website_conf['title']
     }
   end
 end
