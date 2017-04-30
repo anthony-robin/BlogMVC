@@ -1,0 +1,7 @@
+# French
+fr:
+  simple_form:
+    hints:
+      user:
+        password: Laissez vide si vous ne souhaitez pas le changer
+        current_password: Nous avons besoin de votre mot de passe actuel pour confirmer ces modifications

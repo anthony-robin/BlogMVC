@@ -1,19 +1,20 @@
 require 'rails_helper'
 
 describe RegistrationsController do
-  before(:each) do
+  before do
     @request.env['devise.mapping'] = Devise.mappings[:user]
   end
 
   describe 'GET #new' do
     context 'a non connected user' do
-      before { get :new }
+      subject! { get :new }
       it_behaves_like :ok_request, 'new'
     end
 
     context 'a connected user' do
       login_user(:author)
-      before { get :new }
+      subject! { get :new }
+
       it_behaves_like :redirected_request, 'root_url'
     end
   end

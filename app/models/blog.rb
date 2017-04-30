@@ -9,18 +9,6 @@ class Blog < ApplicationRecord
   belongs_to :user, counter_cache: true
   belongs_to :category, counter_cache: true
 
-  # Validation rules
-  validates :title,
-            presence: true
-  validates :content,
-            presence: true
-  validates :category_id,
-            presence: true,
-            allow_blank: false,
-            inclusion: {
-              in: proc { Category.all.map(&:id) }
-            }
-
   # Scopes
   scope :with_includes, -> { includes(:user, :category, :picture, :taggings) }
   scope :order_desc, -> { order(created_at: :desc) }

@@ -1,46 +1,61 @@
+# Blogs Creatable
 #
-# Blogs
-# ----------
-
-# Create
 shared_examples_for :blog_creatable do
-  it { is_expected.to respond_with 302 }
-  it 'is expected to redirect to blog url' do
-    blog = assigns(:blog)
+  it { is_expected.to have_http_status(302) }
+
+  it 'has correct flash message' do
+    expect(controller).to set_flash[:notice].to(t('blogs.create.notice'))
+  end
+
+  it 'has correct owner' do
+    model = assigns(:form).model
+    expect(model.user).to eq(@user)
+  end
+
+  it 'redirects to blog url' do
+    blog = assigns(:form).model
     expect(response).to redirect_to(category_blog_url(blog.category, blog))
   end
-  it { is_expected.to set_flash[:notice].to(t('blogs.create.notice')) }
 
-  it 'should create a record' do
-    expect do
-      post :create, params: { blog: valid_attributes }
-    end.to change(Blog, :count).by(1)
+  it 'creates a record' do
+    expect { post :create, params: { blog: attributes } }.to change(Blog, :count).by(1)
   end
 end
 
-# Updatable
+# Blogs Updatable
+#
 shared_examples_for :blog_updatable do
-  it { is_expected.to respond_with 302 }
-  it 'is expected to redirect to blog url' do
-    blog = assigns(:blog)
-    expect(response).to redirect_to(category_blog_url(blog.category, blog))
-  end
-  it { is_expected.to set_flash[:notice].to(t('blogs.update.notice')) }
+  it { is_expected.to have_http_status(302) }
 
-  it 'expect name to changed' do
-    expect(assigns(:blog).title).to eq('FooBar update')
+  it 'has correct flash message' do
+    expect(controller).to set_flash[:notice].to(t('blogs.update.notice'))
+  end
+
+  it 'redirects to blog url' do
+    model = assigns(:form).model
+    expect(response).to redirect_to(category_blog_url(model.category, model))
+  end
+
+  it 'changes name' do
+    model = assigns(:form).model
+    expect(model.title).to eq('FooBar update')
   end
 end
 
-# Destroy
+# Blogs Destroyable
+#
 shared_examples_for :blog_destroyable do
   it_behaves_like :redirected_request, 'blogs_url'
-  it { is_expected.to set_flash[:notice].to(t('blogs.destroy.notice')) }
 
-  it 'should destroy a blog' do
-    post :create, params: { blog: valid_attributes }
+  it 'has correct flash message' do
+    expect(controller).to set_flash[:notice].to(t('blogs.destroy.notice'))
+  end
+
+  it 'destroys a blog' do
+    blog2 = create(:blog, user: blog.user)
+
     expect do
-      delete :destroy, params: { id: assigns(:blog) }
+      delete :destroy, params: { id: blog2 }
     end.to change(Blog, :count).by(-1)
   end
 end

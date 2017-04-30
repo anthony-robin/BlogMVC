@@ -1,35 +1,43 @@
+# Categories Creatable
 #
-# Categories
-# ----------
-
-# Create
 shared_examples_for :category_creatable do
   it_behaves_like :redirected_request, 'categories_url'
-  it { is_expected.to set_flash[:notice].to(t('categories.create.notice')) }
 
-  it 'should create a record' do
+  it 'has correct flash message' do
+    expect(controller).to set_flash[:notice].to(t('categories.create.notice'))
+  end
+
+  it 'creates a record' do
     expect do
-      post :create, params: { category: valid_attributes_2 }
+      post :create, params: { category: attributes.merge!(name: Faker::Lorem.sentence) }
     end.to change(Category, :count).by(1)
   end
 end
 
-# Updatable
+# Categories Updatable
+#
 shared_examples_for :category_updatable do
   it_behaves_like :redirected_request, 'categories_url'
-  it { is_expected.to set_flash[:notice].to(t('categories.update.notice')) }
 
-  it 'expect name to changed' do
+  it 'has correct flash message' do
+    expect(controller).to set_flash[:notice].to(t('categories.update.notice'))
+  end
+
+  it 'changes name' do
     expect(assigns(:category).name).to eq('FooBar update')
   end
 end
 
-# Destroy
+# Categories Destroyable
+#
 shared_examples_for :category_destroyable do
   it_behaves_like :redirected_request, 'categories_url'
-  it { is_expected.to set_flash[:notice].to(t('categories.destroy.notice')) }
 
-  it 'should destroy a category (and blogs)' do
+  it 'has correct flash message' do
+    expect(controller).to set_flash[:notice].to(t('categories.destroy.notice'))
+  end
+
+  it 'destroys a category (and blogs)' do
     category = create(:category)
     create_list(:blog, 3, category: category)
     expect do

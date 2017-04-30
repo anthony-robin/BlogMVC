@@ -2,11 +2,14 @@ require 'rails_helper'
 
 describe CommentsController do
   let(:blog) { create(:blog) }
-  let!(:valid_params) do
-    { commentable: blog, body: 'Lorem ipsum !' }
+
+  let(:valid_params) do
+    { comment: { commentable: blog, body: Faker::Lorem.paragraph } }
   end
-  let!(:invalid_params) do
-    valid_params.merge(body: nil)
+
+  let(:invalid_params) do
+    valid_params[:comment].merge!(body: nil)
+    valid_params
   end
 
   describe 'POST #create' do
@@ -14,74 +17,64 @@ describe CommentsController do
       login_user
 
       context 'with HTML format' do
+        subject { post :create, params: { blog_id: blog, comment: attributes } }
+
         context 'with valid params' do
-          before do
-            post :create, params: { blog_id: blog, comment: valid_params }
-          end
+          let(:attributes) { valid_params[:comment] }
+          before { subject }
 
-          it { is_expected.to respond_with 302 }
-          it { is_expected.to redirect_to(category_blog_url(blog.category, blog)) }
-
-          it 'should create a new comment' do
-            expect {
-              post :create, params: { blog_id: blog, comment: valid_params }
-            }.to change(Comment, :count).by(1)
-          end
-
-          it 'should have correct flash success' do
-            expect(flash[:success]).to eq(t('comments.create.success'))
-          end
-
-          it 'should have correct user owner' do
+          it 'has correct owner' do
             expect(assigns(:comment).user).to eq(@admin)
           end
+
+          it_behaves_like :comment_creatable
         end
 
         context 'with invalid params' do
-          before do
-            post :create, params: { blog_id: blog, comment: invalid_params }
-          end
+          let(:attributes) { invalid_params[:comment] }
+          before { subject }
 
-          it { is_expected.to respond_with 302 }
+          it { is_expected.to have_http_status(302) }
           it { is_expected.to redirect_to(category_blog_url(blog.category, blog)) }
-          it_behaves_like :comment_not_creatable
 
-          it 'should have correct flash alert' do
-            expect(flash[:alert]).to eq(t('comments.create.alert'))
+          it 'has correct flash alert' do
+            expect(controller).to set_flash[:alert].to(t('comments.create.alert'))
           end
+
+          it_behaves_like :comment_not_creatable
         end
 
         context 'with captcha filed' do
-          before do
-            post :create, params: { blog_id: blog, comment: valid_params.merge(nickname: 'I AM A ROBOT') }
-          end
+          let(:attributes) { valid_params[:comment].merge!(nickname: 'I AM A ROBOT') }
+          before { subject }
 
-          it { is_expected.to respond_with 302 }
+          it { is_expected.to have_http_status(302) }
           it { is_expected.to redirect_to(category_blog_url(blog.category, blog)) }
-          it_behaves_like :comment_not_creatable
 
-          it 'should have correct flash alert' do
-            expect(flash[:alert]).to eq(t('comments.create.alert'))
+          it 'has correct flash alert' do
+            expect(controller).to set_flash[:alert].to(t('comments.create.alert'))
           end
+
+          it_behaves_like :comment_not_creatable
         end
       end
 
       context 'with JS format' do
-        context 'with valid params' do
-          before do
-            post :create, params: { blog_id: blog, comment: valid_params }, xhr: true
-          end
+        subject { post :create, params: { blog_id: blog, comment: attributes }, format: :js }
 
-          it { is_expected.to respond_with 200 }
+        context 'with valid params' do
+          let(:attributes) { valid_params[:comment] }
+          before { subject }
+
+          it { is_expected.to have_http_status(200) }
           it { is_expected.to render_template(:create) }
         end
 
         context 'with invalid params' do
-          before do
-            post :create, params: { blog_id: blog, comment: invalid_params }, xhr: true
-          end
+          let(:attributes) { invalid_params[:comment] }
+          before { subject }
 
-          it { is_expected.to respond_with 200 }
+          it { is_expected.to have_http_status(200) }
           it { is_expected.to render_template(:error) }
         end
       end
@@ -89,18 +82,14 @@ describe CommentsController do
 
     context 'when not authenticated' do
       context 'with HTML format' do
-        before do
-          post :create, params: { blog_id: blog, comment: valid_params }
-        end
+        subject! { post :create, params: { blog_id: blog, comment: valid_params } }
 
         it_behaves_like :redirected_request, 'new_user_session_url'
         it_behaves_like :comment_not_creatable
       end
 
       context 'with JS format' do
-        before do
-          post :create, params: { blog_id: blog, comment: valid_params }, format: :js
-        end
+        subject! { post :create, params: { blog_id: blog, comment: valid_params }, format: :js }
 
         it_behaves_like :unauthorized_request
         it_behaves_like :comment_not_creatable
@@ -117,15 +106,13 @@ describe CommentsController do
       before { sign_in user }
 
       context 'with HTML format' do
-        before { delete :destroy, params: { blog_id: blog, id: comment } }
+        subject! { delete :destroy, params: { blog_id: blog, id: comment } }
 
-        it { is_expected.to respond_with 302 }
-        it { is_expected.to redirect_to(category_blog_url(blog.category, blog)) }
         it_behaves_like :comment_destroyable
       end
 
       context 'with JS format' do
-        before { delete :destroy, params: { blog_id: blog, id: comment }, format: :js }
+        subject! { delete :destroy, params: { blog_id: blog, id: comment }, format: :js }
 
         it_behaves_like :ok_request, :destroy
         it_behaves_like :comment_destroyable
@@ -134,18 +121,14 @@ describe CommentsController do
 
     context 'when not authenticated' do
       context 'with HTML format' do
-        before do
-          delete :destroy, params: { blog_id: blog, id: comment }
-        end
+        subject! { delete :destroy, params: { blog_id: blog, id: comment } }
 
         it_behaves_like :redirected_request, 'new_user_session_url'
         it_behaves_like :comment_not_destroyable
       end
 
       context 'with JS format' do
-        before do
-          delete :destroy, params: { blog_id: blog, id: comment }, format: :js
-        end
+        subject! { delete :destroy, params: { blog_id: blog, id: comment }, format: :js }
 
         it_behaves_like :unauthorized_request
         it_behaves_like :comment_not_destroyable

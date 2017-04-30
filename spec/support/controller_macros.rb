@@ -12,6 +12,8 @@ module ControllerMacros
           instance_variable_set(:"@#{user.role}", user)
           sign_in instance_variable_get(:"@#{user}")
         end
+
+        @user = user
       end
     end
   end

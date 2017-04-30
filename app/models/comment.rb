@@ -8,11 +8,6 @@ class Comment < ApplicationRecord
   belongs_to :user, counter_cache: true
   belongs_to :commentable, polymorphic: true, counter_cache: true
 
-  # Validation rules
-  validates :body, presence: true
-  validates :user, presence: true
-  validates :nickname, absence: true
-
   # Scopes
   scope :find_comments_by_user, lambda { |user|
     where(user_id: user.id).order('created_at DESC')
