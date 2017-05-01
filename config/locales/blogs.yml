@@ -1,5 +1,7 @@
 fr:
   blogs:
+    index:
+      empty_records: Il n'y a aucun article de blog à afficher
     create:
       notice: L'article de Blog a été créé avec succès
     update:

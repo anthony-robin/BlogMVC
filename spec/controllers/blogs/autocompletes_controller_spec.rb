@@ -6,7 +6,7 @@ describe Blogs::AutocompletesController do
   before(:each) { Blog.reindex }
 
   describe 'GET #index' do
-    subject! { get :index, params: { query: 'title' }, format: :json }
+    subject! { get :index, params: { query: 'article' }, format: :json }
 
     it { is_expected.to have_http_status(:ok) }
 

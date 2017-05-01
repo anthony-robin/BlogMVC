@@ -18,7 +18,7 @@ describe Blogs::SearchesController do
     end
 
     context 'with query' do
-      subject! { get :index, params: { term: 'title' } }
+      subject! { get :index, params: { term: 'article' } }
 
       it_behaves_like :ok_request, 'blogs/index'
 

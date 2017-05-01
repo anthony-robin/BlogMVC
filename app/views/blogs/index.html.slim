@@ -1,6 +1,6 @@
 - breadcrumb :blogs
 - breadcrumb :blog_category, @category if params[:category_id].present?
-- set_meta_tags title: "#{t('.title')} #{@category.name unless params[:category_id].nil?}",
+- set_meta_tags title: "#{t('.title')}#{' ' + @category.name unless params[:category_id].nil?}",
                 description: t('.description'),
                 keywords: t('.keywords')
 
@@ -10,7 +10,7 @@
       = render 'blogs/search'
 
       - if @blogs.blank?
-        p Il n'y a aucun article de blog à afficher
+        p= t('.empty_records')
       - else
         - @blogs.each do |blog|
           = render 'blogs/blog', blog: blog
