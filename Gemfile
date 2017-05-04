@@ -42,7 +42,7 @@ gem 'retina_rails',
     github: 'gemsfix/retina_rails',
     branch: 'feature/rails5'
 
-gem 'jbuilder', '~> 2.5'
+gem 'active_model_serializers', '~> 0.10.0'
 gem 'webpacker', github: 'rails/webpacker'
 
 gem 'rails-i18n', '~> 5.0.0' # I18n

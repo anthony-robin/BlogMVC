@@ -1,4 +1,4 @@
-TRANSACTIONAL_FIXTURES_ERROR_MESSAGE = <<-MSG
+TRANSACTIONAL_FIXTURES_ERROR_MESSAGE = <<-MSG.freeze
   Delete line `config.use_transactional_fixtures = true` from rails_helper.rb
   (or set it to false) to prevent uncommitted transactions being used in
   JavaScript-dependent specs.
