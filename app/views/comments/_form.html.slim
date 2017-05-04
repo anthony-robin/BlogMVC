@@ -1,4 +1,7 @@
-= simple_form_for [@commentable, @comment], remote: true do |f|
+= simple_form_for @form, url: blog_comments_path(@commentable), remote: true do |f|
+  = hidden_field_tag :authenticity_token, form_authenticity_token
+  = f.input_field :nickname, as: :hidden
+
   .row
     .small-12.medium-4.large-2.column
       p.text-center
@@ -8,5 +11,4 @@
 
     .small-12.medium-8.large-10.column
       = f.input :body
-      = f.input :nickname, as: :hidden
       = button_tag :submit, class: 'button'

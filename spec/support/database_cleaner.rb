@@ -1,4 +1,4 @@
-TRANSACTIONAL_FIXTURES_ERROR_MESSAGE = <<-MSG
+TRANSACTIONAL_FIXTURES_ERROR_MESSAGE = <<-MSG.freeze
   Delete line `config.use_transactional_fixtures = true` from rails_helper.rb
   (or set it to false) to prevent uncommitted transactions being used in
   JavaScript-dependent specs.
@@ -7,7 +7,6 @@ TRANSACTIONAL_FIXTURES_ERROR_MESSAGE = <<-MSG
   the spec. The app's database connection would not be able to access
   uncommitted transaction data setup over the spec's database connection.
 MSG
-.freeze
 
 RSpec.configure do |config|
   config.before(:suite) do

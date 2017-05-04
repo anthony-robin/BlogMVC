@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe Picture, type: :model do
+describe Picture do
   context 'associations' do
-    it { should belong_to(:attachable) }
+    it { is_expected.to belong_to(:attachable) }
   end
 end

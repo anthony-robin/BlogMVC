@@ -1,36 +1,39 @@
 source 'https://rubygems.org'
 
-# Core
-gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
-gem 'puma', '~> 3.0'
+git_source(:github) do |repo_name|
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
+  "https://github.com/#{repo_name}.git"
+end
 
-gem 'sqlite3' # Database
+# Core
+gem 'rails', '~> 5.0.2'
+gem 'puma', '~> 3.8'
+
+gem 'sqlite3', group: %i[development test] # Database
+gem 'pg', group: %i[staging production] # Database
 gem 'devise' # Authentication
 gem 'cancancan' # Abilities
 
 # Assets
-gem 'jquery-rails'
 gem 'sassc-rails'
-gem 'font-awesome-sass',
-    github: 'xijo/font-awesome-sass',
-    branch: 'use_sassc_rails_if_available' # Fix to use sassc
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.2'
 
+# Forms
+gem 'reform-rails'
 gem 'simple_form'
 gem 'client_side_validations'
 gem 'client_side_validations-simple_form'
 
 gem 'slim-rails' # slim file
 gem 'foundation-rails', '~> 6.3.0'
-gem 'wysiwyg-rails' # Froala editor
 gem 'kaminari', '~> 1.0' # Pagination
 gem 'gretel' # Breadcrumb
 gem 'friendly_id'
-gem 'acts-as-taggable-on', '~> 4.0'
 
-# Commentable
-gem 'acts_as_commentable_with_threading'
+gem 'acts-as-taggable-on', '~> 4.0' # Taggable
+gem 'acts_as_commentable_with_threading' # Commentable
+
+# Searchable
+gem 'searchkick'
 
 # Uploaders
 gem 'mini_magick'
@@ -39,8 +42,8 @@ gem 'retina_rails',
     github: 'gemsfix/retina_rails',
     branch: 'feature/rails5'
 
-gem 'turbolinks', '~> 5'
-gem 'jbuilder', '~> 2.5'
+gem 'active_model_serializers', '~> 0.10.0'
+gem 'webpacker', github: 'rails/webpacker'
 
 gem 'rails-i18n', '~> 5.0.0' # I18n
 gem 'meta-tags' # SEO
@@ -79,7 +82,7 @@ group :development do
   gem 'bullet'
   gem 'annotate', github: 'ctran/annotate_models',
                   branch: 'develop'
-
+  gem 'color_route'
   gem 'web-console'
   gem 'better_errors', github: 'charliesome/better_errors'
   gem 'binding_of_caller'

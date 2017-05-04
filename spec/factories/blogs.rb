@@ -4,6 +4,18 @@ FactoryGirl.define do
     content { Faker::Lorem.paragraph(2) }
     category
     user
+
+    trait :author do
+      association :user, factory: %i[user author]
+    end
+
+    trait :admin do
+      association :user, factory: %i[user admin]
+    end
+
+    trait :master do
+      association :user, factory: %i[user master]
+    end
   end
 end
 

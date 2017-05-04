@@ -2,193 +2,222 @@ require 'rails_helper'
 
 describe CategoriesController do
   let(:category) { create(:category) }
-  let(:valid_attributes) { { name: 'FooBar' } }
-  let(:valid_attributes_2) { { name: 'BarFoo' } }
-  let(:invalid_attributes) { { name: '' } }
+
+  let(:valid_attributes) { { category: { name: 'FooBar' } } }
+  let(:invalid_attributes) do
+    valid_attributes[:category].merge!(name: '')
+    valid_attributes
+  end
 
   describe 'GET #index' do
     context 'a non connected user' do
-      before { get :index }
+      subject! { get :index }
       it_behaves_like :redirected_request, 'new_user_session_url'
     end
 
-    context 'a connected user' do
-      context 'as author' do
-        login_user(:author)
-        before { get :index }
-        it { is_expected.to set_flash[:alert].to(t('unauthorized.read.category')) }
-        it_behaves_like :redirected_request, 'root_url'
-      end
+    context 'an author' do
+      login_user(:author)
+      subject! { get :index }
 
-      context 'as admin' do
-        login_user(:admin)
-        before { get :index }
-        it_behaves_like :ok_request, 'index'
-      end
+      it_behaves_like :cancan_unauthorized_request, 'root_url', 'unauthorized.read.category'
+    end
 
-      context 'as master' do
-        login_user(:master)
-        before { get :index }
-        it_behaves_like :ok_request, 'index'
-      end
+    context 'an admin' do
+      login_user(:admin)
+      subject! { get :index }
+
+      it_behaves_like :ok_request, 'index'
+    end
+
+    context 'a master' do
+      login_user(:master)
+      subject! { get :index }
+
+      it_behaves_like :ok_request, 'index'
     end
   end
 
   describe 'GET #new' do
     context 'a non connected user' do
-      before { get :new }
+      subject! { get :new }
+
       it_behaves_like :redirected_request, 'new_user_session_url'
     end
 
-    context 'a connected user' do
-      context 'as author' do
-        login_user(:author)
-        before { get :new }
-        it_behaves_like :redirected_request, 'root_url'
-      end
+    context 'an author' do
+      login_user(:author)
+      subject! { get :new }
 
-      context 'as admin' do
-        login_user(:admin)
-        before { get :new }
-        it_behaves_like :ok_request, 'new'
-      end
+      it_behaves_like :redirected_request, 'root_url'
+    end
 
-      context 'as master' do
-        login_user(:master)
-        before { get :new }
-        it_behaves_like :ok_request, 'new'
-      end
+    context 'an admin' do
+      login_user(:admin)
+      subject! { get :new }
+
+      it_behaves_like :ok_request, 'new'
+    end
+
+    context 'a master' do
+      login_user(:master)
+      subject! { get :new }
+
+      it_behaves_like :ok_request, 'new'
     end
   end
 
   describe 'POST #create' do
+    subject { post :create, params: { category: attributes } }
+
     context 'a non connected user' do
-      before { post :create, params: { category: valid_attributes } }
+      let(:attributes) { valid_attributes[:category] }
+      before { subject }
+
       it_behaves_like :redirected_request, 'new_user_session_url'
 
       it 'should not create a record' do
         expect do
-          post :create, params: { category: valid_attributes_2 }
+          post :create, params: { category: valid_attributes[:category].merge!(name: 'BarFoo') }
         end.to_not change(Category, :count)
       end
     end
 
-    context 'a connected user' do
-      context 'as author' do
-        login_user(:author)
-        before { post :create, params: { category: valid_attributes } }
-        it_behaves_like :redirected_request, 'root_url'
+    context 'an author' do
+      let(:attributes) { valid_attributes }
+      login_user(:author)
+      before { subject }
 
-        it 'should not create a record' do
-          expect do
-            post :create, params: { category: valid_attributes_2 }
-          end.to_not change(Category, :count)
-        end
+      it_behaves_like :redirected_request, 'root_url'
+
+      it 'should not create a record' do
+        expect do
+          post :create, params: { category: valid_attributes[:category].merge!(name: 'BarFoo') }
+        end.to_not change(Category, :count)
+      end
+    end
+
+    context 'an admin' do
+      login_user(:admin)
+
+      context 'with invalid attributes' do
+        let(:attributes) { invalid_attributes[:category] }
+        before { subject }
+
+        it_behaves_like :ok_request, 'new'
       end
 
-      context 'as admin' do
-        login_user(:admin)
-        context 'with invalid attributes' do
-          before { post :create, params: { category: invalid_attributes } }
-          it_behaves_like :ok_request, 'new'
-        end
+      context 'with valid attributes' do
+        let(:attributes) { valid_attributes[:category] }
+        before { subject }
 
-        context 'with valid attributes' do
-          before { post :create, params: { category: valid_attributes } }
-          it_behaves_like :category_creatable
-        end
+        it_behaves_like :category_creatable
+      end
+    end
+
+    context 'a master' do
+      login_user(:master)
+
+      context 'with invalid attributes' do
+        let(:attributes) { invalid_attributes[:category] }
+        before { subject }
+
+        it_behaves_like :ok_request, 'new'
       end
 
-      context 'as master' do
-        login_user(:master)
-        context 'with invalid attributes' do
-          before { post :create, params: { category: invalid_attributes } }
-          it_behaves_like :ok_request, 'new'
-        end
+      context 'with valid attributes' do
+        let(:attributes) { valid_attributes[:category] }
+        before { subject }
 
-        context 'with valid attributes' do
-          before { post :create, params: { category: valid_attributes } }
-          it_behaves_like :category_creatable
-        end
+        it_behaves_like :category_creatable
       end
     end
   end
 
   describe 'GET #edit' do
+    subject { get :edit, params: { id: category } }
+
     context 'a non connected user' do
-      before { get :edit, params: { id: category } }
+      before { subject }
       it_behaves_like :redirected_request, 'new_user_session_url'
     end
 
-    context 'a connected user' do
-      context 'as author' do
-        login_user(:author)
-        before { get :edit, params: { id: category } }
-        it_behaves_like :redirected_request, 'root_url'
-      end
+    context 'an author' do
+      login_user(:author)
+      before { subject }
 
-      context 'as admin' do
-        login_user(:admin)
-        before { get :edit, params: { id: category } }
-        it_behaves_like :ok_request, 'edit'
-      end
+      it_behaves_like :redirected_request, 'root_url'
+    end
 
-      context 'as master' do
-        login_user(:master)
-        before { get :edit, params: { id: category } }
-        it_behaves_like :ok_request, 'edit'
-      end
+    context 'an admin' do
+      login_user(:admin)
+      before { subject }
+
+      it_behaves_like :ok_request, 'edit'
+    end
+
+    context 'a master' do
+      login_user(:master)
+      before { subject }
+
+      it_behaves_like :ok_request, 'edit'
     end
   end
 
   describe 'PATCH #update' do
-    let(:updated_attributes) { { name: 'FooBar update' } }
+    let(:attributes) { valid_attributes[:category].merge!(name: 'FooBar update') }
+    subject { patch :update, params: { id: category, category: attributes } }
 
     context 'a non connected user' do
-      before { patch :update, params: { id: category, category: updated_attributes } }
+      before { subject }
       it_behaves_like :redirected_request, 'new_user_session_url'
     end
 
-    context 'a connected user' do
-      context 'as author' do
-        login_user(:author)
-        before { patch :update, params: { id: category, category: updated_attributes } }
-        it_behaves_like :redirected_request, 'root_url'
+    context 'an author' do
+      login_user(:author)
+      before { subject }
+
+      it_behaves_like :redirected_request, 'root_url'
+    end
+
+    context 'an admin' do
+      login_user(:admin)
+
+      context 'with invalid attributes' do
+        let(:attributes) { invalid_attributes[:category] }
+        before { subject }
+
+        it_behaves_like :ok_request, 'edit'
       end
 
-      context 'as admin' do
-        login_user(:admin)
-        context 'with invalid attributes' do
-          before { patch :update, params: { id: category, category: invalid_attributes } }
-          it_behaves_like :ok_request, 'edit'
-        end
+      context 'with valid attributes' do
+        before { subject }
+        it_behaves_like :category_updatable
+      end
+    end
 
-        context 'with valid attributes' do
-          before { patch :update, params: { id: category, category: updated_attributes } }
-          it_behaves_like :category_updatable
-        end
+    context 'a master' do
+      login_user(:master)
+
+      context 'with invalid attributes' do
+        let(:attributes) { invalid_attributes[:category] }
+        before { subject }
+
+        it_behaves_like :ok_request, 'edit'
       end
 
-      context 'as master' do
-        login_user(:master)
-        context 'with invalid attributes' do
-          before { patch :update, params: { id: category, category: invalid_attributes } }
-          it_behaves_like :ok_request, 'edit'
-        end
-
-        context 'with valid attributes' do
-          before { patch :update, params: { id: category, category: updated_attributes } }
-          it_behaves_like :category_updatable
-        end
+      context 'with valid attributes' do
+        before { subject }
+        it_behaves_like :category_updatable
       end
     end
   end
 
   describe 'DELETE #destroy' do
     before { create_list(:blog, 3, category: category) }
+    subject { delete :destroy, params: { id: category } }
 
     context 'a non connected user' do
-      before { delete :destroy, params: { id: category } }
+      before { subject }
       it_behaves_like :redirected_request, 'new_user_session_url'
 
       it 'should not destroy a category (and blogs)' do
@@ -199,31 +228,32 @@ describe CategoriesController do
       end
     end
 
-    context 'a connected user' do
-      context 'as author' do
-        login_user(:author)
-        before { delete :destroy, params: { id: category } }
-        it_behaves_like :redirected_request, 'root_url'
+    context 'an author' do
+      login_user(:author)
+      before { subject }
 
-        it 'should not destroy a category (and blogs)' do
-          expect do
-            delete :destroy, params: { id: category }
-          end.to change(Category, :count).by(0).and \
-                 change(category.blogs, :count).by(0)
-        end
-      end
+      it_behaves_like :redirected_request, 'root_url'
 
-      context 'as admin' do
-        login_user(:admin)
-        before { delete :destroy, params: { id: category } }
-        it_behaves_like :category_destroyable
+      it 'should not destroy a category (and blogs)' do
+        expect do
+          delete :destroy, params: { id: category }
+        end.to change(Category, :count).by(0).and \
+               change(category.blogs, :count).by(0)
       end
+    end
 
-      context 'as master' do
-        login_user(:master)
-        before { delete :destroy, params: { id: category } }
-        it_behaves_like :category_destroyable
-      end
+    context 'an admin' do
+      login_user(:admin)
+      before { subject }
+
+      it_behaves_like :category_destroyable
+    end
+
+    context 'a master' do
+      login_user(:master)
+      before { subject }
+
+      it_behaves_like :category_destroyable
     end
   end
 end

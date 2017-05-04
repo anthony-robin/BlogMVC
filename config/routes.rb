@@ -12,6 +12,13 @@ Rails.application.routes.draw do
   resources :blogs, except: %i[show edit], concerns: :paginatable do
     resources :comments, only: %i[create destroy]
   end
+
+  namespace :blogs do
+    resources :autocompletes,
+              only: %i[index],
+              defaults: { format: 'json' }
+  end
+
   resources :categories, except: %i[show], concerns: :paginatable
 
   resources :categories, only: [] do

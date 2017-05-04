@@ -7,10 +7,15 @@
 #sidebar_referer
   .row
     .small-12.medium-9.columns
+      = render 'blogs/search'
+
       - if @blogs.blank?
-       p Il n'y a aucun article de blog à afficher
+        p Il n'y a aucun article de blog à afficher
       - else
         = render @blogs
         = paginate @blogs
+
+        script type="application/ld+json"
+          = json_ld_blogs_paginator(@blogs)
 
     = render 'blogs/sidebar'

@@ -14,6 +14,9 @@ Rails 5 Blog MVC project
       <a href="https://gemnasium.com/github.com/anthony-robin/BlogMVC">
         <img src="https://gemnasium.com/badges/github.com/anthony-robin/BlogMVC.svg" alt="Gemnasium badge" />
       </a>
+      <a href="https://david-dm.org/anthony-robin/BlogMVC">
+        <img src="https://david-dm.org/anthony-robin/BlogMVC.svg" alt="NPM badge" />
+      </a>
     </td>
   </tr>
   <tr>

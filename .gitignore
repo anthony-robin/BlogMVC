@@ -33,3 +33,7 @@ spec/support/uploads
 
 # Rubocop
 .rubocop-http*
+
+# Webpack
+/public/packs
+/node_modules

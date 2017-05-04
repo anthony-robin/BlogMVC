@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
   before_action :load_commentable
+  before_action :set_form, only: %i[create]
   before_action :set_comment, only: %i[destroy]
 
   authorize_resource
@@ -8,13 +9,12 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-    @comment = @commentable.comment_threads.new(comment_params)
-    @comment.user = current_user
-    if @comment.save
-      flash.now[:success] = t('.success')
+    if @form.validate(params[:comment])
+      @form.save
+      flash[:success] = t('.success')
       respond_action :create
     else
-      flash.now[:alert] = t('.alert')
+      flash[:alert] = t('.alert')
       respond_action :error
     end
   end
@@ -23,24 +23,24 @@ class CommentsController < ApplicationController
   # DELETE /comments/1.json
   def destroy
     if @comment.destroy
-      flash.now[:success] = t('.success')
+      flash[:success] = t('.success')
       respond_action :destroy
     else
-      flash.now[:alert] = t('.alert')
+      flash[:alert] = t('.alert')
       respond_action 'comments/forbidden'
     end
   end
 
   private
 
-  def comment_params
-    attributes = %i[title subject body user_id nickname]
-    params.require(:comment).permit(attributes)
-  end
-
   def load_commentable
     klass = [Blog].detect { |c| params["#{c.name.underscore}_id"] }
     @commentable = klass.friendly.find(params["#{klass.name.underscore}_id"])
+  end
+
+  def set_form
+    @comment = @commentable.comment_threads.new(user: current_user)
+    @form = CommentForm.new(@comment)
   end
 
   def set_comment
