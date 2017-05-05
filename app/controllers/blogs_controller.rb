@@ -14,9 +14,6 @@ class BlogsController < ApplicationController
   # GET /blogs
   # GET /blogs.json
   def index
-    search = params[:term].present? ? params[:term] : nil
-    return @blogs = Blog.search(search, Blog.search_opts) if search
-
     @blogs = Blog.with_includes.order_desc
     @blogs = @category.blogs.includes(:user, :category) if params[:category_id].present?
     @blogs = @blogs.tagged_with(params[:tag]) if params[:tag]
