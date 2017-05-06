@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   end
 
   namespace :blogs do
+    resources :searches, only: %i[index]
     resources :autocompletes,
               only: %i[index],
               defaults: { format: 'json' }

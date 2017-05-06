@@ -9,6 +9,7 @@ module.exports = merge(devConfig, {
   devServer: {
     host: devServer.host,
     port: devServer.port,
+    headers: { 'Access-Control-Allow-Origin': '*' },
     compress: true,
     hot: true,
     inline: true,

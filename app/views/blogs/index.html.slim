@@ -12,7 +12,8 @@
       - if @blogs.blank?
         p Il n'y a aucun article de blog à afficher
       - else
-        = render @blogs
+        - @blogs.each do |blog|
+          = render 'blogs/blog', blog: blog
         = paginate @blogs
 
         script type="application/ld+json"
