@@ -28,6 +28,7 @@ Rails.application.routes.draw do
   get 'tags/:tag', to: 'blogs#index', as: :tag
 
   resources :users, only: %i[index show]
+  resources :contacts, only: %i[index new create]
 end
 
 # == Route Map

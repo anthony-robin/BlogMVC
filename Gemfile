@@ -49,6 +49,10 @@ gem 'rails-i18n', '~> 5.0.0' # I18n
 gem 'meta-tags' # SEO
 gem 'dotenv-rails'
 
+# Mailers
+gem 'inky-rb', require: 'inky'
+gem 'premailer-rails'
+
 gem 'shog' # Colored logs
 
 # Use Redis adapter to run Action Cable in production

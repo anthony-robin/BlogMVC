@@ -1,6 +1,9 @@
 DEFAULTS: &DEFAULTS
+  admin: Anthony
   title: BlogMVC
-  subtitle: ~
+  subtitle: En marche !
+  phone: <%= ENV.fetch('PHONE_CONTACT') %>
+  email: <%= ENV.fetch('TO_CONTACT') %>
 
 development:
   <<: *DEFAULTS

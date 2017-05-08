@@ -1,0 +1,17 @@
+= simple_form_for @form, validate: true, remote: true, authenticity_token: true do |f|
+  .row
+    .col.s12.m6
+      = f.input :name, required: true
+    .col.s12.m6
+      = f.input :email, required: true
+
+  .row
+    .col.s12
+      = f.input :message, as: :text, required: true
+      = f.input :nickname, label: false, input_html: { class: 'hide' }
+
+  .row
+    = f.input :copy, as: :boolean, input_html: { checked: true }
+
+  .row
+    = f.button :submit

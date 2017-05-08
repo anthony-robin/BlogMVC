@@ -1,0 +1,6 @@
+fr:
+  contact_mailer:
+    send_email:
+      subject: Message de contact
+    copy_email:
+      subject: Copie du message de contact
