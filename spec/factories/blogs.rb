@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :blog do
-    sequence(:title) { |n| "My title #{n + 1}" }
+    sequence(:title) { |n| "My blog article #{n + 1}" }
     content { Faker::Lorem.paragraph(2) }
     category
     user

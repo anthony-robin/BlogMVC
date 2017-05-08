@@ -7,11 +7,12 @@ $(document).on('turbolinks:load', () => {
     datumTokenizer: Bloodhound.tokenizers.whitespace,
     queryTokenizer: Bloodhound.tokenizers.whitespace,
     remote: {
-      url: ($('#blogs_search').data('autocomplete-path')) + '?query=%QUERY',
+      url: ($('#blogs_search--input').data('autocomplete-path')) + '?query=%QUERY',
       wildcard: '%QUERY'
     }
   })
-  $('#blogs_search').typeahead({
+
+  $('#blogs_search--input').typeahead({
     hint: true,
     highlight: true,
     minLength: 3

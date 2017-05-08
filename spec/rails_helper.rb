@@ -6,6 +6,9 @@ require 'rspec/rails'
 require 'cancan/matchers'
 require 'carrierwave/test/matchers'
 
+# This is needed by CI to be aware of page objects.
+require Rails.root.join('spec', 'support', 'application_page.rb')
+
 Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
 Dir[Rails.root.join('spec', 'features', 'shared_examples', '**', '*.rb')].each do |f|
   require f
@@ -13,7 +16,6 @@ end
 
 RSpec.configure do |config|
   config.extend ControllerMacros, type: :controller
-  config.include FactoryGirl::Syntax::Methods
   config.include AbstractController::Translation
   config.include Devise::Test::ControllerHelpers, type: :controller
 
