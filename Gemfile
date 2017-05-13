@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 # Core
-gem 'rails', '~> 5.0.2'
+gem 'rails', '~> 5.0.3'
 gem 'puma', '~> 3.8'
 
 gem 'sqlite3', group: %i[development test] # Database
@@ -96,7 +96,7 @@ group :development do
 end
 
 group :test do
-  gem 'capybara', '~> 2.7.0'
+  gem 'capybara', '~> 2.14'
   gem 'capybara-screenshot', require: false
   gem 'poltergeist', require: false
 
