@@ -14,3 +14,5 @@ fr:
       password:
         create: M'envoyer les instructions par email
         update: Valider mon nouveau mot de passe
+      contact:
+        create: Envoyer

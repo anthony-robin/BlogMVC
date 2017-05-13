@@ -1,0 +1,46 @@
+- if action_name == 'copy_email'
+  wrapper
+    spacer size="16"
+    row
+      columns
+      columns small="6"
+        callout.success
+          p.no-margin-bottom= t('.copy_email')
+      columns
+
+wrapper.header
+  container
+    row.collapse
+      columns
+        h2 = website_conf['title']
+        small=< website_conf['subtitle']
+      columns
+        p.text-right= t('contact_mailer.send_email.subject')
+
+container
+  spacer size="16"
+
+  row
+    columns small="12"
+      h6= t('.hi', name: website_conf['admin'])
+      spacer size="12"
+
+      callout.warning= simple_format @message
+      p.text-right= mail_to @email, @name
+
+  - if action_name == 'copy_email'
+    wrapper
+      spacer size="16"
+
+      row
+        columns
+        columns large="8"
+          callout.primary
+            h5= t('.contact_informations')
+            p
+              = t('.phone')
+              =< link_to website_conf['phone'], "tel:#{website_conf['phone']}"
+            p
+              = t('.email')
+              =< mail_to website_conf['email']
+        columns

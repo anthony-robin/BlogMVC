@@ -10,16 +10,19 @@ MSG
 
 RSpec.configure do |config|
   config.before(:suite) do
-    raise(TRANSACTIONAL_FIXTURES_ERROR_MESSAGE) if config.use_transactional_fixtures?
-    DatabaseCleaner.strategy = :transaction
-    DatabaseCleaner.clean_with(:truncation)
+    DatabaseCleaner.clean_with :truncation
   end
 
-  config.before(:each) do
+  config.before(:each) do |example|
+    DatabaseCleaner.strategy = if example.metadata[:js]
+      :truncation
+    else
+      :transaction
+    end
     DatabaseCleaner.start
   end
 
-  config.append_after(:each) do
+  config.after(:each) do
     DatabaseCleaner.clean
   end
 end

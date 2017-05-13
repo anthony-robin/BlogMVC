@@ -1,0 +1,10 @@
+#!/usr/bin/env ruby
+VENDOR_PATH = File.expand_path('..', __dir__)
+Dir.chdir(VENDOR_PATH) do
+  begin
+    exec 'node_modules/maildev/bin/maildev'
+  rescue Errno::ENOENT
+    puts 'Maildev executable was not detected in the system.'
+    puts 'Run `yarn install` before to run this command again'
+  end
+end

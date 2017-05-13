@@ -51,21 +51,27 @@ ERRORS: &ERRORS
     max_size_error: Votre fichier ne doit pas dépasser %{max_size} Mo
 
   attributes:
+    name:
+      blank: Vous devez renseigner votre nom
+    username:
+      blank: Vous devez renseigner votre pseudo
+      taken: Ce nom d'utilisateur n'est pas disponible
+      invalid: Ce nom d'utilisateur n'est pas valide
+    nickname:
+      present: Ce site ne tolère pas les robots spammeurs
     email:
       blank: Vous devez saisir votre email
       taken: Cet email n'est pas disponible
       invalid: Vous devez renseigner un email valide
       email: ''
-    username:
-      blank: Vous devez renseigner votre pseudo
-      taken: Ce nom d'utilisateur n'est pas disponible
-      invalid: Ce nom d'utilisateur n'est pas valide
     role:
       blank: Vous devez spécifier un rôle pour cet utilisateur
     title:
       blank: Vous devez renseigner un titre
     content:
       blank: Vous devez saisir du contenu
+    message:
+      blank: Vous devez saisir un message
 
 # French
 fr:

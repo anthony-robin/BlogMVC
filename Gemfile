@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 # Core
-gem 'rails', '~> 5.0.2'
+gem 'rails', '~> 5.0.3'
 gem 'puma', '~> 3.8'
 
 gem 'sqlite3', group: %i[development test] # Database
@@ -48,6 +48,10 @@ gem 'webpacker', github: 'rails/webpacker'
 gem 'rails-i18n', '~> 5.0.0' # I18n
 gem 'meta-tags' # SEO
 gem 'dotenv-rails'
+
+# Mailers
+gem 'inky-rb', require: 'inky'
+gem 'premailer-rails'
 
 gem 'shog' # Colored logs
 
@@ -92,6 +96,10 @@ group :development do
 end
 
 group :test do
+  gem 'capybara', '~> 2.14'
+  gem 'capybara-screenshot', require: false
+  gem 'poltergeist', require: false
+
   gem 'shoulda-matchers', '~> 3.1'
   gem 'rails-controller-testing'
 
