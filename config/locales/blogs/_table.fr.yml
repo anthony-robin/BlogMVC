@@ -1,0 +1,16 @@
+fr:
+  blogs:
+    table:
+      cover: Couverture
+      title: Titre
+      category: Catégorie
+      author: Auteur
+      actions: Actions
+
+      show:
+        label: Voir
+      edit:
+        label: Modifier
+      destroy:
+        label: Supprimer
+        confirm: Etes-vous sûr de vouloir supprimer cette catégorie ?

@@ -1,12 +1,12 @@
 table.hover
   thead
     tr
-      th Couverture
-      th Titre
-      th Catégorie
+      th= t('.cover')
+      th= t('.title')
+      th= t('.category')
       - if params[:action] != 'show'
-        th Auteur
-      th Actions
+        th= t('.author')
+      th= t('.actions')
   tbody
     - blogs.each do |blog|
       tr
@@ -20,7 +20,7 @@ table.hover
             small =< "(#{blog.user_role})"
 
         td
-          =< link_to 'Voir', category_blog_path(blog.category, blog), class: 'button small success' if can?(:read, blog)
+          =< link_to t('.show.label'), category_blog_path(blog.category, blog), class: 'button small success' if can?(:read, blog)
           - if params[:action] != 'show'
-            =< link_to 'Modifier', edit_category_blog_path(blog.category, blog), class: 'button small warning' if can?(:update, blog)
-            =< link_to 'Supprimer', blog, data: { confirm: 'Etes-vous sûr ?' }, method: :delete, class: 'button small alert' if can?(:destroy, blog)
+            =< link_to t('.edit.label'), edit_category_blog_path(blog.category, blog), class: 'button small warning' if can?(:update, blog)
+            =< link_to t('.destroy.label'), blog, data: { confirm: t('.destroy.confirm') }, method: :delete, class: 'button small alert' if can?(:destroy, blog)
