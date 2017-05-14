@@ -1,0 +1,9 @@
+- if !current_page?(root_url) && breadcrumbs.tap(&:links).count > 0
+  .row
+    nav#breadcrumbs aria-label="Vous êtes ici" role="navigation"
+      .nav-wrapper
+        .col.s12
+          - breadcrumbs.tap do |links|
+            - if links.any?
+              - links.each do |link|
+                = link_to link.text, link.url, class: 'breadcrumb'

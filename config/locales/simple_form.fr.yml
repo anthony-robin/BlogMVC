@@ -8,10 +8,3 @@ fr:
       mark: '*'
     error_notification:
       default_message: "Veuillez vérifier et corriger les erreurs suivantes"
-
-    labels:
-      contact:
-        name: Nom
-        email: Email
-        message: Message
-        copy: Recevoir une copie ?

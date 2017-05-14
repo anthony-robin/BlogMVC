@@ -3,28 +3,33 @@
                 description: t('.description'),
                 keywords: t('.keywords')
 
-.row.align-center
-  .small-12.medium-8.columns
-    p = link_to 'Ajouter une catégorie', new_category_path, class: 'button full-width'
+.row
+  .col.s12.m8
+    p
+      = link_to new_category_path, class: 'btn-floating btn-large waves-effect waves-light green' do
+        i.material-icons add
 
-.row.align-center
-  .small-12.medium-8.columns
-    table.hover
+.row
+  .col.s12
+    table.highlight.bordered.centered.responsive-table
       thead
         tr
           th Nom
           th Nombre d'articles de Blog
           th Actions
-
       tbody
         - @categories.each do |category|
           tr
             td = category.name
             td = category.blogs_count
             td
-              =< link_to 'Modifier', [:edit, category], class: 'button small warning'
-              =< link_to 'Supprimer', category, data: { confirm: 'Etes-vous sûr ?' }, method: :delete, class: 'button small alert'
+              =< link_to [:edit, category], class: 'btn-floating btn-small waves-effect waves-light orange' do
+                i.material-icons mode_edit
+                | Modifier
 
-.row
-  .small-12.columns
+              =< link_to category, class: 'btn-floating btn-small waves-effect waves-light red', data: { confirm: 'Etes-vous sûr ?' }, method: :delete do
+                i.material-icons delete
+                | Supprimer
+
+  .col.s12.text-center
     = paginate @categories

@@ -1,36 +1,44 @@
-article.blog id="blog_#{blog.id}"
-  header
-    h2
-      span.label = blog.category_name
+article.card.blog id="blog_#{blog.id}"
+  .card-image
+    - if blog.picture.present?
+      = retina_image_tag blog.picture, :image, :large, class: 'materialboxed'
+
+    - if can? :read, blog
+      = link_to category_blog_path(blog.category, blog), class: 'btn-floating btn-large halfway-fab waves-effect waves-light green' do
+        i.material-icons visibility
+
+  .card-content
+    => link_to blog.category_name, category_blogs_path(blog.category), class: 'chip orange left'
+    h3.card-title
       / TODO: Use a decorator to handle this condition
       - if params[:term].present? && blog.search_highlights[:title].present?
-        span.blog-title =< link_to blog.search_highlights[:title].html_safe, category_blog_path(blog.category, blog)
+        =< link_to blog.search_highlights[:title].html_safe, category_blog_path(blog.category, blog)
       - else
-        span.blog-title =< link_to blog.title, category_blog_path(blog.category, blog)
+        =< link_to blog.title, category_blog_path(blog.category, blog)
+    .clearfix
 
-  div.preview
-    p = retina_image_tag blog.picture, :image, :large, class: 'thumbnail' if blog.picture?
+    span.timestamps = I18n.l(blog.created_at, format: :long)
+    p = raw blog.tag_list.map { |t| link_to t, tag_path(t), class: 'chip' }.join(' ')
 
-  div.meta
-    p
-      span.timestamps = I18n.l(blog.created_at, format: :long)
-      |,
-      small.user =< link_to blog.user_username, user_path(blog.user)
-      br
-      = raw blog.tag_list.map { |t| link_to t, tag_path(t), class: 'label warning' }.join(' ')
-      span.label.success =< "#{blog.comments_count} #{t(:comments, count: blog.comments_count)}"
-
-  div.fr-view
     / TODO: Use a decorator to handle this condition
     - if params[:term].present? && blog.search_highlights[:content].present?
       == blog.search_highlights[:content]
     - else
       == blog.content
 
-  - if can?(:update, blog) || can?(:destroy, blog)
-    footer.callout
-      =< link_to 'Modifier', edit_category_blog_path(blog.category, blog), class: 'button small warning' if can? :update, blog
-      =< link_to 'Supprimer', blog, data: { confirm: 'Etes-vous sûr ?' }, method: :delete, class: 'button small alert' if can? :destroy, blog
+  .card-action
+    .left
+      .chip<
+        = retina_image_tag blog.user, :avatar, :small
+        =< blog.user.username
+
+      span.new.badge data-badge-caption=t(:comments, count: blog.comments_count) = blog.comments_count
+
+
+    .right
+      =< link_to 'Modifier', edit_category_blog_path(blog.category, blog) if can? :update, blog
+
+      =< link_to 'Supprimer', blog, data: { confirm: 'Etes-vous sûr ?' }, method: :delete if can? :destroy, blog
 
   script type="application/ld+json"
     = jsonld_blog(blog)

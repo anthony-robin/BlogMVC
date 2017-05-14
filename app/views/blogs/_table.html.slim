@@ -1,10 +1,10 @@
-table.hover
+table.highlight.bordered.responsive-table
   thead
     tr
       th Couverture
       th Titre
       th Catégorie
-      - if params[:action] != 'show'
+      - if params[:controller] != 'users'
         th Auteur
       th Actions
   tbody
@@ -14,13 +14,24 @@ table.hover
         td = link_to blog.title, category_blog_path(blog.category, blog)
         td = link_to blog.category_name, category_blogs_path(blog.category)
 
-        - if params[:action] != 'show'
+        - if params[:controller] != 'users'
           td
             = link_to blog.user_username, user_path(blog.user)
             small =< "(#{blog.user_role})"
 
         td
-          =< link_to 'Voir', category_blog_path(blog.category, blog), class: 'button small success' if can?(:read, blog)
+          - if can?(:read, blog)
+            =< link_to category_blog_path(blog.category, blog), class: 'btn-floating btn-small waves-effect waves-light blue' do
+              i.material-icons visibility
+              | Voir
+
           - if params[:action] != 'show'
-            =< link_to 'Modifier', edit_category_blog_path(blog.category, blog), class: 'button small warning' if can?(:update, blog)
-            =< link_to 'Supprimer', blog, data: { confirm: 'Etes-vous sûr ?' }, method: :delete, class: 'button small alert' if can?(:destroy, blog)
+            - if can?(:update, blog)
+              =< link_to edit_category_blog_path(blog.category, blog), class: 'btn-floating btn-small waves-effect waves-light orange' do
+                i.material-icons mode_edit
+                | Modifier
+
+            - if can?(:destroy, blog)
+              =< link_to edit_category_blog_path(blog.category, blog), class: 'btn-floating btn-small waves-effect waves-light red', data: { confirm: 'Etes-vous sûr ?' }, method: :delete do
+                i.material-icons delete
+                | Supprimer

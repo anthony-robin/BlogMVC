@@ -1,9 +1,12 @@
-= form_tag(blogs_searches_path, method: :get, role: 'search') do
-  = text_field_tag :term,
-                   params[:term],
-                   autocomplete: :off,
-                   placeholder: 'Search',
-                   id: 'blogs_search--input',
-                   data: { autocomplete_path: blogs_autocompletes_path }
+.search-wrapper.card
+  = form_tag(blogs_path, method: :get, role: 'search') do
+    = text_field_tag :term,
+                     params[:term],
+                     autocomplete: :off,
+                     placeholder: 'Search',
+                     id: 'blogs_search',
+                     class: 'autocomplete',
+                     data: { autocomplete_path: blogs_autocompletes_path(format: :json) }
 
-  = submit_tag 'Search', name: nil, class: 'button'
+    = button_tag type: :submit, class: 'btn' do
+      i.material-icons.search search

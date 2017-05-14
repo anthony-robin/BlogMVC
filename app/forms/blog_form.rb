@@ -6,8 +6,8 @@ class BlogForm < ApplicationForm
   property :content, validates: { presence: true }
   property :slug, writeable: false # Read only
 
-  property :category_id
   property :tag_list
+  property :category_id
 
   property :picture do
     property :image

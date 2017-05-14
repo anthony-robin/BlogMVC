@@ -11,28 +11,30 @@ html lang=I18n.locale
     script type="application/ld+json"
       = jsonld_professional_service
 
-    .content
+    header#header_site
       = render 'partials/menu'
 
-      / Page title
-      div class="callout large primary"
-        div class="row column text-center"
-          h1 = title
-      nav aria-label="Vous êtes ici" role="navigation"
-        == breadcrumbs pretext: 'Vous êtes ici', separator: '', semantic: true, style: :foundation5
+      nav.top-nav
+        .container
+          .nav-wrapper
+            ul.left
+              li
+                h1.page-title
+                  = link_to title, root_url
+            ul.right
+              li
+                = link_to '#', data: { activates: 'nav-mobile' }, class: 'button-collapse waves-effect waves-light' do
+                  i.material-icons menu
 
       .row
-        .small-12.columns
-          - flash.each do |type, message|
-            .alert-box.callout.small class=type data-closable=''
-              span == message
+        = render 'partials/flash'
 
-              button.close-button aria-label='Dismiss alert' type='button' data-close=''
-                span aria-hidden='true' &times;
+        .container
+          .col.s12
+            = render 'partials/breadcrumbs'
 
-          == yield
+    main
+      .container
+        = yield
 
-    footer.footer
-      .row
-        .small-12.columns
-          p.text-center Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+    = render 'partials/footer'

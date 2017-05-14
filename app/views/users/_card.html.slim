@@ -1,11 +1,14 @@
-div class="card"
-  = retina_image_tag user, :avatar, :large
+.card
+  .card-image
+    = retina_image_tag user, :avatar, :large, style: 'max-width: '
 
-  div class="card-section"
-    h3 = user.username
-    h4 = user.email
+  .card-content
+    span.card-title = user.username
+    span = user.email
+    br
     small = user.role
 
   - if can? :update, user
-    p class="button warning small"
-      = link_to 'Modifier mon profil', edit_user_registration_path
+    .card-action
+      - if can? :update, user
+        = link_to 'Modifier mon profil', edit_user_registration_path
