@@ -84,12 +84,15 @@ end
 
 group :development do
   gem 'bullet'
+  gem 'color_route'
+  gem 'meta_request'
   gem 'annotate', github: 'ctran/annotate_models',
                   branch: 'develop'
-  gem 'color_route'
+
   gem 'web-console'
   gem 'better_errors', github: 'charliesome/better_errors'
   gem 'binding_of_caller'
+
   gem 'listen'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
