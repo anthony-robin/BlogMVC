@@ -7,28 +7,26 @@ html lang=I18n.locale
     = javascript_pack_tag 'application'
     = csrf_meta_tag
 
-  body
+  body.site
     script type="application/ld+json"
       = jsonld_professional_service
 
-    .content
+    header.header
       = render 'partials/menu'
 
-      / Page title
-      div class="callout large primary"
-        div class="row column text-center"
-          h1 = title
-      nav aria-label="Vous êtes ici" role="navigation"
-        == breadcrumbs pretext: 'Vous êtes ici', separator: '', semantic: true, style: :foundation5
-
-      .row
-        .small-12.columns
-          - flash.each do |type, message|
-            .alert-box.callout.small class=type data-closable=''
-              span == message
-
-              button.close-button aria-label='Dismiss alert' type='button' data-close=''
-                span aria-hidden='true' &times;
+    main.site-content
+      .ui.page.grid.centered
+        .column
+          / h1= title
+          / nav aria-label="Vous êtes ici" role="navigation"
+          /   == breadcrumbs pretext: 'Vous êtes ici', separator: '', semantic: true, style: :foundation5
+          / 
+          / - flash.each do |type, message|
+          /   .alert-box.callout.small class=type data-closable=''
+          /     span == message
+          / 
+          /     button.close-button aria-label='Dismiss alert' type='button' data-close=''
+          /       span aria-hidden='true' &times;
 
           == yield
 

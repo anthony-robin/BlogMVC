@@ -1,9 +1,8 @@
-= form_tag(blogs_searches_path, method: :get, role: 'search') do
-  = text_field_tag :term,
-                   params[:term],
-                   autocomplete: :off,
-                   placeholder: 'Search',
-                   id: 'blogs_search--input',
-                   data: { autocomplete_path: blogs_autocompletes_path }
-
-  = submit_tag 'Search', name: nil, class: 'button'
+.ui.icon.input
+  = form_tag(blogs_searches_path, method: :get, role: 'search', class: 'ui form') do
+    = text_field_tag :term,
+                     params[:term],
+                     autocomplete: :off,
+                     placeholder: 'Search',
+                     id: 'blogs_search--input',
+                     data: { autocomplete_path: blogs_autocompletes_path }

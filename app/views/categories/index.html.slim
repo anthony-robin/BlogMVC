@@ -7,24 +7,4 @@
   .small-12.medium-8.columns
     p = link_to 'Ajouter une catégorie', new_category_path, class: 'button full-width'
 
-.row.align-center
-  .small-12.medium-8.columns
-    table.hover
-      thead
-        tr
-          th Nom
-          th Nombre d'articles de Blog
-          th Actions
-
-      tbody
-        - @categories.each do |category|
-          tr
-            td = category.name
-            td = category.blogs_count
-            td
-              =< link_to 'Modifier', [:edit, category], class: 'button small warning'
-              =< link_to 'Supprimer', category, data: { confirm: 'Etes-vous sûr ?' }, method: :delete, class: 'button small alert'
-
-.row
-  .small-12.columns
-    = paginate @categories
+= render 'table'

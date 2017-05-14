@@ -1,3 +1,4 @@
+require('../../../vendor/assets/stylesheets/typeahead.bundle')
 import 'typeahead.js/dist/typeahead.jquery.js'
 import Bloodhound from 'typeahead.js/dist/bloodhound.js'
 

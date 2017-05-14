@@ -1,7 +1,10 @@
 // Libs
 require('../libs/font-awesome')
-require('../libs/materialize')
+require('../libs/semantic-ui') // TODO: Load lib with yarn when install will be fix
 require('../libs/turbolinks')
+
+// Design
+require('../../assets/stylesheets/application.sass')
 
 // Modules
 require('../modules/froala')

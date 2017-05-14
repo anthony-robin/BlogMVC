@@ -4,19 +4,16 @@
                 description: t('.description'),
                 keywords: t('.keywords')
 
-#sidebar_referer
-  .row
-    .small-12.medium-9.columns
-      = render 'blogs/search'
-
-      - if @blogs.blank?
-        p= t('.empty_records')
-      - else
-        - @blogs.each do |blog|
-          = render 'blogs/blog', blog: blog
-        = paginate @blogs
-
-        script type="application/ld+json"
-          = json_ld_blogs_paginator(@blogs)
-
+- if @blogs.blank?
+  p= t('.empty_records')
+- else
+  #sidebar_referer
     = render 'blogs/sidebar'
+
+    .ui.cards
+      - @blogs.each do |blog|
+        = render 'blogs/blog', blog: blog
+    = paginate @blogs
+
+  script type="application/ld+json"
+    = json_ld_blogs_paginator(@blogs)

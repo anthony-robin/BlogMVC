@@ -3,9 +3,8 @@
                 keywords: t('.keywords')
 
 - unless @blogs.empty?
-  .row.align-center
-    .small-12.medium-8.columns
-      = render 'carousel', blogs: @blogs_carousel
+  / .ui.grid
+  /   .twelve.wide.column
+  /     = render 'carousel', blogs: @blogs_carousel
 
   = render 'blogs/table', blogs: @blogs
-  = paginate @blogs

@@ -1,33 +1,23 @@
 / Menu
-div class="top-bar"
-  div class="top-bar-title"
-    span data-responsive-toggle="responsive-menu" data-hide-for="medium"
-      button class="menu-icon dark" type="button" data-toggle=''
-    strong= website_conf['title']
+.ui.stackable.container.secondary.pointing.menu
+  = link_to 'Accueil', root_path, class: 'item active'
+  = link_to 'Articles de Blog', blogs_path, class: 'item'
+  - if can?(:read, Category)
+    = link_to 'Catégories de Blog', categories_path, class: 'item'
+  = link_to 'Contact', contacts_path, class: 'item'
+  .item
+    = render 'blogs/search'
 
-  div id="responsive-menu"
-    div class="top-bar-left"
-      ul class="menu"
-        li = link_to 'Accueil', root_path
-        li = link_to 'Articles de Blog', blogs_path
-        - if can?(:read, Category)
-          li = link_to 'Catégories de Blog', categories_path
-        li = link_to 'Contact', contacts_path
-    div class="top-bar-right"
-      - if user_signed_in?
-        ul class="menu dropdown" data-dropdown-menu='' data-hover-delay='0' data-closing-time='0'
-          li
-            a href="#"
-              .row
-                .header__profile__picture
-                  = retina_image_tag current_user, :avatar, :thumb
-                .header__profile__name
-                  = current_user.username
-                  small.role =< "(#{current_user.role})"
-            ul class="menu vertical"
-              li = link_to 'Mon profil', users_path
-              li = link_to 'Déconnexion', destroy_user_session_path, method: :delete
-      - else
-        ul class="menu"
-          li = link_to 'Connexion', new_user_session_path
-          li = link_to 'Inscription', new_user_registration_path
+  .right.menu
+    - if user_signed_in?
+      a.browse.item
+        | Mon compte
+        i.dropdown.icon
+      .ui.fluid.popup.transition.hidden
+        .ui.column
+          .ui.link.list
+            = link_to 'Mon profil', users_path, class: 'item'
+            = link_to 'Déconnexion', destroy_user_session_path, class: 'item'
+    - else
+      = link_to 'Connexion', new_user_session_path, class: 'item'
+      = link_to 'Inscription', new_user_registration_path, class: 'item'

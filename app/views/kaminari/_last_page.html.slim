@@ -6,6 +6,5 @@
     per_page     : number of items to fetch per page
     remote       : data-remote
 
-li.last
-  == link_to_unless current_page.last?, t('views.pagination.last').html_safe, url, remote: remote
-'
+= link_to url, title: t('views.pagination.last'), class: 'item', remote: remote do
+  i.fast.forward.icon

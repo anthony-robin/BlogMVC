@@ -1,36 +1,48 @@
-article.blog id="blog_#{blog.id}"
-  header
-    h2
-      span.label = blog.category_name
-      / TODO: Use a decorator to handle this condition
-      - if params[:term].present? && blog.search_highlights[:title].present?
-        span.blog-title =< link_to blog.search_highlights[:title].html_safe, category_blog_path(blog.category, blog)
-      - else
-        span.blog-title =< link_to blog.title, category_blog_path(blog.category, blog)
+article.blog.card id="blog_#{blog.id}"
+  .ui.column.grid
+    .column
+      .ui.fluid.image
+        = link_to blog.category_name, '#', class: 'ui red ribbon label'
+        - if blog.picture?
+          .image
+            = retina_image_tag blog.picture, :image, :large, class: 'thumbnail'
 
-  div.preview
-    p = retina_image_tag blog.picture, :image, :large, class: 'thumbnail' if blog.picture?
+  - unless blog.picture?
+    div style="margin-top: 53px"
 
-  div.meta
-    p
-      span.timestamps = I18n.l(blog.created_at, format: :long)
-      |,
-      small.user =< link_to blog.user_username, user_path(blog.user)
-      br
-      = raw blog.tag_list.map { |t| link_to t, tag_path(t), class: 'label warning' }.join(' ')
-      span.label.success =< "#{blog.comments_count} #{t(:comments, count: blog.comments_count)}"
-
-  div.fr-view
+  .content
     / TODO: Use a decorator to handle this condition
-    - if params[:term].present? && blog.search_highlights[:content].present?
-      == blog.search_highlights[:content]
+    - if params[:term].present? && blog.search_highlights[:title].present?
+      =< link_to blog.search_highlights[:title].html_safe, category_blog_path(blog.category, blog), class: 'header'
     - else
-      == blog.content
+      =< link_to blog.title, category_blog_path(blog.category, blog), class: 'header'
+
+    .meta
+      span.date= I18n.l(blog.created_at, format: :short)
+      .ui.tag.labels
+        = raw blog.tag_list.map { |t| link_to t, tag_path(t), class: 'ui label' }.join(' ')
+
+    .description
+      / TODO: Use a decorator to handle this condition
+      - if params[:term].present? && blog.search_highlights[:content].present?
+        == blog.search_highlights[:content]
+      - else
+        == blog.content
+
+  footer.extra.content
+    span.right.floated
+      a.ui.green.circular.label =< "#{blog.comments_count} #{t(:comments, count: blog.comments_count)}"
+
+    span
+      = link_to user_path(blog.user), class: 'ui image label' do
+        = retina_image_tag blog.user, :avatar, :small
+        =< blog.user_username
 
   - if can?(:update, blog) || can?(:destroy, blog)
-    footer.callout
-      =< link_to 'Modifier', edit_category_blog_path(blog.category, blog), class: 'button small warning' if can? :update, blog
-      =< link_to 'Supprimer', blog, data: { confirm: 'Etes-vous sûr ?' }, method: :delete, class: 'button small alert' if can? :destroy, blog
+    footer.extra.content
+      .ui.two.buttons
+        =< link_to 'Modifier', edit_category_blog_path(blog.category, blog), class: 'ui orange button' if can? :update, blog
+        =< link_to 'Supprimer', blog, data: { confirm: 'Etes-vous sûr ?' }, method: :delete, class: 'ui red button' if can? :destroy, blog
 
   script type="application/ld+json"
     = jsonld_blog(blog)
