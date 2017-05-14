@@ -8,6 +8,7 @@ class ContactsController < ApplicationController
 
   # GET /contacts/new
   def new
+    add_breadcrumb t('.title'), new_contact_path
   end
 
   # POST /contacts

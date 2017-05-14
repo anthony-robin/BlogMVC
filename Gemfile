@@ -26,7 +26,7 @@ gem 'client_side_validations-simple_form'
 gem 'slim-rails' # slim file
 gem 'foundation-rails', '~> 6.3.0'
 gem 'kaminari', '~> 1.0' # Pagination
-gem 'gretel' # Breadcrumb
+gem 'breadcrumbs_on_rails'
 gem 'friendly_id'
 
 gem 'acts-as-taggable-on', '~> 4.0' # Taggable

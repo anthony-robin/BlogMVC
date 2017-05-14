@@ -18,8 +18,8 @@ html lang=I18n.locale
       div class="callout large primary"
         div class="row column text-center"
           h1 = title
-      nav aria-label="Vous êtes ici" role="navigation"
-        == breadcrumbs pretext: 'Vous êtes ici', separator: '', semantic: true, style: :foundation5
+
+      = render_breadcrumbs
 
       .row
         .small-12.columns

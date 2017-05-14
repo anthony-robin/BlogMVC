@@ -11,6 +11,9 @@ class BlogsController < ApplicationController
   # Abilities
   authorize_resource
 
+  # Breadcrumbs
+  add_breadcrumb I18n.t('blogs.index.title'), :blogs_path
+
   # GET /blogs
   # GET /blogs.json
   def index
@@ -18,6 +21,8 @@ class BlogsController < ApplicationController
     @blogs = @category.blogs.includes(:user, :category) if params[:category_id].present?
     @blogs = @blogs.tagged_with(params[:tag]) if params[:tag]
     @blogs = @blogs.page params[:page]
+
+    add_breadcrumb @category.name if params[:category_id].present?
   end
 
   # GET /blogs/1
@@ -28,16 +33,19 @@ class BlogsController < ApplicationController
     @comments = comment_threads.includes(:user, :commentable).order(created_at: :desc)
 
     @form = CommentForm.new(comment_threads.new)
+    add_breadcrumb t('.title', title: @blog.title)
   end
 
   # GET /blogs/new
   def new
     @form.model.build_picture
+    add_breadcrumb t('.title')
   end
 
   # GET /blogs/1/edit
   def edit
     @form.model.build_picture if @form.picture.nil?
+    add_breadcrumb t('.title')
   end
 
   # POST /blogs

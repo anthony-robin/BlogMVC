@@ -12,6 +12,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # Breadcrumbs
+  add_breadcrumb I18n.t('homes.index.title'), :root_path,
+                 if: proc { params[:controller] != 'homes' }
+
   protected
 
   def configure_permitted_parameters
