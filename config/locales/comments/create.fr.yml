@@ -1,0 +1,5 @@
+fr:
+  comments:
+    destroy:
+      success: Votre commentaire a bien été supprimé
+      alert: Votre commentaire n'a pas pu être supprimé
