@@ -1,6 +1,5 @@
 // Libs
 require('../libs/font-awesome')
-require('../libs/materialize')
 require('../libs/turbolinks')
 
 // Modules
