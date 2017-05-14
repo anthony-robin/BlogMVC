@@ -1,0 +1,4 @@
+fr:
+  users:
+    show:
+      title: 'Profil de %{profile}'

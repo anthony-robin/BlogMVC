@@ -1,0 +1,6 @@
+fr:
+  comments:
+    comment:
+      destroy:
+        label: Supprimer
+        confirm: Etes-vous sûr de vouloir supprimer ce commentaire ?

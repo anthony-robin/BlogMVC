@@ -1,0 +1,4 @@
+fr:
+  users:
+    index:
+      title: 'Mon Profil: %{profile}'
