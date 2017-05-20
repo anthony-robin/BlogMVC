@@ -1,0 +1,41 @@
+- add_breadcrumb t('devise.registrations.edit.title')
+- set_meta_tags title: t('.title'),
+                description: t('.description'),
+                keywords: t('.keywords')
+
+= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, validate: true) do |f|
+  .row
+    .small-12.medium-6.columns
+      = retina_image_tag resource, :avatar, :small
+      = f.input :avatar, as: :file
+      = f.input :avatar_cache, as: :hidden
+      = f.input :remove_avatar, as: :boolean, boolean_style: :inline if resource.avatar?
+
+      br
+      = f.input :username, required: true, input_html: { disabled: true }
+      br
+      = f.input :email, required: true, autofocus: true
+      - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+        p
+          | Currently waiting confirmation for:
+          = resource.unconfirmed_email
+
+      - if resource.master_role?
+        br
+        = f.input :role,
+                  as: :select,
+                  include_blank: false,
+                  collection: User.roles.keys
+
+    .small-12.medium-6.columns
+      = f.input :password, autocomplete: 'off', required: false
+      = f.input :password_confirmation, required: false
+      = f.input :current_password, required: true
+
+  .row.form-actions
+    .small-12.medium-6.columns
+      = f.button :submit, class: 'full-width'
+    .small-12.medium-3.columns
+      = link_to 'Supprimer mon compte', registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'button alert full-width'
+    .small-12.medium-3.columns
+      = link_to 'Annuler', :back, class: 'button secondary full-width'

@@ -3,7 +3,11 @@ class CategoriesController < ApplicationController
   before_action :set_category, only: %i[edit update destroy]
   before_action :set_form, only: %i[new create edit update]
 
+  # Abilities
   authorize_resource
+
+  # Breadcrumbs
+  add_breadcrumb I18n.t('categories.index.title'), :categories_path
 
   # GET /categories
   # GET /categories.json
@@ -13,10 +17,12 @@ class CategoriesController < ApplicationController
 
   # GET /categories/new
   def new
+    add_breadcrumb t('.title')
   end
 
   # GET /categories/1/edit
   def edit
+    add_breadcrumb t('.title')
   end
 
   # POST /categories

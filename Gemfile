@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 # Core
-gem 'rails', '~> 5.0.3'
+gem 'rails', '~> 5.1.1'
 gem 'puma', '~> 3.8'
 
 gem 'sqlite3', group: %i[development test] # Database
@@ -26,7 +26,7 @@ gem 'client_side_validations-simple_form'
 gem 'slim-rails' # slim file
 gem 'foundation-rails', '~> 6.3.0'
 gem 'kaminari', '~> 1.0' # Pagination
-gem 'gretel' # Breadcrumb
+gem 'breadcrumbs_on_rails'
 gem 'friendly_id'
 
 gem 'acts-as-taggable-on', '~> 4.0' # Taggable
@@ -84,12 +84,15 @@ end
 
 group :development do
   gem 'bullet'
+  gem 'color_route'
+  gem 'meta_request'
   gem 'annotate', github: 'ctran/annotate_models',
                   branch: 'develop'
-  gem 'color_route'
+
   gem 'web-console'
   gem 'better_errors', github: 'charliesome/better_errors'
   gem 'binding_of_caller'
+
   gem 'listen'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'

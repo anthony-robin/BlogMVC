@@ -1,0 +1,15 @@
+- set_meta_tags title: t('.title'),
+                description: t('.description'),
+                keywords: t('.keywords')
+
+.row.align-center
+  .small-12.medium-8.columns
+    p = link_to 'Ajouter une catégorie', new_category_path, class: 'button full-width'
+
+.row.align-center
+  .small-12.medium-8.columns
+    = render 'table'
+
+.row
+  .small-12.columns
+    = paginate @categories

@@ -1,0 +1,5 @@
+fr:
+  devise:
+    passwords:
+      new:
+        title: 'Mot de passe oublié ?'
