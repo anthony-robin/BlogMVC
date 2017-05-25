@@ -1,3 +1,3 @@
-import Turbolinks from 'turbolinks'
+const Turbolinks = require('turbolinks')
 
 Turbolinks.start()

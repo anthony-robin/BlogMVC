@@ -24,15 +24,6 @@ GIT
     retina_rails (2.0.4)
       rails (>= 3.2.0)
 
-GIT
-  remote: https://github.com/rails/webpacker.git
-  revision: 814cabae36da6ec5b55291e7b55db08ad8e6b839
-  specs:
-    webpacker (1.1)
-      activesupport (>= 4.2)
-      multi_json (~> 1.2)
-      railties (>= 4.2)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -438,6 +429,10 @@ GEM
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
       railties (>= 5.0)
+    webpacker (2.0)
+      activesupport (>= 4.2)
+      multi_json (~> 1.2)
+      railties (>= 4.2)
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
@@ -506,7 +501,7 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   sqlite3
   web-console
-  webpacker!
+  webpacker
 
 BUNDLED WITH
    1.14.6

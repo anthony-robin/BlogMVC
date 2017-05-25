@@ -15,7 +15,7 @@ module BlogMVC
     config.i18n.default_locale = :fr
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
 
-    # Remove Helper, CSS, Coffee generating when scaffolding ressources
+    # Remove Helper, CSS, JS generating when scaffolding ressources
     config.generators.helper = false
     config.generators.stylesheets = false
     config.generators.javascripts = false
