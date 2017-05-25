@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :picture do
-    image { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec', 'fixtures', 'avatar.png')) }
+    image { Rack::Test::UploadedFile.new(Rails.root.join('spec', 'fixtures', 'avatar.png')) }
 
     trait :for_blog do
       association :attachable, factory: :blog
