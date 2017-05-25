@@ -1,3 +1,4 @@
+# rubocop:disable Rails/OutputSafety
 module JsonLdHelper
   def jsonld_professional_service
     {
