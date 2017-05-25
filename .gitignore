@@ -26,14 +26,12 @@ public/uploads
 spec/support/uploads
 
 # Env
-.env
-.env.development
-.env.test
-.env.production
+.env*
+!.env.sample
 
 # Rubocop
 .rubocop-http*
 
 # Webpack
-/public/packs
+/public/packs*
 /node_modules

@@ -5,8 +5,6 @@ engines:
     enabled: true
   csslint:
     enabled: false
-  coffeelint:
-    enabled: false
   eslint:
     enabled: true
 
@@ -50,7 +48,6 @@ ratings:
   - "**.slim"
   - "**.css"
   - "**.sass"
-  - "**.coffee"
   - "**.js"
 
 exclude_paths:
@@ -58,3 +55,4 @@ exclude_paths:
 - spec/
 - db/
 - vendor/
+- node_modules/
