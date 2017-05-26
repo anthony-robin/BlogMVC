@@ -40,6 +40,7 @@
     "webpack-dev-server": "^2.4.5"
   },
   "scripts": {
-    "postinstall" : "npm rebuild node-sass"
+    "postinstall": "npm rebuild node-sass",
+    "lint": "./node_modules/.bin/eslint -f table 'app/javascript/**/*.js'"
   }
 }

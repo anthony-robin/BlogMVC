@@ -37,9 +37,9 @@ before_script:
   - RAILS_ENV=test bin/rails db:migrate
 
 script:
-  - RAILS_ENV=test bin/rspec
-  - RAILS_ENV=test bin/rubocop
-  - ./node_modules/.bin/eslint app/javascripts/**
+  - bin/rspec
+  - bin/rubocop
+  - eslint -f table 'app/javascripts/**'
 
 after_script:
   - RAILS_ENV=test bin/rails db:seed
