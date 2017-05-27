@@ -1,7 +1,7 @@
 import 'typeahead.js/dist/typeahead.jquery.js'
 import Bloodhound from 'typeahead.js/dist/bloodhound.js'
 
-$(document).on('turbolinks:load', () => {
+document.addEventListener('turbolinks:load', () => {
   const blogs = new Bloodhound({
     datumTokenizer: Bloodhound.tokenizers.whitespace,
     queryTokenizer: Bloodhound.tokenizers.whitespace,
