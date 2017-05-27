@@ -24,12 +24,11 @@ gem 'client_side_validations'
 gem 'client_side_validations-simple_form'
 
 gem 'slim-rails' # slim file
-gem 'foundation-rails', '~> 6.3.0'
 gem 'kaminari', '~> 1.0' # Pagination
 gem 'breadcrumbs_on_rails'
 gem 'friendly_id'
 
-gem 'acts-as-taggable-on', '~> 4.0' # Taggable
+gem 'acts-as-taggable-on', '~> 5.0' # Taggable
 gem 'acts_as_commentable_with_threading' # Commentable
 
 # Searchable
@@ -38,12 +37,9 @@ gem 'searchkick'
 # Uploaders
 gem 'mini_magick'
 gem 'carrierwave', '~> 1.0'
-gem 'retina_rails',
-    github: 'gemsfix/retina_rails',
-    branch: 'feature/rails5'
 
 gem 'active_model_serializers', '~> 0.10.0'
-gem 'webpacker', github: 'rails/webpacker'
+gem 'webpacker'
 
 gem 'rails-i18n', '~> 5.0.0' # I18n
 gem 'meta-tags' # SEO

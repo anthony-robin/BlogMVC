@@ -13,13 +13,12 @@ end
 #
 # Table name: pictures
 #
-#  id                :integer          not null, primary key
-#  attachable_type   :string
-#  attachable_id     :integer
-#  image             :string
-#  retina_dimensions :text
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
+#  id              :integer          not null, primary key
+#  attachable_type :string
+#  attachable_id   :integer
+#  image           :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
 #
 # Indexes
 #

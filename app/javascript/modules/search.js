@@ -1,13 +1,12 @@
 import 'typeahead.js/dist/typeahead.jquery.js'
 import Bloodhound from 'typeahead.js/dist/bloodhound.js'
 
-$(document).on('turbolinks:load', () => {
-  let blogs
-  blogs = new Bloodhound({
+document.addEventListener('turbolinks:load', () => {
+  const blogs = new Bloodhound({
     datumTokenizer: Bloodhound.tokenizers.whitespace,
     queryTokenizer: Bloodhound.tokenizers.whitespace,
     remote: {
-      url: ($('#blogs_search--input').data('autocomplete-path')) + '?query=%QUERY',
+      url: `${$('#blogs_search--input').data('autocomplete-path')}?query=%QUERY`,
       wildcard: '%QUERY'
     }
   })
@@ -23,9 +22,8 @@ $(document).on('turbolinks:load', () => {
     templates: {
       empty: '<span class="tt-suggestion">Not found</span>',
       suggestion(data) {
-        let image
-        image = data.picture || ''
-        return '<a href=\'' + data.url + '\'>' + image + ' ' + data.title + '</a>'
+        const image = data.picture || ''
+        return `<a href='${data.url}'>${image} ${data.title}</a>`
       }
     }
   })

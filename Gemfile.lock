@@ -16,23 +16,6 @@ GIT
       activerecord (>= 3.2, < 6.0)
       rake (>= 10.4)
 
-GIT
-  remote: https://github.com/gemsfix/retina_rails.git
-  revision: f512f568173376db836421ef791d68407ec238c3
-  branch: feature/rails5
-  specs:
-    retina_rails (2.0.4)
-      rails (>= 3.2.0)
-
-GIT
-  remote: https://github.com/rails/webpacker.git
-  revision: 814cabae36da6ec5b55291e7b55db08ad8e6b839
-  specs:
-    webpacker (1.1)
-      activesupport (>= 4.2)
-      multi_json (~> 1.2)
-      railties (>= 4.2)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -78,8 +61,8 @@ GEM
       i18n (~> 0.7)
       minitest (~> 5.1)
       tzinfo (~> 1.1)
-    acts-as-taggable-on (4.0.0)
-      activerecord (>= 4.0)
+    acts-as-taggable-on (5.0.0)
+      activerecord (>= 4.2.8)
     acts_as_commentable_with_threading (2.0.1)
       activerecord (>= 4.0)
       activesupport (>= 4.0)
@@ -90,10 +73,6 @@ GEM
     ast (2.3.0)
     awesome_nested_set (3.1.3)
       activerecord (>= 4.0.0, < 5.2)
-    babel-source (5.8.35)
-    babel-transpiler (0.7.0)
-      babel-source (>= 4.0, < 6)
-      execjs (~> 2.0)
     bcrypt (3.1.11)
     bindex (0.5.0)
     binding_of_caller (0.7.2)
@@ -122,13 +101,13 @@ GEM
       mime-types (>= 1.16)
     case_transform (0.2)
       activesupport
-    client_side_validations (9.3.1)
+    client_side_validations (9.3.2)
       jquery-rails (~> 4.3)
       js_regex (~> 1.2)
       rails (>= 5.0.0.1, < 5.2)
-    client_side_validations-simple_form (6.2.0)
-      client_side_validations (~> 9.0)
-      simple_form (~> 3.4)
+    client_side_validations-simple_form (6.3.0)
+      client_side_validations (~> 9.3, >= 9.3.2)
+      simple_form (~> 3.5)
     cliver (0.3.2)
     codacy-coverage (1.1.6)
       simplecov
@@ -176,7 +155,6 @@ GEM
       multi_json
     erubi (1.6.0)
     erubis (2.7.0)
-    execjs (2.7.0)
     factory_girl (4.8.0)
       activesupport (>= 3.0.0)
     factory_girl_rails (4.8.0)
@@ -187,10 +165,6 @@ GEM
     faraday (0.12.1)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.18)
-    foundation-rails (6.3.0.0)
-      railties (>= 3.1.0)
-      sass (>= 3.3.0, < 3.5)
-      sprockets-es6 (>= 0.9.0)
     foundation_emails (2.2.1.0)
     friendly_id (5.2.1)
       activerecord (>= 4.0.0)
@@ -238,9 +212,9 @@ GEM
       mime-types (>= 1.16, < 4)
     meta-tags (2.4.1)
       actionpack (>= 3.2.0, < 5.2)
-    meta_request (0.4.2)
+    meta_request (0.4.3)
       callsite (~> 0.0, >= 0.0.11)
-      rack-contrib (~> 1.1)
+      rack-contrib (>= 1.1, < 3)
       railties (>= 3.0.0, < 5.2.0)
     method_source (0.8.2)
     mime-types (3.1)
@@ -255,6 +229,7 @@ GEM
     nokogiri (1.7.2)
       mini_portile2 (~> 2.1.0)
     orm_adapter (0.5.0)
+    parallel (1.11.2)
     parser (2.4.0.0)
       ast (~> 2.2)
     pg (0.20.0)
@@ -358,7 +333,8 @@ GEM
       rspec-mocks (~> 3.6.0)
       rspec-support (~> 3.6.0)
     rspec-support (3.6.0)
-    rubocop (0.48.1)
+    rubocop (0.49.0)
+      parallel (~> 1.10)
       parser (>= 2.3.3.1, < 3.0)
       powerpack (~> 0.1)
       rainbow (>= 1.99.1, < 3.0)
@@ -396,7 +372,7 @@ GEM
       docile (~> 1.1.0)
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
-    simplecov-html (0.10.0)
+    simplecov-html (0.10.1)
     slim (3.0.7)
       temple (~> 0.7.6)
       tilt (>= 1.3.3, < 2.1)
@@ -405,7 +381,7 @@ GEM
       railties (>= 3.1)
       slim (~> 3.0)
     slop (3.6.0)
-    spring (2.0.1)
+    spring (2.0.2)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -413,10 +389,6 @@ GEM
     sprockets (3.7.1)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
-    sprockets-es6 (0.9.2)
-      babel-source (>= 5.8.11)
-      babel-transpiler
-      sprockets (>= 3.0.0)
     sprockets-rails (3.2.0)
       actionpack (>= 4.0)
       activesupport (>= 4.0)
@@ -438,6 +410,10 @@ GEM
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
       railties (>= 5.0)
+    webpacker (2.0)
+      activesupport (>= 4.2)
+      multi_json (~> 1.2)
+      railties (>= 4.2)
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
@@ -449,7 +425,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers (~> 0.10.0)
-  acts-as-taggable-on (~> 4.0)
+  acts-as-taggable-on (~> 5.0)
   acts_as_commentable_with_threading
   annotate!
   better_errors!
@@ -470,7 +446,6 @@ DEPENDENCIES
   dotenv-rails
   factory_girl_rails
   faker
-  foundation-rails (~> 6.3.0)
   friendly_id
   inky-rb
   kaminari (~> 1.0)
@@ -491,7 +466,6 @@ DEPENDENCIES
   rails-controller-testing
   rails-i18n (~> 5.0.0)
   reform-rails
-  retina_rails!
   rspec-rails (~> 3.5)
   rubocop
   sassc-rails
@@ -506,7 +480,7 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   sqlite3
   web-console
-  webpacker!
+  webpacker
 
 BUNDLED WITH
-   1.14.6
+   1.15.0
