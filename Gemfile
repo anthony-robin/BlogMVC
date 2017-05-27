@@ -38,9 +38,6 @@ gem 'searchkick'
 # Uploaders
 gem 'mini_magick'
 gem 'carrierwave', '~> 1.0'
-gem 'retina_rails',
-    github: 'gemsfix/retina_rails',
-    branch: 'feature/rails5'
 
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'webpacker'

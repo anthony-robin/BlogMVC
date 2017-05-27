@@ -14,6 +14,9 @@ Dir[Rails.root.join('spec', 'features', 'shared_examples', '**', '*.rb')].each d
   require f
 end
 
+ActiveRecord::Migration.check_pending!
+ActiveRecord::Migration.maintain_test_schema!
+
 RSpec.configure do |config|
   config.extend ControllerMacros, type: :controller
   config.include AbstractController::Translation
@@ -22,9 +25,6 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = false
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
-
-  ActiveRecord::Migration.check_pending!
-  ActiveRecord::Migration.maintain_test_schema!
 end
 
 Shoulda::Matchers.configure do |config|

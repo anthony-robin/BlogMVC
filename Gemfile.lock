@@ -16,14 +16,6 @@ GIT
       activerecord (>= 3.2, < 6.0)
       rake (>= 10.4)
 
-GIT
-  remote: https://github.com/gemsfix/retina_rails.git
-  revision: f512f568173376db836421ef791d68407ec238c3
-  branch: feature/rails5
-  specs:
-    retina_rails (2.0.4)
-      rails (>= 3.2.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -488,7 +480,6 @@ DEPENDENCIES
   rails-controller-testing
   rails-i18n (~> 5.0.0)
   reform-rails
-  retina_rails!
   rspec-rails (~> 3.5)
   rubocop
   sassc-rails

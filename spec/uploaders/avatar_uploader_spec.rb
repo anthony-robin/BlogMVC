@@ -17,27 +17,23 @@ describe AvatarUploader do
     uploader.remove!
   end
 
-  context 'the thumb version' do
-    it 'scales down a landscape image to be exactly 50 by 50 pixels (x2 for retina display)' do
-      expect(uploader.thumb).to have_dimensions(50 * 2, 50 * 2)
-    end
-  end
-
   context 'the small version' do
-    it 'scales down a landscape image to fit within 100 by 100 pixels (x2 for retina display)' do
-      expect(uploader.small).to have_dimensions(100 * 2, 100 * 2)
+    it 'scales down avatar to fill within 100 by 100 pixels' do
+      expect(uploader.small).to have_dimensions(100, 100)
     end
-  end
 
-  context 'the medium version' do
-    it 'scales down a landscape image to fit within 200 by 200 pixels (x2 for retina display)' do
-      expect(uploader.medium).to have_dimensions(200 * 2, 200 * 2)
+    it 'scales down avatar to fill within 200 by 200 pixels (retina)' do
+      expect(uploader.small_2x).to have_dimensions(200, 200)
     end
   end
 
   context 'the large version' do
-    it 'scales down a landscape image to fit within 400 by 400 pixels (x2 for retina display)' do
-      expect(uploader.large).to have_dimensions(400 * 2, 400 * 2)
+    it 'scales down avatar to fill within 200 by 200 pixels' do
+      expect(uploader.large).to have_dimensions(200, 200)
+    end
+
+    it 'scales down avatar to fill within 400 by 400 pixels (retina)' do
+      expect(uploader.large_2x).to have_dimensions(400, 400)
     end
   end
 

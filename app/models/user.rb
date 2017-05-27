@@ -71,7 +71,6 @@ end
 #  role                   :integer          default("author")
 #  blogs_count            :integer          default(0), not null
 #  avatar                 :string
-#  retina_dimensions      :text
 #  comments_count         :integer          default(0), not null
 #
 # Indexes

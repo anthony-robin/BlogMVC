@@ -1,8 +1,6 @@
 class ApplicationUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
-  retina!
-
   def store_dir
     "uploads/#{model.class.to_s.underscore}/#{model.id}"
   end

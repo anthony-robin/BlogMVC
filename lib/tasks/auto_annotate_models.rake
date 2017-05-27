@@ -14,6 +14,7 @@ if Rails.env.development?
       'exclude_fixtures'     => 'false',
       'exclude_factories'    => 'false',
       'exclude_scaffolds'    => 'true',
+      'exclude_serializers'  => 'true',
 
       'routes'               => 'false',
       'position_in_routes'   => 'after',
