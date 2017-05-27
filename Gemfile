@@ -24,12 +24,11 @@ gem 'client_side_validations'
 gem 'client_side_validations-simple_form'
 
 gem 'slim-rails' # slim file
-gem 'foundation-rails', '~> 6.3.0'
 gem 'kaminari', '~> 1.0' # Pagination
 gem 'breadcrumbs_on_rails'
 gem 'friendly_id'
 
-gem 'acts-as-taggable-on', '~> 4.0' # Taggable
+gem 'acts-as-taggable-on', '~> 5.0' # Taggable
 gem 'acts_as_commentable_with_threading' # Commentable
 
 # Searchable
