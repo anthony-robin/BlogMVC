@@ -20,7 +20,7 @@ div class="top-bar"
             a href="#"
               .row
                 .header__profile__picture
-                  = retina_image_tag current_user, :avatar, :thumb
+                  = retina_image_tag current_user, :avatar, :small
                 .header__profile__name
                   = current_user.username
                   small.role =< "(#{current_user.role})"

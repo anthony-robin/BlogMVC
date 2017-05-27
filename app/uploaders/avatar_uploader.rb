@@ -6,20 +6,20 @@ class AvatarUploader < ApplicationUploader
     "//gravatar.com/avatar/#{gravatar_id}.png?s=400&r=g&d=identicon"
   end
 
-  version :large do
+  version :large_2x do
     process resize_to_fill: [400, 400]
   end
 
-  version :medium do
+  version :large, from_version: :large_2x do
     process resize_to_fill: [200, 200]
   end
 
-  version :small do
-    process resize_to_fill: [100, 100]
+  version :small_2x, from_version: :large do
+    process resize_to_fill: [200, 200]
   end
 
-  version :thumb do
-    process resize_to_fill: [50, 50]
+  version :small, from_version: :small_2x do
+    process resize_to_fill: [100, 100]
   end
 
   def size_range
