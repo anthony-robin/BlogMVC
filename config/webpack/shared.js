@@ -53,9 +53,15 @@ module.exports = {
     extensions: settings.extensions,
     modules: [
       resolve(settings.source_path),
-      'node_modules',
-      'app/assets/stylesheets',
-      'app/assets/javascripts'
+
+      // Webpack
+      resolve('node_modules'),
+      resolve('node_modules', 'foundation-sites', 'dist', 'js', 'plugins'),
+      resolve('node_modules', 'foundation-sites', 'scss'),
+
+      // Assets pipeline
+      resolve('app', 'assets', 'stylesheets'),
+      resolve('app', 'assets', 'javascripts')
     ]
   },
 

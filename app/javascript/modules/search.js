@@ -1,5 +1,9 @@
-import 'typeahead.js/dist/typeahead.jquery.js'
-import Bloodhound from 'typeahead.js/dist/bloodhound.js'
+// Stylesheet
+import 'components/typeahead.bundle.sass'
+
+// Javascripts
+import 'typeahead.js/dist/typeahead.jquery'
+import Bloodhound from 'typeahead.js/dist/bloodhound'
 
 document.addEventListener('turbolinks:load', () => {
   const blogs = new Bloodhound({
