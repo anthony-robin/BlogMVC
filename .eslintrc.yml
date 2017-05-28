@@ -1,11 +1,14 @@
 extends: airbnb-base
-plugins:
-  - import
 
 env:
   browser: true
   jquery: true
   es6: true
+
+settings:
+  import/resolver:
+    webpack:
+      config: 'config/webpack/shared.js'
 
 rules:
   no-var: 1
@@ -15,4 +18,5 @@ rules:
   quotes: ['warn', 'single']
   semi: ['warn', 'never']
   comma-dangle: ['error', never]
-  import/extensions: 0
+  import/extensions: 1
+  import/no-extraneous-dependencies: 0

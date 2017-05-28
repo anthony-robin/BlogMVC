@@ -38,12 +38,13 @@
   "devDependencies": {
     "eslint": "^3.19.0",
     "eslint-config-airbnb-base": "^11.2.0",
+    "eslint-import-resolver-webpack": "^0.8.1",
     "eslint-plugin-import": "^2.3.0",
     "maildev": "^1.0.0-rc2",
     "webpack-dev-server": "^2.4.5"
   },
   "scripts": {
     "postinstall": "npm rebuild node-sass",
-    "lint": "./node_modules/.bin/eslint -f table 'app/javascript/**/*.js'"
+    "lint": "NODE_ENV=test ./node_modules/.bin/eslint 'app/javascript/**/*.js'"
   }
 }

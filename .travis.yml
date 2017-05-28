@@ -39,7 +39,7 @@ before_script:
 script:
   - bin/rspec
   - bin/rubocop
-  - eslint -f table 'app/javascripts/**'
+  - bin/yarn run lint
 
 after_script:
   - RAILS_ENV=test bin/rails db:seed
