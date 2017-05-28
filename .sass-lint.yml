@@ -1,0 +1,58 @@
+options:
+  formatter: stylish
+  merge-default-rules: false
+
+files:
+  include:
+    - 'app/assets/stylesheets/**/*.s+(a|c)ss'
+    - 'app/javascript/**/*.s+(a|c)ss'
+
+rules:
+  empty-line-between-blocks:
+    include: true
+
+  extends-before-mixins: 2
+  extends-before-declarations: 2
+  placeholder-in-extend: 2
+  mixins-before-declarations:
+    - 2
+    -
+      exclude:
+        - breakpoint
+        - mq
+
+  leading-zero:
+    - 2
+    -
+      include: true
+
+  no-warn: 1
+  no-debug: 1
+  no-ids: 2
+  no-important: 2
+  no-vendor-prefixes: 2
+  no-color-keywords: 2
+  no-duplicate-properties: 2
+  no-trailing-zero: 2
+  no-empty-rulesets: 2
+
+  hex-notation:
+    - 2
+    -
+      style: lowercase
+
+  hex-length:
+    - 2
+    -
+      style: short
+
+  indentation:
+    - 2
+    -
+      size: 2
+
+  property-sort-order:
+    - 1
+    -
+      order: smacss
+      ignore-custom-properties: false

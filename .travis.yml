@@ -20,7 +20,7 @@ services:
 before_install:
   - export TZ=Europe/Paris
   - nvm install 7.7.0
-  - npm i -g yarn@0.24.4
+  - npm i -g yarn
   - bin/yarn install
 
   # Install PhantomJS version 2.1.1
@@ -39,7 +39,8 @@ before_script:
 script:
   - bin/rspec
   - bin/rubocop
-  - bin/yarn run lint
+  - bin/yarn run eslint
+  - bin/yarn run sasslint
 
 after_script:
   - RAILS_ENV=test bin/rails db:seed

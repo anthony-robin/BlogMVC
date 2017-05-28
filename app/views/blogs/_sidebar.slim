@@ -8,7 +8,7 @@ div class="small-12 medium-3 columns" data-sticky-container=''
           =< "(#{category.blogs_count})"
 
     h4 Tags
-    div id="tag_cloud"
+    #tag_cloud.tag_cloud
       - tag_cloud Blog.tag_counts, %w(s m l) do |tag, css_class|
         =< link_to tag.name, tag_path(tag.name), class: css_class
 
