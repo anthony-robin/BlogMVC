@@ -6,6 +6,7 @@ html lang=I18n.locale
     = csrf_meta_tag
 
     / Stylesheets
+    = stylesheet_link_tag 'style'
     = stylesheet_pack_tag 'application'
 
     / JavaScripts
@@ -13,6 +14,8 @@ html lang=I18n.locale
     = javascript_include_tag 'application'
 
   body
+    = ribbonit
+
     script type="application/ld+json"
       = jsonld_professional_service
 
