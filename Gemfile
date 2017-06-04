@@ -50,6 +50,7 @@ gem 'inky-rb', require: 'inky'
 gem 'premailer-rails'
 
 gem 'shog' # Colored logs
+gem 'ribbonit'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
@@ -82,8 +83,7 @@ group :development do
   gem 'bullet'
   gem 'color_route'
   gem 'meta_request'
-  gem 'annotate', github: 'ctran/annotate_models',
-                  branch: 'develop'
+  gem 'annotate'
 
   gem 'web-console'
   gem 'better_errors', github: 'charliesome/better_errors'

@@ -18,6 +18,13 @@ feature 'Blogs::Autocomplete', js: true do
     let(:query) { 'ipsum' }
     before { subject.fill_form(query: query) }
 
-    it { is_expected.to have_found_records(title: blog.title) }
+    context 'without picture' do
+      it { is_expected.to have_found_records(title: blog.title) }
+    end
+
+    context 'with picture' do
+      let!(:picture) { create(:picture, attachable: blog) }
+      it { is_expected.to have_found_records(title: blog.title) }
+    end
   end
 end

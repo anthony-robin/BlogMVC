@@ -1,20 +1,15 @@
 ---
 engines:
-  # Assets
   scss-lint:
     enabled: true
   csslint:
     enabled: false
   eslint:
     enabled: true
-
-  # Security
   brakeman:
-    enabled: true
+    enabled: false
   bundler-audit:
     enabled: false
-
-  # Clean code
   rubocop:
     enabled: true
   duplication:

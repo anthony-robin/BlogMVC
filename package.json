@@ -8,7 +8,7 @@
     "babel-polyfill": "^6.23.0",
     "babel-preset-env": "^1.5.1",
     "compression-webpack-plugin": "^0.4.0",
-    "css-loader": "^0.28.3",
+    "css-loader": "^0.28.4",
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.11.1",
     "font-awesome": "^4.7.0",
@@ -20,6 +20,7 @@
     "jquery-ujs": "^1.2.2",
     "js-yaml": "^3.8.4",
     "lodash": "^4.17.4",
+    "motion-ui": "^1.2.2",
     "node-sass": "^4.5.3",
     "path-complete-extname": "^0.1.0",
     "postcss-loader": "^2.0.5",
@@ -38,12 +39,15 @@
   "devDependencies": {
     "eslint": "^3.19.0",
     "eslint-config-airbnb-base": "^11.2.0",
+    "eslint-import-resolver-webpack": "^0.8.1",
     "eslint-plugin-import": "^2.3.0",
     "maildev": "^1.0.0-rc2",
+    "sass-lint": "^1.10.2",
     "webpack-dev-server": "^2.4.5"
   },
   "scripts": {
     "postinstall": "npm rebuild node-sass",
-    "lint": "./node_modules/.bin/eslint -f table 'app/javascript/**/*.js'"
+    "eslint": "NODE_ENV=test ./node_modules/.bin/eslint 'app/javascript/**/*.js'",
+    "sasslint": "NODE_ENV=test ./node_modules/.bin/sass-lint -v -q"
   }
 }
