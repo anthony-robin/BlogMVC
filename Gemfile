@@ -82,8 +82,7 @@ group :development do
   gem 'bullet'
   gem 'color_route'
   gem 'meta_request'
-  gem 'annotate', github: 'ctran/annotate_models',
-                  branch: 'develop'
+  gem 'annotate'
 
   gem 'web-console'
   gem 'better_errors', github: 'charliesome/better_errors'
