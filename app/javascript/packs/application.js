@@ -1,4 +1,5 @@
 // Libs
+import 'jquery-ujs/src/rails'
 import 'font-awesome/css/font-awesome.min.css'
 
 // Modules
