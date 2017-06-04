@@ -10,11 +10,8 @@ Rails 5 Blog MVC project
 
 ## Try it
 - Clone project (`git clone git@github.com:anthony-robin/BlogMVC.git`)
-- Install gems (`bundle install`)
-- Set environment variables (`cp .env.sample .env`)
-- Create database (`bin/rails db:create`)
-- Load schema (`bin/rails db:migrate`)
-- Seed datas (`bin/rails db:seed`)
+- Go to project folder (`cd BlogMVC`)
+- Run setup script (`bin/setup`)
 
 ## Run project
 It is recommended to use [Foreman](https://github.com/ddollar/foreman) to run the differents processes:

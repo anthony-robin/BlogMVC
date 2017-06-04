@@ -33,6 +33,7 @@ before_install:
 before_script:
   - sleep 8 # wait for elasticsearch
   - cp .env{.sample,}
+  - cp config/database.yml{.sample,}
   - RAILS_ENV=test bin/rails webpacker:compile
   - RAILS_ENV=test bin/rails db:migrate
 
