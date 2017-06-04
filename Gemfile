@@ -50,6 +50,7 @@ gem 'inky-rb', require: 'inky'
 gem 'premailer-rails'
 
 gem 'shog' # Colored logs
+gem 'ribbonit'
 
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
