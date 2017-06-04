@@ -1,0 +1,25 @@
+/ Menu
+.title-bar data-responsive-toggle="responsive-menu" data-hide-for="medium"
+  button.menu-icon type="button" data-toggle="responsive-menu"
+  .title-bar-title Dashboard
+
+.top-bar#responsive-menu
+  .top-bar-left
+    ul.menu
+      li.title-bar-title data-toggle="adminMenu" Dashboard
+  .top-bar-right
+    ul.menu.dropdown data-dropdown-menu='' data-hover-delay='0' data-closing-time='0'
+      li = render 'blogs/search'
+
+      li
+        = link_to '#' do
+          .grid-x
+            .header__profile__picture
+              = retina_image_tag current_user, :avatar, :small
+            .header__profile__name
+              = current_user.username
+              small.role =< "(#{current_user.role})"
+        ul.menu.submenu.vertical data-submenu=''
+          li = link_to 'Admin Dashboard', admin_root_path
+          li = link_to 'Mon profil', users_path
+          li = link_to 'Déconnexion', destroy_user_session_path, method: :delete

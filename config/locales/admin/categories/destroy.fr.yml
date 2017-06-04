@@ -1,0 +1,5 @@
+fr:
+  admin:
+    categories:
+      destroy:
+        notice: La Catégorie a été supprimée avec succès

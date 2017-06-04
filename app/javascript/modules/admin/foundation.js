@@ -1,5 +1,5 @@
 // Stylesheet
-import 'assets/stylesheets/frontend.sass'
+import 'assets/stylesheets/backend.sass'
 import 'motion-ui/dist/motion-ui.css'
 
 // Javascript
@@ -16,7 +16,7 @@ import 'foundation.util.triggers'
 import 'foundation.util.imageLoader'
 
 import 'foundation.dropdownMenu'
-import 'foundation.orbit'
+import 'foundation.offcanvas'
 import 'foundation.responsiveToggle'
 
 import 'motion-ui/dist/motion-ui'

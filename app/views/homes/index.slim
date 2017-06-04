@@ -6,9 +6,4 @@
   .grid-container
     .grid-x.grid-padding-x.align-center
       .small-12.medium-8.cell
-        = render 'carousel', blogs: @blogs_carousel
-
-    .grid-x.grid-padding-x
-      .cell
-        = render 'blogs/table', blogs: @blogs
-        = paginate @blogs
+        = render 'carousel', blogs: @blogs
