@@ -1,0 +1,28 @@
+default: &default
+  adapter: sqlite3
+  pool: 5
+  timeout: 5000
+
+default_production: &default_production
+  adapter: postgresql
+  username: "<%= ENV.fetch('DB_USERNAME') %>"
+  password: "<%= ENV.fetch('DB_PASSWORD') %>"
+  host: "<%= ENV.fetch('DB_HOST') %>"
+  database: "<%= ENV.fetch('DB_NAME') %>"
+  port: "<%= ENV.fetch('DB_PORT') %>"
+
+development:
+  <<: *default
+  database: db/development.sqlite3
+
+test:
+  <<: *default
+  database: db/test.sqlite3
+
+staging:
+  <<: *default
+  <<: *default_production
+
+production:
+  <<: *default
+  <<: *default_production
