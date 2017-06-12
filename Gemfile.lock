@@ -72,6 +72,7 @@ GEM
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
     breadcrumbs_on_rails (3.0.1)
+    bugsnag (5.3.2)
     builder (3.2.3)
     bullet (5.5.1)
       activesupport (>= 3.0.0)
@@ -355,8 +356,6 @@ GEM
       activemodel (>= 4.1)
       elasticsearch (>= 1)
       hashie
-    sentry-raven (2.5.2)
-      faraday (>= 0.7.6, < 1.0)
     shog (0.1.9)
       colored (~> 1.2)
       rails (>= 4)
@@ -428,6 +427,7 @@ DEPENDENCIES
   better_errors!
   binding_of_caller
   breadcrumbs_on_rails
+  bugsnag
   bullet
   cancancan
   capybara (~> 2.14)
@@ -468,7 +468,6 @@ DEPENDENCIES
   rubocop
   sassc-rails
   searchkick
-  sentry-raven
   shog
   shoulda-matchers (~> 3.1)
   simple_form
