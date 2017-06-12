@@ -61,8 +61,8 @@ gem 'ribbonit'
 # gem 'capistrano-rails', group: :development
 
 group :staging, :production do
+  gem 'bugsnag'
   gem 'lograge' # Condensed logs
-  gem 'sentry-raven'
 end
 
 group :development, :test do
