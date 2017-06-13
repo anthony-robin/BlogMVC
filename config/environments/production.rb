@@ -90,4 +90,9 @@ Rails.application.configure do
     exceptions = %w[controller action format id]
     { params: event.payload[:params].except(*exceptions) }
   end
+
+  # Bugsnag
+  Bugsnag.configure do |config|
+    config.api_key = ENV.fetch('BUGSNAG_API_KEY')
+  end
 end
