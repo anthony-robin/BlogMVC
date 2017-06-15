@@ -11,5 +11,8 @@ development:
 test:
   <<: *DEFAULTS
 
+staging:
+  <<: *DEFAULTS
+
 production:
   <<: *DEFAULTS

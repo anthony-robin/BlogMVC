@@ -6,15 +6,9 @@ const { settings, output } = require('./configuration.js')
 
 module.exports = merge(sharedConfig, {
   devtool: 'cheap-eval-source-map',
-
-  stats: {
-    errorDetails: true
-  },
-
   output: {
     pathinfo: true
   },
-
   devServer: {
     clientLogLevel: 'none',
     https: settings.dev_server.https,
@@ -27,6 +21,7 @@ module.exports = merge(sharedConfig, {
     historyApiFallback: true,
     watchOptions: {
       ignored: /node_modules/
-    }
+    },
+    stats: 'minimal'
   }
 })
