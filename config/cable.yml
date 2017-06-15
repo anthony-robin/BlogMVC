@@ -1,9 +1,19 @@
-development:
+local: &local
   adapter: async
 
-test:
-  adapter: async
-
-production:
+remote: &remote
   adapter: redis
   url: redis://localhost:6379/1
+
+development:
+  <<: *local
+
+test:
+  <<: *local
+
+staging:
+  <<: *remote
+  url: redis://localhost:6379/2
+
+production:
+  <<: *remote
