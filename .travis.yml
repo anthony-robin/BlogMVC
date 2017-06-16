@@ -1,37 +1,48 @@
+dist: trusty
 sudo: required
 language: ruby
 
-cache:
-  bundler: true
-  directories:
-    - node_modules
-    - travis_phantomjs
-  yarn: true
-bundler_args: --without development
-
 rvm:
   - 2.4.1
-env:
-  - DB=sqlite
+
+cache:
+  bundler: true
+  yarn: true
+  directories:
+    - node_modules
 
 services:
   - elasticsearch
 
+env:
+  - DB=sqlite
+
 before_install:
   - export TZ=Europe/Paris
+
+  - wget http://chromedriver.storage.googleapis.com/2.30/chromedriver_linux64.zip
+  - unzip chromedriver_linux64.zip
+  - sudo mv chromedriver /usr/local/bin
+  - sudo chmod a+x /usr/local/bin/chromedriver
+
+install:
+  - bundle install --without development # Gemfile
+
+  # Webpack
   - nvm install 7.7.0
   - npm i -g yarn
   - bin/yarn install
 
-  # Install PhantomJS version 2.1.1
-  - "export PATH=$PWD/travis_phantomjs/phantomjs-2.1.1-linux-x86_64/bin:$PATH"
-  - "hash -d phantomjs || true"
-  - "if [ $(phantomjs --version) != '2.1.1' ]; then rm -rf $PWD/travis_phantomjs; mkdir -p $PWD/travis_phantomjs; fi"
-  - "if [ $(phantomjs --version) != '2.1.1' ]; then wget https://assets.membergetmember.co/software/phantomjs-2.1.1-linux-x86_64.tar.bz2 -O $PWD/travis_phantomjs/phantomjs-2.1.1-linux-x86_64.tar.bz2; fi"
-  - "if [ $(phantomjs --version) != '2.1.1' ]; then tar -xvf $PWD/travis_phantomjs/phantomjs-2.1.1-linux-x86_64.tar.bz2 -C $PWD/travis_phantomjs; fi"
-
 before_script:
-  - sleep 8 # wait for elasticsearch
+  # Chrome Headless
+  - google-chrome-stable --headless --disable-gpu --remote-debugging-port=9222 http://localhost &
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start &
+
+  # ElasticSearch
+  - wget -q --waitretry=1 --retry-connrefused -T 10 -O - http://127.0.0.1:9200
+
+  - sleep 8
   - cp .env{.sample,}
   - cp config/database.yml{.sample,}
   - RAILS_ENV=test bin/rails webpacker:compile
@@ -55,7 +66,6 @@ after_failure:
   - echo $RAILS_ENV
   - bin/rake --version
   - node --version
-  - phantomjs -v
 
 matrix:
   fast_finish: true
@@ -63,9 +73,14 @@ matrix:
 branches:
   only:
     - master
-    - develop
 
 addons:
+  chrome: stable
+  apt:
+    sources:
+      - elasticsearch-2.x
+    packages:
+      - elasticsearch
   code_climate:
     repo_token:
       secure: "dYsryV/LSmZXU7k1RXiPnRG2tNpiaEUvXpBYm1szq9oCZNZQkrucbELEomSxZ0/Z1AezK5JC5TGBzEKefycYwiUXS0mgrWQwlXvVgawMeBbUgG6TQpK3MQboYe+JLramy0tNc999ViaCCnlMk2Vht0+tLMLuWstqKEx2WM4ZK4rWkumv98APC+4j9gJK4PRiYcfV42jQLYulZ0mhOPrsWxWPh1qHQrlVicenFLrE5U5V9eXrz124HBVt8fhhUYp5KylTNZRDx9xe4Ak69Xqd6E8iWfXVWbKa3lsbKEdhycO2vs1SUr/q4VS9cnPqNHcooefAGOviGJjbntkyTxgJqybRQByg2W1Dur9dpyJpgErLztjoyvAG2zZ6w2AEuLyEwhw1B4pimd13D/yZgEZyBriqih1ViLe6KQ8Z5R0O3mdm4S6HheN/Eby4rhj0YrR5uHZ+2abOEXGbV6C+guz6z9yjo8gbm2U8O+llihTMm3/RNOwzmuln+uYcqZlgX4vMkSU+zhSBc9mmE4zzaFfhta4XydiGOG8BK9SrQujyScDByZW11mTb/wDlLAZv0UaBcNYClC2TRkAMRS0ECs9PF9wx+9ACZei/RoDfEQFBncDITmAhj1YvZG7FP6req6Tu78IkJjsL+mrdK3HlwpJ3r0Qv3tBIgKUQga97ee9MmKw="

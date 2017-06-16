@@ -1,13 +1,13 @@
 class Blogs::AutocompletePage < ApplicationPage
   SELECTORS = {
     form: 'form[role="search"]',
-    input: 'input#blogs_search--input'
+    input: 'blogs_search--input' # id
   }.freeze
 
   def fill_form(query:)
     within SELECTORS[:form] do
       fill_in 'term', with: query
-      find(:css, SELECTORS[:input]).trigger('focus')
+      trigger_focus_event(SELECTORS[:input])
     end
   end
 
