@@ -97,7 +97,7 @@ end
 group :test do
   gem 'capybara', '~> 2.14'
   gem 'capybara-screenshot', require: false
-  gem 'poltergeist', require: false
+  gem 'selenium-webdriver', require: false
 
   gem 'shoulda-matchers', '~> 3.1'
   gem 'rails-controller-testing'
