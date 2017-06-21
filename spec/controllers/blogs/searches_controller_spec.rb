@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Blogs::SearchesController do
+RSpec.describe Blogs::SearchesController do
   let!(:blogs) { create_list(:blog, 3) }
   let!(:blog) { create(:blog, title: 'Lorem ipsum') }
 

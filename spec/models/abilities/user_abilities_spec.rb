@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'User::Ability' do
+RSpec.describe 'User::Ability' do
   let(:user) { nil }
   subject(:ability) { Ability.new(user) }
 

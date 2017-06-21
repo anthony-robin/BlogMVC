@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Blogs::Search', js: true do
+RSpec.feature 'Blogs::Search', js: true do
   let!(:blogs) { create_list(:blog, 3) }
   let!(:blog) { create(:blog, title: 'Lorem ipsum') }
 

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ContactForm, type: :model do
+RSpec.describe ContactForm, type: :model do
   let(:i18n_scope) { %i[errors attributes] }
   let(:valid_attributes) do
     { contact: { name: 'John Doe',

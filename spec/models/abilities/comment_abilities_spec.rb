@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Comment::Ability' do
+RSpec.describe 'Comment::Ability' do
   let(:user) { nil }
   let(:comment) { create(:comment, user: user) }
   subject(:ability) { Ability.new(user) }

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe CategoryForm, type: :model do
+RSpec.describe CategoryForm, type: :model do
   let(:i18n_scope) { %i[activemodel errors models category attributes] }
 
   let(:valid_attributes) do

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe BlogSerializer, type: :serializer do
+RSpec.describe BlogSerializer, type: :serializer do
   let(:blog) { create(:blog) }
   subject { serialize(blog) }
 

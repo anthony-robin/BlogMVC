@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Blog::Ability' do
+RSpec.describe 'Blog::Ability' do
   let(:user) { nil }
   subject(:ability) { Ability.new(user) }
 

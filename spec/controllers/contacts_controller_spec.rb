@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe ContactsController do
+RSpec.describe ContactsController do
   let(:valid_attributes) do
     { contact: { name: 'John Doe',
                  email: 'johndoe@test.fr',

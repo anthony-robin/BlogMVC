@@ -1,6 +1,6 @@
 # Blogs Creatable
 #
-shared_examples_for :blog_creatable do
+RSpec.shared_examples_for :blog_creatable do
   it { is_expected.to have_http_status(302) }
 
   it 'has correct flash message' do
@@ -24,7 +24,7 @@ end
 
 # Blogs Updatable
 #
-shared_examples_for :blog_updatable do
+RSpec.shared_examples_for :blog_updatable do
   it { is_expected.to have_http_status(302) }
 
   it 'has correct flash message' do
@@ -44,7 +44,7 @@ end
 
 # Blogs Destroyable
 #
-shared_examples_for :blog_destroyable do
+RSpec.shared_examples_for :blog_destroyable do
   it_behaves_like :redirected_request, 'blogs_url'
 
   it 'has correct flash message' do

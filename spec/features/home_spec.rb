@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Home page' do
+RSpec.feature 'Home page' do
   subject { HomePage.new }
 
   context '#index' do

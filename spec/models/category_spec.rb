@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Category do
+RSpec.describe Category do
   context 'associations' do
     it { is_expected.to have_many(:blogs) }
   end

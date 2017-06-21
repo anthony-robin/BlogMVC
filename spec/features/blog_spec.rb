@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Blog page' do
+RSpec.feature 'Blog page' do
   let!(:blogs) { create_list(:blog, 3) }
 
   subject { BlogPage.new }

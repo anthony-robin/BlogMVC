@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Blogs::AutocompleteSerializer, type: :serializer do
+RSpec.describe Blogs::AutocompleteSerializer, type: :serializer do
   include Rails.application.routes.url_helpers
 
   let(:blog) { create(:blog) }

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe CommentsController do
+RSpec.describe CommentsController do
   let(:blog) { create(:blog) }
 
   let(:valid_params) do
