@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe AvatarUploader do
+RSpec.describe AvatarUploader do
   include CarrierWave::Test::Matchers
 
   let(:user) { create(:user) }

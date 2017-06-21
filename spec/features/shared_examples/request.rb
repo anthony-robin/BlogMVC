@@ -1,14 +1,14 @@
-shared_examples_for :ok_request do |template|
+RSpec.shared_examples_for :ok_request do |template|
   it { is_expected.to have_http_status(200) }
   it { is_expected.to render_template(template) }
 end
 
-shared_examples_for :redirected_request do |url|
+RSpec.shared_examples_for :redirected_request do |url|
   it { is_expected.to have_http_status(302) }
   it { is_expected.to redirect_to(send(url)) }
 end
 
-shared_examples_for :cancan_unauthorized_request do |url, path|
+RSpec.shared_examples_for :cancan_unauthorized_request do |url, path|
   it_behaves_like :redirected_request, url
 
   it 'has correct flash message' do
@@ -16,14 +16,14 @@ shared_examples_for :cancan_unauthorized_request do |url, path|
   end
 end
 
-shared_examples_for :unauthorized_request do
+RSpec.shared_examples_for :unauthorized_request do
   it { is_expected.to have_http_status(401) }
 end
 
-shared_examples_for :forbidden_request do
+RSpec.shared_examples_for :forbidden_request do
   it { is_expected.to have_http_status(403) }
 end
 
-shared_examples_for :not_found_request do
+RSpec.shared_examples_for :not_found_request do
   it { is_expected.to have_http_status(404) }
 end

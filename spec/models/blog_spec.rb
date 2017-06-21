@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Blog do
+RSpec.describe Blog do
   context 'associations' do
     it { is_expected.to belong_to(:category) }
   end

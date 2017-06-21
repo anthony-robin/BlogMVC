@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe JsonLdHelper do
+RSpec.describe JsonLdHelper do
   include ApplicationHelper
   include Kaminari::Helpers::HelperMethods
 

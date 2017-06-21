@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe User do
+RSpec.describe User do
   let(:i18n_scope) { %i[errors attributes] }
 
   context 'associations' do

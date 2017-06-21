@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe BlogsController do
+RSpec.describe BlogsController do
   let!(:blog) { create(:blog) }
   let(:category) { create(:category) }
 

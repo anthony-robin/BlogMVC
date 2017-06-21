@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe CategoriesController do
+RSpec.describe CategoriesController do
   let(:category) { create(:category) }
 
   let(:valid_attributes) { { category: { name: 'FooBar' } } }

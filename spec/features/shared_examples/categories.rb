@@ -1,6 +1,6 @@
 # Categories Creatable
 #
-shared_examples_for :category_creatable do
+RSpec.shared_examples_for :category_creatable do
   it_behaves_like :redirected_request, 'categories_url'
 
   it 'has correct flash message' do
@@ -16,7 +16,7 @@ end
 
 # Categories Updatable
 #
-shared_examples_for :category_updatable do
+RSpec.shared_examples_for :category_updatable do
   it_behaves_like :redirected_request, 'categories_url'
 
   it 'has correct flash message' do
@@ -30,7 +30,7 @@ end
 
 # Categories Destroyable
 #
-shared_examples_for :category_destroyable do
+RSpec.shared_examples_for :category_destroyable do
   it_behaves_like :redirected_request, 'categories_url'
 
   it 'has correct flash message' do

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe BlogForm, type: :model do
+RSpec.describe BlogForm, type: :model do
   let(:category) { create(:category) }
   let(:i18n_scope) { %i[activemodel errors models blog attributes] }
 

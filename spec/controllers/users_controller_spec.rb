@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe UsersController do
+RSpec.describe UsersController do
   describe 'GET #index' do
     context 'a non connected user' do
       subject! { get :index }

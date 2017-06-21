@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Blogs::AutocompletesController do
+RSpec.describe Blogs::AutocompletesController do
   let!(:blogs) { create_list(:blog, 5) }
 
   before(:each) { Blog.reindex }

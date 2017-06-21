@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Category::Ability' do
+RSpec.describe 'Category::Ability' do
   let(:user) { nil }
   let(:category) { create(:category) }
   subject(:ability) { Ability.new(user) }

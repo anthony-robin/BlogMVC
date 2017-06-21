@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe CommentForm, type: :model do
+RSpec.describe CommentForm, type: :model do
   let(:user) { create(:user) }
   let(:i18n_scope) { %i[activemodel errors models comment attributes] }
 

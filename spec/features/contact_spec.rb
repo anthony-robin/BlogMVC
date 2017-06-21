@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Contact page' do
+RSpec.feature 'Contact page' do
   let(:valid_attributes) do
     { contact: { name: 'John Doe',
                  email: 'johndoe@test.fr',
