@@ -9,7 +9,8 @@ module.exports = {
       {
         loader: 'css-loader',
         options: {
-          minimize: env.NODE_ENV === 'production' || env.NODE_ENV === 'staging'
+          minimize: env.NODE_ENV === 'production' || env.NODE_ENV === 'staging',
+          sourceMap: true
         }
       },
       {
