@@ -2,9 +2,9 @@
                 description: @blog.content,
                 keywords: @blog.content.split
 
-#sidebar_referer
-  .row
-    .small-12.medium-9.columns
+.grid-container#sidebar_referer
+  .grid-x.grid-padding-x
+    .small-12.medium-9.cell
       = render 'blogs/blog', blog: @blog
 
       .comments--section
