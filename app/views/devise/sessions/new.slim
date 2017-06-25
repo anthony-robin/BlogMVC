@@ -3,26 +3,25 @@
                 description: t('.description'),
                 keywords: t('.keywords')
 
-.row
-  .small-12.medium-9.columns
-    = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-      .row.align-center
-        .small-12.medium-8.columns
-          .row
-            .small-12.medium-6.columns
-              = f.input :email, required: false, autofocus: true
-            .small-12.medium-6.columns
-              = f.input :password, required: false
+= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  .grid-container
+    .grid-x.grid-padding-x
+      .small-12.medium-9.cell
+        .grid-x.grid-padding-x
+          .small-12.medium-6.cell
+            = f.input :email, required: false, autofocus: true
+          .auto.cell
+            = f.input :password, required: false
 
-          = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+        .grid-x.grid-padding-x
+          .auto.cell
+            = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
 
-      .row.align-center.form-actions
-        .small-12.medium-8.columns
-          .row
-            .small-12.medium-8.columns
-              = f.button :submit, 'Connexion', class: 'button full-width'
-            .small-12.medium-4.columns
-              = link_to 'Annuler', :back, class: 'button secondary full-width'
+        .grid-x.grid-padding-x.align-center.form-actions
+          .small-12.medium-8.cell
+            = f.button :submit, 'Connexion', class: 'button full-width'
+          .auto.cell
+            = link_to 'Annuler', :back, class: 'button secondary full-width'
 
-  .small-12.medium-3.columns
-    = render 'devise/shared/links'
+      .auto.cell
+        = render 'devise/shared/links'

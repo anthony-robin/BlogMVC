@@ -1,0 +1,9 @@
+.grid-container.align-center
+  .grid-x
+    .small-12.cell
+      - flash.each do |type, message|
+        .alert-box.callout.small class=type data-closable=''
+          span== message
+
+          button.close-button aria-label='Dismiss alert' type='button' data-close=''
+            span aria-hidden='true' &times;

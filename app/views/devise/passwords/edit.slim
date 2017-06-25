@@ -2,26 +2,28 @@
                 description: t('.description'),
                 keywords: t('.keywords')
 
-.row.align-center
-  .small-12.medium-9.columns
-    = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
-      = f.input :reset_password_token, as: :hidden
-      = f.full_error :reset_password_token
+= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+  .grid-container
+    .grid-x.grid-padding-x
+      .small-12.medium-9.cell
+        = f.input :reset_password_token, as: :hidden
+        = f.full_error :reset_password_token
 
-      .form-inputs
-        = f.input :password,
-                  label: t('simple_form.labels.user.new_password'),
-                  required: true,
-                  autofocus: true,
-                  hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
-        = f.input :password_confirmation,
-                  label: t('simple_form.labels.user.new_password_confirmation'),
-                  required: true
+        .grid-x.grid-padding-x
+          .cell.form-inputs
+            = f.input :password,
+                      label: t('simple_form.labels.user.new_password'),
+                      required: true,
+                      autofocus: true,
+                      hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
+            = f.input :password_confirmation,
+                      label: t('simple_form.labels.user.new_password_confirmation'),
+                      required: true
 
-      .form-actions
-        = f.button :submit,
-                   t('helpers.submit.password.update'),
-                   class: 'button full-width'
+          .cell.form-actions
+            = f.button :submit,
+                       t('helpers.submit.password.update'),
+                       class: 'button full-width'
 
-  .small-12.medium-3.columns
-    = render 'devise/shared/links'
+      .auto.cell
+        = render 'devise/shared/links'

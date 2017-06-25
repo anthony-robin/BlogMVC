@@ -2,9 +2,9 @@
                 description: t('.description'),
                 keywords: t('.keywords')
 
-#sidebar_referer
-  .row
-    .small-12.medium-9.columns
+.grid-container#sidebar_referer
+  .grid-x.grid-padding-x
+    .small-12.medium-9.cell
       = render 'blogs/search'
 
       - if @blogs.blank?

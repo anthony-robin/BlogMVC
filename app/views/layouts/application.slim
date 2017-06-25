@@ -23,24 +23,18 @@ html lang=I18n.locale
       = render 'partials/menu'
 
       / Page title
-      div class="callout large primary"
-        div class="row column text-center"
-          h1 = title
+      .callout.large.primary
+        .grid-x.align-center
+          h1= title
 
-      = render_breadcrumbs
+      nav aria-label="You are here:" role="navigation"
+        ul.breadcrumbs
+          = render_breadcrumbs tag: :li, separator: ''
 
-      .row
-        .small-12.columns
-          - flash.each do |type, message|
-            .alert-box.callout.small class=type data-closable=''
-              span == message
+      = render 'partials/flash' unless flash.empty?
 
-              button.close-button aria-label='Dismiss alert' type='button' data-close=''
-                span aria-hidden='true' &times;
+      = yield
 
-          == yield
-
-    footer.footer
-      .row
-        .small-12.columns
-          p.text-center Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+    footer.footer.grid-x
+      .cell
+        p.text-center Lorem ipsum dolor sit amet, consectetur adipisicing elit.
