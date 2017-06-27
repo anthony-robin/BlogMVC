@@ -6,7 +6,7 @@
       = f.input :email, required: true
 
     .cell
-      = f.input :message, as: :text, required: true
+      = f.input :message, as: :text, required: true, input_html: { class: 'autosize' }
       = f.input :nickname, label: false, input_html: { class: 'hide' }
 
     .cell
