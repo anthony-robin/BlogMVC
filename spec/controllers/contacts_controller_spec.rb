@@ -8,44 +8,62 @@ RSpec.describe ContactsController do
   end
 
   describe 'GET #index' do
-    subject! { get :index }
-    it_behaves_like :redirected_request, 'new_contact_url'
+    subject { get :index }
+
+    it { is_expected.to have_http_status(302) }
+    it { is_expected.to redirect_to new_contact_url }
   end
 
   describe 'GET #new' do
-    subject! { get :new }
-    it_behaves_like :ok_request, 'new'
+    subject { get :new }
+
+    it { is_expected.to have_http_status(200) }
+    it { is_expected.to render_template :new }
   end
 
   describe 'POST #create' do
-    subject { post :create, params: { contact: attributes } }
+    let(:attributes) { valid_attributes[:contact] }
+
     before(:each) { ActionMailer::Base.deliveries = [] }
     after(:each) { ActionMailer::Base.deliveries.clear }
 
+    subject do
+      post :create,
+        params: { contact: attributes }
+    end
+
     context 'valid attributes' do
-      let(:attributes) { valid_attributes[:contact] }
+      it { is_expected.to have_http_status(302) }
+      it { is_expected.to redirect_to new_contact_url }
 
-      it 'sends an email' do
-        expect { subject }.to change { ActionMailer::Base.deliveries.count }.by(1)
+      context 'without copy' do
+        it 'sends an email' do
+          expect { subject }.to change { ActionMailer::Base.deliveries.count }.by(1)
+        end
       end
 
-      it 'sends two emails if copy is checked' do
-        attributes.merge!(copy: '1')
-        expect { subject }.to change { ActionMailer::Base.deliveries.count }.by(2)
+      context 'with copy' do
+        let(:attributes) { valid_attributes[:contact].merge!(copy: '1') }
+
+        it 'sends two emails' do
+          expect { subject }.to change { ActionMailer::Base.deliveries.count }.by(2)
+        end
       end
 
-      it 'has correct flash message' do
-        subject
-        expect(controller).to set_flash[:notice].to(t('contacts.create.notice'))
-      end
+      describe 'flash message' do
+        before { subject }
 
-      it_behaves_like :redirected_request, 'new_contact_url'
+        it 'has correct message' do
+          expect(controller).to set_flash[:notice].to t('contacts.create.notice')
+        end
+      end
     end
 
     context 'invalid attributes' do
       let(:attributes) { { name: '' } }
 
-      it_behaves_like :ok_request, 'new'
+      it { is_expected.to have_http_status(200) }
+      it { is_expected.to render_template :new }
 
       it 'does not send an email' do
         expect { subject }.to change { ActionMailer::Base.deliveries.count }.by(0)

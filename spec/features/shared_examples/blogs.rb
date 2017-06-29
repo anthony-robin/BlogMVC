@@ -3,22 +3,28 @@
 RSpec.shared_examples_for :blog_creatable do
   it { is_expected.to have_http_status(302) }
 
-  it 'has correct flash message' do
-    expect(controller).to set_flash[:notice].to(t('blogs.create.notice'))
-  end
-
-  it 'has correct owner' do
-    model = assigns(:form).model
-    expect(model.user).to eq(@user)
-  end
-
-  it 'redirects to blog url' do
-    blog = assigns(:form).model
-    expect(response).to redirect_to(category_blog_url(blog.category, blog))
+  it do
+    is_expected.to redirect_to category_blog_url(assigns(:form).model.category, assigns(:form).model)
   end
 
   it 'creates a record' do
-    expect { post :create, params: { blog: attributes } }.to change(Blog, :count).by(1)
+    expect { subject }.to change(Blog, :count).by(1)
+  end
+
+  describe 'owner' do
+    before { subject }
+
+    it 'has correct owner' do
+      expect(assigns(:form).model.user).to eq(user)
+    end
+  end
+
+  describe 'flash message' do
+    before { subject }
+
+    it 'has correct message' do
+      expect(controller).to set_flash[:notice].to t('blogs.create.notice')
+    end
   end
 end
 
@@ -27,35 +33,42 @@ end
 RSpec.shared_examples_for :blog_updatable do
   it { is_expected.to have_http_status(302) }
 
-  it 'has correct flash message' do
-    expect(controller).to set_flash[:notice].to(t('blogs.update.notice'))
+  it do
+    is_expected.to redirect_to category_blog_url(assigns(:form).model.category, assigns(:form).model)
   end
 
-  it 'redirects to blog url' do
-    model = assigns(:form).model
-    expect(response).to redirect_to(category_blog_url(model.category, model))
+  describe 'values' do
+    before { subject }
+
+    it 'changes name' do
+      expect(assigns(:form).model.title).to eq 'FooBar update'
+    end
   end
 
-  it 'changes name' do
-    model = assigns(:form).model
-    expect(model.title).to eq('FooBar update')
+  describe 'flash message' do
+    before { subject }
+
+    it 'has correct message' do
+      expect(controller).to set_flash[:notice].to t('blogs.update.notice')
+    end
   end
 end
 
 # Blogs Destroyable
 #
 RSpec.shared_examples_for :blog_destroyable do
-  it_behaves_like :redirected_request, 'blogs_url'
-
-  it 'has correct flash message' do
-    expect(controller).to set_flash[:notice].to(t('blogs.destroy.notice'))
-  end
+  it { is_expected.to have_http_status(302) }
+  it { is_expected.to redirect_to blogs_url }
 
   it 'destroys a blog' do
-    blog2 = create(:blog, user: blog.user)
+    expect { subject }.to change(Blog, :count).by(-1)
+  end
 
-    expect do
-      delete :destroy, params: { id: blog2 }
-    end.to change(Blog, :count).by(-1)
+  describe 'flash message' do
+    before { subject }
+
+    it 'has correct message' do
+      expect(controller).to set_flash[:notice].to t('blogs.destroy.notice')
+    end
   end
 end

@@ -1,5 +1,4 @@
 class BlogsController < ApplicationController
-  # Callbacks
   before_action :authenticate_user!, except: %i[index show]
   before_action :set_blog, only: %i[show edit update destroy]
   before_action :set_category,

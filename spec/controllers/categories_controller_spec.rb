@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe CategoriesController do
-  let(:category) { create(:category) }
+  let(:user) { create(:user) }
+  let!(:category) { create(:category) }
+  let(:format) { :html }
 
   let(:valid_attributes) { { category: { name: 'FooBar' } } }
   let(:invalid_attributes) do
@@ -9,124 +11,123 @@ RSpec.describe CategoriesController do
     valid_attributes
   end
 
+  before { login_user user }
+
   describe 'GET #index' do
-    context 'a non connected user' do
-      subject! { get :index }
-      it_behaves_like :redirected_request, 'new_user_session_url'
+    subject { get :index, format: format }
+
+    context 'when not logged in' do
+      it_behaves_like :not_logged_in
     end
 
-    context 'an author' do
-      login_user(:author)
-      subject! { get :index }
+    context 'as author' do
+      let!(:user) { create(:user, :author) }
 
-      it_behaves_like :cancan_unauthorized_request, 'root_url', 'unauthorized.read.category'
+      it_behaves_like :unauthorized, I18n.t('unauthorized.read.category')
     end
 
-    context 'an admin' do
-      login_user(:admin)
-      subject! { get :index }
+    context 'as admin' do
+      let!(:user) { create(:user, :admin) }
 
-      it_behaves_like :ok_request, 'index'
+      it { is_expected.to have_http_status(200) }
+      it { is_expected.to render_template :index }
     end
 
-    context 'a master' do
-      login_user(:master)
-      subject! { get :index }
+    context 'as master' do
+      let!(:user) { create(:user, :master) }
 
-      it_behaves_like :ok_request, 'index'
+      it { is_expected.to have_http_status(200) }
+      it { is_expected.to render_template :index }
     end
   end
 
   describe 'GET #new' do
-    context 'a non connected user' do
-      subject! { get :new }
+    subject { get :new, format: format }
 
-      it_behaves_like :redirected_request, 'new_user_session_url'
+    context 'when not logged in' do
+      it_behaves_like :not_logged_in
     end
 
-    context 'an author' do
-      login_user(:author)
-      subject! { get :new }
+    context 'as author' do
+      let!(:user) { create(:user, :author) }
 
-      it_behaves_like :redirected_request, 'root_url'
+      it_behaves_like :unauthorized, I18n.t('unauthorized.manage.all')
     end
 
-    context 'an admin' do
-      login_user(:admin)
-      subject! { get :new }
+    context 'as admin' do
+      let!(:user) { create(:user, :admin) }
 
-      it_behaves_like :ok_request, 'new'
+      it { is_expected.to have_http_status(200) }
+      it { is_expected.to render_template :new }
     end
 
-    context 'a master' do
-      login_user(:master)
-      subject! { get :new }
+    context 'as master' do
+      let!(:user) { create(:user, :master) }
 
-      it_behaves_like :ok_request, 'new'
+      it { is_expected.to have_http_status(200) }
+      it { is_expected.to render_template :new }
     end
   end
 
   describe 'POST #create' do
-    subject { post :create, params: { category: attributes } }
+    let(:attributes) { valid_attributes }
 
-    context 'a non connected user' do
-      let(:attributes) { valid_attributes[:category] }
-      before { subject }
+    subject do
+      post :create,
+        params: { category: attributes },
+        format: format
+    end
 
-      it_behaves_like :redirected_request, 'new_user_session_url'
+    context 'when not logged in' do
+      it_behaves_like :not_logged_in
 
-      it 'should not create a record' do
-        expect do
-          post :create, params: { category: valid_attributes[:category].merge!(name: 'BarFoo') }
-        end.to_not change(Category, :count)
+      it_behaves_like :unauthorized, I18n.t('unauthorized.manage.all')
+
+      it 'does not create a record' do
+        expect { subject }.to_not change(Category, :count)
       end
     end
 
-    context 'an author' do
-      let(:attributes) { valid_attributes }
-      login_user(:author)
-      before { subject }
+    context 'as author' do
+      let!(:user) { create(:user, :author) }
 
-      it_behaves_like :redirected_request, 'root_url'
+      it { is_expected.to have_http_status(302) }
+      it { is_expected.to redirect_to root_url }
 
-      it 'should not create a record' do
-        expect do
-          post :create, params: { category: valid_attributes[:category].merge!(name: 'BarFoo') }
-        end.to_not change(Category, :count)
+      it 'does not create a record' do
+        expect { subject }.to_not change(Category, :count)
       end
     end
 
-    context 'an admin' do
-      login_user(:admin)
+    context 'as admin' do
+      let!(:user) { create(:user, :admin) }
 
       context 'with invalid attributes' do
         let(:attributes) { invalid_attributes[:category] }
-        before { subject }
 
-        it_behaves_like :ok_request, 'new'
+        it { is_expected.to have_http_status(200) }
+        it { is_expected.to render_template :new }
       end
 
       context 'with valid attributes' do
         let(:attributes) { valid_attributes[:category] }
-        before { subject }
 
         it_behaves_like :category_creatable
       end
     end
 
-    context 'a master' do
-      login_user(:master)
+    context 'as master' do
+      let!(:user) { create(:user, :master) }
 
       context 'with invalid attributes' do
         let(:attributes) { invalid_attributes[:category] }
-        before { subject }
 
-        it_behaves_like :ok_request, 'new'
+        it { is_expected.to have_http_status(200) }
+        it { is_expected.to render_template :new }
       end
 
       context 'with valid attributes' do
         let(:attributes) { valid_attributes[:category] }
-        before { subject }
 
         it_behaves_like :category_creatable
       end
@@ -134,79 +135,82 @@ RSpec.describe CategoriesController do
   end
 
   describe 'GET #edit' do
-    subject { get :edit, params: { id: category } }
-
-    context 'a non connected user' do
-      before { subject }
-      it_behaves_like :redirected_request, 'new_user_session_url'
+    subject do
+      get :edit,
+        params: { id: category },
+        format: format
     end
 
-    context 'an author' do
-      login_user(:author)
-      before { subject }
-
-      it_behaves_like :redirected_request, 'root_url'
+    context 'when not logged in' do
+      it_behaves_like :not_logged_in
     end
 
-    context 'an admin' do
-      login_user(:admin)
-      before { subject }
+    context 'as author' do
+      let!(:user) { create(:user, :author) }
 
-      it_behaves_like :ok_request, 'edit'
+      it_behaves_like :unauthorized, I18n.t('unauthorized.manage.all')
     end
 
-    context 'a master' do
-      login_user(:master)
-      before { subject }
+    context 'as admin' do
+      let!(:user) { create(:user, :admin) }
 
-      it_behaves_like :ok_request, 'edit'
+      it { is_expected.to have_http_status(200) }
+      it { is_expected.to render_template :edit }
+    end
+
+    context 'as master' do
+      let!(:user) { create(:user, :master) }
+
+      it { is_expected.to have_http_status(200) }
+      it { is_expected.to render_template :edit }
     end
   end
 
   describe 'PATCH #update' do
     let(:attributes) { valid_attributes[:category].merge!(name: 'FooBar update') }
-    subject { patch :update, params: { id: category, category: attributes } }
 
-    context 'a non connected user' do
-      before { subject }
-      it_behaves_like :redirected_request, 'new_user_session_url'
+    subject do
+      patch :update,
+        params: { id: category, category: attributes },
+        format: format
     end
 
-    context 'an author' do
-      login_user(:author)
-      before { subject }
-
-      it_behaves_like :redirected_request, 'root_url'
+    context 'when not logged in' do
+      it_behaves_like :not_logged_in
     end
 
-    context 'an admin' do
-      login_user(:admin)
+    context 'as author' do
+      let!(:user) { create(:user, :author) }
+
+      it_behaves_like :unauthorized, I18n.t('unauthorized.manage.all')
+    end
+
+    context 'as admin' do
+      let!(:user) { create(:user, :admin) }
 
       context 'with invalid attributes' do
         let(:attributes) { invalid_attributes[:category] }
-        before { subject }
 
-        it_behaves_like :ok_request, 'edit'
+        it { is_expected.to have_http_status(200) }
+        it { is_expected.to render_template :edit }
       end
 
       context 'with valid attributes' do
-        before { subject }
         it_behaves_like :category_updatable
       end
     end
 
-    context 'a master' do
-      login_user(:master)
+    context 'as master' do
+      let!(:user) { create(:user, :master) }
 
       context 'with invalid attributes' do
         let(:attributes) { invalid_attributes[:category] }
-        before { subject }
 
-        it_behaves_like :ok_request, 'edit'
+        it { is_expected.to have_http_status(200) }
+        it { is_expected.to render_template :edit }
       end
 
       context 'with valid attributes' do
-        before { subject }
         it_behaves_like :category_updatable
       end
     end
@@ -214,44 +218,39 @@ RSpec.describe CategoriesController do
 
   describe 'DELETE #destroy' do
     before { create_list(:blog, 3, category: category) }
-    subject { delete :destroy, params: { id: category } }
 
-    context 'a non connected user' do
-      before { subject }
-      it_behaves_like :redirected_request, 'new_user_session_url'
+    subject do
+      delete :destroy,
+        params: { id: category },
+        format: format
+    end
 
-      it 'should not destroy a category (and blogs)' do
-        expect do
-          delete :destroy, params: { id: category }
-        end.to change(Category, :count).by(0).and \
-               change(category.blogs, :count).by(0)
+    context 'when not logged in' do
+      it_behaves_like :not_logged_in
+    end
+
+    context 'as author' do
+      let!(:user) { create(:user, :author) }
+
+      it_behaves_like :unauthorized, I18n.t('unauthorized.manage.all')
+
+      it 'does not destroy a category' do
+        expect { subject }.to_not change(Category, :count)
+      end
+
+      it 'does not destroy associated blogs' do
+        expect { subject }.to_not change(category.blogs, :count)
       end
     end
 
-    context 'an author' do
-      login_user(:author)
-      before { subject }
-
-      it_behaves_like :redirected_request, 'root_url'
-
-      it 'should not destroy a category (and blogs)' do
-        expect do
-          delete :destroy, params: { id: category }
-        end.to change(Category, :count).by(0).and \
-               change(category.blogs, :count).by(0)
-      end
-    end
-
-    context 'an admin' do
-      login_user(:admin)
-      before { subject }
+    context 'as admin' do
+      let!(:user) { create(:user, :admin) }
 
       it_behaves_like :category_destroyable
     end
 
-    context 'a master' do
-      login_user(:master)
-      before { subject }
+    context 'as master' do
+      let!(:user) { create(:user, :master) }
 
       it_behaves_like :category_destroyable
     end

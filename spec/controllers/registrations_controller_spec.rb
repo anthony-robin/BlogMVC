@@ -1,38 +1,40 @@
 require 'rails_helper'
 
 RSpec.describe RegistrationsController do
-  before do
-    @request.env['devise.mapping'] = Devise.mappings[:user]
-  end
+  let!(:user) { create(:user) }
+
+  before { login_user user }
 
   describe 'GET #new' do
-    context 'a non connected user' do
-      subject! { get :new }
-      it_behaves_like :ok_request, 'new'
+    subject { get :new }
+
+    context 'when not logged in' do
+      before { sign_out user }
+
+      it { is_expected.to have_http_status(200) }
+      it { is_expected.to render_template :new }
     end
 
-    context 'a connected user' do
-      login_user(:author)
-      subject! { get :new }
-
-      it_behaves_like :redirected_request, 'root_url'
+    context 'when connected' do
+      it { is_expected.to have_http_status(302) }
+      it { is_expected.to redirect_to root_url }
     end
   end
 
   describe 'DELETE #destroy' do
-    login_user(:admin)
+    before { create_list(:blog, 4, user: user) }
 
-    it 'should remove user account' do
-      expect do
-        delete :destroy, params: { id: @admin }
-      end.to change(User, :count).by(-1)
+    subject do
+      delete :destroy,
+        params: { id: user }
     end
 
-    it 'should remove user blogs article' do
-      create_list(:blog, 4, user: @admin)
-      expect do
-        delete :destroy, params: { id: @admin }
-      end.to change(Blog, :count).by(-4)
+    it 'removes user account' do
+      expect { subject }.to change(User, :count).by(-1)
+    end
+
+    it 'removes user blogs articles' do
+      expect { subject }.to change(Blog, :count).by(-4)
     end
   end
 end
