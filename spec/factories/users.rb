@@ -4,6 +4,7 @@ FactoryGirl.define do
     sequence(:email) { "#{username}@example.com" }
     password 'password'
     password_confirmation 'password'
+    role 2
 
     trait :master do
       role 0
