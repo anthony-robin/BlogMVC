@@ -1,5 +1,6 @@
 settings:
   import/resolver:
+    babel-module: {}
     webpack:
       config: 'config/webpack/shared.js'
 
@@ -12,4 +13,4 @@ extends: airbnb-base
 
 rules:
   semi: ['warn', 'never']
-  comma-dangle: ['error', never]
+  comma-dangle: ['error', 'never']

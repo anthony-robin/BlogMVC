@@ -57,11 +57,7 @@ module.exports = {
       // Webpack
       resolve('node_modules'),
       resolve('node_modules', 'foundation-sites', 'dist', 'js', 'plugins'),
-      resolve('node_modules', 'foundation-sites', 'scss'),
-
-      // Assets pipeline
-      resolve('app', 'assets', 'stylesheets'),
-      resolve('app', 'assets', 'javascripts')
+      resolve('node_modules', 'foundation-sites', 'scss')
     ]
   },
 
