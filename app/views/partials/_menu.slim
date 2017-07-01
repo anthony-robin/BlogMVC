@@ -8,9 +8,7 @@
     ul.menu
       li.menu-text= website_conf['title']
       li = link_to 'Accueil', root_path
-      li = link_to 'Articles de Blog', blogs_path
-      - if can?(:read, Category)
-        li = link_to 'Catégories de Blog', categories_path
+      li = link_to 'Articles', blogs_path
       li = link_to 'Contact', contacts_path
   .top-bar-right
     - if user_signed_in?
@@ -24,6 +22,7 @@
                 = current_user.username
                 small.role =< "(#{current_user.role})"
           ul.menu.submenu.vertical data-submenu=''
+            li = link_to 'Admin Dashboard', admin_root_path
             li = link_to 'Mon profil', users_path
             li = link_to 'Déconnexion', destroy_user_session_path, method: :delete
     - else

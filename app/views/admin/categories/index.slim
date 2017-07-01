@@ -1,0 +1,16 @@
+- set_meta_tags title: t('.title'),
+                description: t('.description'),
+                keywords: t('.keywords')
+
+.grid-container
+  .grid-x.grid-padding-x
+    .cell
+      p= link_to 'Ajouter une catégorie', new_admin_category_path, class: 'button full-width'
+
+  .grid-x.grid-padding-x.align-center
+    .cell
+      = render 'table'
+
+  .grid-x.grid-padding-x.align-center
+    .cell
+      = paginate @categories

@@ -1,0 +1,15 @@
+= simple_form_for [:admin, @form], validate: true do |f|
+  .grid-container
+    .grid-x.grid-padding-x.align-center
+      .cell
+        - unless f.object.new_record?
+          = f.input :slug, disabled: true
+          br
+
+        .input-group
+          = f.input :name, label: false
+          .input-group-button= f.button :submit
+
+    .grid-x.grid-padding-x.align-center.form-actions
+      .cell
+        = link_to 'Annuler', admin_categories_path, class: 'button secondary full-width'

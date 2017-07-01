@@ -1,0 +1,22 @@
+doctype html
+html lang=I18n.locale
+  head
+    meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'
+    = display_meta_tags site: website_conf['title'], reverse: true, charset: 'utf-8'
+    = csrf_meta_tag
+
+    / Stylesheets
+    = stylesheet_pack_tag 'admin'
+
+    / JavaScripts
+    = javascript_include_tag 'backend'
+    = javascript_pack_tag 'admin'
+
+  body
+    .off-canvas-wrapper
+      .off-canvas.position-left#adminMenu data-off-canvas='' data-close-on-click='true'
+        = render 'menu'
+
+      .off-canvas-content data-off-canvas-content=''
+        = render 'topbar'
+        = yield

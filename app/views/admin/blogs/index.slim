@@ -1,0 +1,9 @@
+.grid-container
+  .grid-x.grid-padding-x
+    .cell
+      p= link_to 'Ajouter un article', new_admin_blog_path, class: 'button full-width'
+
+  .grid-x.grid-padding-x.align-center
+    .cell
+      = render 'table', blogs: @blogs
+      = paginate @blogs

@@ -23,7 +23,7 @@ RSpec.shared_examples_for :blog_creatable do
     before { subject }
 
     it 'has correct message' do
-      expect(controller).to set_flash[:notice].to t('blogs.create.notice')
+      expect(controller).to set_flash[:notice].to t('admin.blogs.create.notice')
     end
   end
 end
@@ -49,7 +49,7 @@ RSpec.shared_examples_for :blog_updatable do
     before { subject }
 
     it 'has correct message' do
-      expect(controller).to set_flash[:notice].to t('blogs.update.notice')
+      expect(controller).to set_flash[:notice].to t('admin.blogs.update.notice')
     end
   end
 end
@@ -68,7 +68,7 @@ RSpec.shared_examples_for :blog_destroyable do
     before { subject }
 
     it 'has correct message' do
-      expect(controller).to set_flash[:notice].to t('blogs.destroy.notice')
+      expect(controller).to set_flash[:notice].to t('admin.blogs.destroy.notice')
     end
   end
 end

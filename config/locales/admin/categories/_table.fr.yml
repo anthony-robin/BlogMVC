@@ -1,15 +1,11 @@
 fr:
   admin:
-    blogs:
+    categories:
       table:
-        cover: Couverture
-        title: Titre
-        category: Catégorie
-        author: Auteur
+        name: Nom
+        blogs_count: Nombre d'articles de Blog
         actions: Actions
 
-        show:
-          label: Voir
         edit:
           label: Modifier
         destroy:

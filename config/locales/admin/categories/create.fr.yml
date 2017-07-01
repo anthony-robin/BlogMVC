@@ -1,0 +1,5 @@
+fr:
+  admin:
+    categories:
+      create:
+        notice: La Catégorie a été créée avec succès

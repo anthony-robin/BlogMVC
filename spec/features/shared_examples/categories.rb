@@ -2,7 +2,7 @@
 #
 RSpec.shared_examples_for :category_creatable do
   it { is_expected.to have_http_status(302) }
-  it { is_expected.to redirect_to categories_url }
+  it { is_expected.to redirect_to admin_categories_url }
 
   it 'creates a record' do
     expect { subject }.to change(Category, :count).by(1)
@@ -12,7 +12,7 @@ RSpec.shared_examples_for :category_creatable do
     before { subject }
 
     it 'has correct message' do
-      expect(controller).to set_flash[:notice].to t('categories.create.notice')
+      expect(controller).to set_flash[:notice].to t('admin.categories.create.notice')
     end
   end
 end
@@ -21,13 +21,13 @@ end
 #
 RSpec.shared_examples_for :category_updatable do
   it { is_expected.to have_http_status(302) }
-  it { is_expected.to redirect_to categories_url }
+  it { is_expected.to redirect_to admin_categories_url }
 
   describe 'flash message' do
     before { subject }
 
     it 'has correct message' do
-      expect(controller).to set_flash[:notice].to t('categories.update.notice')
+      expect(controller).to set_flash[:notice].to t('admin.categories.update.notice')
     end
   end
 
@@ -44,13 +44,13 @@ end
 #
 RSpec.shared_examples_for :category_destroyable do
   it { is_expected.to have_http_status(302) }
-  it { is_expected.to redirect_to categories_url }
+  it { is_expected.to redirect_to admin_categories_url }
 
   describe 'flash message' do
     before { subject }
 
     it 'has correct message' do
-      expect(controller).to set_flash[:notice].to t('categories.destroy.notice')
+      expect(controller).to set_flash[:notice].to t('admin.categories.destroy.notice')
     end
   end
 
