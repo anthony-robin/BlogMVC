@@ -7,7 +7,7 @@ RSpec.describe Blogs::SearchesController do
 
   describe 'GET #index' do
     context 'without query' do
-      subject! { get :index }
+      subject { get :index }
 
       it { is_expected.to have_http_status(302) }
       it { is_expected.to redirect_to blogs_path }

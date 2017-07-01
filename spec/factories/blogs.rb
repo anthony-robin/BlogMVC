@@ -16,6 +16,14 @@ FactoryGirl.define do
     trait :master do
       association :user, factory: %i[user master]
     end
+
+    %i[foo bar].each do |value|
+      trait value do
+        after(:create) do |blog|
+          blog.update_attributes(tag_list: value.to_s)
+        end
+      end
+    end
   end
 end
 
