@@ -1,5 +1,5 @@
 // Stylesheet
-import 'app-styles.sass'
+import 'assets/stylesheets/app-styles.sass'
 import 'motion-ui/dist/motion-ui.css'
 
 // Javascript

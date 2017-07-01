@@ -1,5 +1,5 @@
 // Stylesheet
-import 'components/typeahead.bundle.sass'
+import 'assets/stylesheets/components/typeahead.bundle.sass'
 
 // Javascripts
 import 'typeahead.js/dist/typeahead.jquery'
