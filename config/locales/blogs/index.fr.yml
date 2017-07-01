@@ -1,5 +1,5 @@
 fr:
   blogs:
     index:
-      title: Articles de Blog
-      empty_records: Il n'y a aucun article de blog à afficher
+      title: Articles
+      empty_records: Il n'y a aucun article à afficher

@@ -1,0 +1,5 @@
+fr:
+  categories:
+    blogs:
+      show:
+        title: 'Blog: %{title}'

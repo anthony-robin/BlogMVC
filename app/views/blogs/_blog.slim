@@ -17,7 +17,7 @@ article.blog id="blog_#{blog.id}"
       |,
       small.user =< link_to blog.user_username, user_path(blog.user)
       br
-      = raw blog.tag_list.map { |t| link_to t, tag_path(t), class: 'label warning' }.join(' ')
+      = raw blog.tag_list.map { |t| link_to t, blogs_tag_path(t), class: 'label warning' }.join(' ')
       span.label.success =< "#{blog.comments_count} #{t(:comments, count: blog.comments_count)}"
 
   div.fr-view
@@ -29,8 +29,8 @@ article.blog id="blog_#{blog.id}"
 
   - if can?(:update, blog) || can?(:destroy, blog)
     footer.callout
-      =< link_to 'Modifier', edit_category_blog_path(blog.category, blog), class: 'button small warning' if can? :update, blog
-      =< link_to 'Supprimer', blog, data: { confirm: 'Etes-vous sûr ?' }, method: :delete, class: 'button small alert' if can? :destroy, blog
+      =< link_to 'Modifier', edit_admin_blog_path(blog), class: 'button small warning' if can? :update, blog
+      =< link_to 'Supprimer', admin_blog_path(blog), data: { confirm: 'Etes-vous sûr ?' }, method: :delete, class: 'button small alert' if can? :destroy, blog
 
   script type="application/ld+json"
     = jsonld_blog(blog)

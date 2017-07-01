@@ -3,11 +3,14 @@ module Blogs
     before_action -> { redirect_to blogs_path },
       if: -> { params[:term].blank? }
 
-    load_resource :category, parent: false
+    include Blogs::Sidebarable
 
+    # Breadcrumbs
+    add_breadcrumb I18n.t('blogs.searches.index.title'), :blogs_searches_path
+
+    # GET /blogs/searches/:term
     def index
       @blogs = Blog.search(params[:term], Blog.search_opts.merge!(page: params[:page]))
-      @categories = @categories.last(5)
 
       render template: 'blogs/index'
     end
