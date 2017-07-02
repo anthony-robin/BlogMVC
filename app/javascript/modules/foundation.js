@@ -17,10 +17,15 @@ import 'foundation.util.imageLoader'
 
 import 'foundation.dropdownMenu'
 import 'foundation.orbit'
+import 'foundation.sticky'
 import 'foundation.responsiveToggle'
 
 import 'motion-ui/dist/motion-ui'
 
 document.addEventListener('turbolinks:load', () => {
   $(document).foundation()
+
+  if ($('[data-sticky]').length > 0) {
+    $(window).trigger('load.zf.sticky')
+  }
 })
