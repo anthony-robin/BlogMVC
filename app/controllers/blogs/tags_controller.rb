@@ -6,7 +6,7 @@ module Blogs
 
     # GET /blogs/tags/:id
     def show
-      @blogs = Blog.with_includes.includes(:category).order_desc
+      @blogs = Blog.with_includes.order_desc
       @blogs = @blogs.tagged_with(params[:id]).page params[:page]
 
       add_breadcrumb t('.title', tag: params[:id])

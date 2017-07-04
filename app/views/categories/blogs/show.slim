@@ -10,7 +10,6 @@
       .comments--section
         = render 'comments/form' if user_signed_in?
         #comments.comments
-          - @comments.each do |comment|
-            = render 'comments/comment', comment: comment
+          = render partial: 'comments/comment', collection: @comments
 
     = render 'blogs/sidebar'

@@ -35,7 +35,7 @@
 
   - unless f.object.new_record?
     div class="reveal" id="blog_preview" data-reveal=''
-      = render 'blog', blog: @form.model
+      = render 'blogs/blog', blog: @form.model
 
       button class="close-button" data-close='' aria-label="Fermer modal" type="button"
         span aria-hidden="true" &times;
