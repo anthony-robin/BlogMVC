@@ -10,7 +10,7 @@ class Blog < ApplicationRecord
   belongs_to :category, counter_cache: true
 
   # Scopes
-  scope :with_includes, -> { includes(:user, :picture, :taggings) }
+  scope :with_includes, -> { includes(:user, :picture, :category, :taggings) }
   scope :order_desc, -> { order(created_at: :desc) }
 
   # Delegates

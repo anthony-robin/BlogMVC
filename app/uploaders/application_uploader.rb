@@ -13,7 +13,8 @@ class ApplicationUploader < CarrierWave::Uploader::Base
     "#{mounted_as}.jpg" if original_filename
   end
 
+  # In public/ folder
   def default_url
-    ActionController::Base.helpers.asset_path('fallback/' + [version_name, 'default.png'].compact.join('_'))
+    '/fallback/' + [version_name, 'default.png'].compact.join('_')
   end
 end

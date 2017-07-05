@@ -10,8 +10,7 @@
       - if @blogs.blank?
         p= t('.empty_records')
       - else
-        - @blogs.each do |blog|
-          = render 'blogs/blog', blog: blog
+        = render partial: 'blogs/blog', collection: @blogs
         = paginate @blogs
 
         script type="application/ld+json"

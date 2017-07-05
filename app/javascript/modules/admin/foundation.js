@@ -15,8 +15,9 @@ import 'foundation.util.timer'
 import 'foundation.util.triggers'
 import 'foundation.util.imageLoader'
 
-import 'foundation.dropdownMenu'
+import 'foundation.reveal'
 import 'foundation.offcanvas'
+import 'foundation.dropdownMenu'
 import 'foundation.responsiveToggle'
 
 import 'motion-ui/dist/motion-ui'
