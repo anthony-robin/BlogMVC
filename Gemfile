@@ -6,7 +6,7 @@ git_source(:github) do |repo_name|
 end
 
 # Core
-gem 'rails', '~> 5.1.2'
+gem 'rails', '~> 5.1.3'
 gem 'puma', '~> 3.8'
 
 gem 'sqlite3', group: %i[development test] # Database
@@ -86,7 +86,7 @@ group :development do
   gem 'annotate'
 
   gem 'web-console'
-  gem 'better_errors', github: 'charliesome/better_errors'
+  gem 'better_errors'
   gem 'binding_of_caller'
 
   gem 'listen'
