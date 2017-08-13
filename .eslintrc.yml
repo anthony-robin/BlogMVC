@@ -2,7 +2,7 @@ settings:
   import/resolver:
     babel-module: {}
     webpack:
-      config: 'config/webpack/shared.js'
+      config: config/webpack/test.js
 
 env:
   browser: true

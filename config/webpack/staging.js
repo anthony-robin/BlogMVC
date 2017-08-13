@@ -1,2 +1,3 @@
-// Staging environment is similar to production
-module.exports = require('./production.js')
+const environment = require('./environment')
+
+module.exports = environment.toWebpackConfig()
