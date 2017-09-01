@@ -46,6 +46,7 @@ script:
   - bin/rubocop
   - bin/yarn run eslint
   - bin/yarn run sasslint
+  - bin/yarn run dockerlint
 
 after_script:
   - RAILS_ENV=test bin/rails db:seed

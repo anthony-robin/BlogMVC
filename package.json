@@ -43,6 +43,7 @@
     "webpack-merge": "^4.1.0"
   },
   "devDependencies": {
+    "dockerlint": "^0.3.1",
     "eslint": "^4.5.0",
     "eslint-config-airbnb-base": "^11.3.2",
     "eslint-import-resolver-babel-module": "^3.0.0",
@@ -55,6 +56,7 @@
   "scripts": {
     "postinstall": "npm rebuild node-sass",
     "eslint": "NODE_ENV=test ./node_modules/.bin/eslint 'app/javascript/**/*.js'",
-    "sasslint": "NODE_ENV=test ./node_modules/.bin/sass-lint -v -q"
+    "sasslint": "NODE_ENV=test ./node_modules/.bin/sass-lint -v -q",
+    "dockerlint": "NODE_ENV=test ./node_modules/.bin/dockerlint Dockerfile"
   }
 }
