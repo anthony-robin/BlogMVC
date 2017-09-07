@@ -5,8 +5,8 @@ import 'font-awesome/css/font-awesome.min.css'
 import autosize from 'autosize/dist/autosize'
 
 // Modules
-import '../modules/foundation'
-import '../modules/search'
+import '../js/foundation'
+import '../js/search'
 
 Turbolinks.start()
 
