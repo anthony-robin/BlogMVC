@@ -1,13 +1,13 @@
 module Admin
   class BlogsController < AdminController
-    before_action :set_blog, only: %i[edit update destroy]
-    before_action :set_form, only: %i[new create edit update]
+    load_and_authorize_resource
 
-    authorize_resource
+    before_action :set_form,
+      only: %i[new create edit update]
 
     # GET /admin/blogs
     def index
-      @blogs = Blog.with_includes.order_desc.page params[:page]
+      @blogs = @blogs.with_includes.order_desc.page params[:page]
     end
 
     # GET /admin/blogs/new
@@ -41,13 +41,8 @@ module Admin
 
     private
 
-    def set_blog
-      @blog = Blog.includes(:user).friendly.find(params[:id])
-    end
-
     def set_form
-      object = @blog.nil? ? current_user.blogs.new : @blog
-      @form = BlogForm.new(object)
+      @form = BlogForm.new(@blog.new_record? ? current_user.blogs.new : @blog)
     end
 
     def save_action(action)

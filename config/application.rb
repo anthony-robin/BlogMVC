@@ -22,5 +22,8 @@ module BlogMVC
 
     # Website settings
     config.website = config_for(:website)
+
+    # Disable strong parameters to make Reform play nicely with Cancancan
+    config.action_controller.permit_all_parameters = true
   end
 end

@@ -1,14 +1,15 @@
 module Admin
   class CategoriesController < AdminController
-    before_action :set_category, only: %i[edit update destroy]
-    before_action :set_form, only: %i[new create edit update]
+    load_and_authorize_resource
 
-    authorize_resource
+    before_action :set_form,
+      only: %i[new create edit update]
+
     add_breadcrumb I18n.t('categories.index.title'), :admin_categories_path
 
     # GET /admin/categories
     def index
-      @categories = Category.all.page params[:page]
+      @categories = @categories.page params[:page]
     end
 
     # GET /admin/categories/new
@@ -40,14 +41,8 @@ module Admin
 
     private
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_category
-      @category = Category.friendly.find(params[:id])
-    end
-
     def set_form
-      object = @category.nil? ? Category.new : @category
-      @form = CategoryForm.new(object)
+      @form = CategoryForm.new(@category || Category.new)
     end
 
     def save_action(action)

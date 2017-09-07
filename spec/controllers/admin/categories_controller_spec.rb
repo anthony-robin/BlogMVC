@@ -76,7 +76,7 @@ RSpec.describe Admin::CategoriesController do
         format: format
     end
 
-    let(:attributes) { valid_attributes }
+    let(:attributes) { valid_attributes[:category] }
 
     it_behaves_like :not_logged_in
 
