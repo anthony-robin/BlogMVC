@@ -4,16 +4,16 @@ RSpec.describe AvatarUploader do
   include CarrierWave::Test::Matchers
 
   let(:user) { create(:user) }
-  let(:uploader) { AvatarUploader.new(user, :avatar) }
+  let(:uploader) { described_class.new(user, :avatar) }
 
   before do
-    AvatarUploader.enable_processing = true
+    described_class.enable_processing = true
     path_to_file = Rails.root.join('spec', 'fixtures', 'avatar.png')
     File.open(path_to_file) { |f| uploader.store!(f) }
   end
 
   after do
-    AvatarUploader.enable_processing = false
+    described_class.enable_processing = false
     uploader.remove!
   end
 

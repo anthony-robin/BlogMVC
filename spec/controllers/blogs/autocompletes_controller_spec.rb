@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Blogs::AutocompletesController do
   let!(:blogs) { create_list(:blog, 5) }
-  before(:each) { Blog.reindex }
+
+  before { Blog.reindex }
 
   describe 'GET #index' do
     subject! do
@@ -13,7 +14,7 @@ RSpec.describe Blogs::AutocompletesController do
 
     it { is_expected.to have_http_status(200) }
 
-    it 'should return search results' do
+    it 'returns search results' do
       expect(assigns(:blogs).results).to eq blogs
     end
   end

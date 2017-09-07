@@ -8,10 +8,10 @@ RSpec.describe ContactForm, type: :model do
                  message: 'My contact message' } }
   end
 
-  before { @form = ContactForm.new }
+  let(:form) { ContactForm.new }
 
   context 'model validations rules' do
-    subject { @form }
+    subject { form }
 
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_presence_of(:email) }
@@ -23,10 +23,11 @@ RSpec.describe ContactForm, type: :model do
   end
 
   context '#validate?' do
-    subject! { @form.validate(attributes) }
+    subject! { form.validate(attributes) }
 
     context 'with correct attributes' do
       let(:attributes) { valid_attributes[:contact] }
+
       it { is_expected.to be true }
     end
 
@@ -36,7 +37,7 @@ RSpec.describe ContactForm, type: :model do
       it { is_expected.to be false }
 
       it 'has correct error message' do
-        expect(@form.errors[:name]).to eq [t('name.blank', scope: i18n_scope)]
+        expect(form.errors[:name]).to eq [t('name.blank', scope: i18n_scope)]
       end
     end
 
@@ -46,7 +47,7 @@ RSpec.describe ContactForm, type: :model do
       it { is_expected.to be false }
 
       it 'has correct error message' do
-        expect(@form.errors[:email]).to eq [t('email.blank', scope: i18n_scope), t('email.invalid', scope: i18n_scope)]
+        expect(form.errors[:email]).to eq [t('email.blank', scope: i18n_scope), t('email.invalid', scope: i18n_scope)]
       end
     end
 
@@ -56,7 +57,7 @@ RSpec.describe ContactForm, type: :model do
       it { is_expected.to be false }
 
       it 'has correct error message' do
-        expect(@form.errors[:email]).to eq [t('email.invalid', scope: i18n_scope)]
+        expect(form.errors[:email]).to eq [t('email.invalid', scope: i18n_scope)]
       end
     end
 
@@ -66,7 +67,7 @@ RSpec.describe ContactForm, type: :model do
       it { is_expected.to be false }
 
       it 'has correct error message' do
-        expect(@form.errors[:message]).to eq [t('message.blank', scope: i18n_scope)]
+        expect(form.errors[:message]).to eq [t('message.blank', scope: i18n_scope)]
       end
     end
 
@@ -76,7 +77,7 @@ RSpec.describe ContactForm, type: :model do
       it { is_expected.to be false }
 
       it 'has no error message' do
-        expect(@form.errors[:nickname]).to eq [t('nickname.present', scope: i18n_scope)]
+        expect(form.errors[:nickname]).to eq [t('nickname.present', scope: i18n_scope)]
       end
     end
   end

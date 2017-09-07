@@ -9,8 +9,9 @@ RSpec.describe ApplicationHelper do
   end
 
   describe '#retina_image_tag' do
-    let!(:picture) { create(:picture, :for_blog) }
     subject { retina_image_tag(picture, :image, :large) }
+
+    let!(:picture) { create(:picture, :for_blog) }
 
     it { is_expected.to eq '<img srcset="/uploads/picture/1/large_2x_image.jpg 2x" src="/uploads/picture/1/large_image.jpg" alt="Large image" />' }
   end

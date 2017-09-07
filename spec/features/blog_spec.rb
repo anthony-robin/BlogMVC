@@ -1,9 +1,10 @@
 require 'rails_helper'
 
 RSpec.feature 'Blog page' do
+  subject { BlogPage.new }
+
   let!(:blogs) { create_list(:blog, 3) }
 
-  subject { BlogPage.new }
   before { visit blogs_path }
 
   context 'the index page' do

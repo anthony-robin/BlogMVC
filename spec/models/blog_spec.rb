@@ -15,16 +15,17 @@ RSpec.describe Blog do
     context 'on CREATE' do
       let(:blog) { build(:blog, title: 'First blog article') }
 
+      before { blog.save! }
+
       it 'has an auto slug' do
-        blog.save!
         expect(blog.slug).to eq('first-blog-article')
       end
 
-      it 'increases counter cache' do
-        expect(blog.category.blogs_count).to eq(0)
-        expect(blog.user.blogs_count).to eq(0)
-        blog.save!
+      it 'increases category blogs counter cache' do
         expect(blog.category.blogs_count).to eq(1)
+      end
+
+      it 'increases user blogs counter cache' do
         expect(blog.user.blogs_count).to eq(1)
       end
     end
@@ -41,11 +42,13 @@ RSpec.describe Blog do
     context 'on DESTROY' do
       let(:blog) { create(:blog) }
 
-      it 'decreases counter cache' do
-        expect(blog.category.blogs_count).to eq(1)
-        expect(blog.user.blogs_count).to eq(1)
-        blog.destroy!
+      before { blog.destroy! }
+
+      it 'decreases category blogs counter cache' do
         expect(blog.category.blogs_count).to eq(0)
+      end
+
+      it 'decreases user blogs counter cache' do
         expect(blog.user.blogs_count).to eq(0)
       end
     end

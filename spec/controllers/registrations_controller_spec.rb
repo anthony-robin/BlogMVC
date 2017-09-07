@@ -22,19 +22,19 @@ RSpec.describe RegistrationsController do
   end
 
   describe 'DELETE #destroy' do
-    before { create_list(:blog, 4, user: user) }
-
-    subject do
+    subject(:destroy_user) do
       delete :destroy,
         params: { id: user }
     end
 
+    before { create_list(:blog, 4, user: user) }
+
     it 'removes user account' do
-      expect { subject }.to change(User, :count).by(-1)
+      expect { destroy_user }.to change(User, :count).by(-1)
     end
 
     it 'removes user blogs articles' do
-      expect { subject }.to change(Blog, :count).by(-4)
+      expect { destroy_user }.to change(Blog, :count).by(-4)
     end
   end
 end

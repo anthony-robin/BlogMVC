@@ -10,30 +10,28 @@ RSpec.describe BlogForm, type: :model do
               category_id: category.id.to_s } }
   end
 
-  before do
-    model = Blog.new
-    @form = BlogForm.new(model)
-  end
+  let(:form) { BlogForm.new(Blog.new) }
 
   context 'model validations rules' do
-    subject { @form }
+    subject { form }
 
-    it { should validate_presence_of(:title) }
-    it { should validate_presence_of(:content) }
-    it { should validate_presence_of(:category_id) }
+    it { is_expected.to validate_presence_of(:title) }
+    it { is_expected.to validate_presence_of(:content) }
+    it { is_expected.to validate_presence_of(:category_id) }
 
-    it { should allow_value(Faker::Lorem.sentence).for(:title) }
-    it { should allow_value(Faker::Lorem.paragraph).for(:content) }
+    it { is_expected.to allow_value(Faker::Lorem.sentence).for(:title) }
+    it { is_expected.to allow_value(Faker::Lorem.paragraph).for(:content) }
 
-    it { should validate_inclusion_of(:category_id).in_array(Category.ids.map(&:to_s)) }
-    it { should_not validate_inclusion_of(:category_id).in_array(%w[30 999 7532]) }
+    it { is_expected.to validate_inclusion_of(:category_id).in_array(Category.ids.map(&:to_s)) }
+    it { is_expected.to_not validate_inclusion_of(:category_id).in_array(%w[30 999 7532]) }
   end
 
   context '#validate?' do
-    subject! { @form.validate(attributes) }
+    subject! { form.validate(attributes) }
 
     context 'with correct attribute' do
       let(:attributes) { valid_attributes[:blog] }
+
       it { is_expected.to be true }
     end
 
@@ -43,7 +41,7 @@ RSpec.describe BlogForm, type: :model do
       it { is_expected.to be false }
 
       it 'has correct error message' do
-        expect(@form.errors[:title]).to eq [t('title.blank', scope: i18n_scope)]
+        expect(form.errors[:title]).to eq [t('title.blank', scope: i18n_scope)]
       end
     end
 
@@ -53,7 +51,7 @@ RSpec.describe BlogForm, type: :model do
       it { is_expected.to be false }
 
       it 'has correct error message' do
-        expect(@form.errors[:content]).to eq [t('content.blank', scope: i18n_scope)]
+        expect(form.errors[:content]).to eq [t('content.blank', scope: i18n_scope)]
       end
     end
 
@@ -63,7 +61,7 @@ RSpec.describe BlogForm, type: :model do
       it { is_expected.to be false }
 
       it 'has correct error message' do
-        expect(@form.errors[:category_id]).to eq [t('category_id.blank', scope: i18n_scope), t('category_id.inclusion', scope: i18n_scope)]
+        expect(form.errors[:category_id]).to eq [t('category_id.blank', scope: i18n_scope), t('category_id.inclusion', scope: i18n_scope)]
       end
     end
 
@@ -73,7 +71,7 @@ RSpec.describe BlogForm, type: :model do
       it { is_expected.to be false }
 
       it 'has correct error message' do
-        expect(@form.errors[:category_id]).to eq [t('category_id.inclusion', scope: i18n_scope)]
+        expect(form.errors[:category_id]).to eq [t('category_id.inclusion', scope: i18n_scope)]
       end
     end
   end

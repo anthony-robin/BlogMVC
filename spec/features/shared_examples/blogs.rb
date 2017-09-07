@@ -8,11 +8,11 @@ RSpec.shared_examples_for :blog_creatable do
   end
 
   it 'creates a record' do
-    expect { subject }.to change(Blog, :count).by(1)
+    expect { create_blog }.to change(Blog, :count).by(1)
   end
 
   describe 'owner' do
-    before { subject }
+    before { create_blog }
 
     it 'has correct owner' do
       expect(assigns(:form).model.user).to eq(user)
@@ -20,7 +20,7 @@ RSpec.shared_examples_for :blog_creatable do
   end
 
   describe 'flash message' do
-    before { subject }
+    before { create_blog }
 
     it 'has correct message' do
       expect(controller).to set_flash[:notice].to t('admin.blogs.create.notice')
@@ -38,7 +38,7 @@ RSpec.shared_examples_for :blog_updatable do
   end
 
   describe 'values' do
-    before { subject }
+    before { update_blog }
 
     it 'changes name' do
       expect(assigns(:form).model.title).to eq 'FooBar update'
@@ -46,7 +46,7 @@ RSpec.shared_examples_for :blog_updatable do
   end
 
   describe 'flash message' do
-    before { subject }
+    before { update_blog }
 
     it 'has correct message' do
       expect(controller).to set_flash[:notice].to t('admin.blogs.update.notice')
@@ -61,11 +61,11 @@ RSpec.shared_examples_for :blog_destroyable do
   it { is_expected.to redirect_to blogs_url }
 
   it 'destroys a blog' do
-    expect { subject }.to change(Blog, :count).by(-1)
+    expect { destroy_blog }.to change(Blog, :count).by(-1)
   end
 
   describe 'flash message' do
-    before { subject }
+    before { destroy_blog }
 
     it 'has correct message' do
       expect(controller).to set_flash[:notice].to t('admin.blogs.destroy.notice')

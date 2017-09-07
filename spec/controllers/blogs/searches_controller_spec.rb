@@ -2,8 +2,11 @@ require 'rails_helper'
 
 RSpec.describe Blogs::SearchesController do
   let!(:blogs) { create_list(:blog, 3) }
-  let!(:blog) { create(:blog, title: 'Lorem ipsum') }
-  before(:each) { Blog.reindex }
+
+  before do
+    create(:blog, title: 'Lorem ipsum')
+    Blog.reindex
+  end
 
   describe 'GET #index' do
     context 'without query' do
@@ -28,11 +31,10 @@ RSpec.describe Blogs::SearchesController do
 
       context 'when filled' do
         let(:term) { 'article' }
+        let(:results) { assigns(:blogs).results }
 
         it 'has correct articles' do
-          assigned = assigns(:blogs).results
-          expect(assigned).to include(blogs[0], blogs[1], blogs[2])
-          expect(assigned).to_not include(blog)
+          expect(results).to eq [blogs[0], blogs[1], blogs[2]]
         end
 
         it { is_expected.to have_http_status(200) }

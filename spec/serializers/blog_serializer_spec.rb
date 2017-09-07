@@ -1,8 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe BlogSerializer, type: :serializer do
+  subject(:json) { serialize(blog) }
+
   let(:blog) { create(:blog) }
-  subject { serialize(blog) }
 
   it 'includes the expected attributes' do
     expected = {
@@ -11,6 +12,6 @@ RSpec.describe BlogSerializer, type: :serializer do
       content: blog.content
     }.to_json
 
-    expect(subject).to eq expected
+    expect(json).to eq expected
   end
 end

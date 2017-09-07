@@ -16,7 +16,7 @@ CarrierWave::Uploader::Base.descendants.each do |klass|
 end
 
 RSpec.configure do |config|
-  config.after(:each) do
+  config.after do
     if Rails.env.test?
       uploads = Rails.root.join('spec', 'support', 'uploads')
       FileUtils.rm_rf(Dir[uploads])
