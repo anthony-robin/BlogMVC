@@ -10,7 +10,7 @@ class CommentsController < ApplicationController
   # POST /comments.json
   def create
     if @form.validate(params[:comment])
-      @form.save
+      @form.save!
       flash[:success] = t('.success')
       respond_action :create
     else

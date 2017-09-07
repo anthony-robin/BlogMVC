@@ -36,7 +36,7 @@ module Admin
     # DELETE /blogs/1
     # DELETE /blogs/1.json
     def destroy
-      @blog.destroy
+      @blog.destroy!
       redirect_to blogs_url, notice: t('.notice')
     end
 
@@ -52,8 +52,7 @@ module Admin
     end
 
     def save_action(action)
-      if @form.validate(params[:blog])
-        @form.save
+      if @form.validate(params[:blog]) && @form.save
         redirect_to category_blog_path(@form.model.category, @form.model), notice: t('.notice')
       else
         render action

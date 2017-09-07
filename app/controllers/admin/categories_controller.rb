@@ -36,7 +36,7 @@ module Admin
 
     # DELETE admin/categories/1
     def destroy
-      @category.destroy
+      @category.destroy!
       redirect_to admin_categories_path, notice: t('.notice')
     end
 
@@ -53,8 +53,7 @@ module Admin
     end
 
     def save_action(action)
-      if @form.validate(params[:category])
-        @form.save
+      if @form.validate(params[:category]) && @form.save
         redirect_to admin_categories_path, notice: t('.notice')
       else
         render action

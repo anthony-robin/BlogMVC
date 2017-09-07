@@ -6,7 +6,7 @@ class ImageUploader < ApplicationUploader
   end
 
   version :large_2x do
-    process resize_to_fit: [1200, 1200]
+    process resize_to_fit: [1_200, 1_200]
   end
 
   version :large, from_version: :large_2x do

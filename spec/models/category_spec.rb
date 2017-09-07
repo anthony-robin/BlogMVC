@@ -16,7 +16,7 @@ RSpec.describe Category do
 
     context 'on update' do
       it 'has a new slug' do
-        category.update_attributes(name: 'Ma catégorie modifiée')
+        category.update_attributes!(name: 'Ma catégorie modifiée')
         expect(category.slug).to eq('ma-categorie-modifiee')
       end
     end

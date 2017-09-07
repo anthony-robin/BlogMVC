@@ -33,7 +33,7 @@ RSpec.describe Blog do
       let(:blog) { create(:blog) }
 
       it 'has a new slug' do
-        blog.update_attributes(title: 'First blog article with update')
+        blog.update_attributes!(title: 'First blog article with update')
         expect(blog.slug).to eq('first-blog-article-with-update')
       end
     end
@@ -44,7 +44,7 @@ RSpec.describe Blog do
       it 'decreases counter cache' do
         expect(blog.category.blogs_count).to eq(1)
         expect(blog.user.blogs_count).to eq(1)
-        blog.destroy
+        blog.destroy!
         expect(blog.category.blogs_count).to eq(0)
         expect(blog.user.blogs_count).to eq(0)
       end
