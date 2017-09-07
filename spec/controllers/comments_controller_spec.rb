@@ -18,7 +18,7 @@ RSpec.describe CommentsController do
   before { login_user user }
 
   describe 'POST #create' do
-    subject(:create_comment) do
+    subject do
       post :create,
         params: { blog_id: blog, comment: attributes },
         format: format
@@ -68,7 +68,7 @@ RSpec.describe CommentsController do
   end
 
   describe 'DELETE #destroy' do
-    subject(:destroy_comment) do
+    subject do
       delete :destroy,
         params: { blog_id: blog, id: comment },
         format: format
@@ -76,25 +76,21 @@ RSpec.describe CommentsController do
 
     let!(:comment) { create(:comment, commentable: blog, user: user) }
 
-    context 'when not logged in' do
-      it_behaves_like :not_logged_in
+    it_behaves_like :not_logged_in
+
+    context 'with HTML format' do
+      let(:format) { :html }
+
+      it_behaves_like :comment_destroyable
     end
 
-    context 'when logged in' do
-      context 'with HTML format' do
-        let(:format) { :html }
+    context 'with JS format' do
+      let(:format) { :js }
 
-        it_behaves_like :comment_destroyable
-      end
+      it { is_expected.to have_http_status(200) }
+      it { is_expected.to render_template :destroy }
 
-      context 'with JS format' do
-        let(:format) { :js }
-
-        it { is_expected.to have_http_status(200) }
-        it { is_expected.to render_template :destroy }
-
-        it_behaves_like :comment_destroyable
-      end
+      it_behaves_like :comment_destroyable
     end
   end
 end

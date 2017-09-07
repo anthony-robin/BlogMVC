@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Blog do
-  subject(:ability) { Ability.new(user) }
+  subject { Ability.new(user) }
 
   let(:user) { nil }
 

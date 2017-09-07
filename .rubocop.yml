@@ -8,3 +8,7 @@ inherit_from:
 AllCops:
   TargetRubyVersion: 2.4
   TargetRailsVersion: 5.1
+
+RSpec/NamedSubject:
+  Exclude:
+    - spec/features/shared_examples/*.rb

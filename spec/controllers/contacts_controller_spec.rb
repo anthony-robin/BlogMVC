@@ -33,6 +33,10 @@ RSpec.describe ContactsController do
     after { ActionMailer::Base.deliveries.clear }
 
     context 'valid attributes' do
+      let(:flash_type) { 'notice' }
+      let(:flash_message) { 'Votre email a bien été envoyé.' }
+
+      it_behaves_like :flash_message
       it { is_expected.to have_http_status(302) }
       it { is_expected.to redirect_to new_contact_url }
 
@@ -47,14 +51,6 @@ RSpec.describe ContactsController do
 
         it 'sends two emails' do
           expect { create_contact }.to change { ActionMailer::Base.deliveries.count }.by(2)
-        end
-      end
-
-      describe 'flash message' do
-        before { create_contact }
-
-        it 'has correct message' do
-          expect(controller).to set_flash[:notice].to t('contacts.create.notice')
         end
       end
     end
