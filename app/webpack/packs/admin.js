@@ -1,13 +1,12 @@
 // Libs
 import 'jquery-ujs/src/rails'
+import * as Turbolinks from 'turbolinks'
 import 'font-awesome/css/font-awesome.min.css'
 
 // Modules
-import '../modules/admin/foundation'
-import '../modules/froala'
-import '../modules/search'
-
-const Turbolinks = require('turbolinks')
+import '../js/admin/foundation'
+import '../js/froala'
+import '../js/search'
 
 Turbolinks.start()
 
