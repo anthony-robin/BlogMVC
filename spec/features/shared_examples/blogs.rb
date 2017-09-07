@@ -1,6 +1,8 @@
-# Blogs Creatable
-#
 RSpec.shared_examples_for :blog_creatable do
+  let(:flash_type) { 'notice' }
+  let(:flash_message) { "L'article de Blog a été créé avec succès" }
+
+  it_behaves_like :flash_message
   it { is_expected.to have_http_status(302) }
 
   it do
@@ -8,29 +10,23 @@ RSpec.shared_examples_for :blog_creatable do
   end
 
   it 'creates a record' do
-    expect { create_blog }.to change(Blog, :count).by(1)
+    expect { subject }.to change(Blog, :count).by(1)
   end
 
   describe 'owner' do
-    before { create_blog }
+    before { subject }
 
     it 'has correct owner' do
       expect(assigns(:form).model.user).to eq(user)
     end
   end
-
-  describe 'flash message' do
-    before { create_blog }
-
-    it 'has correct message' do
-      expect(controller).to set_flash[:notice].to t('admin.blogs.create.notice')
-    end
-  end
 end
 
-# Blogs Updatable
-#
 RSpec.shared_examples_for :blog_updatable do
+  let(:flash_type) { 'notice' }
+  let(:flash_message) { "L'article de Blog a été mis à jour avec succès" }
+
+  it_behaves_like :flash_message
   it { is_expected.to have_http_status(302) }
 
   it do
@@ -38,37 +34,33 @@ RSpec.shared_examples_for :blog_updatable do
   end
 
   describe 'values' do
-    before { update_blog }
+    before { subject }
 
     it 'changes name' do
       expect(assigns(:form).model.title).to eq 'FooBar update'
     end
   end
-
-  describe 'flash message' do
-    before { update_blog }
-
-    it 'has correct message' do
-      expect(controller).to set_flash[:notice].to t('admin.blogs.update.notice')
-    end
-  end
 end
 
-# Blogs Destroyable
-#
 RSpec.shared_examples_for :blog_destroyable do
+  before do
+    create_list :comment, 4,
+      commentable: blog,
+      user: user
+  end
+
+  let(:flash_type) { 'notice' }
+  let(:flash_message) { "L'article de Blog a été supprimé avec succès" }
+
+  it_behaves_like :flash_message
   it { is_expected.to have_http_status(302) }
   it { is_expected.to redirect_to blogs_url }
 
   it 'destroys a blog' do
-    expect { destroy_blog }.to change(Blog, :count).by(-1)
+    expect { subject }.to change(Blog, :count).by(-1)
   end
 
-  describe 'flash message' do
-    before { destroy_blog }
-
-    it 'has correct message' do
-      expect(controller).to set_flash[:notice].to t('admin.blogs.destroy.notice')
-    end
+  it 'destroys comments linked' do
+    expect { subject }.to change(Comment, :count).by(-4)
   end
 end

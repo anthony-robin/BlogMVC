@@ -16,14 +16,14 @@ RSpec.describe Admin::CategoriesController do
   describe 'GET #index' do
     subject { get :index, format: format }
 
-    context 'when not logged in' do
-      it_behaves_like :not_logged_in
-    end
+    it_behaves_like :not_logged_in
 
     context 'as author' do
       let(:user) { create(:user, :author) }
+      let(:flash_type) { 'alert' }
+      let(:flash_message) { "Vous n'êtes pas autorisé à accéder à cette page" }
 
-      it_behaves_like :unauthorized, I18n.t('unauthorized.read.category')
+      it_behaves_like :unauthorized
     end
 
     context 'as admin' do
@@ -44,14 +44,14 @@ RSpec.describe Admin::CategoriesController do
   describe 'GET #new' do
     subject { get :new, format: format }
 
-    context 'when not logged in' do
-      it_behaves_like :not_logged_in
-    end
+    it_behaves_like :not_logged_in
 
     context 'as author' do
       let(:user) { create(:user, :author) }
+      let(:flash_type) { 'alert' }
+      let(:flash_message) { "Vous n'êtes pas autorisé à gérer cette ressource" }
 
-      it_behaves_like :unauthorized, I18n.t('unauthorized.manage.all')
+      it_behaves_like :unauthorized
     end
 
     context 'as admin' do
@@ -78,15 +78,7 @@ RSpec.describe Admin::CategoriesController do
 
     let(:attributes) { valid_attributes }
 
-    context 'when not logged in' do
-      it_behaves_like :not_logged_in
-
-      it_behaves_like :unauthorized, I18n.t('unauthorized.manage.all')
-
-      it 'does not create a record' do
-        expect { create_category }.to_not change(Category, :count)
-      end
-    end
+    it_behaves_like :not_logged_in
 
     context 'as author' do
       let(:user) { create(:user, :author) }
@@ -141,14 +133,14 @@ RSpec.describe Admin::CategoriesController do
         format: format
     end
 
-    context 'when not logged in' do
-      it_behaves_like :not_logged_in
-    end
+    it_behaves_like :not_logged_in
 
     context 'as author' do
       let(:user) { create(:user, :author) }
+      let(:flash_type) { 'alert' }
+      let(:flash_message) { "Vous n'êtes pas autorisé à gérer cette ressource" }
 
-      it_behaves_like :unauthorized, I18n.t('unauthorized.manage.all')
+      it_behaves_like :unauthorized
     end
 
     context 'as admin' do
@@ -167,7 +159,7 @@ RSpec.describe Admin::CategoriesController do
   end
 
   describe 'PATCH #update' do
-    subject(:update_category) do
+    subject do
       patch :update,
         params: { id: category, category: attributes },
         format: format
@@ -175,14 +167,14 @@ RSpec.describe Admin::CategoriesController do
 
     let(:attributes) { valid_attributes[:category].merge!(name: 'FooBar update') }
 
-    context 'when not logged in' do
-      it_behaves_like :not_logged_in
-    end
+    it_behaves_like :not_logged_in
 
     context 'as author' do
       let(:user) { create(:user, :author) }
+      let(:flash_type) { 'alert' }
+      let(:flash_message) { "Vous n'êtes pas autorisé à gérer cette ressource" }
 
-      it_behaves_like :unauthorized, I18n.t('unauthorized.manage.all')
+      it_behaves_like :unauthorized
     end
 
     context 'as admin' do
@@ -225,14 +217,14 @@ RSpec.describe Admin::CategoriesController do
         format: format
     end
 
-    context 'when not logged in' do
-      it_behaves_like :not_logged_in
-    end
+    it_behaves_like :not_logged_in
 
     context 'as author' do
       let(:user) { create(:user, :author) }
+      let(:flash_type) { 'alert' }
+      let(:flash_message) { "Vous n'êtes pas autorisé à gérer cette ressource" }
 
-      it_behaves_like :unauthorized, I18n.t('unauthorized.manage.all')
+      it_behaves_like :unauthorized
 
       it 'does not destroy a category' do
         expect { destroy_category }.to_not change(Category, :count)

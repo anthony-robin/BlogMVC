@@ -29,9 +29,7 @@ RSpec.describe Admin::BlogsController do
   describe 'GET #new' do
     subject { get :new, format: format }
 
-    context 'when not logged in' do
-      it_behaves_like :not_logged_in
-    end
+    it_behaves_like :not_logged_in
 
     context 'as author' do
       let(:user) { create(:user, :author) }
@@ -56,7 +54,7 @@ RSpec.describe Admin::BlogsController do
   end
 
   describe 'POST #create' do
-    subject(:create_blog) do
+    subject do
       post :create,
         params: { blog: attributes },
         format: format
@@ -64,9 +62,7 @@ RSpec.describe Admin::BlogsController do
 
     let(:attributes) { valid_attributes[:blog] }
 
-    context 'when not logged in' do
-      it_behaves_like :not_logged_in
-    end
+    it_behaves_like :not_logged_in
 
     context 'as author' do
       let(:user) { create(:user, :author) }
@@ -125,9 +121,7 @@ RSpec.describe Admin::BlogsController do
         format: format
     end
 
-    context 'when not logged in' do
-      it_behaves_like :not_logged_in
-    end
+    it_behaves_like :not_logged_in
 
     context 'as author' do
       let(:user) { create(:user, :author) }
@@ -138,6 +132,8 @@ RSpec.describe Admin::BlogsController do
 
     context 'as admin' do
       let(:user) { create(:user, :admin) }
+      let(:flash_type) { 'alert' }
+      let(:flash_message) { "Vous n'êtes pas autorisé à modifier cet article de Blog" }
 
       it { is_expected.to have_http_status(200) }
       it { is_expected.to render_template :edit }
@@ -145,7 +141,7 @@ RSpec.describe Admin::BlogsController do
       context 'when try to access a master' do
         let(:blog) { create(:blog, user: create(:user, :master)) }
 
-        it_behaves_like :unauthorized, I18n.t('unauthorized.update.blog')
+        it_behaves_like :unauthorized
       end
     end
 
@@ -158,7 +154,7 @@ RSpec.describe Admin::BlogsController do
   end
 
   describe 'PATCH #update' do
-    subject(:update_blog) do
+    subject do
       patch :update,
         params: { id: blog, blog: attributes },
         format: format
@@ -166,9 +162,7 @@ RSpec.describe Admin::BlogsController do
 
     let(:attributes) { valid_attributes[:blog].merge!(title: 'FooBar update') }
 
-    context 'when not logged in' do
-      it_behaves_like :not_logged_in
-    end
+    it_behaves_like :not_logged_in
 
     context 'as author' do
       let(:user) { create(:user, :author) }
@@ -194,8 +188,10 @@ RSpec.describe Admin::BlogsController do
       context 'when try to access a master' do
         let(:blog) { create(:blog, user: create(:user, :master)) }
         let(:attributes) { blog.category }
+        let(:flash_type) { 'alert' }
+        let(:flash_message) { "Vous n'êtes pas autorisé à modifier cet article de Blog" }
 
-        it_behaves_like :unauthorized, I18n.t('unauthorized.update.blog')
+        it_behaves_like :unauthorized
       end
     end
 
@@ -218,25 +214,13 @@ RSpec.describe Admin::BlogsController do
   end
 
   describe 'DELETE #destroy' do
-    subject(:destroy_blog) do
+    subject do
       delete :destroy,
         params: { id: blog },
         format: format
     end
 
-    context 'when not logged in' do
-      it_behaves_like :not_logged_in
-    end
-
-    context 'any user' do
-      let(:user) { create(:user, :admin) }
-
-      before { create_list(:comment, 4, commentable: blog, user: user) }
-
-      it 'destroys comments linked' do
-        expect { destroy_blog }.to change(Comment, :count).by(-4)
-      end
-    end
+    it_behaves_like :not_logged_in
 
     context 'as author' do
       let!(:blog) { create(:blog, :author) }
@@ -256,8 +240,10 @@ RSpec.describe Admin::BlogsController do
 
       context 'when try to access a master' do
         let(:blog) { create(:blog, :master) }
+        let(:flash_type) { 'alert' }
+        let(:flash_message) { "Vous n'êtes pas autorisé à supprimer cet article de Blog" }
 
-        it_behaves_like :unauthorized, I18n.t('unauthorized.destroy.blog')
+        it_behaves_like :unauthorized
       end
     end
 

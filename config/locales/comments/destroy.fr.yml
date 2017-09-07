@@ -1,5 +1,5 @@
 fr:
   comments:
-    create:
-      success: Votre commentaire a été ajouté avec succès
-      alert: Votre commentaire n'a pas pu être ajouté
+    destroy:
+      success: Votre commentaire a bien été supprimé
+      alert: Votre commentaire n'a pas pu être supprimé
