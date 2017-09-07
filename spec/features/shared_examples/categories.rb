@@ -5,11 +5,11 @@ RSpec.shared_examples_for :category_creatable do
   it { is_expected.to redirect_to admin_categories_url }
 
   it 'creates a record' do
-    expect { subject }.to change(Category, :count).by(1)
+    expect { create_category }.to change(Category, :count).by(1)
   end
 
   describe 'flash message' do
-    before { subject }
+    before { create_category }
 
     it 'has correct message' do
       expect(controller).to set_flash[:notice].to t('admin.categories.create.notice')
@@ -24,7 +24,7 @@ RSpec.shared_examples_for :category_updatable do
   it { is_expected.to redirect_to admin_categories_url }
 
   describe 'flash message' do
-    before { subject }
+    before { update_category }
 
     it 'has correct message' do
       expect(controller).to set_flash[:notice].to t('admin.categories.update.notice')
@@ -32,7 +32,7 @@ RSpec.shared_examples_for :category_updatable do
   end
 
   describe 'values' do
-    before { subject }
+    before { update_category }
 
     it 'changes name' do
       expect(assigns(:category).name).to eq 'FooBar update'
@@ -47,7 +47,7 @@ RSpec.shared_examples_for :category_destroyable do
   it { is_expected.to redirect_to admin_categories_url }
 
   describe 'flash message' do
-    before { subject }
+    before { destroy_category }
 
     it 'has correct message' do
       expect(controller).to set_flash[:notice].to t('admin.categories.destroy.notice')
@@ -55,10 +55,10 @@ RSpec.shared_examples_for :category_destroyable do
   end
 
   it 'destroys a category' do
-    expect { subject }.to change(Category, :count).by(-1)
+    expect { destroy_category }.to change(Category, :count).by(-1)
   end
 
   it 'destroys associated blogs' do
-    expect { subject }.to change(category.blogs, :count).by(-3)
+    expect { destroy_category }.to change(category.blogs, :count).by(-3)
   end
 end

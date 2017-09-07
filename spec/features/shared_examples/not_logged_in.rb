@@ -11,6 +11,7 @@ RSpec.shared_examples_for :not_logged_in do |js: true|
   if js
     context 'with JS format' do
       let(:format) { :js }
+
       it { is_expected.to have_http_status(401) }
     end
   end

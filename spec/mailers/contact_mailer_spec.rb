@@ -7,48 +7,50 @@ RSpec.describe ContactMailer do
                  message: 'My contact message' } }
   end
 
-  before(:each) { ActionMailer::Base.deliveries = [] }
-  after(:each) { ActionMailer::Base.deliveries.clear }
+  before { ActionMailer::Base.deliveries = [] }
+  after { ActionMailer::Base.deliveries.clear }
 
   describe '#send_email' do
+    subject(:email) { described_class.send_email(attributes) }
+
     let(:attributes) { valid_attributes[:contact] }
-    subject { described_class.send_email(attributes) }
 
     it 'renders the subject' do
-      expect(subject.subject).to eq(I18n.t('contact_mailer.send_email.subject'))
+      expect(email.subject).to eq(I18n.t('contact_mailer.send_email.subject'))
     end
 
     it 'renders the receiver email' do
-      expect(subject.to).to eq([ENV.fetch('TO_CONTACT')])
+      expect(email.to).to eq([ENV.fetch('TO_CONTACT')])
     end
 
     it 'renders the sender email' do
-      expect(subject.from).to eq(['johndoe@test.fr'])
+      expect(email.from).to eq(['johndoe@test.fr'])
     end
 
     it 'renders the body' do
-      expect(subject.body.encoded).to match('My contact message')
+      expect(email.body.encoded).to match('My contact message')
     end
   end
 
   describe '#copy_email' do
+    subject(:copy) { described_class.copy_email(attributes) }
+
     let(:attributes) { valid_attributes[:contact] }
-    subject { described_class.copy_email(attributes) }
 
     it 'renders the subject' do
-      expect(subject.subject).to eq(I18n.t('contact_mailer.copy_email.subject'))
+      expect(copy.subject).to eq(I18n.t('contact_mailer.copy_email.subject'))
     end
 
     it 'renders the receiver email' do
-      expect(subject.to).to eq(['johndoe@test.fr'])
+      expect(copy.to).to eq(['johndoe@test.fr'])
     end
 
     it 'renders the sender email' do
-      expect(subject.from).to eq([ENV.fetch('TO_CONTACT')])
+      expect(copy.from).to eq([ENV.fetch('TO_CONTACT')])
     end
 
     it 'renders the body' do
-      expect(subject.body.encoded).to match('My contact message')
+      expect(copy.body.encoded).to match('My contact message')
     end
   end
 end

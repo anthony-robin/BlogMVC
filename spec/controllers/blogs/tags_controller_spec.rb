@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe Blogs::TagsController do
   let!(:blogs) { create_list(:blog, 3, :foo) }
-  let!(:blog) { create_list(:blog, 3, :bar) }
+
+  before { create_list(:blog, 3, :bar) }
 
   describe 'GET #show' do
     subject! do
@@ -14,9 +15,7 @@ RSpec.describe Blogs::TagsController do
       let(:tag) { 'foo' }
 
       it 'has correct articles' do
-        assigned = assigns(:blogs)
-        expect(assigned).to include(blogs[0], blogs[1], blogs[2])
-        expect(assigned).to_not include(blog)
+        expect(assigns(:blogs)).to eq [blogs[2], blogs[1], blogs[0]]
       end
 
       it { is_expected.to have_http_status(200) }

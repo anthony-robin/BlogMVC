@@ -7,11 +7,11 @@ RSpec.shared_examples_for :comment_creatable do
   end
 
   it 'creates a new comment' do
-    expect { subject }.to change(Comment, :count).by(1)
+    expect { create_comment }.to change(Comment, :count).by(1)
   end
 
   describe 'owner' do
-    before { subject }
+    before { create_comment }
 
     it 'has correct owner' do
       expect(assigns(:comment).user).to eq(user)
@@ -19,7 +19,7 @@ RSpec.shared_examples_for :comment_creatable do
   end
 
   describe 'flash message' do
-    before { subject }
+    before { create_comment }
 
     it 'has correct message' do
       expect(controller).to set_flash[:success].to(t('comments.create.success'))
@@ -36,11 +36,11 @@ RSpec.shared_examples_for :comment_not_creatable do
   end
 
   it 'does not create a new comment' do
-    expect { subject }.to_not change(Comment, :count)
+    expect { create_comment }.to_not change(Comment, :count)
   end
 
   describe 'flash message' do
-    before { subject }
+    before { create_comment }
 
     it 'has correct message' do
       expect(controller).to set_flash[:alert].to(t('comments.create.alert'))
@@ -52,11 +52,11 @@ end
 #
 RSpec.shared_examples_for :comment_destroyable do
   it 'destroys a comment' do
-    expect { subject }.to change(Comment, :count).by(-1)
+    expect { destroy_comment }.to change(Comment, :count).by(-1)
   end
 
   describe 'flash message' do
-    before { subject }
+    before { destroy_comment }
 
     it 'has correct message' do
       expect(controller).to set_flash[:success].to(t('comments.destroy.success'))

@@ -4,16 +4,16 @@ RSpec.describe ImageUploader do
   include CarrierWave::Test::Matchers
 
   let(:picture) { create(:picture, :for_blog) }
-  let(:uploader) { ImageUploader.new(picture, :image) }
+  let(:uploader) { described_class.new(picture, :image) }
 
   before do
-    ImageUploader.enable_processing = true
+    described_class.enable_processing = true
     path_to_file = Rails.root.join('spec', 'fixtures', 'picture.png')
     File.open(path_to_file) { |f| uploader.store!(f) }
   end
 
   after do
-    ImageUploader.enable_processing = false
+    described_class.enable_processing = false
     uploader.remove!
   end
 

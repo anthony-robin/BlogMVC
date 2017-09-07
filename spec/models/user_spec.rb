@@ -18,23 +18,11 @@ RSpec.describe User do
     context 'uniqueness' do
       let(:user) { create(:user) }
 
-      it 'has a unique (case insensitive) username' do
-        create(:user, username: 'Foobar')
-        user2 = build(:user, username: 'fooBar')
-
-        expect(user2).to_not be_valid
-        expect(user2.errors[:username]).to include(t('username.taken', scope: i18n_scope))
-      end
-
-      it 'has a unique (case insensitive) email' do
-        create(:user, email: 'foobar@example.com')
-        user2 = build(:user, email: 'FOOBAR@example.com')
-        expect(user2).to_not be_valid
-        expect(user2.errors[:email]).to include(t('errors.attributes.email.taken'))
-      end
-
       it { is_expected.to_not allow_value(user.username).for(:username).with_message(t('username.taken', scope: i18n_scope)) }
+      it { is_expected.to_not allow_value(user.username.capitalize).for(:username).with_message(t('username.taken', scope: i18n_scope)) }
+
       it { is_expected.to_not allow_value(user.email).for(:email).with_message(t('email.taken', scope: i18n_scope)) }
+      it { is_expected.to_not allow_value(user.email.capitalize).for(:email).with_message(t('email.taken', scope: i18n_scope)) }
     end
 
     context 'format' do
@@ -53,24 +41,34 @@ RSpec.describe User do
     end
 
     context 'enum' do
-      it { is_expected.to define_enum_for(:role).with(User.roles.keys) }
+      it { is_expected.to define_enum_for(:role).with(described_class.roles.keys) }
     end
   end
 
   context 'a user' do
-    let(:user) { build(:user, password: 'mypassword', password_confirmation: 'mypassword2') }
+    let(:user) do
+      build :user,
+        password: 'mypassword',
+        password_confirmation: 'mypassword2'
+    end
 
-    it 'is not valid if password mismatch password_confirmation' do
-      expect(user).to_not be_valid
-      expect(user.errors[:password_confirmation].first).to_not be_empty
+    context 'password_confirmation' do
+      subject! { user.valid? }
+
+      it { is_expected.to be false }
+
+      it 'is not valid if password mismatch' do
+        expect(user.errors[:password_confirmation].first).to_not be_empty
+      end
     end
 
     context 'on create' do
       let(:user) { build(:user) }
 
+      it { expect(user).to be_valid }
+      it { expect(user.errors).to be_empty }
+
       it 'has default user role' do
-        expect(user).to be_valid
-        expect(user.errors).to be_empty
         expect(user.role).to eq('author')
       end
     end

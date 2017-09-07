@@ -1,6 +1,9 @@
+require: rubocop-rspec
+
 inherit_from:
   - https://raw.githubusercontent.com/anthony-robin/rubocop-rules/master/.rubocop.yml
   - https://raw.githubusercontent.com/anthony-robin/rubocop-rules/master/.rubocop-rails.yml
+  - https://raw.githubusercontent.com/anthony-robin/rubocop-rules/master/.rubocop-rspec.yml
 
 AllCops:
   TargetRubyVersion: 2.4

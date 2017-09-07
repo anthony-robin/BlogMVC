@@ -18,67 +18,63 @@ RSpec.describe CommentsController do
   before { login_user user }
 
   describe 'POST #create' do
-    let(:attributes) { valid_attributes[:comment] }
-
-    subject do
+    subject(:create_comment) do
       post :create,
         params: { blog_id: blog, comment: attributes },
         format: format
     end
 
-    context 'when not logged in' do
-      it_behaves_like :not_logged_in
-    end
+    let(:attributes) { valid_attributes[:comment] }
 
-    context 'when logged in' do
-      context 'with HTML format' do
-        let(:format) { :html }
+    it_behaves_like :not_logged_in
 
-        context 'with valid params' do
-          it_behaves_like :comment_creatable
-        end
+    context 'with HTML format' do
+      let(:format) { :html }
 
-        context 'with invalid params' do
-          let(:attributes) { invalid_attributes[:comment] }
-
-          it_behaves_like :comment_not_creatable
-        end
-
-        context 'with captcha filed' do
-          let(:attributes) do
-            valid_attributes[:comment].merge!(nickname: 'I AM A ROBOT')
-          end
-
-          it_behaves_like :comment_not_creatable
-        end
+      context 'with valid params' do
+        it_behaves_like :comment_creatable
       end
 
-      context 'with JS format' do
-        let(:format) { :js }
+      context 'with invalid params' do
+        let(:attributes) { invalid_attributes[:comment] }
 
-        context 'with valid params' do
-          it { is_expected.to have_http_status(200) }
-          it { is_expected.to render_template :create }
+        it_behaves_like :comment_not_creatable
+      end
+
+      context 'with captcha filed' do
+        let(:attributes) do
+          valid_attributes[:comment].merge!(nickname: 'I AM A ROBOT')
         end
 
-        context 'with invalid params' do
-          let(:attributes) { invalid_attributes[:comment] }
+        it_behaves_like :comment_not_creatable
+      end
+    end
 
-          it { is_expected.to have_http_status(200) }
-          it { is_expected.to render_template :error }
-        end
+    context 'with JS format' do
+      let(:format) { :js }
+
+      context 'with valid params' do
+        it { is_expected.to have_http_status(200) }
+        it { is_expected.to render_template :create }
+      end
+
+      context 'with invalid params' do
+        let(:attributes) { invalid_attributes[:comment] }
+
+        it { is_expected.to have_http_status(200) }
+        it { is_expected.to render_template :error }
       end
     end
   end
 
   describe 'DELETE #destroy' do
-    let!(:comment) { create(:comment, commentable: blog, user: user) }
-
-    subject do
+    subject(:destroy_comment) do
       delete :destroy,
         params: { blog_id: blog, id: comment },
         format: format
     end
+
+    let!(:comment) { create(:comment, commentable: blog, user: user) }
 
     context 'when not logged in' do
       it_behaves_like :not_logged_in

@@ -1,13 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe Admin::DashboardsController do
-  let!(:user) { create(:user) }
+  let(:user) { create(:user) }
   let(:format) { :html }
 
   before { login_user user }
 
   describe 'GET #show' do
-    subject { get :show, format: format }
+    subject(:show) { get :show, format: format }
 
     context 'when not logged in' do
       it_behaves_like :not_logged_in
@@ -15,7 +15,7 @@ RSpec.describe Admin::DashboardsController do
       describe 'flash message' do
         before do
           sign_out user
-          subject
+          show
         end
 
         it 'has correct message' do

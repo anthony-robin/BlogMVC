@@ -69,6 +69,7 @@ group :development, :test do
   gem 'faker'
   gem 'database_cleaner'
   gem 'rubocop'
+  gem 'rubocop-rspec'
 
   gem 'pry-byebug'
   gem 'pry-rails'

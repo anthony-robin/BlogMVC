@@ -22,15 +22,15 @@ RSpec.describe ContactsController do
   end
 
   describe 'POST #create' do
-    let(:attributes) { valid_attributes[:contact] }
-
-    before(:each) { ActionMailer::Base.deliveries = [] }
-    after(:each) { ActionMailer::Base.deliveries.clear }
-
-    subject do
+    subject(:create_contact) do
       post :create,
         params: { contact: attributes }
     end
+
+    let(:attributes) { valid_attributes[:contact] }
+
+    before { ActionMailer::Base.deliveries = [] }
+    after { ActionMailer::Base.deliveries.clear }
 
     context 'valid attributes' do
       it { is_expected.to have_http_status(302) }
@@ -38,7 +38,7 @@ RSpec.describe ContactsController do
 
       context 'without copy' do
         it 'sends an email' do
-          expect { subject }.to change { ActionMailer::Base.deliveries.count }.by(1)
+          expect { create_contact }.to change { ActionMailer::Base.deliveries.count }.by(1)
         end
       end
 
@@ -46,12 +46,12 @@ RSpec.describe ContactsController do
         let(:attributes) { valid_attributes[:contact].merge!(copy: '1') }
 
         it 'sends two emails' do
-          expect { subject }.to change { ActionMailer::Base.deliveries.count }.by(2)
+          expect { create_contact }.to change { ActionMailer::Base.deliveries.count }.by(2)
         end
       end
 
       describe 'flash message' do
-        before { subject }
+        before { create_contact }
 
         it 'has correct message' do
           expect(controller).to set_flash[:notice].to t('contacts.create.notice')
@@ -66,7 +66,7 @@ RSpec.describe ContactsController do
       it { is_expected.to render_template :new }
 
       it 'does not send an email' do
-        expect { subject }.to change { ActionMailer::Base.deliveries.count }.by(0)
+        expect { create_contact }.to change { ActionMailer::Base.deliveries.count }.by(0)
       end
     end
   end

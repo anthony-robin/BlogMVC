@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe BlogsController do
   let(:format) { :html }
-  let!(:blog) { create(:blog) }
+
+  before { create(:blog) }
 
   describe 'GET #index' do
     subject { get :index, format: format }

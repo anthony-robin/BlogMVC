@@ -12,24 +12,31 @@ RSpec.describe Comment do
     let(:comment) { build(:comment, commentable: blog, user: user, body: 'Lorem ispum !') }
 
     context 'on CREATE' do
+      before { comment.save! }
+
       it('is valid') { expect(comment).to be_valid }
       it('has no errors') { expect(comment.errors).to be_empty }
-      it 'increases counter cache' do
-        expect(blog.comments_count).to eq(0)
-        expect(user.comments_count).to eq(0)
-        comment.save!
+
+      it 'increases blogs counter cache' do
         expect(blog.comments_count).to eq(1)
+      end
+
+      it 'increases user counter cache' do
         expect(user.comments_count).to eq(1)
       end
     end
 
     context 'on DESTROY' do
-      it 'decreases counter cache' do
+      before do
         comment.save!
-        expect(blog.comments_count).to eq(1)
-        expect(user.comments_count).to eq(1)
         comment.destroy!
+      end
+
+      it 'decreases blogs counter cache' do
         expect(blog.reload.comments_count).to eq(0)
+      end
+
+      it 'decreases user counter cache' do
         expect(user.reload.comments_count).to eq(0)
       end
     end

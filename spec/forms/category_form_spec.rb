@@ -7,14 +7,11 @@ RSpec.describe CategoryForm, type: :model do
     { category: { name: 'My Category' } }
   end
 
-  before do
-    model = Category.new
-    @form = CategoryForm.new(model)
-  end
+  let(:form) { CategoryForm.new(Category.new) }
 
   context 'model validations rules' do
     before { create(:category, name: 'Category1') }
-    subject { @form }
+    subject { form }
 
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to_not allow_value('Category1').for(:name) }
@@ -22,10 +19,11 @@ RSpec.describe CategoryForm, type: :model do
   end
 
   context '#validate?' do
-    subject! { @form.validate(attributes) }
+    subject! { form.validate(attributes) }
 
     context 'with correct attribute' do
       let(:attributes) { valid_attributes[:category] }
+
       it { is_expected.to be true }
     end
 
@@ -35,7 +33,7 @@ RSpec.describe CategoryForm, type: :model do
       it { is_expected.to be false }
 
       it 'has correct error message' do
-        expect(@form.errors[:name]).to eq [t('name.blank', scope: i18n_scope)]
+        expect(form.errors[:name]).to eq [t('name.blank', scope: i18n_scope)]
       end
     end
   end
