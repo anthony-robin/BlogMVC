@@ -28,7 +28,7 @@ RSpec.describe Comment do
         comment.save!
         expect(blog.comments_count).to eq(1)
         expect(user.comments_count).to eq(1)
-        comment.destroy
+        comment.destroy!
         expect(blog.reload.comments_count).to eq(0)
         expect(user.reload.comments_count).to eq(0)
       end

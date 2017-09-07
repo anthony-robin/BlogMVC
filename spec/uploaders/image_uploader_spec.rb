@@ -53,7 +53,7 @@ RSpec.describe ImageUploader do
     end
 
     it 'scales down a picture to fit within 1200 by 1200 pixels (retina)' do
-      expect(uploader.large_2x).to have_dimensions(1200, 1200)
+      expect(uploader.large_2x).to have_dimensions(1_200, 1_200)
     end
   end
 

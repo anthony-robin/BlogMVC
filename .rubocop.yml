@@ -1,1 +1,7 @@
-inherit_from: https://raw.githubusercontent.com/anthony-robin/rubocop-rules/master/.rubocop.yml
+inherit_from:
+  - https://raw.githubusercontent.com/anthony-robin/rubocop-rules/master/.rubocop.yml
+  - https://raw.githubusercontent.com/anthony-robin/rubocop-rules/master/.rubocop-rails.yml
+
+AllCops:
+  TargetRubyVersion: 2.4
+  TargetRailsVersion: 5.1

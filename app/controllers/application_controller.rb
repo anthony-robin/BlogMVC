@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   def configure_permitted_parameters
     attrs = %i[username email password password_confirmation]
     update_attrs = attrs + %i[avatar avatar_cache remove_avatar current_password]
-    update_attrs.push(:role) if current_user.try(:master_role?)
+    update_attrs.push(:role) if current_user&.master_role?
 
     devise_parameter_sanitizer.permit :sign_up, keys: attrs
     devise_parameter_sanitizer.permit :account_update, keys: update_attrs
