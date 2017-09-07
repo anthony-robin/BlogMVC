@@ -10,8 +10,6 @@ module ApplicationHelper
                             if model.send(mounted_to).version_exists?(name) &&
                               source = model.send(mounted_to).url(name).presence
                               "#{source} #{multiplier}x"
-                            else
-                              nil
                             end
                           end.compact.join(', ')
 
