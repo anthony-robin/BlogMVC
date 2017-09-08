@@ -39,4 +39,4 @@
       .auto.cell
         = link_to 'Supprimer mon compte', registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'button alert full-width'
       .auto.cell
-        = link_to 'Annuler', :back, class: 'button secondary full-width'
+        = back_button_to :back, t('cancel')

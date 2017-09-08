@@ -3,7 +3,7 @@ table.hover
     tr
       th= t('.name')
       th= t('.blogs_count')
-      th= t('.actions')
+      th= t('actions')
 
   tbody
     - @categories.each do |category|
@@ -11,5 +11,5 @@ table.hover
         td= category.name
         td= category.blogs_count
         td
-          =< link_to t('.edit.label'), [:edit, :admin, category], class: 'button small warning'
-          =< link_to t('.destroy.label'), [:admin, category], data: { confirm: t('.destroy.confirm') }, method: :delete, class: 'button small alert'
+          =< edit_button_to [:edit, :admin, category] if can?(:update, category)
+          =< destroy_button_to [:admin, category] if can?(:destroy, category)
