@@ -5,7 +5,8 @@
 .grid-container
   .grid-x.grid-padding-x
     .cell
-      p= add_button_to [:new, :admin, :category] if can?(:create, Category)
+      - if can?(:create, Category)
+        p= add_button_to %i[new admin category]
 
   .grid-x.grid-padding-x.align-center
     .cell

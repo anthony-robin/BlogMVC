@@ -2,7 +2,7 @@
   .grid-x.grid-padding-x
     .cell
       - if can?(:create, Blog)
-        p= add_button_to [:new, :admin, :blog]
+        p= add_button_to %i[new admin blog]
 
   .grid-x.grid-padding-x.align-center
     .cell

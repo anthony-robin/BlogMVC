@@ -37,6 +37,6 @@
       .small-12.medium-6.cell
         = f.button :submit, class: 'full-width'
       .auto.cell
-        = link_to 'Supprimer mon compte', registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'button alert full-width'
+        =< destroy_button_to registration_path(resource_name), 'Supprimer mon compte'
       .auto.cell
         = back_button_to :back, t('cancel')

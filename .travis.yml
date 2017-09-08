@@ -44,6 +44,7 @@ before_script:
 script:
   - bin/rspec
   - bin/rubocop
+  - bin/slim-lint app/views
   - bin/yarn run eslint
   - bin/yarn run sasslint
 

@@ -9,13 +9,13 @@
 
     h4 Tags
     #tag_cloud.tag_cloud
-      - tag_cloud Blog.tag_counts, %w(s m l) do |tag, css_class|
+      - tag_cloud Blog.tag_counts, %w[s m l] do |tag, css_class|
         =< link_to tag.name, blogs_tag_path(tag.name), class: css_class
 
     br
     - if can?(:create, Blog)
-      p= add_button_to [:new, :admin, :blog], t('.add_article')
+      p= add_button_to %i[new admin blog], t('.add_article')
     - if can?(:create, Category)
-      p= add_button_to [:new, :admin, :category], t('.add_category')
+      p= add_button_to %i[new admin category], t('.add_category')
     - if params[:category_id].present?
       = back_button_to [:blogs], t('.back_articles')
