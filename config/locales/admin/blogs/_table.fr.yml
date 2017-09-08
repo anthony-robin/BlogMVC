@@ -1,0 +1,8 @@
+fr:
+  admin:
+    blogs:
+      table:
+        cover: Couverture
+        title: Titre
+        category: Catégorie
+        author: Auteur

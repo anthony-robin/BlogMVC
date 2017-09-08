@@ -21,7 +21,7 @@
           .small-12.medium-8.cell
             = f.button :submit, 'Connexion', class: 'button full-width'
           .auto.cell
-            = link_to 'Annuler', :back, class: 'button secondary full-width'
+            = back_button_to :back, t('cancel')
 
       .auto.cell
         = render 'devise/shared/links'

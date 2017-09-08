@@ -6,7 +6,8 @@ table.hover
       th= t('.category')
       - if params[:action] != 'show'
         th= t('.author')
-      th= t('.actions')
+      th= t('actions')
+
   tbody
     - blogs.each do |blog|
       tr
@@ -20,6 +21,8 @@ table.hover
             small =< "(#{blog.user_role})"
 
         td
-          =< link_to t('.show.label'), category_blog_path(blog.category, blog), class: 'button small success' if can?(:read, blog)
-          =< link_to t('.edit.label'), [:edit, :admin, blog], class: 'button small warning' if can?(:update, blog)
-          =< link_to t('.destroy.label'), [:admin, blog], data: { confirm: t('.destroy.confirm') }, method: :delete, class: 'button small alert' if can?(:destroy, blog)
+          = show_button_to category_blog_path(blog.category, blog) if can?(:read, blog)
+
+          =< edit_button_to [:edit, :admin, blog] if can?(:update, blog)
+
+          =< destroy_button_to [:admin, blog] if can?(:destroy, blog)

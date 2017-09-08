@@ -5,7 +5,7 @@
 .grid-container
   .grid-x.grid-padding-x
     .cell
-      p= link_to 'Ajouter une catégorie', new_admin_category_path, class: 'button full-width'
+      p= add_button_to [:new, :admin, :category] if can?(:create, Category)
 
   .grid-x.grid-padding-x.align-center
     .cell

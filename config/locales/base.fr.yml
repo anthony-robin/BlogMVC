@@ -1,0 +1,13 @@
+# Translations shared by views
+fr:
+  'true': Oui
+  'false': Non
+
+  actions: Actions
+  are_you_sure: Êtes-vous sûr ?
+  add: Ajouter
+  back: Retour
+  cancel: Annuler
+  destroy: Supprimer
+  edit: Modifier
+  show: Voir

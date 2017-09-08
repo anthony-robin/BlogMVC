@@ -29,8 +29,8 @@ article.blog id="blog_#{blog.id}"
 
   - if can?(:update, blog) || can?(:destroy, blog)
     footer.callout
-      =< link_to 'Modifier', edit_admin_blog_path(blog), class: 'button small warning' if can? :update, blog
-      =< link_to 'Supprimer', admin_blog_path(blog), data: { confirm: 'Etes-vous sûr ?' }, method: :delete, class: 'button small alert' if can? :destroy, blog
+      = edit_button_to [:edit, :admin, blog] if can?(:update, blog)
+      =< destroy_button_to [:admin, blog] if can?(:destroy, blog)
 
   script type="application/ld+json"
     = jsonld_blog(blog)
