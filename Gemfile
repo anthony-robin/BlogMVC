@@ -70,7 +70,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'rubocop'
   gem 'rubocop-rspec'
-  gem 'slim_lint'
+  gem 'slim_lint', require: false
 
   gem 'pry-byebug'
   gem 'pry-rails'
