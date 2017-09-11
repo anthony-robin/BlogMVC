@@ -8,7 +8,7 @@
       = render 'blogs/blog', blog: @blog
 
       .comments--section
-        = render 'comments/form' if user_signed_in?
+        = render 'comments/form' if logged_in?
         #comments.comments
           = render partial: 'comments/comment', collection: @comments
 

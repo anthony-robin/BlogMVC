@@ -96,26 +96,18 @@ ActiveRecord::Schema.define(version: 20170527160724) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "email", default: "", null: false
-    t.string "username", default: "", null: false
-    t.string "slug", default: "", null: false
-    t.string "encrypted_password", default: "", null: false
-    t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string "current_sign_in_ip"
-    t.string "last_sign_in_ip"
+    t.string "email", null: false
+    t.string "username", null: false
+    t.string "slug", null: false
+    t.string "crypted_password"
+    t.string "salt"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "role", default: 2
     t.integer "blogs_count", default: 0, null: false
     t.string "avatar"
     t.integer "comments_count", default: 0, null: false
-    t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["email"], name: "index_users_on_email"
     t.index ["slug"], name: "index_users_on_slug"
   end
 

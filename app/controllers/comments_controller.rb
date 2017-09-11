@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :require_login
   before_action :load_commentable
   before_action :set_form, only: %i[create]
   before_action :set_comment, only: %i[destroy]

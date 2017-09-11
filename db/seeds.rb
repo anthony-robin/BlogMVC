@@ -1,22 +1,29 @@
-puts 'Reset table ID to 1'
 require 'database_cleaner'
+
+puts 'Reset table ID to 1'
 DatabaseCleaner.strategy = :truncation
 DatabaseCleaner.clean
+
+password = 'password'
+salt = 'abcdef123456'
+crypted_password = Sorcery::CryptoProviders::BCrypt.encrypt(password, salt)
 
 puts 'Create users'
 user = User.create!(
   username: 'Admin Admin',
   email: 'admin@example.com',
-  password: 'password',
-  password_confirmation: 'password',
+  password: password,
+  salt: salt,
+  crypted_password: crypted_password,
   role: 0
 )
 
 user2 = User.create!(
   username: 'Nimda Nimda',
   email: 'nimda@example.com',
-  password: 'password',
-  password_confirmation: 'password',
+  password: password,
+  salt: salt,
+  crypted_password: crypted_password,
   role: 1
 )
 

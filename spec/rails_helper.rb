@@ -18,9 +18,7 @@ ActiveRecord::Migration.check_pending!
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
-  config.include Authentication, type: :controller
   config.include AbstractController::Translation
-  config.include Devise::Test::ControllerHelpers, type: :controller
 
   config.use_transactional_fixtures = false
   config.infer_spec_type_from_file_location!

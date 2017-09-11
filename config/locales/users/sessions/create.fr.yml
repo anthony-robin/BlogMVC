@@ -1,0 +1,6 @@
+fr:
+  users:
+    sessions:
+      create:
+        session_created: Vous êtes maintenant connecté
+        session_not_created: Veuillez vérifier vos informations de connexion

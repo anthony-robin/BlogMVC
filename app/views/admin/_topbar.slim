@@ -22,4 +22,4 @@
         ul.menu.submenu.vertical data-submenu=''
           li = link_to 'Admin Dashboard', admin_root_path
           li = link_to 'Mon profil', users_path
-          li = link_to 'Déconnexion', destroy_user_session_path, method: :delete
+          li = link_to 'Déconnexion', sessions_path, method: :delete

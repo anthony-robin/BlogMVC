@@ -1,0 +1,5 @@
+fr:
+  users:
+    sessions:
+      destroy:
+        session_destroyed: Vous êtes maintenant déconnecté

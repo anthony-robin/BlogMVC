@@ -10,10 +10,10 @@ gem 'puma', '~> 3.8'
 gem 'sqlite3', group: %i[development test]
 gem 'pg', group: %i[staging production]
 
-gem 'devise'
+gem 'sorcery'
 gem 'cancancan'
 
-gem 'reform-rails'
+gem 'reform-rails', '~> 0.2.0.rc1'
 gem 'simple_form'
 gem 'client_side_validations'
 gem 'client_side_validations-simple_form'

@@ -14,5 +14,5 @@
   p
     strong = @user.username
     =< "a publié #{@user.blogs_count} articles"
-  = render 'blogs/table', blogs: @blogs
+  = render 'admin/blogs/table', blogs: @blogs
   = paginate @blogs
