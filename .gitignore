@@ -25,6 +25,7 @@ config/database.yml
 coverage/
 public/uploads
 spec/support/uploads
+spec/examples.txt
 
 # Env
 .env*
