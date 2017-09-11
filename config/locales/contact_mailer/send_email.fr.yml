@@ -1,0 +1,9 @@
+fr:
+  contact_mailer:
+    send_email:
+      subject: Message de contact
+      copy_email: Voici une copie de l'email reçu par l'administrateur
+      hi: Bonjour %{name}
+      contact_informations: 'Informations de contact:'
+      phone: 'Téléphone:'
+      email: 'Email:'
