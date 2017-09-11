@@ -13,6 +13,8 @@ class Ability
     can %i[search], [Blog]
 
     if user.persisted?
+      cannot :create, [User]
+
       if user.master_role?
         can :manage, :all
         cannot :ud, [Blog, Comment], user: { role: 0 }

@@ -1,5 +1,9 @@
 # Users
-resources :users, only: %i[index show]
+resources :users
+
+scope module: 'users' do
+  resource :sessions, only: %i[new create destroy]
+end
 
 scope module: 'users' do
   resource :sessions, only: %i[new create destroy]

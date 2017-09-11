@@ -22,6 +22,8 @@ inherit_from:
 Naming/FileName:
   Exclude:
     - 'app/views/**/*.slim.slim_lint.*'
+RSpec/AnyInstance:
+  Enabled: false
 RSpec/NamedSubject:
   Exclude:
     - spec/features/shared_examples/*.rb

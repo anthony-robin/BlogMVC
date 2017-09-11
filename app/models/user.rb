@@ -7,30 +7,14 @@ class User < ApplicationRecord
   authenticates_with_sorcery!
   mount_uploader :avatar, AvatarUploader
 
+  # @note Needed for `cancancan`
+  attr_accessor :password_confirmation
+
   enum role: {
     master: 0,
     admin: 1,
     author: 2
   }, _suffix: true
-
-  validates :username,
-            presence: true,
-            username_format: true,
-            uniqueness: {
-              case_sensitive: false
-            }
-
-  validates :email,
-            presence: true,
-            email_format: true,
-            uniqueness: {
-              case_sensitive: false
-            }
-
-  validates :role,
-            presence: true,
-            inclusion: { in: roles.keys },
-            on: :update
 
   validates_integrity_of :avatar
 

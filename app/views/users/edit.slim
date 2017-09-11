@@ -1,0 +1,9 @@
+- add_breadcrumb t('.title')
+- set_meta_tags title: t('.title'),
+                description: t('.description'),
+                keywords: t('.keywords')
+
+.grid-container
+  .grid-x.grid-padding-x.align-center
+    .small-12.medium-6.cell
+      = render 'form'

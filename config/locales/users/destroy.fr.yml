@@ -1,0 +1,4 @@
+fr:
+  users:
+    destroy:
+      user_destroyed: Votre compte a bien été supprimé

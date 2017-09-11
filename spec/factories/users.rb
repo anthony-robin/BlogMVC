@@ -21,6 +21,11 @@ FactoryGirl.define do
     trait :author do
       role 2
     end
+
+    trait :with_lost_password do
+      reset_password_token { Faker::Crypto.sha1 }
+      reset_password_token_expires_at { Faker::Date.forward(14) }
+    end
   end
 end
 
