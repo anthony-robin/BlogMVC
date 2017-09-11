@@ -1,7 +1,5 @@
 module Blogs
   class AutocompletesController < ApplicationController
-    respond_to :json
-
     # GET /blogs/autocompletes.json
     # @example /blogs/autocompletes.json?query=paris
     def index

@@ -8,4 +8,4 @@
 
   - if can? :update, user
     p.button.warning.small
-      = link_to 'Modifier mon profil', edit_user_registration_path
+      = link_to 'Modifier mon profil', edit_user_path(current_user)

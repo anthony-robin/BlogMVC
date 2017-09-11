@@ -27,16 +27,6 @@ ERRORS: &ERRORS
     invalid_email_address: n'est pas une adresse email valide
     email_address_not_routable: n'est pas routable
 
-    # Devise
-    already_confirmed: "a déjà été validé(e), veuillez essayer de vous connecter"
-    confirmation_period_expired: "à confirmer dans les %{period}, merci de faire une nouvelle demande"
-    expired: "a expiré, merci d'en faire une nouvelle demande"
-    not_found: "n'a pas été trouvé(e)"
-    not_locked: "n'était pas verrouillé(e)"
-    not_saved:
-      one: "1 erreur a empêché ce(tte) %{resource} d'être sauvegardé(e) :"
-      other: "%{count} erreurs ont empêché ce(tte) %{resource} d'être sauvegardé(e) :"
-
     # Carrierwave
     carrierwave_processing_error: Image impossible à redimensionner
     carrierwave_integrity_error: Votre fichier n'est pas une image
@@ -57,6 +47,8 @@ ERRORS: &ERRORS
       blank: Vous devez renseigner votre pseudo
       taken: Ce nom d'utilisateur n'est pas disponible
       invalid: Ce nom d'utilisateur n'est pas valide
+    password:
+      blank: Vous devez saisir votre mot de passe
     nickname:
       present: Ce site ne tolère pas les robots spammeurs
     email:

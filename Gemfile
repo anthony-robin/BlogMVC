@@ -10,7 +10,7 @@ gem 'puma', '~> 3.8'
 gem 'sqlite3', group: %i[development test]
 gem 'pg', group: %i[staging production]
 
-gem 'devise'
+gem 'sorcery'
 gem 'cancancan'
 
 gem 'reform-rails'

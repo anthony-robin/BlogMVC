@@ -1,0 +1,6 @@
+fr:
+  users:
+    reset_passwords:
+      create:
+        reset_password_instructions_sent: Les instructions pour modifier votre mot de passe ont été envoyées sur votre email.
+        reset_password_instructions_not_sent: Une erreur s'est produite, veuillez vérifier l'email que vous avez saisi.

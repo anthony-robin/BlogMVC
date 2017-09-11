@@ -6,7 +6,7 @@ RSpec.describe User do
   let(:user) { nil }
 
   context 'when is not connected' do
-    it { is_expected.to_not be_able_to(:create, described_class.new) }
+    it { is_expected.to be_able_to(:create, described_class.new) }
     it { is_expected.to be_able_to(:read, create(:user, :author)) }
     it { is_expected.to_not be_able_to(:update, create(:user, :author)) }
     it { is_expected.to_not be_able_to(:destroy, create(:user, :author)) }
@@ -39,7 +39,7 @@ RSpec.describe User do
     it { is_expected.to be_able_to(:destroy, user) }
   end
 
-  context 'user can only manage own profile' do
+  context 'can only manage own profile' do
     let(:user) { create(:user, :admin) }
     let(:user2) { create(:user, :author) }
 

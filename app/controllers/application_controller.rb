@@ -1,7 +1,5 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception, prepend: true
-  before_action :configure_permitted_parameters,
-                if: :devise_controller?
 
   rescue_from CanCan::AccessDenied do |exception|
     respond_to do |format|
@@ -13,14 +11,13 @@ class ApplicationController < ActionController::Base
   add_breadcrumb I18n.t('homes.index.title'), :root_path,
                  if: proc { params[:controller] != 'homes' }
 
-  protected
-
-  def configure_permitted_parameters
-    attrs = %i[username email password password_confirmation]
-    update_attrs = attrs + %i[avatar avatar_cache remove_avatar current_password]
-    update_attrs.push(:role) if current_user&.master_role?
-
-    devise_parameter_sanitizer.permit :sign_up, keys: attrs
-    devise_parameter_sanitizer.permit :account_update, keys: update_attrs
+  # Redirects to login page when {User user} is not
+  # authenticated on a page that requires login.
+  #
+  def not_authenticated
+    respond_to do |format|
+      format.html { redirect_to new_sessions_url, alert: t('sorcery.not_authenticated') }
+      format.js { head :unauthorized }
+    end
   end
 end

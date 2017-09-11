@@ -1,0 +1,5 @@
+fr:
+  users:
+    reset_passwords:
+      update:
+        reset_password_updated: Votre mot de passe a bien été mis à jour.

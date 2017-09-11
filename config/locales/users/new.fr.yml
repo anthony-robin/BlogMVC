@@ -1,0 +1,5 @@
+fr:
+  users:
+    new:
+      title: Inscription
+      already_logged_in: Vous êtes déjà inscrit et connecté

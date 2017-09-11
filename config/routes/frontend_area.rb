@@ -1,5 +1,10 @@
 # Users
-resources :users, only: %i[index show]
+resources :users
+
+scope module: 'users' do
+  resources :reset_passwords, only: %i[new create edit update]
+  resource :sessions, only: %i[new create destroy]
+end
 
 # Blogs
 namespace :blogs do
