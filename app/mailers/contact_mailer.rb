@@ -8,7 +8,7 @@ class ContactMailer < ApplicationMailer
     @email = params[:email]
     @message = params[:message]
 
-    mail(from: @email, template_path: 'mailers/contacts')
+    mail from: @email
   end
 
   # Copy of the email send back to the sender
@@ -18,6 +18,8 @@ class ContactMailer < ApplicationMailer
     @email = params[:email]
     @message = params[:message]
 
-    mail(from: ENV.fetch('TO_CONTACT'), to: @email, template_path: 'mailers/contacts', template_name: 'send_email')
+    mail from: ENV.fetch('TO_CONTACT'),
+         to: @email,
+         template_name: 'send_email'
   end
 end
