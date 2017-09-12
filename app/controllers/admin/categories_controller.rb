@@ -3,38 +3,36 @@ module Admin
     before_action :set_category, only: %i[edit update destroy]
     before_action :set_form, only: %i[new create edit update]
 
-    # Abilities
     authorize_resource
-
-    # Breadcrumbs
     add_breadcrumb I18n.t('categories.index.title'), :admin_categories_path
 
-    # GET admin/categories
+    # GET /admin/categories
     def index
       @categories = Category.all.page params[:page]
     end
 
-    # GET admin/categories/new
+    # GET /admin/categories/new
     def new
       add_breadcrumb t('.title')
     end
 
-    # GET admin/categories/1/edit
+    # GET /admin/categories/1/edit
     def edit
       add_breadcrumb t('.title')
     end
 
-    # POST admin/categories
+    # POST /admin/categories
     def create
       save_action :new
     end
 
-    # PATCH/PUT admin/categories/1
+    # PUT /admin/categories/1
+    # PATCH /admin/categories/1
     def update
       save_action :edit
     end
 
-    # DELETE admin/categories/1
+    # DELETE /admin/categories/1
     def destroy
       @category.destroy!
       redirect_to admin_categories_path, notice: t('.notice')

@@ -1,8 +1,7 @@
 module ApplicationHelper
-  def website_conf
-    @website_conf ||= Rails.configuration.website
-  end
-
+  # Image tag retina screens friendly
+  #
+  # @return [String]
   def retina_image_tag(model, mounted_to, version, options = {})
     options.symbolize_keys!
     options[:srcset] ||= (2..3).map do |multiplier|
@@ -14,5 +13,12 @@ module ApplicationHelper
                           end.compact.join(', ')
 
     image_tag(model.send(mounted_to).url(version), options)
+  end
+
+  # Website configuration (config/website.yml)
+  #
+  # @return [Hash]
+  def website_conf
+    @website_conf ||= Rails.configuration.website
   end
 end

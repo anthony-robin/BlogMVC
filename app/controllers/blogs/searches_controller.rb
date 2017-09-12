@@ -5,10 +5,10 @@ module Blogs
 
     include Blogs::Sidebarable
 
-    # Breadcrumbs
     add_breadcrumb I18n.t('blogs.searches.index.title'), :blogs_searches_path
 
     # GET /blogs/searches/:term
+    # @example /blogs/searches/paris
     def index
       @blogs = Blog.search(params[:term], Blog.search_opts.merge!(page: params[:page]))
 

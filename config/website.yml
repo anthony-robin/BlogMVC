@@ -3,7 +3,7 @@ DEFAULTS: &DEFAULTS
   title: BlogMVC
   subtitle: En marche !
   phone: <%= ENV.fetch('PHONE_CONTACT') %>
-  email: <%= ENV.fetch('TO_CONTACT') %>
+  email: <%= ENV.fetch('WEBMASTER_EMAIL') %>
 
 development:
   <<: *DEFAULTS

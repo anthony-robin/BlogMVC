@@ -1,5 +1,7 @@
-# rubocop:disable Rails/OutputSafety
 module JsonLdHelper
+  # Professional service entity
+  #
+  # @return [JSON]
   def jsonld_professional_service
     {
       '@context': 'http://schema.org',
@@ -10,6 +12,10 @@ module JsonLdHelper
     }.to_json.html_safe
   end
 
+  # Blog entity
+  #
+  # @param blog [Blog]
+  # @return [JSON]
   def jsonld_blog(blog)
     serialized = {
       '@context': 'http://schema.org',
@@ -33,6 +39,10 @@ module JsonLdHelper
     serialized.to_json.html_safe
   end
 
+  # Comment entity
+  #
+  # @param comment [Comment]
+  # @return [JSON]
   def jsonld_comment(comment)
     serialized = {
       '@context': 'http://schema.org',
@@ -45,7 +55,11 @@ module JsonLdHelper
     serialized.to_json.html_safe
   end
 
+  # Pagination entity
+  #
   # TODO: Find a way to test this method
+  # @param blogs [ActiveRecord::Relation<Blog>]
+  # @return [JSON]
   def json_ld_blogs_paginator(blogs)
     {
       '@id': request.original_url,
@@ -59,6 +73,10 @@ module JsonLdHelper
 
   private
 
+  # Person entity
+  #
+  # @param author [User]
+  # @return [Hash]
   def jsonld_author(author)
     {
       author: {
@@ -68,6 +86,9 @@ module JsonLdHelper
     }
   end
 
+  # Publisher entity
+  #
+  # @return [Hash] website title
   def jsonld_publisher
     {
       name: website_conf['title']

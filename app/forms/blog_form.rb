@@ -1,7 +1,6 @@
 class BlogForm < ApplicationForm
   model :blog
 
-  # Properties
   property :title, validates: { presence: true }
   property :content, validates: { presence: true }
   property :slug, writeable: false # Read only
@@ -15,7 +14,6 @@ class BlogForm < ApplicationForm
     property :_destroy
   end
 
-  # Validation rules
   validates :category_id,
             presence: true,
             allow_blank: false,

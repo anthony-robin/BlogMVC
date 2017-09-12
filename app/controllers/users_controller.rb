@@ -5,13 +5,11 @@ class UsersController < ApplicationController
   authorize_resource
 
   # GET /users
-  # GET /users.json
   def index
     add_breadcrumb t('.title', profile: current_user.username)
   end
 
   # GET /users/1
-  # GET /users/1.json
   def show
     @blogs = @user.blogs.includes(:category).page params[:page]
     add_breadcrumb t('.title', profile: @user.username)
