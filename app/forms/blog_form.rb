@@ -18,6 +18,6 @@ class BlogForm < ApplicationForm
             presence: true,
             allow_blank: false,
             inclusion: {
-              in: proc { Category.ids.map(&:to_s) }
+              in: proc { Category.pluck(:id).map(&:to_s) }
             }
 end
