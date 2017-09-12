@@ -1,11 +1,7 @@
 class Picture < ApplicationRecord
-  # Model relations
   belongs_to :attachable, polymorphic: true, touch: true
 
-  # Carrierwave
   mount_uploader :image, ImageUploader
-
-  # Validation rules
   validates_integrity_of :image
 end
 

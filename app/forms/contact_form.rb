@@ -1,8 +1,6 @@
 class ContactForm < ApplicationForm
-  # Properties
   properties :name, :email, :message, :copy, :nickname
 
-  # Validation rules
   validates :name, presence: true
   validates :email,
             presence: true,

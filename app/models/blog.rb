@@ -5,21 +5,16 @@ class Blog < ApplicationRecord
   include Searchable
   include Assets::Picturable
 
-  # Model relations
   belongs_to :user, counter_cache: true
   belongs_to :category, counter_cache: true
 
-  # Scopes
   scope :with_includes, -> { includes(:user, :picture, :category, :taggings) }
   scope :order_desc, -> { order(created_at: :desc) }
 
-  # Delegates
   delegate :name, to: :category, prefix: true, allow_nil: true
   delegate :username, :role, to: :user, prefix: true, allow_nil: true
 
-  # Pagination
   paginates_per 5
-
   acts_as_taggable # Tags
   acts_as_commentable # Comments
 

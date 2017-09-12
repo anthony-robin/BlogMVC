@@ -1,14 +1,11 @@
 class Comment < ApplicationRecord
   acts_as_nested_set scope: %i[commentable_id commentable_type]
 
-  # Accessor
   attr_accessor :nickname
 
-  # Model relations
   belongs_to :user, counter_cache: true
   belongs_to :commentable, polymorphic: true, counter_cache: true
 
-  # Scopes
   scope :find_comments_by_user, lambda { |user|
     where(user_id: user.id).order('created_at DESC')
   }

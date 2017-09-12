@@ -2,10 +2,10 @@ class User < ApplicationRecord
   extend FriendlyId
   friendly_id :username, use: :slugged
 
-  # Carrierwave
+  has_many :blogs, dependent: :destroy
+
   mount_uploader :avatar, AvatarUploader
 
-  # Enum
   enum role: {
     master: 0,
     admin: 1,
@@ -17,10 +17,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  # Model relations
-  has_many :blogs, dependent: :destroy
-
-  # Validation rules
   validates :username,
             presence: true,
             username_format: true,

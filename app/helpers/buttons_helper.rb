@@ -2,6 +2,7 @@ module ButtonsHelper
   # Button for adding a resource.
   #
   # @param path [Url] url to add resource
+  # @option text [String] text to display inside button
   def add_button_to(path, text = t('add'))
     link_to path, class: 'button small success' do
       concat text
@@ -21,6 +22,7 @@ module ButtonsHelper
   # Button for destroying a resource.
   #
   # @param path [Url] url to destroy resource
+  # @option text [String] text to display inside button
   def destroy_button_to(path, text = t('destroy'))
     link_to path,
       class: 'button small alert',
@@ -33,6 +35,7 @@ module ButtonsHelper
   # Button for editing a resource.
   #
   # @param path [Url] url to edit resource
+  # @option text [String] text to display inside button
   def edit_button_to(path, text = t('edit'))
     link_to path, class: 'button small warning' do
       concat text
@@ -42,6 +45,7 @@ module ButtonsHelper
   # Button for showing a resource.
   #
   # @param path [Url] url to show resource
+  # @option text [String] text to display inside button
   def show_button_to(path, text = t('show'))
     link_to path, class: 'button small' do
       concat text

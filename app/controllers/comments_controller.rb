@@ -7,7 +7,6 @@ class CommentsController < ApplicationController
   authorize_resource
 
   # POST /comments
-  # POST /comments.json
   def create
     if @form.validate(params[:comment])
       @form.save!
@@ -20,7 +19,6 @@ class CommentsController < ApplicationController
   end
 
   # DELETE /comments/1
-  # DELETE /comments/1.json
   def destroy
     if @comment.destroy
       flash[:success] = t('.success')

@@ -5,64 +5,49 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-# Core
 gem 'rails', '~> 5.1.3'
 gem 'puma', '~> 3.8'
+gem 'sqlite3', group: %i[development test]
+gem 'pg', group: %i[staging production]
 
-gem 'sqlite3', group: %i[development test] # Database
-gem 'pg', group: %i[staging production] # Database
-gem 'devise' # Authentication
-gem 'cancancan' # Abilities
+gem 'devise'
+gem 'cancancan'
 
-# Assets
-gem 'sassc-rails'
-
-# Forms
 gem 'reform-rails'
 gem 'simple_form'
 gem 'client_side_validations'
 gem 'client_side_validations-simple_form'
 
-gem 'slim-rails' # slim file
-gem 'kaminari', '~> 1.0' # Pagination
+gem 'slim-rails'
+gem 'kaminari', '~> 1.0'
 gem 'breadcrumbs_on_rails'
 gem 'friendly_id'
 
-gem 'acts-as-taggable-on', '~> 5.0' # Taggable
-gem 'acts_as_commentable_with_threading' # Commentable
+gem 'acts-as-taggable-on', '~> 5.0'
+gem 'acts_as_commentable_with_threading'
 
-# Searchable
 gem 'searchkick'
+gem 'active_model_serializers', '~> 0.10.0'
 
-# Uploaders
 gem 'mini_magick'
 gem 'carrierwave', '~> 1.0'
 
-gem 'active_model_serializers', '~> 0.10.0'
+gem 'sassc-rails'
 gem 'webpacker'
 
-gem 'rails-i18n', '~> 5.0.0' # I18n
-gem 'meta-tags' # SEO
+gem 'rails-i18n', '~> 5.0.0'
+gem 'meta-tags'
 gem 'dotenv-rails'
 
-# Mailers
 gem 'inky-rb', require: 'inky'
 gem 'premailer-rails'
 
-gem 'shog' # Colored logs
+gem 'shog'
 gem 'ribbonit'
-
-# Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 3.0'
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
-
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
 
 group :staging, :production do
   gem 'bugsnag'
-  gem 'lograge' # Condensed logs
+  gem 'lograge'
 end
 
 group :development, :test do
