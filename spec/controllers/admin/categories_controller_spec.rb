@@ -7,7 +7,7 @@ RSpec.describe Admin::CategoriesController do
 
   let(:valid_attributes) { { category: { name: 'FooBar' } } }
   let(:invalid_attributes) do
-    valid_attributes[:category].merge!(name: '')
+    valid_attributes[:category][:name] = ''
     valid_attributes
   end
 

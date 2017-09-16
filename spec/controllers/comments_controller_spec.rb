@@ -11,7 +11,7 @@ RSpec.describe CommentsController do
   end
 
   let(:invalid_attributes) do
-    valid_attributes[:comment].merge!(body: nil)
+    valid_attributes[:comment][:body] = nil
     valid_attributes
   end
 
