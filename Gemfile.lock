@@ -110,11 +110,11 @@ GEM
     colored (1.2)
     colorize (0.8.1)
     concurrent-ruby (1.0.5)
-    css_parser (1.5.0)
+    css_parser (1.6.0)
       addressable
     database_cleaner (1.6.1)
     debug_inspector (0.0.3)
-    declarative (0.0.9)
+    declarative (0.0.10)
     declarative-builder (0.1.0)
       declarative-option (< 0.2.0)
     declarative-option (0.1.0)
@@ -156,7 +156,7 @@ GEM
       multipart-post (>= 1.2, < 3)
     ffi (1.9.18)
     foundation_emails (2.2.1.0)
-    friendly_id (5.2.1)
+    friendly_id (5.2.2)
       activerecord (>= 4.0.0)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
@@ -355,7 +355,7 @@ GEM
       sprockets (> 2.11)
       sprockets-rails
       tilt
-    searchkick (2.3.1)
+    searchkick (2.3.2)
       activemodel (>= 4.1)
       elasticsearch (>= 1)
       hashie
