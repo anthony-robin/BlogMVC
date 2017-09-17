@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     add_breadcrumb t('.title', profile: current_user.username)
   end
 
-  # GET /users/1
+  # GET /users/:id
   def show
     @blogs = @user.blogs.includes(:category).page params[:page]
     add_breadcrumb t('.title', profile: @user.username)

@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
     end
   end
 
-  # DELETE /comments/1
+  # DELETE /comments/:id
   def destroy
     if @comment.destroy
       flash[:success] = t('.success')

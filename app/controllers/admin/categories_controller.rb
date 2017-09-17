@@ -16,7 +16,7 @@ module Admin
       add_breadcrumb t('.title')
     end
 
-    # GET /admin/categories/1/edit
+    # GET /admin/categories/:id/edit
     def edit
       add_breadcrumb t('.title')
     end
@@ -26,13 +26,13 @@ module Admin
       save_action :new
     end
 
-    # PUT /admin/categories/1
-    # PATCH /admin/categories/1
+    # PUT /admin/categories/:id
+    # PATCH /admin/categories/:id
     def update
       save_action :edit
     end
 
-    # DELETE /admin/categories/1
+    # DELETE /admin/categories/:id
     def destroy
       @category.destroy!
       redirect_to admin_categories_path, notice: t('.notice')

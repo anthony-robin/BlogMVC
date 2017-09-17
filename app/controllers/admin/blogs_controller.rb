@@ -21,19 +21,19 @@ module Admin
       save_action :new
     end
 
-    # GET admin/blogs/1/edit
+    # GET admin/blogs/:id/edit
     def edit
       @form.model.build_picture if @form.picture.nil?
       add_breadcrumb t('.title')
     end
 
-    # PUT /admin/blogs/1
-    # PATCH /admin/blogs/1
+    # PUT /admin/blogs/:id
+    # PATCH /admin/blogs/:id
     def update
       save_action :edit
     end
 
-    # DELETE /blogs/1
+    # DELETE /admin/blogs/:id
     def destroy
       @blog.destroy!
       redirect_to blogs_url, notice: t('.notice')
