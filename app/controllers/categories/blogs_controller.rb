@@ -2,11 +2,8 @@ module Categories
   class BlogsController < ApplicationController
     include Blogs::Sidebarable
 
-    load_resource :category,
-      find_by: :slug
-    load_resource :blog,
-      find_by: :slug,
-      through: :category
+    load_resource :category
+    load_and_authorize_resource through: :category
 
     add_breadcrumb I18n.t('blogs.index.title'), :blogs_path
 
