@@ -71,6 +71,7 @@ group :development do
   gem 'color_route'
   gem 'meta_request'
   gem 'annotate'
+  gem 'rails-erd'
 
   gem 'web-console'
   gem 'better_errors'
