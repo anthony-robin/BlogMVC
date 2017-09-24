@@ -1,4 +1,4 @@
-# BlogMVC ![Ruby version](https://img.shields.io/badge/Ruby-2.4.1-5aaed7.svg?style=flat-square) ![Rails version](https://img.shields.io/badge/Rails-5.1.4-5aaed7.svg?style=flat-square)
+# BlogMVC ![Ruby version](https://img.shields.io/badge/Ruby-2.4.2-5aaed7.svg?style=flat-square) ![Rails version](https://img.shields.io/badge/Rails-5.1.4-5aaed7.svg?style=flat-square)
 
 Rails 5 Blog MVC project
 
