@@ -3,10 +3,9 @@
 Rails 5 Blog MVC project
 
 [![Travis CI](https://travis-ci.org/anthony-robin/BlogMVC.svg?branch=master)](https://travis-ci.org/anthony-robin/BlogMVC)
-[![Codeclimate CI](https://codeclimate.com/github/anthony-robin/BlogMVC/badges/gpa.svg)](https://codeclimate.com/github/anthony-robin/BlogMVC)
-[![Codeclimate coverage](https://codeclimate.com/github/anthony-robin/BlogMVC/badges/coverage.svg)](https://codeclimate.com/github/anthony-robin/BlogMVC/coverage)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/cb283cd5c4eb463f9f56a1a2bb0aa59e)](https://www.codacy.com/app/anthony-robin/BlogMVC?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=anthony-robin/BlogMVC&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Coverage/cb283cd5c4eb463f9f56a1a2bb0aa59e)](https://www.codacy.com/app/anthony-robin/BlogMVC?utm_source=github.com&utm_medium=referral&utm_content=anthony-robin/BlogMVC&utm_campaign=Badge_Coverage)
 [![Dependencies](https://gemnasium.com/badges/github.com/anthony-robin/BlogMVC.svg)](https://gemnasium.com/github.com/anthony-robin/BlogMVC)
-[![Hakiri security](https://hakiri.io/github/anthony-robin/BlogMVC/master.svg)](https://hakiri.io/github/anthony-robin/BlogMVC/master)
 
 ## Try it
 - Clone project (`git clone git@github.com:anthony-robin/BlogMVC.git`)
