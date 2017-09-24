@@ -1,0 +1,20 @@
+attributes:
+  - content
+  - foreign_key
+  - inheritance
+disconnected: false
+filename: docs/diagram
+filetype: pdf
+indirect: true
+inheritance: true
+markup: true
+notation: simple
+orientation: horizontal
+polymorphism: true
+sort: true
+warn: false
+title: Models diagram
+exclude: null
+only: null
+only_recursion_depth: null
+prepend_primary: false
