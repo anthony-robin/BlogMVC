@@ -6,6 +6,7 @@ Rails 5 Blog MVC project
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/cb283cd5c4eb463f9f56a1a2bb0aa59e)](https://www.codacy.com/app/anthony-robin/BlogMVC?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=anthony-robin/BlogMVC&amp;utm_campaign=Badge_Grade)
 [![Codacy Badge](https://api.codacy.com/project/badge/Coverage/cb283cd5c4eb463f9f56a1a2bb0aa59e)](https://www.codacy.com/app/anthony-robin/BlogMVC?utm_source=github.com&utm_medium=referral&utm_content=anthony-robin/BlogMVC&utm_campaign=Badge_Coverage)
 [![Dependencies](https://gemnasium.com/badges/github.com/anthony-robin/BlogMVC.svg)](https://gemnasium.com/github.com/anthony-robin/BlogMVC)
+[![Inline docs](http://inch-ci.org/github/anthony-robin/blogmvc.svg?branch=master&style=flat-square)](http://inch-ci.org/github/anthony-robin/blogmvc)
 
 ## Try it
 - Clone project (`git clone git@github.com:anthony-robin/BlogMVC.git`)
@@ -21,6 +22,9 @@ $ foreman start
 ```
 
 This will execute the rails `server`, the `webpack` assets compiler and watcher and `maildev` (npm plugin to intercept emails in local)
+
+## Documentation
+Documentation is handled by `yard`. To have a look at the documentation run `yard server` in a terminal and visit `http://localhost:8808`.
 
 ## Testing and linters
 This project comes with a set of `rspec` tests. To run them:

@@ -40,3 +40,7 @@ spec/examples.txt
 /public/packs
 /public/packs-test
 /node_modules
+
+# Documentation
+.yardoc
+docs/yard
