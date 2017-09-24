@@ -17,6 +17,16 @@ RSpec.describe ImageUploader do
     uploader.remove!
   end
 
+  describe 'configuration' do
+    let(:format) { 'png' }
+    let(:permissions) { 0644 }
+    let(:store_dir) { "uploads/picture/#{picture.id}" }
+    let(:filename) { 'image.jpg' }
+    let(:extension_whitelist) { %w[jpg jpeg png] }
+
+    it_behaves_like :uploader_configuration
+  end
+
   context 'the thumb version' do
     it 'scales down a picture to fit within 50 by 50 pixels' do
       expect(uploader.thumb).to have_dimensions(50, 50)
@@ -55,23 +65,5 @@ RSpec.describe ImageUploader do
     it 'scales down a picture to fit within 1200 by 1200 pixels (retina)' do
       expect(uploader.large_2x).to have_dimensions(1_200, 1_200)
     end
-  end
-
-  it 'makes the image readable only to the owner and not executable' do
-    expect(uploader).to have_permissions(0644)
-  end
-
-  it 'has the correct format' do
-    expect(uploader).to be_format('png')
-  end
-
-  it 'has correct extension_whitelist' do
-    whitelist = %w[jpg jpeg png]
-    expect(uploader.extension_whitelist).to eq(whitelist)
-  end
-
-  it 'has correct filename' do
-    filename = 'image.jpg'
-    expect(uploader.filename).to eq(filename)
   end
 end
