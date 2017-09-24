@@ -21,9 +21,12 @@ before_install:
   - export TZ=Europe/Paris
 
   # ChromeDriver
-  - wget https://github.com/davidthornton/chromedriver-2.31/raw/master/chromedriver
-  - sudo mv chromedriver /usr/bin
-  - sudo chmod a+x /usr/bin/chromedriver
+  - wget http://chromedriver.storage.googleapis.com/${CHROME_DRIVER_VERSION:-2.32}/chromedriver_linux64.zip
+  - unzip chromedriver_linux64.zip
+  - rm chromedriver_linux64.zip
+  - sudo mv chromedriver /usr/local/bin/chromedriver
+  - sudo chown root:root /usr/local/bin/chromedriver
+  - sudo chmod 0755 /usr/local/bin/chromedriver
 
 install:
   - bundle install --without development --path=${BUNDLE_PATH:-vendor/bundle} # Gems
@@ -51,15 +54,14 @@ script:
 after_script:
   - RAILS_ENV=test bin/rails db:seed
 
-after_success:
-  - bundle exec codeclimate-test-reporter
-
 after_failure:
   - date
   - cat ./config/database.yml
   - echo $RAILS_ENV
   - bin/rake --version
   - node --version
+  - whereis google-chrome-stable
+  - whereis chromedriver
 
 matrix:
   fast_finish: true
@@ -75,9 +77,6 @@ addons:
       - elasticsearch-2.x
     packages:
       - elasticsearch
-  code_climate:
-    repo_token:
-      secure: "dYsryV/LSmZXU7k1RXiPnRG2tNpiaEUvXpBYm1szq9oCZNZQkrucbELEomSxZ0/Z1AezK5JC5TGBzEKefycYwiUXS0mgrWQwlXvVgawMeBbUgG6TQpK3MQboYe+JLramy0tNc999ViaCCnlMk2Vht0+tLMLuWstqKEx2WM4ZK4rWkumv98APC+4j9gJK4PRiYcfV42jQLYulZ0mhOPrsWxWPh1qHQrlVicenFLrE5U5V9eXrz124HBVt8fhhUYp5KylTNZRDx9xe4Ak69Xqd6E8iWfXVWbKa3lsbKEdhycO2vs1SUr/q4VS9cnPqNHcooefAGOviGJjbntkyTxgJqybRQByg2W1Dur9dpyJpgErLztjoyvAG2zZ6w2AEuLyEwhw1B4pimd13D/yZgEZyBriqih1ViLe6KQ8Z5R0O3mdm4S6HheN/Eby4rhj0YrR5uHZ+2abOEXGbV6C+guz6z9yjo8gbm2U8O+llihTMm3/RNOwzmuln+uYcqZlgX4vMkSU+zhSBc9mmE4zzaFfhta4XydiGOG8BK9SrQujyScDByZW11mTb/wDlLAZv0UaBcNYClC2TRkAMRS0ECs9PF9wx+9ACZei/RoDfEQFBncDITmAhj1YvZG7FP6req6Tu78IkJjsL+mrdK3HlwpJ3r0Qv3tBIgKUQga97ee9MmKw="
 
 notifications:
   email: false
