@@ -1,0 +1,2 @@
+#!/bin/bash
+yard server -r
