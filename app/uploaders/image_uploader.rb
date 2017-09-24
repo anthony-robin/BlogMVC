@@ -1,10 +1,6 @@
 class ImageUploader < ApplicationUploader
   IMAGE_FILE_SIZE = 4
 
-  def store_dir
-    "uploads/#{model.class.to_s.underscore}/#{model.attachable_id}"
-  end
-
   version :large_2x do
     process resize_to_fit: [1_200, 1_200]
   end
@@ -37,6 +33,16 @@ class ImageUploader < ApplicationUploader
     process resize_to_fit: [50, 50]
   end
 
+  # Folder to store uploaded images
+  #
+  # @return [String]
+  def store_dir
+    "uploads/#{model.class.to_s.underscore}/#{model.attachable_id}"
+  end
+
+  # Size range of uploaded avatar
+  #
+  # @return [Range]
   def size_range
     0..IMAGE_FILE_SIZE.megabytes
   end
