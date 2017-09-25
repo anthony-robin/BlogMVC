@@ -1,5 +1,4 @@
 // Stylesheet
-import 'assets/stylesheets/frontend.sass'
 import 'motion-ui/dist/motion-ui.css'
 
 // Javascript
