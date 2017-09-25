@@ -5,6 +5,7 @@ import 'font-awesome/css/font-awesome.min.css'
 import autosize from 'autosize/dist/autosize'
 
 // Modules
+import '../../assets/stylesheets/frontend.sass'
 import '../js/foundation'
 import '../js/search'
 

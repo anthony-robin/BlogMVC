@@ -13,12 +13,6 @@
   "plugins": [
     "syntax-dynamic-import",
     "transform-object-rest-spread",
-    ["transform-class-properties", { "spec": true }],
-    ["module-resolver", {
-      "root": ["./app"],
-      "alias": {
-        "assets": "./assets"
-      }
-    }]
+    ["transform-class-properties", { "spec": true }]
   ]
 }
