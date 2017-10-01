@@ -44,7 +44,7 @@ RSpec.describe UsersController do
       let(:role) { :author }
       let(:user) { create(:user) }
 
-      before { sign_out user }
+      before { logout_user }
 
       it { is_expected.to have_http_status(200) }
       it { is_expected.to render_template :show }

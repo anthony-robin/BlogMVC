@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!, only: [:index]
+  before_action :require_login, only: [:index]
   before_action :set_user, only: [:show]
 
   authorize_resource

@@ -1,6 +1,10 @@
 # Users
 resources :users, only: %i[index show]
 
+scope module: 'users' do
+  resource :sessions, only: %i[new create destroy]
+end
+
 # Blogs
 namespace :blogs do
   resources :tags, only: %i[show]

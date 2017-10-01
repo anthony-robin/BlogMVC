@@ -1,0 +1,20 @@
+- add_breadcrumb t('.title')
+- set_meta_tags title: t('.title'),
+                description: t('.description'),
+                keywords: t('.keywords')
+
+= simple_form_for @form, url: sessions_path do |f|
+  .grid-container
+     .grid-x.grid-padding-x
+       .small-12.medium-9.cell
+         .grid-x.grid-padding-x
+           .small-12.medium-6.cell
+             = f.input :email, required: false, autofocus: true
+           .auto.cell
+             = f.input :password, required: false
+
+         .grid-x.grid-padding-x.align-center.form-actions
+           .small-12.medium-8.cell
+             = f.button :submit, 'Connexion', class: 'button small'
+           .auto.cell
+             = back_button_to :back, t('cancel')

@@ -46,22 +46,6 @@ RSpec.describe User do
   end
 
   context 'a user' do
-    let(:user) do
-      build :user,
-        password: 'mypassword',
-        password_confirmation: 'mypassword2'
-    end
-
-    context 'password_confirmation' do
-      subject! { user.valid? }
-
-      it { is_expected.to be false }
-
-      it 'is not valid if password mismatch' do
-        expect(user.errors[:password_confirmation].first).to_not be_empty
-      end
-    end
-
     context 'on create' do
       let(:user) { build(:user) }
 
