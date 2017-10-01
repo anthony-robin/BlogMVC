@@ -44,3 +44,4 @@ spec/examples.txt
 # Documentation
 .yardoc
 docs/yard
+docs/diagram.pdf
