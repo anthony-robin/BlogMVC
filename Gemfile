@@ -9,6 +9,7 @@ gem 'rails', '~> 5.1.3'
 gem 'puma', '~> 3.8'
 gem 'sqlite3', group: %i[development test]
 gem 'pg', group: %i[staging production]
+gem 'goldiloader'
 
 gem 'sorcery'
 gem 'cancancan'
@@ -51,6 +52,7 @@ group :staging, :production do
 end
 
 group :development, :test do
+  gem 'bullet'
   gem 'faker'
   gem 'database_cleaner'
   gem 'rubocop'
@@ -67,7 +69,6 @@ group :development, :test do
 end
 
 group :development do
-  gem 'bullet'
   gem 'color_route'
   gem 'meta_request'
   gem 'annotate'

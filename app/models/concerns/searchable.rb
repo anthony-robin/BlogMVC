@@ -14,7 +14,7 @@ module Searchable
         match: :word_start,
         limit: 10,
         misspellings: { below: 5 },
-        includes: %i[user category picture taggings],
+        includes: %i[category picture],
         highlight: { tag: '<em class="highlight">' },
         per_page: 10
       }

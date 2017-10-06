@@ -10,7 +10,11 @@ module Blogs
     # GET /blogs/searches/:term
     # @example /blogs/searches/paris
     def index
-      @blogs = Blog.search(params[:term], Blog.search_opts.merge!(page: params[:page]))
+      opts = Blog.search_opts
+      opts[:page] = params[:page]
+      opts[:includes] = opts[:includes] << :user
+
+      @blogs = Blog.search params[:term], opts
 
       render template: 'blogs/index'
     end
