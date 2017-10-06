@@ -1,6 +1,0 @@
-fr:
-  admin:
-    categories:
-      table:
-        name: Nom
-        blogs_count: Nombre d'articles de Blog

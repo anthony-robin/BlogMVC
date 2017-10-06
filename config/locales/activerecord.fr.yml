@@ -1,0 +1,18 @@
+attributes: &attributes
+  blog:
+    author: Auteur
+    category: Catégorie
+    category_id: Catégorie
+    content: Contenu
+    cover: Couverture
+    tag_list: Liste de tags
+    title: Titre
+  category:
+    blogs_count: Nombre d'articles de Blog
+    name: Nom
+
+fr:
+  activemodel:
+    attributes: *attributes
+  activerecord:
+    attributes: *attributes
