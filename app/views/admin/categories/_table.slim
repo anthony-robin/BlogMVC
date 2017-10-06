@@ -1,9 +1,8 @@
 table.hover
   thead
     tr
-      th= t('.name')
-      th= t('.blogs_count')
-      th= t('actions')
+      - %i[name blogs_count actions].each do |attribute|
+        th= Category.human_attribute_name(attribute)
 
   tbody
     - @categories.each do |category|

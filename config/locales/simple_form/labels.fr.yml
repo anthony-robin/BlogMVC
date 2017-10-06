@@ -1,11 +1,11 @@
 fr:
   simple_form:
     labels:
-      blog:
-        title: Titre
-        content: Contenu
-        category_id: Catégorie
-        tag_list: Liste de tags
+      contact:
+        copy: Recevoir une copie ?
+        email: Email
+        message: Message
+        name: Nom
       user:
         username: Nom d'utilisateur
         password: Mot de passe
@@ -13,8 +13,3 @@ fr:
         current_password: Mot de passe actuel
         new_password: Nouveau mot de passe
         new_password_confirmation: Confirmation du nouveau mot de passe
-      contact:
-        name: Nom
-        email: Email
-        message: Message
-        copy: Recevoir une copie ?

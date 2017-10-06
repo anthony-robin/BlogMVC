@@ -1,12 +1,8 @@
 table.hover
   thead
     tr
-      th= t('.cover')
-      th= t('.title')
-      th= t('.category')
-      - if params[:action] != 'show'
-        th= t('.author')
-      th= t('actions')
+      - %i[cover title category author actions].each do |attribute|
+        th= Blog.human_attribute_name(attribute)
 
   tbody
     - blogs.each do |blog|
@@ -15,10 +11,9 @@ table.hover
         td= link_to blog.title, category_blog_path(blog.category, blog)
         td= link_to blog.category_name, category_blogs_path(blog.category)
 
-        - if params[:action] != 'show'
-          td
-            = link_to blog.user_username, user_path(blog.user)
-            small =< "(#{blog.user_role})"
+        td
+          = link_to blog.user_username, user_path(blog.user)
+          small =< "(#{blog.user_role})"
 
         td
           = show_button_to category_blog_path(blog.category, blog) if can?(:read, blog)
