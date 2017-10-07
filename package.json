@@ -9,9 +9,9 @@
     "foundation-sites": "^6.4.4-rc1",
     "froala-editor": "^2.7.0",
     "jquery": "^3.2.1",
-    "jquery-ujs": "^1.2.2",
     "lodash": "^4.17.4",
     "motion-ui": "^1.2.3",
+    "rails-ujs": "^5.1.4",
     "turbolinks": "^5.0.3",
     "typeahead.js": "^0.11.1"
   },
