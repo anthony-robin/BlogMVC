@@ -2,7 +2,7 @@ class User < ApplicationRecord
   extend FriendlyId
   friendly_id :username, use: :slugged
 
-  has_many :blogs, dependent: :destroy
+  has_many :blogs, dependent: :destroy, fully_load: true
 
   authenticates_with_sorcery!
   mount_uploader :avatar, AvatarUploader

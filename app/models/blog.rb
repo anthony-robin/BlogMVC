@@ -8,7 +8,7 @@ class Blog < ApplicationRecord
   belongs_to :user, counter_cache: true
   belongs_to :category, counter_cache: true
 
-  scope :with_includes, -> { includes(:user, :picture, :category, :taggings) }
+  scope :with_includes, -> { includes(:user, :picture, :taggings) }
   scope :order_desc, -> { order(created_at: :desc) }
 
   delegate :name, to: :category, prefix: true, allow_nil: true
