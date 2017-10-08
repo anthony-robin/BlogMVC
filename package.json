@@ -3,6 +3,7 @@
   "private": true,
   "dependencies": {
     "@rails/webpacker": "^3.0.2",
+    "actioncable": "^5.1.4",
     "autosize": "^4.0.0",
     "font-awesome": "^4.7.0",
     "foundation-emails": "^2.2.1",
