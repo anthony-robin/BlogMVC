@@ -64,7 +64,7 @@ group :development, :test do
   gem 'pry-theme'
   gem 'pry-alias'
 
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   gem 'rspec-rails', '~> 3.5'
 end
 
