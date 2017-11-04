@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :comment do
     association :commentable, factory: :blog
     body { Faker::Lorem::sentence }

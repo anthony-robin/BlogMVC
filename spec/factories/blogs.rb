@@ -1,4 +1,4 @@
-FactoryGirl.define do
+FactoryBot.define do
   factory :blog do
     sequence(:title) { |n| "My blog article #{n + 1}" }
     content { Faker::Lorem.paragraph(2) }
