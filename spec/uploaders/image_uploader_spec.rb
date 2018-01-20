@@ -27,7 +27,7 @@ RSpec.describe ImageUploader do
     it_behaves_like :uploader_configuration
   end
 
-  context 'the thumb version' do
+  describe 'the thumb version' do
     it 'scales down a picture to fit within 50 by 50 pixels' do
       expect(uploader.thumb).to have_dimensions(50, 50)
     end
@@ -37,7 +37,7 @@ RSpec.describe ImageUploader do
     end
   end
 
-  context 'the small version' do
+  describe 'the small version' do
     it 'scales down a picture to fit within 150 by 150 pixels' do
       expect(uploader.small).to have_dimensions(150, 150)
     end
@@ -47,7 +47,7 @@ RSpec.describe ImageUploader do
     end
   end
 
-  context 'the medium version' do
+  describe 'the medium version' do
     it 'scales down a picture to fit within 300 by 300 pixels' do
       expect(uploader.medium).to have_dimensions(300, 300)
     end
@@ -57,7 +57,7 @@ RSpec.describe ImageUploader do
     end
   end
 
-  context 'the large version' do
+  describe 'the large version' do
     it 'scales down a picture to fit within 600 by 600 pixels' do
       expect(uploader.large).to have_dimensions(600, 600)
     end

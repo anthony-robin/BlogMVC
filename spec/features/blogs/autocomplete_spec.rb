@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature 'Blogs::Autocomplete', js: true do
+RSpec.describe 'Blogs::Autocomplete', type: :feature, js: true do
   subject(:autocomplete) { Blogs::AutocompletePage.new }
 
   let!(:blog) { create(:blog, title: 'Lorem ipsum dolor') }

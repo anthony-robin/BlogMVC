@@ -7,7 +7,7 @@ RSpec.shared_examples_for :category_creatable do
   it { is_expected.to redirect_to admin_categories_url }
 
   it 'creates a record' do
-    expect { subject }.to change(Category, :count).by(1)
+    expect { subject }.to change { Category.count }.by(1)
   end
 end
 
@@ -37,7 +37,7 @@ RSpec.shared_examples_for :category_destroyable do
   it { is_expected.to redirect_to admin_categories_url }
 
   it 'destroys a category' do
-    expect { subject }.to change(Category, :count).by(-1)
+    expect { subject }.to change { Category.count }.by(-1)
   end
 
   it 'destroys associated blogs' do

@@ -10,7 +10,7 @@ RSpec.shared_examples_for :blog_creatable do
   end
 
   it 'creates a record' do
-    expect { subject }.to change(Blog, :count).by(1)
+    expect { subject }.to change { Blog.count }.by(1)
   end
 
   describe 'owner' do
@@ -57,10 +57,10 @@ RSpec.shared_examples_for :blog_destroyable do
   it { is_expected.to redirect_to blogs_url }
 
   it 'destroys a blog' do
-    expect { subject }.to change(Blog, :count).by(-1)
+    expect { subject }.to change { Blog.count }.by(-1)
   end
 
   it 'destroys comments linked' do
-    expect { subject }.to change(Comment, :count).by(-4)
+    expect { subject }.to change { Comment.count }.by(-4)
   end
 end

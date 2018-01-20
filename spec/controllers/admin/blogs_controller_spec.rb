@@ -31,21 +31,21 @@ RSpec.describe Admin::BlogsController do
 
     it_behaves_like :not_logged_in
 
-    context 'as author' do
+    context 'when an author' do
       let(:user) { create(:user, :author) }
 
       it { is_expected.to have_http_status(200) }
       it { is_expected.to render_template :new }
     end
 
-    context 'as admin' do
+    context 'when an admin' do
       let(:user) { create(:user, :admin) }
 
       it { is_expected.to have_http_status(200) }
       it { is_expected.to render_template :new }
     end
 
-    context 'as master' do
+    context 'when a master' do
       let(:user) { create(:user, :master) }
 
       it { is_expected.to have_http_status(200) }
@@ -64,7 +64,7 @@ RSpec.describe Admin::BlogsController do
 
     it_behaves_like :not_logged_in
 
-    context 'as author' do
+    context 'when an author' do
       let(:user) { create(:user, :author) }
 
       context 'with invalid attributes' do
@@ -79,7 +79,7 @@ RSpec.describe Admin::BlogsController do
       end
     end
 
-    context 'as admin' do
+    context 'when an admin' do
       let(:user) { create(:user, :admin) }
 
       context 'with invalid attributes' do
@@ -96,7 +96,7 @@ RSpec.describe Admin::BlogsController do
       end
     end
 
-    context 'as master' do
+    context 'when a master' do
       let(:user) { create(:user, :master) }
 
       context 'with invalid attributes' do
@@ -123,14 +123,14 @@ RSpec.describe Admin::BlogsController do
 
     it_behaves_like :not_logged_in
 
-    context 'as author' do
+    context 'when an author' do
       let(:user) { create(:user, :author) }
 
       it { is_expected.to have_http_status(302) }
       it { is_expected.to redirect_to root_url }
     end
 
-    context 'as admin' do
+    context 'when an admin' do
       let(:user) { create(:user, :admin) }
       let(:flash_type) { 'alert' }
       let(:flash_message) { "Vous n'êtes pas autorisé à modifier cet article de Blog" }
@@ -145,7 +145,7 @@ RSpec.describe Admin::BlogsController do
       end
     end
 
-    context 'as master' do
+    context 'when a master' do
       let(:user) { create(:user, :master) }
 
       it { is_expected.to have_http_status(200) }
@@ -164,14 +164,14 @@ RSpec.describe Admin::BlogsController do
 
     it_behaves_like :not_logged_in
 
-    context 'as author' do
+    context 'when an author' do
       let(:user) { create(:user, :author) }
 
       it { is_expected.to have_http_status(302) }
       it { is_expected.to redirect_to root_url }
     end
 
-    context 'as admin' do
+    context 'when an admin' do
       let(:user) { create(:user, :admin) }
 
       context 'with invalid attributes' do
@@ -195,7 +195,7 @@ RSpec.describe Admin::BlogsController do
       end
     end
 
-    context 'as master' do
+    context 'when a master' do
       let(:user) { create(:user, :master) }
 
       context 'with invalid attributes' do
@@ -222,14 +222,14 @@ RSpec.describe Admin::BlogsController do
 
     it_behaves_like :not_logged_in
 
-    context 'as author' do
+    context 'when an author' do
       let!(:blog) { create(:blog, :author) }
       let(:user) { blog.user }
 
       it_behaves_like :blog_destroyable
     end
 
-    context 'as admin' do
+    context 'when an admin' do
       let(:user) { create(:user, :admin) }
 
       context 'with its own articles' do
@@ -247,7 +247,7 @@ RSpec.describe Admin::BlogsController do
       end
     end
 
-    context 'as master' do
+    context 'when a master' do
       let(:user) { create(:user, :master) }
       let(:blog) { create(:blog, user: user) }
 

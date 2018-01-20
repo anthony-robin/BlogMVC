@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.feature 'Home page' do
+RSpec.describe 'Home page', type: :feature do
   subject { HomePage.new }
 
-  context '#index' do
+  describe 'the index page' do
     before { visit root_path }
 
     it { is_expected.to have_correct_page_title }

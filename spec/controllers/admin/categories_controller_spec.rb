@@ -18,7 +18,7 @@ RSpec.describe Admin::CategoriesController do
 
     it_behaves_like :not_logged_in
 
-    context 'as author' do
+    context 'when an author' do
       let(:user) { create(:user, :author) }
       let(:flash_type) { 'alert' }
       let(:flash_message) { "Vous n'êtes pas autorisé à accéder à cette page" }
@@ -26,14 +26,14 @@ RSpec.describe Admin::CategoriesController do
       it_behaves_like :unauthorized
     end
 
-    context 'as admin' do
+    context 'when an admin' do
       let(:user) { create(:user, :admin) }
 
       it { is_expected.to have_http_status(200) }
       it { is_expected.to render_template :index }
     end
 
-    context 'as master' do
+    context 'when a master' do
       let(:user) { create(:user, :master) }
 
       it { is_expected.to have_http_status(200) }
@@ -46,7 +46,7 @@ RSpec.describe Admin::CategoriesController do
 
     it_behaves_like :not_logged_in
 
-    context 'as author' do
+    context 'when an author' do
       let(:user) { create(:user, :author) }
       let(:flash_type) { 'alert' }
       let(:flash_message) { "Vous n'êtes pas autorisé à gérer cette ressource" }
@@ -54,14 +54,14 @@ RSpec.describe Admin::CategoriesController do
       it_behaves_like :unauthorized
     end
 
-    context 'as admin' do
+    context 'when an admin' do
       let(:user) { create(:user, :admin) }
 
       it { is_expected.to have_http_status(200) }
       it { is_expected.to render_template :new }
     end
 
-    context 'as master' do
+    context 'when a master' do
       let(:user) { create(:user, :master) }
 
       it { is_expected.to have_http_status(200) }
@@ -80,18 +80,18 @@ RSpec.describe Admin::CategoriesController do
 
     it_behaves_like :not_logged_in
 
-    context 'as author' do
+    context 'when an author' do
       let(:user) { create(:user, :author) }
 
       it { is_expected.to have_http_status(302) }
       it { is_expected.to redirect_to root_url }
 
       it 'does not create a record' do
-        expect { create_category }.to_not change(Category, :count)
+        expect { create_category }.to_not change { Category.count }
       end
     end
 
-    context 'as admin' do
+    context 'when an admin' do
       let(:user) { create(:user, :admin) }
 
       context 'with invalid attributes' do
@@ -108,7 +108,7 @@ RSpec.describe Admin::CategoriesController do
       end
     end
 
-    context 'as master' do
+    context 'when a master' do
       let(:user) { create(:user, :master) }
 
       context 'with invalid attributes' do
@@ -135,7 +135,7 @@ RSpec.describe Admin::CategoriesController do
 
     it_behaves_like :not_logged_in
 
-    context 'as author' do
+    context 'when an author' do
       let(:user) { create(:user, :author) }
       let(:flash_type) { 'alert' }
       let(:flash_message) { "Vous n'êtes pas autorisé à gérer cette ressource" }
@@ -143,14 +143,14 @@ RSpec.describe Admin::CategoriesController do
       it_behaves_like :unauthorized
     end
 
-    context 'as admin' do
+    context 'when an admin' do
       let(:user) { create(:user, :admin) }
 
       it { is_expected.to have_http_status(200) }
       it { is_expected.to render_template :edit }
     end
 
-    context 'as master' do
+    context 'when a master' do
       let(:user) { create(:user, :master) }
 
       it { is_expected.to have_http_status(200) }
@@ -169,7 +169,7 @@ RSpec.describe Admin::CategoriesController do
 
     it_behaves_like :not_logged_in
 
-    context 'as author' do
+    context 'when an author' do
       let(:user) { create(:user, :author) }
       let(:flash_type) { 'alert' }
       let(:flash_message) { "Vous n'êtes pas autorisé à gérer cette ressource" }
@@ -177,7 +177,7 @@ RSpec.describe Admin::CategoriesController do
       it_behaves_like :unauthorized
     end
 
-    context 'as admin' do
+    context 'when an admin' do
       let(:user) { create(:user, :admin) }
 
       context 'with invalid attributes' do
@@ -192,7 +192,7 @@ RSpec.describe Admin::CategoriesController do
       end
     end
 
-    context 'as master' do
+    context 'when a master' do
       let(:user) { create(:user, :master) }
 
       context 'with invalid attributes' do
@@ -219,7 +219,7 @@ RSpec.describe Admin::CategoriesController do
 
     it_behaves_like :not_logged_in
 
-    context 'as author' do
+    context 'when an author' do
       let(:user) { create(:user, :author) }
       let(:flash_type) { 'alert' }
       let(:flash_message) { "Vous n'êtes pas autorisé à gérer cette ressource" }
@@ -227,7 +227,7 @@ RSpec.describe Admin::CategoriesController do
       it_behaves_like :unauthorized
 
       it 'does not destroy a category' do
-        expect { destroy_category }.to_not change(Category, :count)
+        expect { destroy_category }.to_not change { Category.count }
       end
 
       it 'does not destroy associated blogs' do
@@ -235,13 +235,13 @@ RSpec.describe Admin::CategoriesController do
       end
     end
 
-    context 'as admin' do
+    context 'when an admin' do
       let(:user) { create(:user, :admin) }
 
       it_behaves_like :category_destroyable
     end
 
-    context 'as master' do
+    context 'when a master' do
       let(:user) { create(:user, :master) }
 
       it_behaves_like :category_destroyable
