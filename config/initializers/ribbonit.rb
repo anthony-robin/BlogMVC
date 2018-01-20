@@ -9,6 +9,4 @@ Ribbonit.configure do |config|
     development: 'orange',
     staging: 'blue'
   }
-
-  config.staging_name = 'staging'
 end
