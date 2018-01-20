@@ -27,7 +27,7 @@ RSpec.describe AvatarUploader do
     it_behaves_like :uploader_configuration
   end
 
-  context 'the small version' do
+  describe 'the small version' do
     it 'scales down avatar to fill within 100 by 100 pixels' do
       expect(uploader.small).to have_dimensions(100, 100)
     end
@@ -37,7 +37,7 @@ RSpec.describe AvatarUploader do
     end
   end
 
-  context 'the large version' do
+  describe 'the large version' do
     it 'scales down avatar to fill within 200 by 200 pixels' do
       expect(uploader.large).to have_dimensions(200, 200)
     end

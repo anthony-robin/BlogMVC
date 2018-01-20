@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature 'Blogs::Search', js: true do
+RSpec.describe 'Blogs::Search', type: :feature, js: true do
   subject(:search) { Blogs::SearchPage.new }
 
   let!(:blog) { create(:blog, title: 'Lorem ipsum') }

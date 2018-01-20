@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature 'Contact page' do
+RSpec.describe 'Contact page', type: :feature do
   subject(:page) { ContactPage.new }
 
   let(:valid_attributes) do
@@ -11,19 +11,19 @@ RSpec.feature 'Contact page' do
 
   before { visit new_contact_path }
 
-  context '#new' do
+  describe 'the new page' do
     it { is_expected.to have_correct_page_title }
     it { is_expected.to have_correct_h1_title }
   end
 
-  context '#valid?' do
+  describe '#valid?' do
     before { page.fill_form(valid_attributes[:contact]) }
 
     it { is_expected.to_not have_form_errors }
     it { is_expected.to have_submitted_form }
   end
 
-  context '#invalid?' do
+  describe '#invalid?' do
     before { page.fill_form(valid_attributes[:contact].merge!(nickname: 'I am a robot !')) }
 
     it { is_expected.to have_form_errors }

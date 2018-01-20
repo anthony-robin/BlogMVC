@@ -1,17 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe Comment do
-  context 'associations' do
-    it { is_expected.to belong_to(:user) }
-    it { is_expected.to belong_to(:commentable) }
-  end
+  it { is_expected.to belong_to(:user) }
+  it { is_expected.to belong_to(:commentable) }
 
-  context 'a comment' do
+  describe 'a comment' do
     let(:user) { create(:user) }
     let(:blog) { create(:blog) }
     let(:comment) { build(:comment, commentable: blog, user: user, body: 'Lorem ispum !') }
 
-    context 'on CREATE' do
+    describe 'on CREATE' do
       before { comment.save! }
 
       it('is valid') { expect(comment).to be_valid }
@@ -26,7 +24,7 @@ RSpec.describe Comment do
       end
     end
 
-    context 'on DESTROY' do
+    describe 'on DESTROY' do
       before do
         comment.save!
         comment.destroy!

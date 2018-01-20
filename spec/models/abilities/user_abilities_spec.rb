@@ -39,7 +39,7 @@ RSpec.describe User do
     it { is_expected.to be_able_to(:destroy, user) }
   end
 
-  context 'user can only manage own profile' do
+  describe 'user can only manage own profile' do
     let(:user) { create(:user, :admin) }
     let(:user2) { create(:user, :author) }
 

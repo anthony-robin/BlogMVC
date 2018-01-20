@@ -16,5 +16,5 @@
 
   nav.orbit-bullets
     - blogs.each_with_index do |blog, index|
-      button class=('is-active' if index == 0) data-slide="#{index}"
+      button class=('is-active' if index.zero?) data-slide="#{index}"
         span.show-for-sr= blog.title

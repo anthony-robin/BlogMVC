@@ -10,7 +10,7 @@ RSpec.describe CommentForm, type: :model do
 
   let(:form) { CommentForm.new(Comment.new) }
 
-  context 'model validations rules' do
+  describe 'model validations rules' do
     subject { form }
 
     it { is_expected.to validate_presence_of(:body) }
@@ -19,7 +19,7 @@ RSpec.describe CommentForm, type: :model do
     it { is_expected.to allow_value(Faker::Lorem.paragraph).for(:body) }
   end
 
-  context '#validate' do
+  describe '#validate' do
     subject! { form.validate(attributes) }
 
     context 'with correct params' do

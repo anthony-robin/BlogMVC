@@ -10,7 +10,7 @@ RSpec.describe ContactForm, type: :model do
 
   let(:form) { ContactForm.new }
 
-  context 'model validations rules' do
+  describe 'model validations rules' do
     subject { form }
 
     it { is_expected.to validate_presence_of(:name) }
@@ -22,7 +22,7 @@ RSpec.describe ContactForm, type: :model do
     it { is_expected.to_not allow_value('loremipsum.com').for(:email).with_message(t('email.invalid', scope: i18n_scope)) }
   end
 
-  context '#validate?' do
+  describe '#validate?' do
     subject! { form.validate(attributes) }
 
     context 'with correct attributes' do

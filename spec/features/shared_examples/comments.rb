@@ -9,7 +9,7 @@ RSpec.shared_examples_for :comment_creatable do
   end
 
   it 'creates a new comment' do
-    expect { subject }.to change(Comment, :count).by(1)
+    expect { subject }.to change { Comment.count }.by(1)
   end
 
   describe 'owner' do
@@ -32,7 +32,7 @@ RSpec.shared_examples_for :comment_not_creatable do
   end
 
   it 'does not create a new comment' do
-    expect { subject }.to_not change(Comment, :count)
+    expect { subject }.to_not change { Comment.count }
   end
 end
 
@@ -43,6 +43,6 @@ RSpec.shared_examples_for :comment_destroyable do
   it_behaves_like :flash_message
 
   it 'destroys a comment' do
-    expect { subject }.to change(Comment, :count).by(-1)
+    expect { subject }.to change { Comment.count }.by(-1)
   end
 end

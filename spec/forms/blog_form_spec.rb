@@ -12,7 +12,7 @@ RSpec.describe BlogForm, type: :model do
 
   let(:form) { BlogForm.new(Blog.new) }
 
-  context 'model validations rules' do
+  describe 'model validations rules' do
     subject { form }
 
     it { is_expected.to validate_presence_of(:title) }
@@ -26,7 +26,7 @@ RSpec.describe BlogForm, type: :model do
     it { is_expected.to_not validate_inclusion_of(:category_id).in_array(%w[30 999 7532]) }
   end
 
-  context '#validate?' do
+  describe '#validate?' do
     subject! { form.validate(attributes) }
 
     context 'with correct attribute' do

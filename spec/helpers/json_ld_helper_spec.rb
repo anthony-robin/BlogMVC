@@ -28,7 +28,7 @@ RSpec.describe JsonLdHelper do
         headline: blog.title,
         image: nil,
         genre: blog.tag_list.join(','),
-        keywords: blog.title.split().join(','),
+        keywords: blog.title.split.join(','),
         wordcount: blog.content.split.size,
         url: category_blog_url(blog.category, blog),
         datePublished: blog.created_at,

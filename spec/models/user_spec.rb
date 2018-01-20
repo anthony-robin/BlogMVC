@@ -3,19 +3,17 @@ require 'rails_helper'
 RSpec.describe User do
   let(:i18n_scope) { %i[errors attributes] }
 
-  context 'associations' do
-    it { is_expected.to have_many(:blogs) }
-  end
+  it { is_expected.to have_many(:blogs) }
 
-  context 'validations rules' do
-    context 'presence' do
+  describe 'validations rules' do
+    describe '#presence' do
       it { is_expected.to validate_presence_of(:username).with_message(t('errors.attributes.username.blank')) }
       it { is_expected.to validate_presence_of(:email).with_message(t('errors.attributes.email.blank')) }
       it { is_expected.to validate_presence_of(:role).with_message(t('errors.attributes.role.blank')).on(:update) }
       it { is_expected.to_not validate_presence_of(:role).on(:create) }
     end
 
-    context 'uniqueness' do
+    describe '#uniqueness' do
       let(:user) { create(:user) }
 
       it { is_expected.to_not allow_value(user.username).for(:username).with_message(t('username.taken', scope: i18n_scope)) }
@@ -25,7 +23,7 @@ RSpec.describe User do
       it { is_expected.to_not allow_value(user.email.capitalize).for(:email).with_message(t('email.taken', scope: i18n_scope)) }
     end
 
-    context 'format' do
+    describe '#format' do
       it { is_expected.to allow_value('foobar').for(:username) }
       it { is_expected.to allow_value('foobar123').for(:username) }
       it { is_expected.to allow_value('foobar_123').for(:username) }
@@ -40,13 +38,13 @@ RSpec.describe User do
       it { is_expected.to_not allow_value('loremipsum.com').for(:email).with_message(t('email.invalid', scope: i18n_scope)) }
     end
 
-    context 'enum' do
+    describe '#enum' do
       it { is_expected.to define_enum_for(:role).with(described_class.roles.keys) }
     end
   end
 
-  context 'a user' do
-    context 'on create' do
+  describe 'a user' do
+    describe 'on create' do
       let(:user) { build(:user) }
 
       it { expect(user).to be_valid }

@@ -32,7 +32,7 @@ RSpec.describe ContactsController do
     before { ActionMailer::Base.deliveries = [] }
     after { ActionMailer::Base.deliveries.clear }
 
-    context 'valid attributes' do
+    context 'with valid attributes' do
       let(:flash_type) { 'notice' }
       let(:flash_message) { 'Votre email a bien été envoyé.' }
 
@@ -55,7 +55,7 @@ RSpec.describe ContactsController do
       end
     end
 
-    context 'invalid attributes' do
+    context 'with invalid attributes' do
       let(:attributes) { { name: '' } }
 
       it { is_expected.to have_http_status(200) }

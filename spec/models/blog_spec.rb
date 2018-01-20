@@ -1,18 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe Blog do
-  context 'associations' do
-    it { is_expected.to belong_to(:category) }
-  end
+  it { is_expected.to belong_to(:category) }
+  it { is_expected.to delegate_method(:name).to(:category).with_prefix }
+  it { is_expected.to delegate_method(:username).to(:user).with_prefix }
+  it { is_expected.to delegate_method(:role).to(:user).with_prefix }
 
-  context 'delegates' do
-    it { is_expected.to delegate_method(:name).to(:category).with_prefix }
-    it { is_expected.to delegate_method(:username).to(:user).with_prefix }
-    it { is_expected.to delegate_method(:role).to(:user).with_prefix }
-  end
-
-  context 'a blog' do
-    context 'on CREATE' do
+  describe 'a blog' do
+    describe 'on CREATE' do
       let(:blog) { build(:blog, title: 'First blog article') }
 
       before { blog.save! }
@@ -30,7 +25,7 @@ RSpec.describe Blog do
       end
     end
 
-    context 'on UPDATE' do
+    describe 'on UPDATE' do
       let(:blog) { create(:blog) }
 
       it 'has a new slug' do
@@ -39,7 +34,7 @@ RSpec.describe Blog do
       end
     end
 
-    context 'on DESTROY' do
+    describe 'on DESTROY' do
       let(:blog) { create(:blog) }
 
       before { blog.destroy! }

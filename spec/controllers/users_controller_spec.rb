@@ -12,21 +12,21 @@ RSpec.describe UsersController do
       it_behaves_like :not_logged_in, js: false
     end
 
-    context 'as author' do
+    context 'when an author' do
       let(:user) { create(:user, :author) }
 
       it { is_expected.to have_http_status(200) }
       it { is_expected.to render_template :index }
     end
 
-    context 'as admin' do
+    context 'when an admin' do
       let(:user) { create(:user, :admin) }
 
       it { is_expected.to have_http_status(200) }
       it { is_expected.to render_template :index }
     end
 
-    context 'as master' do
+    context 'when a master' do
       let(:user) { create(:user, :master) }
 
       it { is_expected.to have_http_status(200) }
@@ -50,7 +50,7 @@ RSpec.describe UsersController do
       it { is_expected.to render_template :show }
     end
 
-    context 'as author' do
+    context 'when an author' do
       let(:role) { :admin }
       let(:user) { create(:user, :author) }
 
@@ -58,7 +58,7 @@ RSpec.describe UsersController do
       it { is_expected.to render_template :show }
     end
 
-    context 'as admin' do
+    context 'when an admin' do
       let(:role) { :master }
       let(:user) { create(:user, :admin) }
 
@@ -66,7 +66,7 @@ RSpec.describe UsersController do
       it { is_expected.to render_template :show }
     end
 
-    context 'as master' do
+    context 'when a master' do
       let(:role) { :author }
       let(:user) { create(:user, :master) }
 

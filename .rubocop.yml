@@ -1,27 +1,6 @@
-require: rubocop-rspec
-
 AllCops:
-  DisabledByDefault: true
-  TargetRubyVersion: 2.4
   TargetRailsVersion: 5.1
-  Exclude:
-    - 'db/**/*'
-    - 'node_modules/**/*'
-    - 'vendor/**/*'
+  TargetRubyVersion: 2.4
 
 inherit_from:
-  - https://raw.githubusercontent.com/anthony-robin/rubocop-rules/master/.rubocop-bundler.yml
-  - https://raw.githubusercontent.com/anthony-robin/rubocop-rules/master/.rubocop-layout.yml
-  - https://raw.githubusercontent.com/anthony-robin/rubocop-rules/master/.rubocop-lint.yml
-  - https://raw.githubusercontent.com/anthony-robin/rubocop-rules/master/.rubocop-naming.yml
-  - https://raw.githubusercontent.com/anthony-robin/rubocop-rules/master/.rubocop-performance.yml
-  - https://raw.githubusercontent.com/anthony-robin/rubocop-rules/master/.rubocop-style.yml
-  - https://raw.githubusercontent.com/anthony-robin/rubocop-rules/master/.rubocop-rails.yml
-  - https://raw.githubusercontent.com/anthony-robin/rubocop-rules/master/.rubocop-rspec.yml
-
-Naming/FileName:
-  Exclude:
-    - 'app/views/**/*.slim.slim_lint.*'
-RSpec/NamedSubject:
-  Exclude:
-    - spec/features/shared_examples/*.rb
+  - https://raw.githubusercontent.com/anthony-robin/rubocop-rules/master/.rubocop.yml

@@ -9,16 +9,17 @@ RSpec.describe CategoryForm, type: :model do
 
   let(:form) { CategoryForm.new(Category.new) }
 
-  context 'model validations rules' do
-    before { create(:category, name: 'Category1') }
+  describe 'model validations rules' do
     subject { form }
+
+    before { create(:category, name: 'Category1') }
 
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to_not allow_value('Category1').for(:name) }
     it { is_expected.to allow_value('Category2').for(:name) }
   end
 
-  context '#validate?' do
+  describe '#validate?' do
     subject! { form.validate(attributes) }
 
     context 'with correct attribute' do

@@ -23,7 +23,7 @@ module JsonLdHelper
       headline: blog.title,
       image: blog.picture? ? blog.picture.image.url(:large) : nil,
       genre: blog.tag_list.join(','),
-      keywords: blog.title.split().join(','),
+      keywords: blog.title.split.join(','),
       wordcount: blog.content.split.size,
       url: category_blog_url(blog.category, blog),
       datePublished: blog.created_at,
