@@ -33,7 +33,7 @@ install:
   - bundle install --without development --path=${BUNDLE_PATH:-vendor/bundle} # Gems
 
   # Webpack (npm packages)
-  - nvm install 7.7.0
+  - nvm install 8.6.0
   - npm i -g yarn
   - bin/yarn install
 
