@@ -2,29 +2,27 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
-    "@rails/webpacker": "^3.0.2",
+    "@rails/webpacker": "^3.2.0",
     "actioncable": "^5.1.4",
     "autosize": "^4.0.0",
     "font-awesome": "^4.7.0",
     "foundation-emails": "^2.2.1",
     "foundation-sites": "^6.4.4-rc1",
-    "froala-editor": "^2.7.1",
-    "jquery": "^3.2.1",
+    "froala-editor": "^2.7.3",
+    "jquery": "^3.3.1",
     "lodash": "^4.17.4",
     "motion-ui": "^1.2.3",
     "rails-ujs": "^5.1.4",
-    "turbolinks": "^5.0.3",
+    "turbolinks": "^5.1.1",
     "typeahead.js": "^0.11.1"
   },
   "devDependencies": {
-    "eslint": "^4.10.0",
+    "eslint": "^4.15.0",
     "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-import-resolver-babel-module": "^4.0.0-beta.3",
-    "eslint-import-resolver-webpack": "^0.8.3",
     "eslint-plugin-import": "^2.8.0",
     "maildev": "^1.0.0-rc3",
     "sass-lint": "^1.12.1",
-    "webpack-dev-server": "^2.9.4"
+    "webpack-dev-server": "^2.11.0"
   },
   "scripts": {
     "postinstall": "npm rebuild node-sass",
