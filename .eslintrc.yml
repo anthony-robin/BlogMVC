@@ -1,16 +1,23 @@
-settings:
-  import/resolver:
-    babel-module: {}
-    webpack:
-      config: config/webpack/test.js
+extends: airbnb-base
+
+plugins:
+  - import
 
 env:
   browser: true
   jquery: true
   es6: true
 
-extends: airbnb-base
-
 rules:
+  no-var: 1
+  no-undef: 0
+  indent: ['warn', 2]
+  linebreak-style: ['warn', 'unix']
+  quotes: ['warn', 'single']
   semi: ['warn', 'never']
-  comma-dangle: ['error', 'never']
+  comma-dangle: ['error', never]
+  import/extensions: 0
+  no-param-reassign: 0
+  no-unused-vars:
+    - error
+    - "argsIgnorePattern": "^_"
