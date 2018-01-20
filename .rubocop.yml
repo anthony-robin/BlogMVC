@@ -1,6 +1,6 @@
 AllCops:
   TargetRailsVersion: 5.1
-  TargetRubyVersion: 2.4
+  TargetRubyVersion: 2.5
 
 inherit_from:
   - https://raw.githubusercontent.com/anthony-robin/rubocop-rules/master/.rubocop.yml

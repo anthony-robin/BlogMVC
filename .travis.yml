@@ -3,7 +3,7 @@ sudo: required
 language: ruby
 
 rvm:
-  - 2.4.2
+  - 2.5.0
 
 cache:
   bundler: true
@@ -19,6 +19,7 @@ env:
 
 before_install:
   - export TZ=Europe/Paris
+  - gem update --system # Tweak for Ruby 2.5
 
   # ChromeDriver
   - wget http://chromedriver.storage.googleapis.com/${CHROME_DRIVER_VERSION:-2.32}/chromedriver_linux64.zip
